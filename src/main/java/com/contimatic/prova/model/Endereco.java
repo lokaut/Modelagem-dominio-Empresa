@@ -1,6 +1,4 @@
- package com.contimatic.prova.entidades;
-
-import java.util.Objects;
+ package com.contimatic.prova.model;
 
 public class Endereco {
 	
@@ -59,6 +57,14 @@ public class Endereco {
 		this.rua = rua;
 	}
 
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 	public String getNumero() {
 		return numero;
 	}
@@ -66,6 +72,7 @@ public class Endereco {
 	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
 
 	
 }
