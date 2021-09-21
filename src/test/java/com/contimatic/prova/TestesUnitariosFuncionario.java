@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import com.contimatic.prova.model.Funcionario;
 
-class TestesUnitariosFuncionarioNome {
+class TestesUnitariosFuncionario {
 
 	private Funcionario funcionario;
 	private String testes;
@@ -18,7 +18,7 @@ class TestesUnitariosFuncionarioNome {
 	}
 
 	@Test
-	void validar_quantidades_caracteres_nome() {
+	void deve_validar_quantidades_caracteres_nome() {
 		funcionario.setNome(testes);
 	}
 
@@ -28,13 +28,14 @@ class TestesUnitariosFuncionarioNome {
 	}
 
 	@Test
-	void validar_campo_em_branco_nome() {
+	void deve_validar_campo_em_branco_nome() {
 		funcionario.setNome(testes);
 	}
 	
 	@Test
-	void validar_caracter_numerico_nome() {
-		funcionario.setNome("Erick");
+	void deve_validar_caracter_numerico_nome() {
+		funcionario.setNome(testes);
 	}
+
 
 }
