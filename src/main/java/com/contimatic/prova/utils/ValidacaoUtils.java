@@ -5,31 +5,37 @@ public final class ValidacaoUtils {
 	private ValidacaoUtils() {
 	}
 
-	public static void verificacaoCampoNulo(String nome) {
+	public static void verificacaoCampoNulo(Object nome) {
 		if (nome == null) {
 			throw new IllegalArgumentException("Este campo não pode ser nulo");
 		}
 	}
 
-	public static void maximoSessentaCaracter(String nome) {
-		if ((nome.length() < 3 || nome.length() > 60)) {
+	public static void limiteMaximoCaracter(String nome, int minimo, int maximo) {
+		if ((nome.length() < minimo || nome.length() > maximo)) {
 			throw new IllegalStateException(
-					// deixar mensagem mais generico
-					"Quantidade de carácter inválido, o campo deve estar entre 3 a 60 caracteres");
+					"Quantidade de carácter inválido, o campo deve estar entre "+ minimo + " a " + maximo + " caracteres"
+							+ ", atualmente o campo possui " + nome.length());
 		}
 	}
 
 	public static void naoAceitarCampoEmBranco(String nome) {
 		if (nome.isBlank()) {
-			throw new IllegalArgumentException("campo nome não pode ter caracter com espaço");
+			throw new IllegalStateException("Campo está vazio ou contém apenas espaço em branco");
 		}
 	}
 
 	public static void naoAceitarCaracterNumerico(String nome) {
 		if (!nome.matches("[a-zA-Z_ ]{1,60}")) {
-			throw new IllegalStateException("O Campo Nome possui caracter númerico ou caracter especial");
+			throw new IllegalStateException("O Campo possui caracter númerico ou caracter especial");
 		}
 	}
 
-
+	//datas
+	public static void quantidadeDiferentedeOito(String data) {
+		if (data.length() != 8) {
+			throw new IllegalStateException(
+					"A data informada está incorreta, a data precisa conter dia, mês e ano, incluido zero, exemplo: 07/04/2022");
+		}
+	}
 }
