@@ -1,66 +1,48 @@
 package com.contimatic.prova.utils;
 
-import java.util.InputMismatchException;
+import static com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF;
+import static com.contimatic.prova.constantes.Constantes.PESO_ONZE_CPF;
+import static com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
 
 public final class ValidacaoCpf {
-//classe cpnj
-	private ValidacaoCpf() {
+	
+	private  ValidacaoCpf(){}
+
+	public static boolean validarCPF(String cpf) {
+		validarSequencia(cpf);
+		char digVerificador10 = primeiroSegundoDigVerificador(cpf, PESO_DEZ_CPF);
+		char digVerificador11 = primeiroSegundoDigVerificador(cpf, PESO_ONZE_CPF);
+		return (digVerificador10 == cpf.charAt(9)) && (digVerificador11 == cpf.charAt(10));
 	}
 
-	public static boolean validarCPF(String Cpf) {
-		validarSequencia(Cpf);
-
-		char dig10, dig11;
-		int sm, i, r, num, peso;
-
-		try {
-			sm = 0; //numeros magicos, transformar em constantes
-			peso = 10; 
-			for (i = 0; i < 9; i++) {
-
-				num = (int) (Cpf.charAt(i) - 48);
-				sm = sm + (num * peso);
-				peso = peso - 1;
-			}
-
-			r = 11 - (sm % 11);
-			if ((r == 10) || (r == 11))
-				dig10 = '0';
-			else
-				dig10 = (char) (r + 48); // converte no respectivo caractere numerico
-
-			// Calculo do 2o. Digito Verificador
-			sm = 0;
-			peso = 11;
-			for (i = 0; i < 10; i++) {
-				num = (int) (Cpf.charAt(i) - 48);
-				sm = sm + (num * peso);
-				peso = peso - 1;
-			}
-
-			r = 11 - (sm % 11);
-			if ((r == 10) || (r == 11))
-				dig11 = '0';
-			else
-				dig11 = (char) (r + 48);
-
-			if ((dig10 == Cpf.charAt(9)) && (dig11 == Cpf.charAt(10)))
-				return (true);
-			else
-				return (false);
-		} catch (InputMismatchException erro) {
-			return (false);
-		}
-	}
-
-	private static void validarSequencia(String Cpf) {
-		if (Cpf.equals("00000000000") || Cpf.equals("11111111111") || Cpf.equals("22222222222")
-				|| Cpf.equals("33333333333") || Cpf.equals("44444444444") || Cpf.equals("55555555555")
-				|| Cpf.equals("66666666666") || Cpf.equals("77777777777") || Cpf.equals("88888888888")
-				|| Cpf.equals("99999999999") || (Cpf.length() != 11)) {
+	private static void validarSequencia(String cpf) {
+		if (cpf.equals("00000000000") || cpf.equals("11111111111") || cpf.equals("22222222222")
+				|| cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555")
+				|| cpf.equals("66666666666") || cpf.equals("77777777777") || cpf.equals("88888888888")
+				|| cpf.equals("99999999999") || (cpf.length() != 11)) {
 			throw new IllegalStateException("Cpf invalido");
 		}
-
 	}
 
+	private static char primeiroSegundoDigVerificador(String cpf, int pesoVerificador) {
+		int num;
+		int somaTotal = 0;
+		int peso = pesoVerificador;
+		for (int i = 0; i < pesoVerificador - 1; i++) {
+			num = (cpf.charAt(i) - POSICAO_ZERO_ASCII);
+			somaTotal = somaTotal + (num * peso);
+			peso--;
+		}
+		return verificarOsDoisDigitoVerificador(somaTotal);
+	}
+
+	private static char verificarOsDoisDigitoVerificador(int somaTotal) {
+		char digitoVerificador;
+		int resto = PESO_ONZE_CPF - (somaTotal % PESO_ONZE_CPF);
+		if ((resto == PESO_DEZ_CPF) || (resto == PESO_ONZE_CPF))
+			digitoVerificador = '0';
+		else
+			digitoVerificador = (char) (resto + POSICAO_ZERO_ASCII);
+		return digitoVerificador;
+	}
 }
