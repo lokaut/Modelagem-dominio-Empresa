@@ -1,5 +1,6 @@
 package com.contimatic.prova.model;
 
+import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
@@ -9,12 +10,14 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
-//criar uma classe empresa
+//criar uma classe empresa pai, nome, cnpj, criar produto
+//validar o get, apos usar o set
 
 //campo para data futura e  menor de 18 anos data de nascimento
 
-public class Funcionario {
 
+public class Funcionario {
+	
 	private String nome;
 	
 	private String email;
@@ -28,7 +31,17 @@ public class Funcionario {
 	private LocalDate dataAdmissao;
 
 	private LocalDate dataNascimento;
-	
+	public Funcionario() {}
+	public Funcionario(String nome, String email, String cpf, BigDecimal salario, Endereco endereco,
+			LocalDate dataAdmissao, LocalDate dataNascimento) {
+
+		setNome(nome);
+		setEmail(email);
+		setCpf(cpf);
+		setSalario(salario);
+		setEndereco(endereco);
+		setDataAdmissao(dataAdmissao);
+	}
 
 	public LocalDate getDataNascimento() {
 		return dataNascimento;
@@ -43,12 +56,11 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		limiteMaximoCaracter(nome, 3, 60);
 		verificacaoCampoNulo(nome);
+		limiteMaximoCaracter(nome, 3, 60);
 		naoAceitarCampoEmBranco(nome);
 		naoAceitarCaracterNumerico(nome);
 		this.nome = nome;
-		
 	}
 
 	public String getEmail() {
@@ -64,6 +76,7 @@ public class Funcionario {
 	}
 
 	public void setCpf(String cpf) {
+		validarCPF(cpf);
 		this.cpf = cpf;
 	}
 

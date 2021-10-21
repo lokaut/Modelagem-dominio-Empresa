@@ -12,7 +12,7 @@ public final class ValidacaoUtils {
 	}
 
 	public static void limiteMaximoCaracter(String nome, int minimo, int maximo) {
-		if ((nome.length() < minimo || nome.length() > maximo)) {
+		if (nome.length() < minimo || nome.length() > maximo) {
 			throw new IllegalStateException(
 					"Quantidade de carácter inválido, o campo deve estar entre "+ minimo + " a " + maximo + " caracteres"
 							+ ", atualmente o campo possui " + nome.length());
@@ -31,11 +31,4 @@ public final class ValidacaoUtils {
 		}
 	}
 
-	//datas
-	public static void quantidadeDiferentedeOito(String data) {
-		if (data.length() != 8) {
-			throw new IllegalStateException(
-					"A data informada está incorreta, a data precisa conter dia, mês e ano, incluido zero, exemplo: 07/04/2022");
-		}
-	}
 }
