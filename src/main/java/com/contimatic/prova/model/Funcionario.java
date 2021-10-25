@@ -4,7 +4,8 @@ import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificacaoCampoNulo;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -56,9 +57,9 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		verificacaoCampoNulo(nome);
-		limiteMaximoCaracter(nome, 3, 60);
+		verificarCampoNulo(nome);
 		naoAceitarCampoEmBranco(nome);
+		limiteMaximoCaracter(nome, 3, 60);
 		naoAceitarCaracterNumerico(nome);
 		this.nome = nome;
 	}
@@ -68,6 +69,8 @@ public class Funcionario {
 	}
 
 	public void setEmail(String email) {
+		verificarCampoNulo(email);
+		validarEmail(email);
 		this.email = email;
 	}
 
@@ -85,6 +88,7 @@ public class Funcionario {
 	}
 
 	public void setSalario(BigDecimal salario) {
+		verificarCampoNulo(salario);
 		this.salario = salario;
 	}
 
@@ -101,7 +105,7 @@ public class Funcionario {
 	}
 		
 	public void setDataAdmissao(LocalDate dataAdmissao) {
-		verificacaoCampoNulo(dataAdmissao);
+		verificarCampoNulo(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
 	}
 
