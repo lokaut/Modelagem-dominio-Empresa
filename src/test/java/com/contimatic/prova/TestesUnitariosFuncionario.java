@@ -97,6 +97,12 @@ class TestesUnitariosFuncionario {
 	}
 	
 	@Test
+	void deve_validar_caracter_texto_cpf() {
+		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf("44a764b7f34"));
+		assertTrue(illegalState.getMessage().contains(CPF_INVALIDO));
+	}
+	
+	@Test
 	void deve_validar_email_incorreto() {
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setEmail("erick22@.com"));
 		assertTrue(illegalState.getMessage().contains(EMAIL_INVALIDO));
