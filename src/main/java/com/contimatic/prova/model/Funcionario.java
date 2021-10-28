@@ -4,14 +4,14 @@ import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificacaoCampoNulo;
-
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
 //criar uma classe empresa pai, nome, cnpj, criar produto
-//validar o get, apos usar o set
 
 //campo para data futura e  menor de 18 anos data de nascimento
 
@@ -31,7 +31,9 @@ public class Funcionario {
 	private LocalDate dataAdmissao;
 
 	private LocalDate dataNascimento;
+	
 	public Funcionario() {}
+	
 	public Funcionario(String nome, String email, String cpf, BigDecimal salario, Endereco endereco,
 			LocalDate dataAdmissao, LocalDate dataNascimento) {
 
@@ -41,6 +43,7 @@ public class Funcionario {
 		setSalario(salario);
 		setEndereco(endereco);
 		setDataAdmissao(dataAdmissao);
+		setDataNascimento(dataNascimento);
 	}
 
 	public LocalDate getDataNascimento() {
@@ -56,9 +59,9 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		verificacaoCampoNulo(nome);
-		limiteMaximoCaracter(nome, 3, 60);
+		verificarCampoNulo(nome);
 		naoAceitarCampoEmBranco(nome);
+		limiteMaximoCaracter(nome, 3, 60);
 		naoAceitarCaracterNumerico(nome);
 		this.nome = nome;
 	}
@@ -68,6 +71,9 @@ public class Funcionario {
 	}
 
 	public void setEmail(String email) {
+		verificarCampoNulo(email);
+		naoAceitarCampoEmBranco(email);
+		validarEmail(email);
 		this.email = email;
 	}
 
@@ -76,6 +82,7 @@ public class Funcionario {
 	}
 
 	public void setCpf(String cpf) {
+		verificarCampoNulo(cpf);
 		validarCPF(cpf);
 		this.cpf = cpf;
 	}
@@ -85,7 +92,18 @@ public class Funcionario {
 	}
 
 	public void setSalario(BigDecimal salario) {
+		verificarCampoNulo(salario);
+		validarSalarioMinimo(salario);
 		this.salario = salario;
+	}
+
+	public LocalDate getDataAdmissao() {
+		return dataAdmissao;
+	}
+		
+	public void setDataAdmissao(LocalDate dataAdmissao) {
+		verificarCampoNulo(dataAdmissao);
+		this.dataAdmissao = dataAdmissao;
 	}
 
 	public Endereco getEndereco() {
@@ -94,15 +112,6 @@ public class Funcionario {
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
-	}
-
-	public LocalDate getDataAdmissao() {
-		return dataAdmissao;
-	}
-		
-	public void setDataAdmissao(LocalDate dataAdmissao) {
-		verificacaoCampoNulo(dataAdmissao);
-		this.dataAdmissao = dataAdmissao;
 	}
 
 	@Override
