@@ -1,10 +1,13 @@
 package com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static com.contimatic.prova.constantes.Constantes.CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.EMAIL_INVALIDO;
+import static com.contimatic.prova.constantes.Constantes.POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
+import static com.contimatic.prova.constantes.Constantes.SALARIO_MENOR_SALARIO_MINIMO;
 
+import java.math.BigDecimal;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -39,11 +42,20 @@ public final class ValidacaoUtils {
 	}
 	
 	public static void validarEmail(String email) {
+		
+		//regex menor
 			String expression = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
 			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(email);
 			if (!matcher.matches()) {
 				throw new IllegalStateException(EMAIL_INVALIDO);
 			}
+	}
+	
+	public static void validarSalarioMinimo(BigDecimal salario) {
+		BigDecimal diferencaSalario = salario.subtract(SALARIO_MINIMO);
+		if (diferencaSalario.signum() == - 1) {
+			throw new IllegalStateException(SALARIO_MENOR_SALARIO_MINIMO);
+		}
 	}
 }
