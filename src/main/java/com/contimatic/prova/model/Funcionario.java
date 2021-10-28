@@ -12,7 +12,6 @@ import java.time.LocalDate;
 import java.util.Objects;
 
 //criar uma classe empresa pai, nome, cnpj, criar produto
-//validar o get, apos usar o set
 
 //campo para data futura e  menor de 18 anos data de nascimento
 
@@ -98,14 +97,6 @@ public class Funcionario {
 		this.salario = salario;
 	}
 
-	public Endereco getEndereco() {
-		return endereco;
-	}
-
-	public void setEndereco(Endereco endereco) {
-		this.endereco = endereco;
-	}
-
 	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
 	}
@@ -113,6 +104,14 @@ public class Funcionario {
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		verificarCampoNulo(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
+	}
+
+	public Endereco getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(Endereco endereco) {
+		this.endereco = endereco;
 	}
 
 	@Override
