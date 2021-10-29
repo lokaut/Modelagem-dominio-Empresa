@@ -5,7 +5,7 @@ import java.math.BigDecimal;
 public  final class Constantes {
 	private  Constantes(){}
 	//criar uma classe constante do teste unitario
-	public static final String SESSENTA_CARACTER = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
+	public static final String SESSENTA_DOIS_CARACTERES = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
 	public static final String DOIS_CARACTER = "ac";
 	public static final String NUMERO_CPF_INVALIDO = "44085620000";
 	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1100.0);

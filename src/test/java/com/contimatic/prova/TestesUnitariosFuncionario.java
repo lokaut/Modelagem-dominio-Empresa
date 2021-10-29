@@ -10,12 +10,13 @@ import static com.contimatic.prova.constantes.Constantes.DOIS_CARACTER;
 import static com.contimatic.prova.constantes.Constantes.EMAIL_INVALIDO;
 import static com.contimatic.prova.constantes.Constantes.POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static com.contimatic.prova.constantes.Constantes.SALARIO_MENOR_SALARIO_MINIMO;
-import static com.contimatic.prova.constantes.Constantes.SESSENTA_CARACTER;
+import static com.contimatic.prova.constantes.Constantes.SESSENTA_DOIS_CARACTERES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +31,8 @@ class TestesUnitariosFuncionario {
 
 	private IllegalStateException illegalState;
 	private IllegalArgumentException illegalArgument;
+	
+	LocalDate dataNascMaiorIdade;
 
 	private BigDecimal salario1 = new BigDecimal(1110.0);
 	private BigDecimal salario2 = new BigDecimal(800.2);
@@ -39,6 +42,7 @@ class TestesUnitariosFuncionario {
 
 		funcionario = new Funcionario();
 		nome = "Lokaut";
+		dataNascMaiorIdade = LocalDate.of(1994, 12, 05);
 	}
 
 	@AfterAll
@@ -48,7 +52,7 @@ class TestesUnitariosFuncionario {
 
 	@Test
 	void deve_validar_mais_sessenta_caracteres_nome() {
-		assertThrows(IllegalStateException.class, () -> funcionario.setNome(SESSENTA_CARACTER));
+		assertThrows(IllegalStateException.class, () -> funcionario.setNome(SESSENTA_DOIS_CARACTERES));
 	}
 
 	@Test
