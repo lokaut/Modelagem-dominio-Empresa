@@ -1,39 +1,42 @@
 package com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.CPF_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.CPF_DIFERENTE_ONZE_NUMEROS;
-import static com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF;
-import static com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF;
-import static com.contimatic.prova.constantes.Constantes.PESO_ONZE_CPF;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
+import static com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
+import static com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF_CNPJ;
+import static com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF_CNPJ;
 import static com.contimatic.prova.constantes.Constantes.POSICAO_DEZ_CPF;
 import static com.contimatic.prova.constantes.Constantes.POSICAO_NOVE_CPF;
 import static com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
 import static com.contimatic.prova.constantes.Constantes.TAMANHO_CPF;
+import static com.contimatic.prova.constantes.Constantes.TAMANHO_CNPJ;
 
 public final class ValidacaoCpf {
-	
-	
 
-	private  ValidacaoCpf(){}
+	private ValidacaoCpf(){}
 
 	public static void validarCPF(String cpf) {
-		validarTamanho(cpf);
+		validarTamanho(cpf, TAMANHO_CPF);
 		validarSequencia(cpf);
 		verificarDigitos(cpf);
 	}
+	
+	public static void validarCNPJ(String cnpj) {
+		validarTamanho(cnpj, TAMANHO_CNPJ);
+	}
 
-	private static void validarTamanho(String cpf) {
-		if(cpf.length() != TAMANHO_CPF) {
-			 throw new IllegalStateException(CPF_DIFERENTE_ONZE_NUMEROS);
+	private static void validarTamanho(String cpf, int tamanhoCNPJCPF) {
+		if(cpf.length() != tamanhoCNPJCPF) {
+			 throw new IllegalStateException(MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS);
 		}
 	}
 
 	private static void verificarDigitos(String cpf) {
-		char digVerificador10 = primeiroSegundoDigVerificador(cpf, PESO_DEZ_CPF);
-		char digVerificador11 = primeiroSegundoDigVerificador(cpf, PESO_ONZE_CPF);
+		char digVerificador10 = primeiroSegundoDigVerificador(cpf, PESO_DEZ_CPF_CNPJ);
+		char digVerificador11 = primeiroSegundoDigVerificador(cpf, MODULO_DIVISAO_ONZE_CPF_CNPJ);
 		
 		 if (!((digVerificador10 == cpf.charAt(POSICAO_NOVE_CPF)) && (digVerificador11 == cpf.charAt(POSICAO_DEZ_CPF)))) {
-			 throw new IllegalStateException(CPF_INVALIDO);
+			 throw new IllegalStateException(MENSAGEM_CPF_INVALIDO);
 		 }
 	}
 
@@ -42,7 +45,7 @@ public final class ValidacaoCpf {
 				|| cpf.equals("33333333333") || cpf.equals("44444444444") || cpf.equals("55555555555")
 				|| cpf.equals("66666666666") || cpf.equals("77777777777") || cpf.equals("88888888888")
 				|| cpf.equals("99999999999") )) {
-			throw new IllegalStateException(CPF_INVALIDO);
+			throw new IllegalStateException(MENSAGEM_CPF_INVALIDO);
 		}
 	}
 
@@ -60,9 +63,9 @@ public final class ValidacaoCpf {
 
 	private static char verificarOsDoisDigitoVerificador(int somaTotal) {
 		char digitoVerificador;
-		int resto = PESO_ONZE_CPF - (somaTotal % PESO_ONZE_CPF);
-		if (resto == PESO_DEZ_CPF || resto == PESO_ONZE_CPF)
-			digitoVerificador = NUMERO_ZERO_CPF;
+		int resto = MODULO_DIVISAO_ONZE_CPF_CNPJ - (somaTotal % MODULO_DIVISAO_ONZE_CPF_CNPJ);
+		if (resto == PESO_DEZ_CPF_CNPJ || resto == MODULO_DIVISAO_ONZE_CPF_CNPJ)
+			digitoVerificador = NUMERO_ZERO_CPF_CNPJ;
 		else
 			digitoVerificador = (char) (resto + POSICAO_ZERO_ASCII);
 		
