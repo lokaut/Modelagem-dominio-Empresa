@@ -62,7 +62,7 @@ public final class ValidacaoCnpj {
 	private static char verificarOsDoisDigitoVerificador(int soma) {
 		char digito;
 		int resto = soma % MODULO_DIVISAO_ONZE_CPF_CNPJ;
-		if ((resto == 0) || (resto == 1))
+		if (resto == 0 || resto == 1)
 			digito = NUMERO_ZERO_CPF_CNPJ;
 		else
 			digito = (char) ((MODULO_DIVISAO_ONZE_CPF_CNPJ - resto) + POSICAO_ZERO_ASCII);
