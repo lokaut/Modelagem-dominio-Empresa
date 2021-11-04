@@ -35,7 +35,6 @@ public final class ValidacaoUtils {
 		}
 	}
 
-	//nao funciona com caracter especial
 	public static void naoAceitarCaracterNumerico(String nome) {
 		if (!nome.matches("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$")) {
 			throw new IllegalStateException(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
@@ -43,8 +42,7 @@ public final class ValidacaoUtils {
 	}
 	
 	public static void validarEmail(String email) {
-		//regex menor
-			String expression = "^[a-zA-Z0-9.!#$%&'*+\\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
+			String expression = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
 			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
 			Matcher matcher = pattern.matcher(email);
 			if (!matcher.matches()) {
