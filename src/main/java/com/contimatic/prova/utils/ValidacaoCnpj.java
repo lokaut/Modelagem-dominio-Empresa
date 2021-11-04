@@ -6,6 +6,8 @@ import static com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF
 import static com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
 import static com.contimatic.prova.constantes.Constantes.PESO_DOZE_CNPJ;
 import static com.contimatic.prova.constantes.Constantes.PESO_ONZE_CPF;
+import static com.contimatic.prova.constantes.Constantes.POSICAO_DOZE_CNPJ;
+import static com.contimatic.prova.constantes.Constantes.POSICAO_TREZE_CNPJ;
 import static com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
 import static com.contimatic.prova.constantes.Constantes.TAMANHO_CNPJ;
 
@@ -22,7 +24,7 @@ public final class ValidacaoCnpj {
 	private static void verificarDigitos(String cnpj) {
 		char digVerificador13 = primeiroSegundoDigVerificador(cnpj, PESO_ONZE_CPF);
 		char digVerificador14 = primeiroSegundoDigVerificador(cnpj, PESO_DOZE_CNPJ);
-	      if (!((digVerificador13 == cnpj.charAt(12)) && (digVerificador14 == cnpj.charAt(13)))){ 
+	      if (!((digVerificador13 == cnpj.charAt(POSICAO_DOZE_CNPJ)) && (digVerificador14 == cnpj.charAt(POSICAO_TREZE_CNPJ)))){ 
 	      throw new IllegalStateException(MENSAGEM_CNPJ_INVALIDO);	
 	      }
 	}

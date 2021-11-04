@@ -24,6 +24,8 @@ public  final class Constantes {
 	public static final char NUMERO_ZERO_CPF_CNPJ = '0';
 	public static final String CPF_VALIDO = "90795007809"; //76899070081
 	public static final String CPF_TEXTO = "44a764b7f34";
+	public static final int POSICAO_DOZE_CNPJ = 12;
+	public static final int POSICAO_TREZE_CNPJ = 13;
 	
 	/* Mensagens */
 	public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
