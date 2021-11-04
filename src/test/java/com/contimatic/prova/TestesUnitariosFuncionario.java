@@ -1,15 +1,16 @@
 package com.contimatic.prova;
 
+import static com.contimatic.prova.constantes.Constantes.CPF_TEXTO;
+import static com.contimatic.prova.constantes.Constantes.CPF_VALIDO;
+import static com.contimatic.prova.constantes.Constantes.DOIS_CARACTER;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.CPF_TEXTO;
-import static com.contimatic.prova.constantes.Constantes.CPF_VALIDO;
-import static com.contimatic.prova.constantes.Constantes.DOIS_CARACTER;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static com.contimatic.prova.constantes.Constantes.SESSENTA_DOIS_CARACTERES;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,7 +33,7 @@ class TestesUnitariosFuncionario {
 	private IllegalStateException illegalState;
 	private IllegalArgumentException illegalArgument;
 	
-	LocalDate dataNascMaiorIdade;
+	LocalDate dataNasciIdadeMinima;
 
 	private BigDecimal salario1 = new BigDecimal(1110.0);
 	private BigDecimal salario2 = new BigDecimal(800.2);
@@ -42,11 +43,11 @@ class TestesUnitariosFuncionario {
 
 		funcionario = new Funcionario();
 		nome = "Lókaut";
-		dataNascMaiorIdade = LocalDate.of(1994, 12, 05);
+		dataNasciIdadeMinima = LocalDate.of(2010, 12, 05);
 	}
 
 	@AfterAll
-	public static void finalização() {
+	public static void finalizacao() {
 		System.out.println("Fim dos testes funcionario");
 	}
 
@@ -149,4 +150,25 @@ class TestesUnitariosFuncionario {
 		funcionario.setSalario(salario1);
 		assertEquals(salario1, funcionario.getSalario());
 	}
+	
+	@Test
+	void deve_validar_idade_minima() {
+		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNasciIdadeMinima));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_IDADE_MINIMA_EMPRESA));
+	}
+	
+	@Test
+	void deve_validar_data_nascimento_nulo() {
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setDataNascimento(null));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+	}
+	
+	@Test
+	void deve_validar_campo_endereco_nulo() {
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setEndereco(null));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+	}
+	
+	
 }
+
