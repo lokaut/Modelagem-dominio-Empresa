@@ -1,6 +1,7 @@
 package com.contimatic.prova.model;
 
 import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
+import static com.contimatic.prova.utils.ValidacaoData.dataNascMaiorIdade;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
@@ -10,6 +11,8 @@ import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
+
+import com.contimatic.prova.utils.ValidacaoData;
 
 //criar uma classe empresa pai, nome, cnpj, criar produto
 
@@ -51,6 +54,8 @@ public class Funcionario {
 	}
 
 	public void setDataNascimento(LocalDate dataNascimento) {
+		verificarCampoNulo(dataNascimento);
+		dataNascMaiorIdade(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
 
@@ -111,6 +116,7 @@ public class Funcionario {
 	}
 
 	public void setEndereco(Endereco endereco) {
+		verificarCampoNulo(endereco);
 		this.endereco = endereco;
 	}
 
