@@ -13,8 +13,7 @@ public class ValidacaoData {
 	private ValidacaoData(){}
 	
 	public static void dataNascMaiorIdade(LocalDate idade) {
-		LocalDate dataHoje = LocalDate.now();
-		long anos = ChronoUnit.YEARS.between(idade, dataHoje);
+		long anos = ChronoUnit.YEARS.between(idade, LocalDate.now());
 		
 		if(anos < IDADE_MINIMA_EMPRESA) {
 			throw new IllegalStateException(MENSAGEM_IDADE_MINIMA_EMPRESA);
@@ -26,7 +25,5 @@ public class ValidacaoData {
 			throw new IllegalArgumentException(MENSAGEM_ADMISSAO_FUTURA);
 		}
 	}
-	
-	
 }
 

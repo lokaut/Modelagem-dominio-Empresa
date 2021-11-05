@@ -3,6 +3,7 @@ package com.contimatic.prova;
 import static com.contimatic.prova.constantes.Constantes.CPF_TEXTO;
 import static com.contimatic.prova.constantes.Constantes.CPF_VALIDO;
 import static com.contimatic.prova.constantes.Constantes.DOIS_CARACTER;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
@@ -33,7 +34,7 @@ class TestesUnitariosFuncionario {
 	private IllegalStateException illegalState;
 	private IllegalArgumentException illegalArgument;
 	
-	LocalDate dataNasciIdadeMinima;
+	LocalDate dataNasciIdadeMinima, dataFutura;
 
 	private BigDecimal salario1 = new BigDecimal(1110.0);
 	private BigDecimal salario2 = new BigDecimal(800.2);
@@ -44,6 +45,8 @@ class TestesUnitariosFuncionario {
 		funcionario = new Funcionario();
 		nome = "Lókaut";
 		dataNasciIdadeMinima = LocalDate.of(2010, 12, 05);
+		dataFutura = LocalDate.of(2023, 11 , 04);
+		//funcionario.hashCode()
 	}
 
 	@AfterAll
@@ -155,6 +158,12 @@ class TestesUnitariosFuncionario {
 	void deve_validar_idade_minima() {
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNasciIdadeMinima));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_IDADE_MINIMA_EMPRESA));
+	}
+	
+	@Test
+	void deve_validar_data_admissao_futura() {
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setDataAdmissao(dataFutura));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_ADMISSAO_FUTURA));
 	}
 	
 	@Test

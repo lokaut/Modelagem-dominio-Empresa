@@ -2,21 +2,17 @@ package com.contimatic.prova.model;
 
 import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static com.contimatic.prova.utils.ValidacaoData.dataNascMaiorIdade;
+import static com.contimatic.prova.utils.ValidacaoData.validacaoDataAdmissao;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-
-import com.contimatic.prova.utils.ValidacaoData;
-
-//criar uma classe empresa pai, nome, cnpj, criar produto
-
-//campo para data futura e  menor de 18 anos data de nascimento
 
 
 public class Funcionario {
@@ -108,6 +104,7 @@ public class Funcionario {
 		
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		verificarCampoNulo(dataAdmissao);
+		validacaoDataAdmissao(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
 	}
 
