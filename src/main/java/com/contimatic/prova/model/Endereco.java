@@ -2,7 +2,7 @@
 
 public class Endereco {
 	
-	private String estado;// mudar estado
+	private String estado;
 	
 	private String cidade;
 		
@@ -18,11 +18,11 @@ public class Endereco {
 	
 	public Endereco(String estado, String cidade, String bairro, String rua, String numero) {
 
-		this.estado = estado;
-		this.cidade = cidade;
-		this.bairro = bairro;
-		this.rua = rua;
-		this.numero = numero;
+		setEstado(estado);
+		setCidade(cidade);
+		setBairro(bairro);
+		setRua(rua);
+		setNumero(numero);
 	}
 
 	public String getEstado() {
@@ -71,6 +71,12 @@ public class Endereco {
 
 	public void setNumero(String numero) {
 		this.numero = numero;
+	}
+
+	@Override
+	public String toString() {
+		return "Endereco [estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", cep="
+				+ cep + ", numero=" + numero + "]";
 	}
 
 
