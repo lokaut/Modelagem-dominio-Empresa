@@ -26,7 +26,6 @@ public  final class Constantes {
 	public static final int TAMANHO_CPF = 11;
 	public static final int TAMANHO_CNPJ = 14;
 	public static final char NUMERO_ZERO_CPF_CNPJ = '0';
-	public static final String CPF_VALIDO = "90795007809"; //76899070081
 	public static final String CPF_TEXTO = "44a764b7f34";
 	public static final int POSICAO_DOZE_CNPJ = 12;
 	public static final int POSICAO_TREZE_CNPJ = 13;
