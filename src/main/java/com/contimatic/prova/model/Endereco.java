@@ -16,13 +16,13 @@ public class Endereco {
 	
 	public Endereco() {}
 	
-	public Endereco(String estado, String cidade, String bairro, String rua, String numero) {
-
-		setEstado(estado);
-		setCidade(cidade);
-		setBairro(bairro);
-		setRua(rua);
-		setNumero(numero);
+	public Endereco(String estado, String cidade, String bairro, String rua, String numero, String cep) {
+		this.setEstado(estado);
+		this.setCidade(cidade);
+		this.setBairro(bairro);
+		this.setRua(rua);
+		this.setNumero(numero);
+		this.setCep(cep);
 	}
 
 	public String getEstado() {
@@ -75,8 +75,8 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [estado=" + estado + ", cidade=" + cidade + ", bairro=" + bairro + ", rua=" + rua + ", cep="
-				+ cep + ", numero=" + numero + "]";
+		return "Endereco [estado = " + estado + ", cidade = " + cidade + ", bairro = " + bairro + ", rua = " + rua + 
+				 ", numero = " + numero + ", cep = " + cep + "]";
 	}
 
 
