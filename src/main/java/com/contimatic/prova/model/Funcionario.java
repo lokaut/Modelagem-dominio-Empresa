@@ -33,16 +33,14 @@ public class Funcionario {
 	
 	public Funcionario() {}
 	
-	public Funcionario(String nome, String email, String cpf, BigDecimal salario, Endereco endereco,
-			LocalDate dataAdmissao, LocalDate dataNascimento) {
-
-		setNome(nome);
-		setEmail(email);
-		setCpf(cpf);
-		setSalario(salario);
-		setEndereco(endereco);
-		setDataAdmissao(dataAdmissao);
-		setDataNascimento(dataNascimento);
+	public Funcionario(String nome, String email, String cpf, BigDecimal salario, Endereco endereco,LocalDate dataAdmissao, LocalDate dataNascimento) {
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setCpf(cpf);
+		this.setSalario(salario);
+		this.setEndereco(endereco);
+		this.setDataAdmissao(dataAdmissao);
+		this.setDataNascimento(dataNascimento);
 	}
 
 	public LocalDate getDataNascimento() {
@@ -132,8 +130,8 @@ public class Funcionario {
 	
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", cpf=" + cpf + ", salario=" + salario + ", endereco=" + endereco
-				+ ", dataAdmissao=" + dataAdmissao + "]";
+		return "Funcionario [nome = " + nome + ", cpf = " + cpf + ", salario = " + salario + 
+				 ", dataAdmissao = " + dataAdmissao + "  " + endereco +"]";
 	}
 	
 	@Override
