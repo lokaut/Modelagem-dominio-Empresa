@@ -22,7 +22,6 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import com.contimatic.prova.model.Endereco;
@@ -38,14 +37,14 @@ class TestesUnitariosFuncionario {
 	
 	 LocalDate dataNasciIdadeMinimaInvalida = LocalDate.of(2010, 12, 05);
 	 LocalDate dataNascimentoValido = LocalDate.of(1994, 12, 05);
-	 LocalDate dataFutura = LocalDate.of(2023, 11 , 04);
-	 LocalDate dataAdmissao = LocalDate.of(2021, 11 , 04);
+	 LocalDate dataFutura = LocalDate.of(2023, 11, 04);
+	 LocalDate dataAdmissao = LocalDate.of(2021, 11, 04);
 
 	 BigDecimal salario1 = new BigDecimal(1110.0);
 	 BigDecimal salario2 = new BigDecimal(800.2);
 	 Endereco endereco;
 	
-	private String cpfValido = "90795007809"; //76899070081
+	 String cpfValido = "90795007809"; //76899070081
 
 	@BeforeEach
 	public void instancia() {
@@ -81,7 +80,7 @@ class TestesUnitariosFuncionario {
 	}
 
 	@Test
-	void deve_validar_campo_em_branco_nome() {
+	void deve_validar_campo_vazio_nome() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(" "));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
@@ -99,7 +98,7 @@ class TestesUnitariosFuncionario {
 	}
 
 	@Test
-	void deve_validar_cpf_numero_igual() {
+	void deve_validar_cpf_somente_numero_igual() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf("00000000000"));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CPF_INVALIDO));
 	}
@@ -123,7 +122,7 @@ class TestesUnitariosFuncionario {
 	}
 
 	@Test
-	void deve_validar_campo_nulo_email() {
+	void deve_validar_campo_email_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setEmail(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
