@@ -140,7 +140,7 @@ class TestesUnitariosFuncionario {
 	}
 
 	@Test
-	void deve_validar_idade_minima() {
+	void nao_deve_aceitar_funcionario_doze_anos() {
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNasciIdadeMinimaInvalida));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_IDADE_MINIMA_EMPRESA));
 	}
