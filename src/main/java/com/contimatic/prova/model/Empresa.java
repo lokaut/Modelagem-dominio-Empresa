@@ -1,20 +1,19 @@
 package com.contimatic.prova.model;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class Empresa {
+	
 	private String cnpj;
 
 	private String razaoSocial;
 
 	private String nomeFantasia;
 
-	private String porte;
-
 	private LocalDate dataAbertura;
 	
-	private Funcionario funcionario;
-
+	private List<Setor> setor; 
 	
 	public String getCnpj() {
 		return cnpj;
@@ -40,13 +39,6 @@ public class Empresa {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public String getPorte() {
-		return porte;
-	}
-
-	public void setPorte(String porte) {
-		this.porte = porte;
-	}
 
 	public LocalDate getDataAbertura() {
 		return dataAbertura;
@@ -56,11 +48,12 @@ public class Empresa {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public Funcionario getFuncionario() {
-		return funcionario;
+	public List<Setor> getSetor() {
+		return setor;
 	}
 
-	public void setFuncionario(Funcionario funcionario) {
-		this.funcionario = funcionario;
+	public void setSetor(List<Setor> setor) {
+		this.setor = setor;
 	}
+
 }
