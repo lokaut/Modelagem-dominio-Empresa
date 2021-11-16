@@ -8,6 +8,7 @@ public  final class Constantes {
 	private Constantes(){}
 	
 	public static final String SESSENTA_DOIS_CARACTERES = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
+	public static final String EMAIL_SETENTA_DOIS_CARACTRES = "erick_sdsdsd3erick_erick_sdsdsd33sderick_sdsdsd33sdsd333@hotmail.com.br";
 	public static final String DOIS_CARACTER = "ac";
 	public static final String NUMERO_CPF_INVALIDO = "44085620000";
 	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1100.0);
@@ -35,13 +36,15 @@ public  final class Constantes {
 	public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
 	public static final String MENSAGEM_CAMPO_NULO = "Este campo não pode ser nulo";
 	public static final String MENSAGEM_CAMPO_VAZIO = "Campo está vazio ou contém apenas espaço em branco";
-	public static final String MENSAGEM_CPF_INVALIDO = "CPF invalido";
-	public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ invalido";
+	public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";
+	public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ inválido";
 	public static final String MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS = "CPF inválido, pois não possui 11 caracteres";
 	public static final String MENSAGEM_EMAIL_INVALIDO = "Email Inválido";
 	public static final String MENSAGEM_CPF_INVALIDO_LETRAS = "CPF deve possuir apenas números";
 	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. Um salário mínimo é de: " + SALARIO_MINIMO;
 	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de 16 anos";
 	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_HOJE;
-	
+	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números";
+	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa ter 8 números e celular precisa de 9 números começando com 9";
+	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
 }
