@@ -1,15 +1,17 @@
 package com.contimatic.prova.utils;
 
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
 import static com.contimatic.prova.constantes.Constantes.IDADE_MINIMA_EMPRESA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static com.contimatic.prova.constantes.Constantes.REGRA_DATA_ADMISSAO;
 import static com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -72,8 +74,21 @@ public final class ValidacaoUtils {
 	}
 	
 	public static void validacaoDataAdmissao(LocalDate dataAdmissao){
-		if(dataAdmissao.isAfter(LocalDate.now().plusMonths(REGRA_DATA_ADMISSAO))) {
-			throw new IllegalArgumentException(MENSAGEM_ADMISSAO_FUTURA);
+		LocalDate doisMesesPosDataAtual = LocalDate.now().plusMonths(REGRA_DATA_ADMISSAO);
+		if(dataAdmissao.isAfter(doisMesesPosDataAtual)) {
+			throw new IllegalStateException(MENSAGEM_ADMISSAO_FUTURA);
+		}
+	}
+	
+	public static void validarDDD(String campo) {
+		if (!campo.matches("^(?:([1-9]{2}))$")) {
+			throw new IllegalStateException(MENSAGEM_DDD_INCORRETO);
+		}
+	}
+	
+	public static void validarTelefone(String campo) {
+		if(!campo.matches("^9?[0-9]{8}$")) {
+			throw new IllegalStateException(MENSAGEM_TELEFONE_INCORRETO);
 		}
 	}
 }
