@@ -1,26 +1,28 @@
  package com.contimatic.prova.model;
 
+import java.util.Objects;
+
 public class Endereco {
 	
-	private String estado;
-	
-	private String cidade;
-		
-	private String bairro;
-	
-	private String rua;
-	
-	private String cep;
+	private String logradouro;
 	
 	private String numero;
 	
+	private String bairro;
+	
+	private String cidade;
+	
+	private String estado;
+	
+	private String cep;
+	
 	public Endereco() {}
 	
-	public Endereco(String estado, String cidade, String bairro, String rua, String numero, String cep) {
+	public Endereco( String logradouro, String numero, String bairro, String cidade, String estado,  String cep) {
 		this.setEstado(estado);
 		this.setCidade(cidade);
 		this.setBairro(bairro);
-		this.setRua(rua);
+		this.setlogradouro(logradouro);
 		this.setNumero(numero);
 		this.setCep(cep);
 	}
@@ -49,12 +51,12 @@ public class Endereco {
 		this.bairro = bairro;
 	}
 
-	public String getRua() {
-		return rua;
+	public String getlogradouro() {
+		return logradouro;
 	}
 
-	public void setRua(String rua) {
-		this.rua = rua;
+	public void setlogradouro(String logradouro) {
+		this.logradouro = logradouro;
 	}
 
 	public String getCep() {
@@ -75,10 +77,25 @@ public class Endereco {
 
 	@Override
 	public String toString() {
-		return "Endereco [estado = " + estado + ", cidade = " + cidade + ", bairro = " + bairro + ", rua = " + rua + 
+		return "Endereco [estado = " + estado + ", cidade = " + cidade + ", bairro = " + bairro + ", logradouro = " + logradouro + 
 				 ", numero = " + numero + ", cep = " + cep + "]";
 	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(logradouro);
+	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Endereco))
+			return false;
+		Endereco other = (Endereco) obj;
+		return Objects.equals(logradouro, other.logradouro);
+	}
+
+	
 	
 }
