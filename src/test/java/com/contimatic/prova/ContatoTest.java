@@ -21,7 +21,7 @@ import org.junit.jupiter.api.TestMethodOrder;
 import com.contimatic.prova.model.Contato;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class TestesUnitariosContato {
+class ContatoTest {
 
 	private IllegalStateException illegalState;
 	private IllegalArgumentException illegalArgument;
@@ -42,7 +42,7 @@ class TestesUnitariosContato {
 
 	@AfterAll
 	public static void finalizacao() {
-		System.out.println("Fim dos testes Endereco");
+		System.out.println("Fim dos testes Contato");
 	}
 
 	@Test

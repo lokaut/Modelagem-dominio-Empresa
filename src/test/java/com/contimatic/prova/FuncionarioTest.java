@@ -21,14 +21,13 @@ import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 
 import com.contimatic.prova.model.Contato;
 import com.contimatic.prova.model.Endereco;
 import com.contimatic.prova.model.Funcionario;
 
-class TestesUnitariosFuncionario {
+class FuncionarioTest {
 
 	 Funcionario funcionario, funcionarioConstrutor, funcionarioConstrutor2;
 	 Contato contato;
@@ -49,8 +48,8 @@ class TestesUnitariosFuncionario {
 
 	@BeforeEach
 	public void instancia() {
-		endereco = new Endereco("Rua iguape", "381", "Jardim Paulista", "Itapevi", "São Paulo", "06824060");
-		contato = new Contato("erick224@gmail.com", "11", "9566680577");
+		//endereco = new Endereco("Rua iguape", "381", "Jardim Paulista", "Itapevi", "São Paulo", "06824060");
+		contato = new Contato("erick224@gmail.com", "11", "956668057");
 		funcionario = new Funcionario();
 		funcionarioConstrutor = new Funcionario("Lókaut", cpfValido, contato, 
 				salario, endereco, dataAdmissao, dataNascimentoValido);
@@ -64,10 +63,10 @@ class TestesUnitariosFuncionario {
 		System.out.println("Fim dos testes funcionario");
 	}
 
-	@Order(1)
 	@Test
 	void nao_deve_aceitar_mais_sessenta_caracteres_nome() {
 		assertThrows(IllegalStateException.class, () -> funcionario.setNome(SESSENTA_DOIS_CARACTERES));
+		
 	}
 
 	@Test
@@ -145,8 +144,8 @@ class TestesUnitariosFuncionario {
 	
 	@Test
 	void nao_deve_aceitar_data_admissao_acima_dois_meses() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setDataAdmissao(dataFutura));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_ADMISSAO_FUTURA));
+		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataAdmissao(dataFutura));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_ADMISSAO_FUTURA));
 	}
 	
 	@Test
