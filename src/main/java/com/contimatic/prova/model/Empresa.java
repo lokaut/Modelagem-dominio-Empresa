@@ -2,6 +2,7 @@ package com.contimatic.prova.model;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Objects;
 
 public class Empresa {
 	
@@ -13,8 +14,12 @@ public class Empresa {
 
 	private LocalDate dataAbertura;
 	
-	private List<Setor> setor; 
+	private List<Setor> setores; 
 	
+	private Contato contato;
+	
+	private List<Endereco> endereco;
+
 	public String getCnpj() {
 		return cnpj;
 	}
@@ -39,7 +44,6 @@ public class Empresa {
 		this.nomeFantasia = nomeFantasia;
 	}
 
-
 	public LocalDate getDataAbertura() {
 		return dataAbertura;
 	}
@@ -48,12 +52,49 @@ public class Empresa {
 		this.dataAbertura = dataAbertura;
 	}
 
-	public List<Setor> getSetor() {
-		return setor;
+	public List<Setor> getSetores() {
+		return setores;
 	}
 
-	public void setSetor(List<Setor> setor) {
-		this.setor = setor;
+	public void setSetores(List<Setor> setores) {
+		this.setores = setores;
 	}
 
+	public Contato getContato() {
+		return contato;
+	}
+
+	public void setContato(Contato contato) {
+		this.contato = contato;
+	}
+
+	public List<Endereco> getEndereco() {
+		return endereco;
+	}
+
+	public void setEndereco(List<Endereco> endereco) {
+		this.endereco = endereco;
+	}
+
+	@Override
+	public int hashCode() {
+		return Objects.hash(cnpj);
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (!(obj instanceof Empresa))
+			return false;
+		Empresa other = (Empresa) obj;
+		return Objects.equals(cnpj, other.cnpj);
+	}
+
+	@Override
+	public String toString() {
+		return "Empresa [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
+				+ ", dataAbertura=" + dataAbertura + ", setores=" + setores + ", contato=" + contato + ", endereco="
+				+ endereco + "]";
+	}
 }

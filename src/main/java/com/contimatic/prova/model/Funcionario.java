@@ -1,20 +1,17 @@
 package com.contimatic.prova.model;
 
 import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
-import static com.contimatic.prova.utils.ValidacaoUtils.dataNascMaiorIdade;
+import static com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
+import static com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
-import static com.contimatic.prova.utils.ValidacaoUtils.validacaoDataAdmissao;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
-
-import com.contimatic.prova.utils.ValidacaoUtils;
-
 
 public class Funcionario {
 	
@@ -32,6 +29,7 @@ public class Funcionario {
 
 	private LocalDate dataNascimento;
 	
+	private Setor setor;
 	
 	public Funcionario() {} 
 
@@ -44,7 +42,6 @@ public class Funcionario {
 		this.setDataAdmissao(dataAdmissao);
 		this.setDataNascimento(dataNascimento);
 	}
-
 
 	public String getNome() {
 		return nome;
@@ -116,44 +113,28 @@ public class Funcionario {
 		this.dataNascimento = dataNascimento;
 	}
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Funcionario other = (Funcionario) obj;
-		
-		return Objects.equals(cpf, other.cpf);			
+	public Setor getSetor() {
+		return setor;
 	}
-	
-	
+
+	public void setSetor(Setor setor) {
+		this.setor = setor;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(cpf);
 	}
 
 	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Funcionario [nome=");
-		builder.append(nome);
-		builder.append(", cpf=");
-		builder.append(cpf);
-		builder.append(", contato=");
-		builder.append(contato);
-		builder.append(", salario=");
-		builder.append(salario);
-		builder.append(", endereco=");
-		builder.append(endereco);
-		builder.append(", dataAdmissao=");
-		builder.append(dataAdmissao);
-		builder.append(", dataNascimento=");
-		builder.append(dataNascimento);
-		builder.append("]");
-		return builder.toString();
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Funcionario)) {
+			return false;
+		}
+		Funcionario other = (Funcionario) obj;
+		return Objects.equals(cpf, other.cpf);
 	}
-
 }

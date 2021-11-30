@@ -11,6 +11,7 @@ public class Setor {
 	
 	private String descricao;
 	
+	private Empresa empresa;
 
 	public String getNome() {
 		return nome;
@@ -36,6 +37,14 @@ public class Setor {
 		this.descricao = descricao;
 	}
 
+	public Empresa getEmpresa() {
+		return empresa;
+	}
+
+	public void setEmpresa(Empresa empresa) {
+		this.empresa = empresa;
+	}
+
 	@Override
 	public int hashCode() {
 		return Objects.hash(nome);
@@ -43,15 +52,20 @@ public class Setor {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!(obj instanceof Setor))
+		}
+		if (!(obj instanceof Setor)) {
 			return false;
+		}
 		Setor other = (Setor) obj;
 		return Objects.equals(nome, other.nome);
 	}
-	
-	
-	
+
+	@Override
+	public String toString() {
+		return "Setor [nome=" + nome + ", funcionario=" + funcionario + ", descricao=" + descricao + ", empresa="
+				+ empresa + "]";
+	}
 	
 }
