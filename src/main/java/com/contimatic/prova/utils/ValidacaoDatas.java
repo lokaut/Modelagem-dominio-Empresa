@@ -11,9 +11,9 @@ import java.time.temporal.ChronoUnit;
 public final class ValidacaoDatas {
 	private ValidacaoDatas() {}
 
-	public static void dataNascMaiorIdade(LocalDate idade) {
-		long anos = ChronoUnit.YEARS.between(idade, LocalDate.now());
-
+	public static void dataNascMaiorIdade(LocalDate dataNascimento) {
+		LocalDate dataAtual = LocalDate.now();
+		long anos = ChronoUnit.YEARS.between(dataNascimento, dataAtual);
 		if (anos < IDADE_MINIMA_EMPRESA) {
 			throw new IllegalStateException(MENSAGEM_IDADE_MINIMA_EMPRESA);
 		}
