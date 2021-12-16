@@ -9,12 +9,15 @@ public  final class Constantes {
 	
 	public static final String SESSENTA_DOIS_CARACTERES = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
 	public static final String EMAIL_SETENTA_DOIS_CARACTRES = "erick_sdsdsd3erick_erick_sdsdsd33sderick_sdsdsd33sdsd333@hotmail.com.br";
-	public static final String DOIS_CARACTER = "ac";
+	public static final String DOIS_CARACTERES = "ac";
 	public static final String NUMERO_CPF_INVALIDO = "44085620000";
 	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1100.0);
 	public static final long IDADE_MINIMA_EMPRESA = 16;
 	public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);
 	public static final int REGRA_DATA_ADMISSAO = 2;
+	
+	/*Classe Cidade */
+	public static final String CODIGO_IBGE_SAO_PAULO = "3550308";
 	
 	/* CPF E CNPJ */
 	public static final int POSICAO_ZERO_ASCII = 48;
@@ -47,4 +50,9 @@ public  final class Constantes {
 	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números";
 	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa ter 8 números e celular precisa de 9 números começando com 9";
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
-}
+	
+	/* REGEX */
+	 public static final String REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
+	 public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
+	 public static final String REGEX_ALFABETICO_SEM_ACENTO= "^[A-Zaz_]+$";
+}	
