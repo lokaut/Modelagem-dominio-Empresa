@@ -37,6 +37,7 @@ public  final class Constantes {
 
 	/* Mensagens */
 	public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
+	public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter inválido, deve conter apenas caracter alfabético";
 	public static final String MENSAGEM_CAMPO_NULO = "Este campo não pode ser nulo";
 	public static final String MENSAGEM_CAMPO_VAZIO = "Campo está vazio ou contém apenas espaço em branco";
 	public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";

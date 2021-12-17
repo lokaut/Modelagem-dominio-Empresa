@@ -21,7 +21,7 @@ public final class ValidacaoUtils {
 	}
 
 	public static void limiteCaracteres(String nome, int minimo, int maximo) {
-		if(minimo == maximo ) {
+		if(minimo == maximo && nome.length() != minimo ) {
 			throw new IllegalStateException(
 					"Quantidade de carácteres inválido! O campo deve possuir apenas "+ minimo + " caracteres"
 							+ ", atualmente o campo possui " + nome.length() +  " caractere(s)");
@@ -59,8 +59,8 @@ public final class ValidacaoUtils {
 			throw new IllegalStateException(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
 	}
 	
-	public static void validarCaracteresPermitidos(String campo, String regex) {
-		if(!campo.matches(regex)) 
-			throw new IllegalStateException(regex);
+	public static void validarCaracteresPermitidos(String campo, String regex, String mensagem) {
+		if(!campo.matches(regex))
+			throw new IllegalStateException(mensagem);
 	}
 }
