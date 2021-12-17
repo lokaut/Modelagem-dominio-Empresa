@@ -36,8 +36,10 @@ public  final class Constantes {
 	public static final String DATA_HOJE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 	/* Mensagens */
+	public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
 	public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
-	public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter inválido, deve conter apenas caracter alfabético";
+	public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter alfabético";
+	public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL = "O Campo possui caracter alfabético ou caracter especial";
 	public static final String MENSAGEM_CAMPO_NULO = "Este campo não pode ser nulo";
 	public static final String MENSAGEM_CAMPO_VAZIO = "Campo está vazio ou contém apenas espaço em branco";
 	public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";

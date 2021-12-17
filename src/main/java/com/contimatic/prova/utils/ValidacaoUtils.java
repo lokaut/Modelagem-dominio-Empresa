@@ -14,8 +14,8 @@ public final class ValidacaoUtils {
 
 	private ValidacaoUtils() {}
 
-	public static void verificarCampoNulo(Object nome) {
-		if (nome == null) {
+	public static void verificarCampoNulo(Object campo) {
+		if (campo == null) {
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 		}
 	}
@@ -59,8 +59,8 @@ public final class ValidacaoUtils {
 			throw new IllegalStateException(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
 	}
 	
-	public static void validarCaracteresPermitidos(String campo, String regex, String mensagem) {
+	public static void validarCaracteresPermitidos(String campo, String regex, String mensagemErro) {
 		if(!campo.matches(regex))
-			throw new IllegalStateException(mensagem);
+			throw new IllegalStateException(mensagemErro);
 	}
 }
