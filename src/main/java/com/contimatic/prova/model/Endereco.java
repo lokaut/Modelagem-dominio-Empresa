@@ -66,16 +66,18 @@ public class Endereco {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(logradouro);
+		return Objects.hash(cep, numero);
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!(obj instanceof Endereco))
+		}
+		if (!(obj instanceof Endereco)) {
 			return false;
+		}
 		Endereco other = (Endereco) obj;
-		return Objects.equals(logradouro, other.logradouro);
+		return Objects.equals(cep, other.cep) && Objects.equals(numero, other.numero);
 	}
 }
