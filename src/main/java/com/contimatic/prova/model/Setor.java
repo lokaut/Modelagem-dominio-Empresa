@@ -7,6 +7,8 @@ public class Setor {
 
 	private String nome;
 	
+	private String cbo;
+	
 	private List<Funcionario> funcionario;
 	
 	private String descricao;
@@ -47,7 +49,7 @@ public class Setor {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(nome);
+		return Objects.hash(cbo);
 	}
 
 	@Override
@@ -59,7 +61,7 @@ public class Setor {
 			return false;
 		}
 		Setor other = (Setor) obj;
-		return Objects.equals(nome, other.nome);
+		return Objects.equals(cbo, other.cbo);
 	}
 
 	@Override
