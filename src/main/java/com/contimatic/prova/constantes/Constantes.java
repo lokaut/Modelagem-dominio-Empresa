@@ -1,5 +1,7 @@
 package com.contimatic.prova.constantes;
 
+import static java.time.LocalDate.now;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -33,7 +35,7 @@ public  final class Constantes {
 	public static final String CPF_TEXTO = "44a764b7f34";
 	public static final int POSICAO_DOZE_CNPJ = 12;
 	public static final int POSICAO_TREZE_CNPJ = 13;
-	public static final String DATA_HOJE = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	public static final String DATA_HOJE = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 	/* Mensagens */
 	public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
