@@ -20,7 +20,7 @@ public class Cidade {
 
 	private String unidadeFederativa;
 
-	public Cidade() {}
+	public Cidade(String codigoIbge) {}
 
 	public Cidade(String codigoIbge, String municipio, String unidadeFederativa) {
 		this.setCodigoIbge(codigoIbge);
