@@ -33,7 +33,7 @@ public class CidadeTest {
 
 	@BeforeEach
 	public void instancia() {
-		cidade = new Cidade();
+		cidade = new Cidade(codigoIbge);
 		cidadeConstrutor = new Cidade(codigoIbge, municipio, unidadeFederativa);
 		cidadeConstrutor2 = new Cidade(codigoIbge, municipio, unidadeFederativa);
 	}
@@ -45,115 +45,115 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_codigoIbge() {
-		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.setCodigoIbge(null));
+		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setCodigoIbge(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_vazio_nome_codigoIbge() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setCodigoIbge(" "));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(" "));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_diferente_sete_caracteres_codigoIbge() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setCodigoIbge(codigoErradoIbge));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(codigoErradoIbge));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
 				+ 7 + " caracteres" + ", atualmente o campo possui " + codigoErradoIbge.length() + " caractere(s)"));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_alfabetico_codigoIbge() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setCodigoIbge("abc1221"));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge("abc1221"));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_codigoIbge() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setCodigoIbge(caracterEspecial));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(caracterEspecial));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_municipio() {
-		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.setMunicipio(null));
+		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setMunicipio(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_vazio_nome_municipio() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setMunicipio(" "));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(" "));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_mais_cem_caracteres_municipio() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setMunicipio(mais100Caracters));
+		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(mais100Caracters));
 	}
 
 	@Test
 	void nao_deve_aceitar_menos_tres_caracteres_municipio() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setMunicipio("ab"));
+		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio("ab"));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_numerico_municipio() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setMunicipio("abc1221"));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio("abc1221"));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_municipio() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setMunicipio(caracterEspecial));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(caracterEspecial));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_unidadeFederativa() {
-		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.setUnidadeFederativa(null));
+		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setUnidadeFederativa(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_vazio_unidadeFederativa() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setUnidadeFederativa(" "));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(" "));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_diferente_sete_caracteres_unidadeFederativa() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> cidade.setUnidadeFederativa(ufErrado));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(ufErrado));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
 				+ 2 + " caracteres" + ", atualmente o campo possui " + ufErrado.length() + " caractere(s)"));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_numerico_unidadeFederativa() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setUnidadeFederativa("11"));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa("11"));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_unidadeFederativa() {
-		illegalState = assertThrows(IllegalStateException.class, () -> cidade.setUnidadeFederativa("@$"));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa("@$"));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_retornar_nulo_unidadeFederativa() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.getUnidadeFederativa());
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getUnidadeFederativa());
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_retornar_nulo_municipio() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.getMunicipio());
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getMunicipio());
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_retornar_nulo_codigoIbge() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> cidade.getCodigoIbge());
+		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getCodigoIbge());
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
@@ -174,7 +174,7 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_validar_hashcode_diferente() {
-		assertNotEquals(cidade.hashCode(), cidadeConstrutor.hashCode());
+		assertNotEquals(this.cidade.hashCode(), cidadeConstrutor.hashCode());
 	}
 
 	@Test
