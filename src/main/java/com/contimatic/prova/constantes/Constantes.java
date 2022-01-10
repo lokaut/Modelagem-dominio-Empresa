@@ -37,7 +37,7 @@ public  final class Constantes {
 	public static final int POSICAO_TREZE_CNPJ = 13;
 	public static final String DATA_HOJE = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-	/* Mensagens */
+	/* MENSAGENS */
 	public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
 	public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
 	public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter alfabético";
@@ -60,4 +60,6 @@ public  final class Constantes {
 	 public static final String REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
 	 public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
 	 public static final String REGEX_ALFABETICO_SEM_ACENTO= "^[A-Zaz_]+$";
+	 public static final String REGEX_DDD = "^(?:([1-9]{2}))$";
+	 public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
 }	
