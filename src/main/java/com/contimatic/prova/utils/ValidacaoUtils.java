@@ -16,7 +16,7 @@ public final class ValidacaoUtils {
 	private ValidacaoUtils() {
 	}
 
-	public static void verificarCampoNulo(Object campo) {
+	public static void verificarObjetoNulo(Object campo) {
 		if (campo == null)
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 	}
@@ -40,8 +40,8 @@ public final class ValidacaoUtils {
 	}
 
 	public static void validarEmail(String email) {
-		String expression = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-		Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
+		String regex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(email);
 		if (!matcher.matches())
 			throw new IllegalStateException(MENSAGEM_EMAIL_INVALIDO);

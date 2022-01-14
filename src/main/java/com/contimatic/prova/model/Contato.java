@@ -1,28 +1,46 @@
 package com.contimatic.prova.model;
 
-import java.util.List;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
+import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+
 import java.util.Objects;
 
 public class Contato {
-	
+
 	private String email;
+
+	private Telefone telefone;
+
+	public Contato(String email, Telefone telefone) {
+		this.setEmail(email);
+		this.setTelefone(telefone);
+	}
 	
-	private List<String> telefone;
+	public Contato(String email) {
+		this.setEmail(email);
+	}
+
+	public Telefone getTelefone() {
+		return telefone;
+	}
+
+	public void setTelefone(Telefone telefone) {
+		verificarObjetoNulo(telefone);
+		this.telefone = telefone;
+	}
 
 	public String getEmail() {
 		return email;
 	}
 
 	public void setEmail(String email) {
+		verificarObjetoNulo(email);
+		naoAceitarCampoEmBranco(email);
+		limiteCaracteres(email, 4, 254);
+		validarEmail(email);
 		this.email = email;
-	}
-
-	public List<String> getTelefone() {
-		return telefone;
-	}
-
-	public void setTelefone(List<String> telefone) {
-		this.telefone = telefone;
 	}
 
 	@Override
@@ -42,12 +60,6 @@ public class Contato {
 
 	@Override
 	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Contato [email=");
-		builder.append(email);
-		builder.append(", telefone=");
-		builder.append(telefone);
-		builder.append("]");
-		return builder.toString();
+		return "Contato [email=" + email + ", telefone=" + telefone + "]";
 	}
 }

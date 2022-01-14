@@ -63,8 +63,15 @@ public class TelefoneTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { "09", "9544334", "000000", "0", "000000000" })
+	@ValueSource(strings = { "09", "9544334", "000000", "0", "000000000", })
 	void nao_deve_aceitar_telefone_inexistente(String telefone) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
+	}
+	
+	@ParameterizedTest
+	@ValueSource(strings = { "abdtt066f", "abcdefghi", "0000abbb00", "0" })
+	void nao_deve_aceitar_telefone_caracteres_alfabeticos(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
 	}

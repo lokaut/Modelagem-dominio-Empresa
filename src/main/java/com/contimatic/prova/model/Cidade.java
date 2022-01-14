@@ -8,7 +8,7 @@ import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABE
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
 import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.util.Objects;
 
@@ -31,12 +31,12 @@ public class Cidade {
 	}
 
 	public String getCodigoIbge() {
-		verificarCampoNulo(codigoIbge);
+		verificarObjetoNulo(codigoIbge);
 		return codigoIbge;
 	}
 
 	public void setCodigoIbge(String codigoIbge) {
-		verificarCampoNulo(codigoIbge);
+		verificarObjetoNulo(codigoIbge);
 		naoAceitarCampoEmBranco(codigoIbge);
 		limiteCaracteres(codigoIbge, 7, 7);
 		validarCaracteresPermitidos(codigoIbge, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
@@ -44,12 +44,12 @@ public class Cidade {
 	}
 
 	public String getMunicipio() {
-		verificarCampoNulo(municipio);
+		verificarObjetoNulo(municipio);
 		return municipio;
 	}
 
 	public void setMunicipio(String municipio) {
-		verificarCampoNulo(municipio);
+		verificarObjetoNulo(municipio);
 		naoAceitarCampoEmBranco(municipio);
 		limiteCaracteres(municipio, 3, 100);
 		validarCaracteresPermitidos(municipio, REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
@@ -57,12 +57,12 @@ public class Cidade {
 	}
 
 	public String getUnidadeFederativa() {
-		verificarCampoNulo(unidadeFederativa);
+		verificarObjetoNulo(unidadeFederativa);
 		return unidadeFederativa;
 	}
 
 	public void setUnidadeFederativa(String unidadeFederativa) {
-		verificarCampoNulo(unidadeFederativa);
+		verificarObjetoNulo(unidadeFederativa);
 		naoAceitarCampoEmBranco(unidadeFederativa);
 		limiteCaracteres(unidadeFederativa, 2, 2);
 		validarCaracteresPermitidos(unidadeFederativa, REGEX_ALFABETICO_SEM_ACENTO, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
