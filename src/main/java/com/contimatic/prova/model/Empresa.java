@@ -16,7 +16,7 @@ public class Empresa {
 	
 	private List<Setor> setores; 
 	
-	private Contato contato;
+	private List<Contato> contato;
 	
 	private List<Endereco> endereco;
 
@@ -60,11 +60,11 @@ public class Empresa {
 		this.setores = setores;
 	}
 
-	public Contato getContato() {
+	public List<Contato> getContato() {
 		return contato;
 	}
 
-	public void setContato(Contato contato) {
+	public void setContato(List<Contato> contato) {
 		this.contato = contato;
 	}
 
@@ -83,10 +83,12 @@ public class Empresa {
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (!(obj instanceof Empresa))
+		}
+		if (!(obj instanceof Empresa)) {
 			return false;
+		}
 		Empresa other = (Empresa) obj;
 		return Objects.equals(cnpj, other.cnpj);
 	}
@@ -97,4 +99,5 @@ public class Empresa {
 				+ ", dataAbertura=" + dataAbertura + ", setores=" + setores + ", contato=" + contato + ", endereco="
 				+ endereco + "]";
 	}
+	
 }
