@@ -33,7 +33,7 @@ public final class ValidacaoUtils {
 		}
 	}
 
-	public static void naoAceitarCampoEmBranco(String nome) {
+	public static void validarCampoEmBranco(String nome) {
 		if (nome.trim().isBlank()) {
 			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
 		}

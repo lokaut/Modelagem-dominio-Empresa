@@ -6,7 +6,7 @@ import static com.contimatic.prova.constantes.Constantes.REGEX_ALFABETICO_SEM_AC
 import static com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
-import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
@@ -37,7 +37,7 @@ public class Cidade {
 
 	public void setCodigoIbge(String codigoIbge) {
 		verificarObjetoNulo(codigoIbge);
-		naoAceitarCampoEmBranco(codigoIbge);
+		validarCampoEmBranco(codigoIbge);
 		limiteCaracteres(codigoIbge, 7, 7);
 		validarCaracteresPermitidos(codigoIbge, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.codigoIbge = codigoIbge;
@@ -50,7 +50,7 @@ public class Cidade {
 
 	public void setMunicipio(String municipio) {
 		verificarObjetoNulo(municipio);
-		naoAceitarCampoEmBranco(municipio);
+		validarCampoEmBranco(municipio);
 		limiteCaracteres(municipio, 3, 100);
 		validarCaracteresPermitidos(municipio, REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.municipio = municipio;
@@ -63,7 +63,7 @@ public class Cidade {
 
 	public void setUnidadeFederativa(String unidadeFederativa) {
 		verificarObjetoNulo(unidadeFederativa);
-		naoAceitarCampoEmBranco(unidadeFederativa);
+		validarCampoEmBranco(unidadeFederativa);
 		limiteCaracteres(unidadeFederativa, 2, 2);
 		validarCaracteresPermitidos(unidadeFederativa, REGEX_ALFABETICO_SEM_ACENTO, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.unidadeFederativa = unidadeFederativa;

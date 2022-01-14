@@ -1,7 +1,7 @@
 package com.contimatic.prova.model;
 
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
-import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
@@ -37,7 +37,7 @@ public class Contato {
 
 	public void setEmail(String email) {
 		verificarObjetoNulo(email);
-		naoAceitarCampoEmBranco(email);
+		validarCampoEmBranco(email);
 		limiteCaracteres(email, 4, 254);
 		validarEmail(email);
 		this.email = email;

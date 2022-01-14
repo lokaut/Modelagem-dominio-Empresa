@@ -4,7 +4,7 @@ import static com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
 import static com.contimatic.prova.constantes.Constantes.REGEX_DDD;
 import static com.contimatic.prova.constantes.Constantes.REGEX_TELEFONE;
-import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
@@ -27,7 +27,7 @@ public class Telefone {
 
 	public void setDdd(String ddd) {
 		verificarObjetoNulo(ddd);
-		naoAceitarCampoEmBranco(ddd);
+		validarCampoEmBranco(ddd);
 		validarCaracteresPermitidos(ddd, REGEX_DDD, MENSAGEM_DDD_INCORRETO);
 		this.ddd = ddd;
 	}
@@ -38,7 +38,7 @@ public class Telefone {
 
 	public void setNumeroTelefone(String numeroTelefone) {
 		verificarObjetoNulo(numeroTelefone);
-		naoAceitarCampoEmBranco(numeroTelefone);
+		validarCampoEmBranco(numeroTelefone);
 		validarCaracteresPermitidos(numeroTelefone, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
 		this.numeroTelefone = numeroTelefone;
 	}
