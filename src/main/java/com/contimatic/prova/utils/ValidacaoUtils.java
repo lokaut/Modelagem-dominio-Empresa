@@ -11,8 +11,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.contimatic.prova.constantes.Constantes;
-
 public final class ValidacaoUtils {
 
 	private ValidacaoUtils() {
@@ -40,11 +38,6 @@ public final class ValidacaoUtils {
 			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
 		}
 	}
-//	public static void naoAceitarCaracterNumerico(String nome) {
-//		if (!nome.matches("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$")) {
-//			throw new IllegalStateException(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
-//		}
-//	}
 
 	public static void validarEmail(String email) {
 		String expression = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";

@@ -52,14 +52,14 @@ public  final class Constantes {
 	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. Um salário mínimo é de: " + SALARIO_MINIMO;
 	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de 16 anos";
 	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_HOJE;
-	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números";
-	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa ter 8 números e celular precisa de 9 números começando com 9";
+	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
+	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
 	
 	/* REGEX */
 	 public static final String REGEX_CARACTERES_ALFABETICOS_E_ESPECIAL = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
 	 public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
 	 public static final String REGEX_ALFABETICO_SEM_ACENTO= "^[A-Zaz_]+$";
-	 public static final String REGEX_DDD = "^(?:([1-9]{2}))$";
+	 public static final String REGEX_DDD = "^([1-9]{2})$";
 	 public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
 }	

@@ -4,6 +4,9 @@ import static com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -23,6 +26,7 @@ public class CidadeTest {
 	IllegalArgumentException illegalArgument;
 
 	private String codigoIbge = CODIGO_IBGE_SAO_PAULO;
+	private String codigoIbgePindamonhagaba = "3538006";
 	private String municipio = "São Paulo";
 	private String unidadeFederativa = "SP";
 
@@ -33,7 +37,7 @@ public class CidadeTest {
 
 	@BeforeEach
 	public void instancia() {
-		cidade = new Cidade(codigoIbge);
+		cidade = new Cidade(codigoIbgePindamonhagaba);
 		cidadeConstrutor = new Cidade(codigoIbge, municipio, unidadeFederativa);
 		cidadeConstrutor2 = new Cidade(codigoIbge, municipio, unidadeFederativa);
 	}
@@ -152,12 +156,6 @@ public class CidadeTest {
 	}
 
 	@Test
-	void nao_deve_aceitar_retornar_nulo_codigoIbge() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getCodigoIbge());
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
-	}
-
-	@Test
 	void deve_validar_codigoIbge() {
 		assertEquals(codigoIbge, cidadeConstrutor.getCodigoIbge());
 	}
@@ -174,7 +172,7 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_validar_hashcode_diferente() {
-		assertNotEquals(this.cidade.hashCode(), cidadeConstrutor.hashCode());
+		assertThat(cidadeConstrutor.hashCode(), is(not(this.cidade.hashCode())));
 	}
 
 	@Test
