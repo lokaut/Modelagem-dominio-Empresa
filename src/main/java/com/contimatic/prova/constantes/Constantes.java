@@ -6,9 +6,10 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public  final class Constantes {
+public final class Constantes {
 	private Constantes(){}
 	
+	/* REGRA DE NEGOCIO */	
 	//public static final String SESSENTA_DOIS_CARACTERES = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
 	//public static final String EMAIL_SETENTA_DOIS_CARACTRES = "erick_sdsdsd3erick_erick_sdsdsd33sderick_sdsdsd33sdsd333@hotmail.com.br";
 	//public static final String DOIS_CARACTERES = "ac";
@@ -58,10 +59,10 @@ public  final class Constantes {
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
 	
 	/* REGEX */
-	 public static final String REGEX_CARACTERES_ALFABETICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
-	 public static final String REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS ="^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9 ]+$";
-	 public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
-	 public static final String REGEX_ALFABETICO_SEM_ACENTO= "^[A-Zaz_]+$";
-	 public static final String REGEX_DDD = "^([1-9]{2})$";
-	 public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
+	public static final String REGEX_CARACTERES_ALFABETICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
+	public static final String REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9 ]+$";
+	public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
+	public static final String REGEX_ALFABETICO_SEM_ACENTO = "^[A-Zaz_]+$";
+	public static final String REGEX_DDD = "^([1-9]{2})$";
+	public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
 }	

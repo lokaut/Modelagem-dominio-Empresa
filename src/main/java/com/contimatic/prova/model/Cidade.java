@@ -5,12 +5,20 @@ import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTE
 import static com.contimatic.prova.constantes.Constantes.REGEX_ALFABETICO_SEM_ACENTO;
 import static com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_FIXO_CODIGOIBGE;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_MUNICIPIO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_MUNICIPIO;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.util.Objects;
+
+import com.contimatic.prova.constantes.RegrasNegocioModel;
+import com.contimatic.prova.utils.ValidacaoUtils;
 
 public class Cidade {
 
@@ -38,7 +46,7 @@ public class Cidade {
 	public void setCodigoIbge(String codigoIbge) {
 		verificarObjetoNulo(codigoIbge);
 		validarCampoEmBranco(codigoIbge);
-		limiteCaracteres(codigoIbge, 7, 7);
+		limiteCaracteresFixo(codigoIbge, TAMANHO_FIXO_CODIGOIBGE);
 		validarCaracteresPermitidos(codigoIbge, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.codigoIbge = codigoIbge;
 	}
@@ -51,7 +59,7 @@ public class Cidade {
 	public void setMunicipio(String municipio) {
 		verificarObjetoNulo(municipio);
 		validarCampoEmBranco(municipio);
-		limiteCaracteres(municipio, 3, 100);
+		limiteCaracteresMinimoMaximo(municipio, TAMANHO_MINIMO_MUNICIPIO, TAMANHO_MAXIMO_MUNICIPIO);
 		validarCaracteresPermitidos(municipio, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.municipio = municipio;
 	}
@@ -64,7 +72,7 @@ public class Cidade {
 	public void setUnidadeFederativa(String unidadeFederativa) {
 		verificarObjetoNulo(unidadeFederativa);
 		validarCampoEmBranco(unidadeFederativa);
-		limiteCaracteres(unidadeFederativa, 2, 2);
+		limiteCaracteresFixo(unidadeFederativa, TAMANHO_FIXO_UNIDADE_FEDERATIVA);
 		validarCaracteresPermitidos(unidadeFederativa, REGEX_ALFABETICO_SEM_ACENTO, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.unidadeFederativa = unidadeFederativa;
 	}
