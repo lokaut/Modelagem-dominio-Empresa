@@ -21,13 +21,15 @@ public final class ValidacaoUtils {
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 	}
 
-	public static void limiteCaracteres(String nome, int minimo, int maximo) {
-		if (minimo == maximo && nome.length() != minimo) {
-			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + minimo
+	public static void limiteCaracteresFixo(String nome, int tamanho) {
+		if  (nome.length() != tamanho) {
+			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + tamanho
 					+ " caracteres" + ", atualmente o campo possui " + nome.length() + " caractere(s)");
 		}
 
-		else if (nome.length() < minimo || nome.length() > maximo) {
+	}
+	public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
+		if (nome.length() < minimo || nome.length() > maximo) {
 			throw new IllegalStateException("Quantidade de carácter inválido, o campo deve estar entre " + minimo
 					+ " a " + maximo + " caracteres" + ", atualmente o campo possui " + nome.length());
 		}

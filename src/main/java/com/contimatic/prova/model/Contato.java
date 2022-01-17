@@ -1,6 +1,8 @@
 package com.contimatic.prova.model;
 
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteres;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_EMAIL;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_EMAIL;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
 import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
@@ -38,7 +40,7 @@ public class Contato {
 	public void setEmail(String email) {
 		verificarObjetoNulo(email);
 		validarCampoEmBranco(email);
-		limiteCaracteres(email, 4, 254);
+		limiteCaracteresMinimoMaximo(email, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
 		validarEmail(email);
 		this.email = email;
 	}
