@@ -1,5 +1,22 @@
  package com.contimatic.prova.model;
 
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
+import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_FIXO_CEP;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_BAIRRO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_LOGRADOURO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_BAIRRO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_LOGRADOURO;
+import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+
 import java.util.Objects;
 
 public class Endereco {
@@ -8,21 +25,26 @@ public class Endereco {
 	
 	private String numero;
 	
+	//private String complemento;
+	
 	private String bairro;
 	
+	private String cep;
+
 	private Cidade cidade; 
 	
-	private String cep;
 	
-	public Endereco() {}
+	public Endereco(String cep, String numero) {
+		this.setCep(cep);
+		this.setNumero(numero);
+	}
 	
-	public Endereco( String logradouro, String numero, String bairro, String cep) {
-	//	this.setEstado(estado);
-		//this.setCidade(cidade);
-		this.setBairro(bairro);
+	public Endereco(String logradouro, String numero, String bairro, String cep, Cidade cidade) {
 		this.setLogradouro(logradouro);
 		this.setNumero(numero);
+		this.setBairro(bairro);
 		this.setCep(cep);
+		this.setCidade(cidade);
 	}
 
 	public String getLogradouro() {
@@ -30,6 +52,10 @@ public class Endereco {
 	}
 
 	public void setLogradouro(String logradouro) {
+		verificarObjetoNulo(logradouro);
+		validarCampoEmBranco(logradouro);
+		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO, TAMANHO_MAXIMO_LOGRADOURO);
+		validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.logradouro = logradouro;
 	}
 
@@ -38,6 +64,10 @@ public class Endereco {
 	}
 
 	public void setNumero(String numero) {
+		verificarObjetoNulo(numero);
+		validarCampoEmBranco(numero);
+		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
+		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.numero = numero;
 	}
 
@@ -46,22 +76,37 @@ public class Endereco {
 	}
 
 	public void setBairro(String bairro) {
+		verificarObjetoNulo(bairro);
+		validarCampoEmBranco(bairro);
+		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO, TAMANHO_MAXIMO_BAIRRO);
+		validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.bairro = bairro;
 	}
-
 
 	public String getCep() {
 		return cep;
 	}
 
 	public void setCep(String cep) {
+		verificarObjetoNulo(cep);
+		validarCampoEmBranco(cep);
+		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP);
+		validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cep = cep;
+	}
+	
+	public Cidade getCidade() {
+		return cidade;
+	}
+
+	public void setCidade(Cidade cidade) {
+		verificarObjetoNulo(cidade);
+		this.cidade = cidade;
 	}
 
 	@Override
 	public String toString() {
-		return "Endereco [estado = " + ", cidade = " + cidade + ", bairro = " + bairro + ", logradouro = " + logradouro + 
-				 ", numero = " + numero + ", cep = " + cep + "]";
+		return "Endereco [logradouro = " + logradouro + ", numero = " + numero + ", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]";
 	}
 
 	@Override
