@@ -3,6 +3,7 @@ package com.contimatic.prova;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
+import static com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -32,7 +33,6 @@ class ContatoTest {
 	private String telefoneCelular = "956634577";
 	private String ddd = "11";
 	
-	private String emailDuzentosOitentaCaracteres = "eriericktckemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2erickemail2@gmail.com";
 
 	@BeforeEach
 	public void instancia() {
@@ -57,7 +57,7 @@ class ContatoTest {
 	@Test
 	@Order(2)
 	void nao_deve_aceitar_email_com_mais_254_caracteres() {
-		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(emailDuzentosOitentaCaracteres));
+		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
 	}
 
 	@Test

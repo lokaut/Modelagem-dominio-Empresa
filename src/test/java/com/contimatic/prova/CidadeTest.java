@@ -4,6 +4,10 @@ import static com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
+import static com.contimatic.prova.constantes.ConstantesTestes.CODIGO_ERRADO_IBGE;
+import static com.contimatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static com.contimatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,11 +33,6 @@ public class CidadeTest {
 	private String codigoIbgePindamonhagaba = "3538006";
 	private String municipio = "São Paulo";
 	private String unidadeFederativa = "SP";
-
-	private String codigoErradoIbge = "123345678";
-	private String caracterEspecial = "@@@$$$!";
-	private String mais100Caracters = "abcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcabcababcabcabcabcabcabcabcabcabcabcabcabcabcabcab";
-	private String ufErrado = "abc";
 
 	@BeforeEach
 	public void instancia() {
@@ -61,9 +60,9 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_diferente_sete_caracteres_codigoIbge() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(codigoErradoIbge));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(CODIGO_ERRADO_IBGE));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ 7 + " caracteres" + ", atualmente o campo possui " + codigoErradoIbge.length() + " caractere(s)"));
+				+ 7 + " caracteres" + ", atualmente o campo possui " + CODIGO_ERRADO_IBGE.length() + " caractere(s)"));
 	}
 
 	@Test
@@ -74,7 +73,7 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_codigoIbge() {
-		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(caracterEspecial));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(CARACTER_ESPECIAL));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
@@ -92,7 +91,7 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_mais_cem_caracteres_municipio() {
-		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(mais100Caracters));
+		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(MAIS_CEM_CARACTERES));
 	}
 
 	@Test
@@ -108,7 +107,7 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_municipio() {
-		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(caracterEspecial));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(CARACTER_ESPECIAL));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
@@ -126,9 +125,9 @@ public class CidadeTest {
 
 	@Test
 	void nao_deve_aceitar_diferente_sete_caracteres_unidadeFederativa() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(ufErrado));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(TRES_CARACTERES_ALFABETICOS));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ 2 + " caracteres" + ", atualmente o campo possui " + ufErrado.length() + " caractere(s)"));
+				+ 2 + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
 	}
 
 	@Test
