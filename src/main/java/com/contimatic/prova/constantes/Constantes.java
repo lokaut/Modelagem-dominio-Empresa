@@ -10,10 +10,6 @@ public final class Constantes {
 	private Constantes(){}
 	
 	/* REGRA DE NEGOCIO */	
-	//public static final String SESSENTA_DOIS_CARACTERES = "contmatic contmatic contmatic contmatic contmatic contmaticsss";
-	//public static final String EMAIL_SETENTA_DOIS_CARACTRES = "erick_sdsdsd3erick_erick_sdsdsd33sderick_sdsdsd33sdsd333@hotmail.com.br";
-	//public static final String DOIS_CARACTERES = "ac";
-	//public static final String NUMERO_CPF_INVALIDO = "44085620000";
 	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1100.0);
 	public static final long IDADE_MINIMA_EMPRESA = 16;
 	public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);
