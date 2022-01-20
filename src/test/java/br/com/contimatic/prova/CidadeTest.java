@@ -1,14 +1,14 @@
-package com.contimatic.prova;
+package br.com.contimatic.prova;
 
-import static com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static com.contimatic.prova.constantes.ConstantesTestes.CODIGO_ERRADO_IBGE;
-import static com.contimatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static com.contimatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.CODIGO_ERRADO_IBGE;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,7 +21,7 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.contimatic.prova.model.Cidade;
+import br.com.contimatic.prova.model.Cidade;
 
 public class CidadeTest {
 	Cidade cidade, cidadeConstrutor, cidadeConstrutor2;

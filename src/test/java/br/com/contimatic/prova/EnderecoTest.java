@@ -1,21 +1,21 @@
-package com.contimatic.prova;
+package br.com.contimatic.prova;
 
-import static com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static com.contimatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
-import static com.contimatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CEP;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CEP;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
@@ -30,8 +30,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.contimatic.prova.model.Cidade;
-import com.contimatic.prova.model.Endereco;
+import br.com.contimatic.prova.model.Cidade;
+import br.com.contimatic.prova.model.Endereco;
 
 public class EnderecoTest {
 

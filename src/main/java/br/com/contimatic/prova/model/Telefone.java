@@ -1,12 +1,12 @@
-package com.contimatic.prova.model;
+package br.com.contimatic.prova.model;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
-import static com.contimatic.prova.constantes.Constantes.REGEX_DDD;
-import static com.contimatic.prova.constantes.Constantes.REGEX_TELEFONE;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_DDD;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_TELEFONE;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.util.Objects;
 

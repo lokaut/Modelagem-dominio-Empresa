@@ -1,4 +1,4 @@
-package com.contimatic.prova.constantes;
+package br.com.contimatic.prova.constantes;
 
 import static java.time.LocalDate.now;
 

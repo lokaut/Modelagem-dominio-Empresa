@@ -1,4 +1,4 @@
-package com.contimatic.prova.model;
+package br.com.contimatic.prova.model;
 
 import java.time.LocalDate;
 import java.util.List;

@@ -1,15 +1,15 @@
-package com.contimatic.prova.model;
+package br.com.contimatic.prova.model;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
-import static com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
-import static com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
+import static br.com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

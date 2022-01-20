@@ -1,10 +1,10 @@
-package com.contimatic.prova.utils;
+package br.com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
-import static com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
+import static br.com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -26,8 +26,8 @@ public final class ValidacaoUtils {
 			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + tamanho
 					+ " caracteres" + ", atualmente o campo possui " + nome.length() + " caractere(s)");
 		}
-
 	}
+	
 	public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
 		if (nome.length() < minimo || nome.length() > maximo) {
 			throw new IllegalStateException("Quantidade de carácter inválido, o campo deve estar entre " + minimo

@@ -1,7 +1,7 @@
 package main;
 
 
-import com.contimatic.prova.model.Endereco;
+import br.com.contimatic.prova.model.Endereco;
 
 public class Main {
 	public static void main(String[] args) {

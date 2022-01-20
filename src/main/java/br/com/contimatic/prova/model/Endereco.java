@@ -1,21 +1,21 @@
- package com.contimatic.prova.model;
+ package br.com.contimatic.prova.model;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
-import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CEP;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CEP;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.util.Objects;
 
@@ -25,7 +25,7 @@ public class Endereco {
 	
 	private String numero;
 	
-	//private String complemento;
+	private String complemento;
 	
 	private String bairro;
 	

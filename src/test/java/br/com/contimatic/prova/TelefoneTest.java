@@ -1,8 +1,8 @@
-package com.contimatic.prova;
+package br.com.contimatic.prova;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -14,8 +14,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import com.contimatic.prova.constantes.Constantes;
-import com.contimatic.prova.model.Telefone;
+import br.com.contimatic.prova.constantes.Constantes;
+import br.com.contimatic.prova.model.Telefone;
 
 public class TelefoneTest {
 

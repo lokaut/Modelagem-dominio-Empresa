@@ -1,4 +1,4 @@
-package com.contimatic.prova.constantes;
+package br.com.contimatic.prova.constantes;
 
 public final class ContantesRegrasNegocio {
 	

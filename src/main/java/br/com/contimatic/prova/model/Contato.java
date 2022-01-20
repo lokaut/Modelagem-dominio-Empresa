@@ -1,11 +1,11 @@
-package com.contimatic.prova.model;
+package br.com.contimatic.prova.model;
 
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
-import static com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
+import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarEmail;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.util.Objects;
 
