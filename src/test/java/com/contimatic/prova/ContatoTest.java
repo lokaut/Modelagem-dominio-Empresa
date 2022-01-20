@@ -4,6 +4,8 @@ import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
 import static com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
+import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -50,14 +52,17 @@ class ContatoTest {
 	@Test
 	@Order(1)
 	void nao_deve_aceitar_email_incorreto() {
-		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("erick22@.com"));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("erick22@.com"));
 		assertTrue(illegalState.getMessage().contains(MENSAGEM_EMAIL_INVALIDO));
 	}
 
 	@Test
 	@Order(2)
 	void nao_deve_aceitar_email_com_mais_254_caracteres() {
-		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
+		assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_EMAIL + " a "
+						+ TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui "
+						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
 	@Test

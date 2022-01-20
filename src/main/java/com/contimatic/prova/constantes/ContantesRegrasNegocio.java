@@ -1,9 +1,8 @@
 package com.contimatic.prova.constantes;
 
-public final class RegrasNegocio {
+public final class ContantesRegrasNegocio {
 	
-	private RegrasNegocio() {}
-	
+	private ContantesRegrasNegocio() {}
 	
 	/* CIDADE */
 	public static final int TAMANHO_FIXO_CODIGOIBGE = 7;
