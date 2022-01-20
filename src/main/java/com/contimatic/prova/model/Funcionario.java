@@ -1,13 +1,15 @@
 package com.contimatic.prova.model;
 
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
 import static com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
 import static com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
-import static com.contimatic.prova.utils.ValidacaoUtils.limiteMaximoCaracter;
-import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCampoEmBranco;
-import static com.contimatic.prova.utils.ValidacaoUtils.naoAceitarCaracterNumerico;
+import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
-import static com.contimatic.prova.utils.ValidacaoUtils.verificarCampoNulo;
+import static com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -31,7 +33,9 @@ public class Funcionario {
 	
 	private Setor setor;
 	
-	public Funcionario() {} 
+	public Funcionario(String cpf) {
+		this.setCpf(cpf);
+	} 
 
 	public Funcionario(String nome, String cpf, Contato contato, BigDecimal salario, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento) {
 		this.setNome(nome);
@@ -48,10 +52,10 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		verificarCampoNulo(nome);
-		naoAceitarCampoEmBranco(nome);
-		limiteMaximoCaracter(nome, 3, 60);
-		naoAceitarCaracterNumerico(nome);
+		verificarObjetoNulo(nome);
+		validarCampoEmBranco(nome);
+		limiteCaracteresMinimoMaximo(nome, 3, 60);
+		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
 
@@ -60,7 +64,7 @@ public class Funcionario {
 	}
 
 	public void setCpf(String cpf) {
-		verificarCampoNulo(cpf);
+		verificarObjetoNulo(cpf);
 		validarCPF(cpf);
 		this.cpf = cpf;
 	}
@@ -70,7 +74,7 @@ public class Funcionario {
 	}
 
 	public void setSalario(BigDecimal salario) {
-		verificarCampoNulo(salario);
+		verificarObjetoNulo(salario);
 		validarSalarioMinimo(salario);
 		this.salario = salario;
 	}
@@ -80,7 +84,7 @@ public class Funcionario {
 	}
 		
 	public void setDataAdmissao(LocalDate dataAdmissao) {
-		verificarCampoNulo(dataAdmissao);
+		verificarObjetoNulo(dataAdmissao);
 		validacaoDataAdmissao(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
 	}
@@ -90,12 +94,12 @@ public class Funcionario {
 	}
 
 	public void setEndereco(Endereco endereco) {
-		verificarCampoNulo(endereco);
+		verificarObjetoNulo(endereco);
 		this.endereco = endereco;
 	}
 	
 	public void setContato(Contato contato) {
-		verificarCampoNulo(contato);
+		verificarObjetoNulo(contato);
 		this.contato = contato;
 	}
 
@@ -108,7 +112,7 @@ public class Funcionario {
 	}
 
 	public void setDataNascimento(LocalDate dataNascimento) {
-		verificarCampoNulo(dataNascimento);
+		verificarObjetoNulo(dataNascimento);
 		dataNascMaiorIdade(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
@@ -137,4 +141,12 @@ public class Funcionario {
 		Funcionario other = (Funcionario) obj;
 		return Objects.equals(cpf, other.cpf);
 	}
+
+	@Override
+	public String toString() {
+		return "Funcionario [nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + ", salario=" + salario
+				+ ", endereco=" + endereco + ", dataAdmissao=" + dataAdmissao + ", dataNascimento=" + dataNascimento
+				+ ", setor=" + setor + "]";
+	}
+	
 }

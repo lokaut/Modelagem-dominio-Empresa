@@ -3,6 +3,7 @@ package com.contimatic.prova;
 import static com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
+import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
 import static com.contimatic.prova.constantes.ConstantesTestes.CODIGO_ERRADO_IBGE;
@@ -20,7 +21,6 @@ import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import com.contimatic.prova.constantes.Constantes;
 import com.contimatic.prova.model.Cidade;
 
 public class CidadeTest {
@@ -68,13 +68,13 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_caracter_alfabetico_codigoIbge() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge("abc1221"));
-		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_codigoIbge() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
@@ -108,7 +108,7 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_caracter_especial_municipio() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test

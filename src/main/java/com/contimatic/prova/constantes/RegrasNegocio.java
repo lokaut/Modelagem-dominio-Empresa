@@ -1,8 +1,8 @@
 package com.contimatic.prova.constantes;
 
-public final class RegrasNegocioModel {
+public final class RegrasNegocio {
 	
-	private RegrasNegocioModel() {}
+	private RegrasNegocio() {}
 	
 	
 	/* CIDADE */

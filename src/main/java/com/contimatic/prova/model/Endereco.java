@@ -4,13 +4,13 @@ import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTE
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_FIXO_CEP;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_BAIRRO;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_BAIRRO;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_LOGRADOURO;
-import static com.contimatic.prova.constantes.RegrasNegocioModel.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_FIXO_CEP;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MINIMO_BAIRRO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static com.contimatic.prova.constantes.RegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
@@ -105,11 +105,6 @@ public class Endereco {
 	}
 
 	@Override
-	public String toString() {
-		return "Endereco [logradouro = " + logradouro + ", numero = " + numero + ", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		return Objects.hash(cep, numero);
 	}
@@ -124,5 +119,10 @@ public class Endereco {
 		}
 		Endereco other = (Endereco) obj;
 		return Objects.equals(cep, other.cep) && Objects.equals(numero, other.numero);
+	}
+	
+	@Override
+	public String toString() {
+		return "Endereco [logradouro = " + logradouro + ", numero = " + numero + ", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]";
 	}
 }
