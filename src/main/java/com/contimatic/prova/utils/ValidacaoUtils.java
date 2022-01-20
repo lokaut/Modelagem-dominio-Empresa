@@ -1,94 +1,68 @@
 package com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
-import static com.contimatic.prova.constantes.Constantes.IDADE_MINIMA_EMPRESA;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
 import static com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static com.contimatic.prova.constantes.Constantes.REGRA_DATA_ADMISSAO;
 import static com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.temporal.ChronoUnit;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public final class ValidacaoUtils {
 
-	private ValidacaoUtils() {}
+	private ValidacaoUtils() {
+	}
 
-	public static void verificarCampoNulo(Object nome) {
-		if (nome == null) {
+	public static void verificarObjetoNulo(Object campo) {
+		if (campo == null)
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
-		}
 	}
 
-	public static void limiteMaximoCaracter(String nome, int minimo, int maximo) {
+	public static void limiteCaracteresFixo(String nome, int tamanho) {
+		if  (nome.length() != tamanho) {
+			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + tamanho
+					+ " caracteres" + ", atualmente o campo possui " + nome.length() + " caractere(s)");
+		}
+
+	}
+	public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
 		if (nome.length() < minimo || nome.length() > maximo) {
-			throw new IllegalStateException(
-					"Quantidade de carácter inválido, o campo deve estar entre "+ minimo + " a " + maximo + " caracteres"
-							+ ", atualmente o campo possui " + nome.length());
+			throw new IllegalStateException("Quantidade de carácter inválido, o campo deve estar entre " + minimo
+					+ " a " + maximo + " caracteres" + ", atualmente o campo possui " + nome.length());
 		}
 	}
 
-	public static void naoAceitarCampoEmBranco(String nome) {
+	public static void validarCampoEmBranco(String nome) {
 		if (nome.trim().isBlank()) {
 			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
 		}
 	}
 
-	public static void naoAceitarCaracterNumerico(String nome) {
-		if (!nome.matches("^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$")) {
-			throw new IllegalStateException(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
-		}
-	}
-	
 	public static void validarEmail(String email) {
-			String expression = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
-			Pattern pattern = Pattern.compile(expression, Pattern.CASE_INSENSITIVE);
-			Matcher matcher = pattern.matcher(email);
-			if (!matcher.matches()) {
-				throw new IllegalStateException(MENSAGEM_EMAIL_INVALIDO);
-			}
+		String regex = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
+		Matcher matcher = pattern.matcher(email);
+		if (!matcher.matches())
+			throw new IllegalStateException(MENSAGEM_EMAIL_INVALIDO);
 	}
-	
+
 	public static void validarSalarioMinimo(BigDecimal salario) {
 		BigDecimal diferencaSalario = salario.subtract(SALARIO_MINIMO);
-		if (diferencaSalario.signum() == - 1) {
+		if (diferencaSalario.signum() == - 1)
 			throw new IllegalStateException(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
-		}
 	}
-	
-	public static void dataNascMaiorIdade(LocalDate idade) {
-		long anos = ChronoUnit.YEARS.between(idade, LocalDate.now());
-		
-		if(anos < IDADE_MINIMA_EMPRESA) {
-			throw new IllegalStateException(MENSAGEM_IDADE_MINIMA_EMPRESA);
-		}
+
+	public static void validarCaracteresPermitidos(String campo, String regex, String mensagemErro) {
+		if (!campo.matches(regex))
+			throw new IllegalStateException(mensagemErro);
 	}
-	
-	public static void validacaoDataAdmissao(LocalDate dataAdmissao){
-		LocalDate doisMesesPosDataAtual = LocalDate.now().plusMonths(REGRA_DATA_ADMISSAO);
-		if(dataAdmissao.isAfter(doisMesesPosDataAtual)) {
-			throw new IllegalStateException(MENSAGEM_ADMISSAO_FUTURA);
-		}
-	}
-	
-	public static void validarDDD(String campo) {
-		if (!campo.matches("^(?:([1-9]{2}))$")) {
-			throw new IllegalStateException(MENSAGEM_DDD_INCORRETO);
-		}
-	}
-	
-	public static void validarTelefone(String campo) {
-		if(!campo.matches("^9?[0-9]{8}$")) {
-			throw new IllegalStateException(MENSAGEM_TELEFONE_INCORRETO);
+
+	public static <T> void validarListaVazia(List<T> lista) {
+		if (lista.isEmpty()) {
+			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
 		}
 	}
 }
