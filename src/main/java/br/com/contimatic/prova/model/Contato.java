@@ -1,7 +1,7 @@
 package br.com.contimatic.prova.model;
 
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarEmail;

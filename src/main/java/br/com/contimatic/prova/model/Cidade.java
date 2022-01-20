@@ -5,10 +5,10 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARA
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFABETICO_SEM_ACENTO;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_MUNICIPIO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_MUNICIPIO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_MUNICIPIO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_MUNICIPIO;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;

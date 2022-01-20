@@ -21,13 +21,22 @@ public final class ValidacaoUtils {
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 	}
 
+	public static void campoOpcional(String nome, int minimo, int maximo) {
+		if (nome != null) {
+			if (minimo != maximo)
+				limiteCaracteresMinimoMaximo(nome, minimo, maximo);
+			else
+				limiteCaracteresFixo(nome, minimo);
+		}
+	}
+
 	public static void limiteCaracteresFixo(String nome, int tamanho) {
-		if  (nome.length() != tamanho) {
+		if (nome.length() != tamanho) {
 			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + tamanho
 					+ " caracteres" + ", atualmente o campo possui " + nome.length() + " caractere(s)");
 		}
 	}
-	
+
 	public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
 		if (nome.length() < minimo || nome.length() > maximo) {
 			throw new IllegalStateException("Quantidade de carácter inválido, o campo deve estar entre " + minimo
@@ -51,7 +60,7 @@ public final class ValidacaoUtils {
 
 	public static void validarSalarioMinimo(BigDecimal salario) {
 		BigDecimal diferencaSalario = salario.subtract(SALARIO_MINIMO);
-		if (diferencaSalario.signum() == - 1)
+		if (diferencaSalario.signum() == -1)
 			throw new IllegalStateException(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
 	}
 

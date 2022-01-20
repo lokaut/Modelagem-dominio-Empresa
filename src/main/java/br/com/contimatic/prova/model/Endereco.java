@@ -4,15 +4,18 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARA
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_FIXO_CEP;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
-import static br.com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.campoOpcional;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
@@ -46,6 +49,15 @@ public class Endereco {
 		this.setCep(cep);
 		this.setCidade(cidade);
 	}
+	
+	public Endereco(String logradouro, String numero, String bairro, String complemento, String cep, Cidade cidade) {
+		this.setLogradouro(logradouro);
+		this.setNumero(numero);
+		this.setBairro(bairro);
+		this.setComplemento(complemento);
+		this.setCep(cep);
+		this.setCidade(cidade);
+	}
 
 	public String getLogradouro() {
 		return logradouro;
@@ -69,6 +81,15 @@ public class Endereco {
 		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
 		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.numero = numero;
+	}
+
+	public String getComplemento() {
+		return complemento;
+	}
+
+	public void setComplemento(String complemento) {
+		campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO, TAMANHO_MAXIMO_COMPLEMENTO);
+		this.complemento = complemento;
 	}
 
 	public String getBairro() {
@@ -123,6 +144,6 @@ public class Endereco {
 	
 	@Override
 	public String toString() {
-		return "Endereco [logradouro = " + logradouro + ", numero = " + numero + ", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]";
+		return "Endereco [logradouro = " + logradouro + ", numero = " + numero +", complemento = "+ complemento +", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]";
 	}
 }
