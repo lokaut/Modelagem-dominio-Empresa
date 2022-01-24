@@ -10,10 +10,11 @@ public final class Constantes {
 	private Constantes(){}
 	
 	/* REGRA DE NEGOCIO */	
-	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1100.0);
+	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1210.0);
 	public static final long IDADE_MINIMA_EMPRESA = 16;
 	public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);
 	public static final int REGRA_DATA_ADMISSAO = 2;
+	public static final String DATA_HOJE = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	
 	/*Classe Cidade */
 	public static final String CODIGO_IBGE_SAO_PAULO = "3550308";
@@ -29,10 +30,9 @@ public final class Constantes {
 	public static final int TAMANHO_CPF = 11;
 	public static final int TAMANHO_CNPJ = 14;
 	public static final char NUMERO_ZERO_CPF_CNPJ = '0';
-	public static final String CPF_TEXTO = "44a764b7f34";
+
 	public static final int POSICAO_DOZE_CNPJ = 12;
 	public static final int POSICAO_TREZE_CNPJ = 13;
-	public static final String DATA_HOJE = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
 	/* MENSAGENS */
 	public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";

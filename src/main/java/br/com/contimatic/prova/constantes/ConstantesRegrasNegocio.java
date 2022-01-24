@@ -24,4 +24,8 @@ public final class ConstantesRegrasNegocio {
 	public static final int TAMANHO_MAXIMO_BAIRRO = 60;
 	public static final int TAMANHO_MINIMO_COMPLEMENTO = 0;
 	public static final int TAMANHO_MAXIMO_COMPLEMENTO = 254;
+	
+	/* FUNCIONARIO */
+	public static final int TAMANHO_MINIMO_NOME = 3;
+	public static final int TAMANHO_MAXIMO_NOME = 60;
 }

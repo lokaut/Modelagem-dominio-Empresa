@@ -2,6 +2,8 @@ package br.com.contimatic.prova.model;
 
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
 import static br.com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
@@ -37,7 +39,7 @@ public class Funcionario {
 		this.setCpf(cpf);
 	} 
 
-	public Funcionario(String nome, String cpf, Contato contato, BigDecimal salario, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento) {
+	public Funcionario(String nome, String cpf, Contato contato, BigDecimal salario, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Setor setor) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setContato(contato);
@@ -45,6 +47,7 @@ public class Funcionario {
 		this.setSalario(salario);
 		this.setDataAdmissao(dataAdmissao);
 		this.setDataNascimento(dataNascimento);
+		this.setSetor(setor);
 	}
 
 	public String getNome() {
@@ -54,7 +57,7 @@ public class Funcionario {
 	public void setNome(String nome) {
 		verificarObjetoNulo(nome);
 		validarCampoEmBranco(nome);
-		limiteCaracteresMinimoMaximo(nome, 3, 60);
+		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME, TAMANHO_MAXIMO_NOME);
 		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
@@ -122,6 +125,7 @@ public class Funcionario {
 	}
 
 	public void setSetor(Setor setor) {
+		verificarObjetoNulo(setor);
 		this.setor = setor;
 	}
 
@@ -144,9 +148,9 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", cpf=" + cpf + ", contato=" + contato + ", salario=" + salario
-				+ ", endereco=" + endereco + ", dataAdmissao=" + dataAdmissao + ", dataNascimento=" + dataNascimento
-				+ ", setor=" + setor + "]";
+		return "Funcionario [nome=" + nome + ", cpf = " + cpf + ", contato=" + contato + ", salario = " + salario
+				+ ", endereco = " + endereco + ", dataAdmissao=" + dataAdmissao + ", dataNascimento = " + dataNascimento
+				+ ", setor = " + setor + "]";
 	}
 	
 }

@@ -15,4 +15,5 @@ public final class ConstantesTestes {
 	public static final String DOIS_CARACTERES = "ac";
 	public static final String NUMERO_CPF_INVALIDO = "44085620000";
 	public static final String ONZE_NUMEROS = "66998583340";
+	public static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
 }
