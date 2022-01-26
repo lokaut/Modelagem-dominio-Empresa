@@ -176,9 +176,9 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_equals_hashcode() {
-		assertEquals(true, cidadeConstrutor.equals(cidadeConstrutor2));
-		assertEquals(true, cidadeConstrutor.equals(cidadeConstrutor));
-		assertNotEquals(true, cidadeConstrutor.equals(null));
+		assertEquals(cidadeConstrutor, cidadeConstrutor2);
+		assertEquals(cidadeConstrutor, cidadeConstrutor);
+		assertNotEquals(null, cidadeConstrutor);
 		assertNotEquals(true, cidadeConstrutor.equals(new Object()));
 	}
 

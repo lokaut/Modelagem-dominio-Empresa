@@ -236,9 +236,9 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_equals_hashcode() {
-		assertEquals(true, funcionarioCompleto.equals(funcionarioCompleto2));
-		assertEquals(true, funcionarioCompleto.equals(funcionarioCompleto));
-		assertNotEquals(true, funcionarioCompleto.equals(null));
+		assertEquals(funcionarioCompleto,funcionarioCompleto2);
+		assertEquals(funcionarioCompleto, funcionarioCompleto);
+		assertNotEquals(null, funcionarioCompleto);
 		assertNotEquals(true, funcionarioCompleto.equals(new Object()));
 	}
 	

@@ -113,9 +113,9 @@ class ContatoTest {
 	@Test
 	@Order(10)
 	void deve_validar_equals() {
-		assertEquals(true, contatoConstrutor.equals(contatoConstrutor2));
-		assertEquals(true, contatoConstrutor.equals(contatoConstrutor));
-		assertNotEquals(true, contatoConstrutor.equals(null));
+		assertEquals(contatoConstrutor, contatoConstrutor2);
+		assertEquals(contatoConstrutor, contatoConstrutor);
+		assertNotEquals(null, contatoConstrutor);
 		assertNotEquals(true, contatoConstrutor.equals(new Object()));
 	}
 	

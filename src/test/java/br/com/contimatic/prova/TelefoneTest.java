@@ -88,12 +88,12 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_validar_equals() {
-		assertEquals(true, celular.equals(celular2));
-		assertEquals(true, celular.equals(celular));
-		assertNotEquals(true, celular.equals(telefone));
-		assertNotEquals(true, celular.equals(null));
+		assertEquals(celular, celular2);
+		assertEquals(celular, celular);
+		assertNotEquals(celular,telefone);
+		assertNotEquals(null, celular);
 		assertNotEquals(true, celular.equals(new Object()));
-		assertNotEquals(true, telefone.equals(celularDddSaoPaulo));
+		assertNotEquals(telefone, celularDddSaoPaulo);
 	}
 	
 	@Test

@@ -251,9 +251,9 @@ public class EnderecoTest {
 
 	@Test
 	void deve_validar_equals() {
-		assertEquals(true, enderecoCompleto.equals(enderecoCompleto2));
-		assertEquals(true, enderecoCompleto.equals(enderecoCompleto));
-		assertNotEquals(true, enderecoCompleto.equals(null));
+		assertEquals(enderecoCompleto,enderecoCompleto2);
+		assertEquals(enderecoCompleto,enderecoCompleto);
+		assertNotEquals(null, enderecoCompleto);
 		assertNotEquals(true, enderecoCompleto.equals(new Object()));
 		assertNotEquals(enderecoHash2, enderecoHash3);
 		assertNotEquals(enderecoHash2, endereco);
