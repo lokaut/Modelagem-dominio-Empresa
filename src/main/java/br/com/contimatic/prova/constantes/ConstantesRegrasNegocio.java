@@ -1,8 +1,8 @@
-package com.contimatic.prova.constantes;
+package br.com.contimatic.prova.constantes;
 
-public final class ContantesRegrasNegocio {
+public final class ConstantesRegrasNegocio {
 	
-	private ContantesRegrasNegocio() {}
+	private ConstantesRegrasNegocio() {}
 	
 	/* CIDADE */
 	public static final int TAMANHO_FIXO_CODIGOIBGE = 7;
@@ -22,4 +22,10 @@ public final class ContantesRegrasNegocio {
 	public static final int TAMANHO_MAXIMO_NUMERO_ENDERECO = 20;
 	public static final int TAMANHO_MINIMO_BAIRRO = 1;
 	public static final int TAMANHO_MAXIMO_BAIRRO = 60;
+	public static final int TAMANHO_MINIMO_COMPLEMENTO = 0;
+	public static final int TAMANHO_MAXIMO_COMPLEMENTO = 254;
+	
+	/* FUNCIONARIO */
+	public static final int TAMANHO_MINIMO_NOME = 3;
+	public static final int TAMANHO_MAXIMO_NOME = 60;
 }

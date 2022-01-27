@@ -1,15 +1,15 @@
-package com.contimatic.prova.utils;
+package br.com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
-import static com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
-import static com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF_CNPJ;
-import static com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF_CNPJ;
-import static com.contimatic.prova.constantes.Constantes.POSICAO_DEZ_CPF;
-import static com.contimatic.prova.constantes.Constantes.POSICAO_NOVE_CPF;
-import static com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
-import static com.contimatic.prova.constantes.Constantes.TAMANHO_CPF;
-import static com.contimatic.prova.constantes.Constantes.TAMANHO_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
+import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.POSICAO_DEZ_CPF;
+import static br.com.contimatic.prova.constantes.Constantes.POSICAO_NOVE_CPF;
+import static br.com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
+import static br.com.contimatic.prova.constantes.Constantes.TAMANHO_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.TAMANHO_CPF;
 
 public final class ValidacaoCpf {
 

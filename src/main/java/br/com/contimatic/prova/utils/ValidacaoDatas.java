@@ -1,9 +1,9 @@
-package com.contimatic.prova.utils;
+package br.com.contimatic.prova.utils;
 
-import static com.contimatic.prova.constantes.Constantes.IDADE_MINIMA_EMPRESA;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
-import static com.contimatic.prova.constantes.Constantes.REGRA_DATA_ADMISSAO;
+import static br.com.contimatic.prova.constantes.Constantes.IDADE_MINIMA_EMPRESA;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
+import static br.com.contimatic.prova.constantes.Constantes.REGRA_DATA_ADMISSAO;
 import static java.time.LocalDate.now;
 import static java.time.temporal.ChronoUnit.YEARS;
 

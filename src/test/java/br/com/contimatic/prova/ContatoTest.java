@@ -1,11 +1,11 @@
-package com.contimatic.prova;
+package br.com.contimatic.prova;
 
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
-import static com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
-import static com.contimatic.prova.constantes.ContantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
+import static br.com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -18,8 +18,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import com.contimatic.prova.model.Contato;
-import com.contimatic.prova.model.Telefone;
+import br.com.contimatic.prova.model.Contato;
+import br.com.contimatic.prova.model.Telefone;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ContatoTest {
@@ -113,9 +113,9 @@ class ContatoTest {
 	@Test
 	@Order(10)
 	void deve_validar_equals() {
-		assertEquals(true, contatoConstrutor.equals(contatoConstrutor2));
-		assertEquals(true, contatoConstrutor.equals(contatoConstrutor));
-		assertNotEquals(true, contatoConstrutor.equals(null));
+		assertEquals(contatoConstrutor, contatoConstrutor2);
+		assertEquals(contatoConstrutor, contatoConstrutor);
+		assertNotEquals(null, contatoConstrutor);
 		assertNotEquals(true, contatoConstrutor.equals(new Object()));
 	}
 	
