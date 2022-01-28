@@ -16,8 +16,8 @@ public final class ValidacaoUtils {
 	private ValidacaoUtils() {
 	}
 
-	public static void verificarObjetoNulo(Object campo) {
-		if (campo == null)
+	public static void verificarObjetoNulo(Object objeto) {
+		if (objeto == null)
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 	}
 
@@ -69,8 +69,14 @@ public final class ValidacaoUtils {
 			throw new IllegalStateException(mensagemErro);
 	}
 
-	public static <T> void validarListaVazia(List<T> lista) {
+	public static <E> void validarListaVazia(List<E> lista) {
 		if (lista.isEmpty()) {
+			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+		}
+	}
+	
+	public static <E> void validarTamanhoMaximoLista(List<E> lista, int tamanho) {
+		if (lista.size() > tamanho) {
 			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
 		}
 	}

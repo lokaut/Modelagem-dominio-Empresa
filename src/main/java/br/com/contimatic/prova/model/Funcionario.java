@@ -2,8 +2,8 @@ package br.com.contimatic.prova.model;
 
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
@@ -57,7 +57,7 @@ public class Funcionario {
 	public void setNome(String nome) {
 		verificarObjetoNulo(nome);
 		validarCampoEmBranco(nome);
-		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME, TAMANHO_MAXIMO_NOME);
+		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_FUNCIONARIO, TAMANHO_MAXIMO_NOME_FUNCIONARIO);
 		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}

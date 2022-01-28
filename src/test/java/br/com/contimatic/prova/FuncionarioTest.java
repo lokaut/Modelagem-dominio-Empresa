@@ -9,8 +9,8 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIM
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
 import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
@@ -80,8 +80,8 @@ class FuncionarioTest {
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME + " a "
-						+ TAMANHO_MAXIMO_NOME + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME_FUNCIONARIO + " a "
+						+ TAMANHO_MAXIMO_NOME_FUNCIONARIO + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 
 	@Test
