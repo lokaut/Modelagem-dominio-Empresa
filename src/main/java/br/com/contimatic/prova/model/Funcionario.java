@@ -7,13 +7,12 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDesligamento;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
-import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static br.com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Objects;
 
@@ -25,29 +24,30 @@ public class Funcionario {
 
 	private Contato contato;
 	
-	private BigDecimal salario;
-
 	private Endereco endereco;
 
 	private LocalDate dataAdmissao;
 
 	private LocalDate dataNascimento;
 	
+	private LocalDate dataDesligamento;
+	
 	private Setor setor;
+	
+	private Cargo cargo;
 	
 	public Funcionario(String cpf) {
 		this.setCpf(cpf);
 	} 
 
-	public Funcionario(String nome, String cpf, Contato contato, BigDecimal salario, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Setor setor) {
+	public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setContato(contato);
 		this.setEndereco(endereco);
-		this.setSalario(salario);
 		this.setDataAdmissao(dataAdmissao);
 		this.setDataNascimento(dataNascimento);
-		this.setSetor(setor);
+		this.setCargo(cargo);
 	}
 
 	public String getNome() {
@@ -56,7 +56,7 @@ public class Funcionario {
 
 	public void setNome(String nome) {
 		verificarObjetoNulo(nome);
-		validarCampoEmBranco(nome);
+		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_FUNCIONARIO, TAMANHO_MAXIMO_NOME_FUNCIONARIO);
 		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
@@ -70,16 +70,6 @@ public class Funcionario {
 		verificarObjetoNulo(cpf);
 		validarCPF(cpf);
 		this.cpf = cpf;
-	}
-
-	public BigDecimal getSalario() {
-		return salario;
-	}
-
-	public void setSalario(BigDecimal salario) {
-		verificarObjetoNulo(salario);
-		validarSalarioMinimo(salario);
-		this.salario = salario;
 	}
 
 	public LocalDate getDataAdmissao() {
@@ -120,6 +110,15 @@ public class Funcionario {
 		this.dataNascimento = dataNascimento;
 	}
 
+	public LocalDate getDataDesligamento() {
+		return dataDesligamento;
+	}
+
+	public void setDataDesligamento(LocalDate dataDesligamento) {
+		validacaoDesligamento(dataDesligamento);
+		this.dataDesligamento = dataDesligamento;
+	}
+
 	public Setor getSetor() {
 		return setor;
 	}
@@ -127,6 +126,15 @@ public class Funcionario {
 	public void setSetor(Setor setor) {
 		verificarObjetoNulo(setor);
 		this.setor = setor;
+	}
+
+	public Cargo getCargo() {
+		return cargo;
+	}
+
+	public void setCargo(Cargo cargo) {
+		verificarObjetoNulo(cargo);
+		this.cargo = cargo;
 	}
 
 	@Override
@@ -148,9 +156,8 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", cpf = " + cpf + ", contato=" + contato + ", salario = " + salario
-				+ ", endereco = " + endereco + ", dataAdmissao=" + dataAdmissao + ", dataNascimento = " + dataNascimento
-				+ ", setor = " + setor + "]";
+		return "Funcionario [nome=" + nome + ", cpf = " + cpf + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + dataAdmissao + ", dataNascimento = " + dataNascimento
+				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", Cargo = " + cargo +  "]";
 	}
 	
 }

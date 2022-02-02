@@ -30,11 +30,11 @@ public final class ConstantesRegrasNegocio {
 	public static final Integer TAMANHO_MAXIMO_NOME_FUNCIONARIO = 60;
 	
 	/* SETOR */
-	public static final Integer TAMANHO_MINIMO_NOME_SETOR = 3;
-	public static final Integer TAMANHO_MAXIMO_NOME_SETOR = 60;
-	public static final Integer TAMANHO_MINIMO_CBO_SETOR = 1;
-	public static final Integer TAMANHO_MAXIMO_CBO_SETOR = 8;
+	public static final Integer TAMANHO_MINIMO_NOME = 3;
+	public static final Integer TAMANHO_MAXIMO_NOME = 60;
+	public static final Integer TAMANHO_MINIMO_CBO_CARGO = 1;
+	public static final Integer TAMANHO_MAXIMO_CBO_CARGO = 8;
 	public static final Integer TAMANHO_MAXIMO_LISTA_FUNCIONARIO = 999;
-	public static final Integer TAMANHO_MINIMO_DESCRICAO_SETOR = 3;
-	public static final Integer TAMANHO_MAXIMO_DESCRICAO_SETOR = 254;
+	public static final Integer TAMANHO_MINIMO_DESCRICAO = 3;
+	public static final Integer TAMANHO_MAXIMO_DESCRICAO = 254;
 }

@@ -1,11 +1,5 @@
 package br.com.contimatic.prova.model;
 
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
-import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_CBO_CARGO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
@@ -15,38 +9,38 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
-import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarListaVazia;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 
-public class Setor {
+public class Cargo {
 
 	private String nome;
-	
+
 	private String cbo;
 	
-	private List<Funcionario> funcionarios;
+	private BigDecimal salario;
 	
+	private List<Funcionario> funcionarios;
+
 	private String descricao;
 	
-	private Empresa empresa;
+	public Cargo(String cbo) {
+		this.setCbo(cbo);
+	}
 
-	public Setor(String nome, String cbo, List<Funcionario> funcionario, String descricao, Empresa empresa) {
+	public Cargo(String nome, String cbo, BigDecimal salario, String descricao) {
 		this.setNome(nome);
 		this.setCbo(cbo);
-		this.setFuncionarios(funcionario);
+		this.setSalario(salario);
 		this.setDescricao(descricao);
-		this.setEmpresa(empresa);
 	}
 
-	public Setor(String cbo) {
-		this.setCbo(cbo);
-	}
-	
 	public String getNome() {
 		return nome;
 	}
@@ -55,12 +49,27 @@ public class Setor {
 		verificarObjetoNulo(nome);
 		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME, TAMANHO_MAXIMO_NOME);
-		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
+	
+	public BigDecimal getSalario() {
+		return salario;
+	}
 
-	public List<Funcionario> getFuncionario() {
+	public void setSalario(BigDecimal salario) {
+		verificarObjetoNulo(salario);
+		validarSalarioMinimo(salario);
+		this.salario = salario;
+	}
+
+	public List<Funcionario> getFuncionarios() {
 		return funcionarios;
+	}
+
+	public void setFuncionarios(List<Funcionario> funcionarios) {
+		validarListaVazia(funcionarios);
+		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
+		this.funcionarios = funcionarios;
 	}
 
 	public String getCbo() {
@@ -71,15 +80,7 @@ public class Setor {
 		verificarObjetoNulo(cbo);
 		validarCampoVazio(cbo);
 		limiteCaracteresMinimoMaximo(cbo, TAMANHO_MINIMO_CBO_CARGO, TAMANHO_MAXIMO_CBO_CARGO);
-		validarCaracteresPermitidos(cbo, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL );
 		this.cbo = cbo;
-	}
-
-	public void setFuncionarios(List<Funcionario> funcionarios) {
-		verificarObjetoNulo(funcionarios);
-		validarListaVazia(funcionarios);
-		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
-		this.funcionarios = funcionarios;
 	}
 
 	public String getDescricao() {
@@ -90,17 +91,7 @@ public class Setor {
 		verificarObjetoNulo(descricao);
 		validarCampoVazio(descricao);
 		limiteCaracteresMinimoMaximo(descricao, TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
-		validarCaracteresPermitidos(descricao, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.descricao = descricao;
-	}
-
-	public Empresa getEmpresa() {
-		return empresa;
-	}
-
-	public void setEmpresa(Empresa empresa) {
-		verificarObjetoNulo(empresa);
-		this.empresa = empresa;
 	}
 
 	@Override
@@ -113,17 +104,16 @@ public class Setor {
 		if (this == obj) {
 			return true;
 		}
-		if (!(obj instanceof Setor)) {
+		if (!(obj instanceof Cargo)) {
 			return false;
 		}
-		Setor other = (Setor) obj;
+		Cargo other = (Cargo) obj;
 		return Objects.equals(cbo, other.cbo);
 	}
 
 	@Override
 	public String toString() {
-		return "Setor [nome=" + nome + ", funcionario=" + funcionarios + ", descricao=" + descricao + ", empresa="
-				+ empresa + "]";
+		return "Cargo [nome = " + nome + ", cbo = " + cbo + ", salário = " + salario + ", descrição = " + descricao + "]";
 	}
 	
 }
