@@ -1,5 +1,8 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.DOIS_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
@@ -10,9 +13,6 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIM
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

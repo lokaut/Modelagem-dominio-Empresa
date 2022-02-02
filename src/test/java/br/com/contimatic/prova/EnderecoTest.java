@@ -1,15 +1,15 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
