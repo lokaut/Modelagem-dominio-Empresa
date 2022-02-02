@@ -5,10 +5,9 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static br.com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
@@ -20,7 +19,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 import org.junit.jupiter.api.AfterAll;
@@ -29,6 +27,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contimatic.prova.model.Cargo;
 import br.com.contimatic.prova.model.Contato;
 import br.com.contimatic.prova.model.Endereco;
 import br.com.contimatic.prova.model.Funcionario;
@@ -46,11 +45,11 @@ class FuncionarioTest {
 	LocalDate dataNascimentoValido = LocalDate.of(1994, 12, 05);
 	LocalDate dataFutura = LocalDate.of(2023, 11, 04);
 	LocalDate dataAdmissao = LocalDate.of(2021, 11, 04);
+	LocalDate dataDesligamento = null;
 
-	BigDecimal salarioMinimo = SALARIO_MINIMO;
-	BigDecimal salarioMenorSalarioMinimo;
 	Endereco endereco;
 	Setor setor;
+	Cargo cargo;
 
 	String cpfValido = "90795007809";
 	String segundoCpfValido = "76899070081";
@@ -59,15 +58,14 @@ class FuncionarioTest {
 
 	@BeforeEach
 	public void instancia() {
-		setor = new Setor(cboValido);
-		salarioMenorSalarioMinimo = new BigDecimal(800.2);
+		cargo = new Cargo("142520");
 		endereco = new Endereco("06824050", "381");
 		contato = new Contato("erick224@gmail.com");
 		funcionario = new Funcionario(segundoCpfValido);
-		funcionarioCompleto = new Funcionario(nomeCompleto, cpfValido, contato, salarioMinimo, endereco,
-				dataAdmissao, dataNascimentoValido, setor);
-		funcionarioCompleto2 = new Funcionario(nomeCompleto, cpfValido, contato, salarioMinimo, endereco,
-				dataAdmissao, dataNascimentoValido, setor);
+		funcionarioCompleto = new Funcionario(nomeCompleto, cpfValido, contato, endereco,
+				dataAdmissao, dataNascimentoValido,cargo);
+		funcionarioCompleto2 = new Funcionario(nomeCompleto, cpfValido, contato, endereco,
+				dataAdmissao, dataNascimentoValido, cargo);
 	}
 
 	@AfterAll
@@ -137,19 +135,6 @@ class FuncionarioTest {
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
-	@Test
-	void nao_deve_aceitar_campo_nulo_salario() {
-		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setSalario(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
-	}
-
-	@Test
-	void nao_deve_aceitar_salario_menor_salario_minimo() {
-		this.illegalState = assertThrows(IllegalStateException.class,
-				() -> funcionario.setSalario(salarioMenorSalarioMinimo));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO));
-	}
-
 	@ParameterizedTest
 	@ValueSource(ints = { 15, 14, 13, 12, 11, 10, 9, 8, 7, 5, 4, 3, 2, 1, -5 })
 	void nao_deve_aceitar_funcionario_menor_dezesseis_anos(int idade) {
@@ -173,17 +158,39 @@ class FuncionarioTest {
 	}
 	
 	@Test
-	void nao_deve_aceitar_campo_endereco_nulo() {
+	void nao_deve_aceitar_endereco_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setEndereco(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
-	void nao_deve_aceitar_campo_setor_nulo() {
+	void nao_deve_aceitar_setor_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setSetor(null));
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 	
+	@ParameterizedTest
+	@ValueSource(ints = { 1, 2, 3, 4, 5 })
+	void nao_deve_aceitar_dataDesligamento_antes_data_hoje(int dias) {
+		LocalDate dataAnteriorAoDiaAtual = now().minusDays(dias);
+		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataDesligamento(dataAnteriorAoDiaAtual));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL));
+	}
+	
+	@ParameterizedTest
+	@ValueSource(ints = { 0, 1, 2, 3, 4, 5 })
+	void deve_validar_dataDesligamento_depois_data_hoje(int dias) {
+		LocalDate dataPosteriorAoDiaAtual = now().plusDays(dias);
+		funcionario.setDataDesligamento(dataPosteriorAoDiaAtual);
+		assertEquals(funcionario.getDataDesligamento(), dataPosteriorAoDiaAtual);
+	}
+	
+	@Test
+	void deve_aceitar_dataDesligamento_nulo() {
+		funcionario.setDataDesligamento(null);
+		assertEquals(null, funcionario.getDataDesligamento());
+	}
+
 	@Test
 	void deve_validar_data_nascimento_correto() {
 		assertEquals(dataNascimentoValido, funcionarioCompleto.getDataNascimento());
@@ -191,17 +198,13 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_data_setor_correto() {
+		funcionario.setSetor(new Setor(cboValido));
 		assertEquals(setor, funcionarioCompleto.getSetor());
 	}
 	
 	@Test
 	void deve_validar_data_admissao_correto() {
 		assertEquals(dataAdmissao, funcionarioCompleto.getDataAdmissao());
-	}
-	
-	@Test
-	void deve_validar_salario_minimo() {
-		assertEquals(salarioMinimo, funcionarioCompleto.getSalario());
 	}
 	
 	@Test
@@ -220,8 +223,13 @@ class FuncionarioTest {
 	}
 	
 	@Test
-	void deve_validar_Endereco_correto() {
+	void deve_validar_endereco_correto() {
 		assertEquals(endereco, funcionarioCompleto.getEndereco());
+	}
+	
+	@Test
+	void deve_validar_cargo_correto() {
+		assertEquals(cargo, funcionarioCompleto.getCargo());
 	}
 	
 	@Test
@@ -244,8 +252,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals( "Funcionario [nome=" + nomeCompleto + ", cpf = " + cpfValido + ", contato=" + contato + ", salario = " + salarioMinimo
-				+ ", endereco = " + endereco + ", dataAdmissao=" + dataAdmissao + ", dataNascimento = " + dataNascimentoValido
-				+ ", setor = " + setor + "]", funcionarioCompleto.toString());
+		assertEquals( "Funcionario [nome=" + nomeCompleto + ", cpf = " + cpfValido + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + dataAdmissao + ", dataNascimento = " + dataNascimentoValido
+				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", Cargo = " + cargo +  "]", funcionarioCompleto.toString());
 	}
 }
