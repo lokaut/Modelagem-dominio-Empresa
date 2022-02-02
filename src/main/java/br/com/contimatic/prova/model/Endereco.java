@@ -16,7 +16,7 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.campoOpcional;
-import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
@@ -65,7 +65,7 @@ public class Endereco {
 
 	public void setLogradouro(String logradouro) {
 		verificarObjetoNulo(logradouro);
-		validarCampoEmBranco(logradouro);
+		validarCampoVazio(logradouro);
 		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
 		validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.logradouro = logradouro;
@@ -77,7 +77,7 @@ public class Endereco {
 
 	public void setNumero(String numero) {
 		verificarObjetoNulo(numero);
-		validarCampoEmBranco(numero);
+		validarCampoVazio(numero);
 		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
 		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.numero = numero;
@@ -98,7 +98,7 @@ public class Endereco {
 
 	public void setBairro(String bairro) {
 		verificarObjetoNulo(bairro);
-		validarCampoEmBranco(bairro);
+		validarCampoVazio(bairro);
 		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
 		validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.bairro = bairro;
@@ -110,7 +110,7 @@ public class Endereco {
 
 	public void setCep(String cep) {
 		verificarObjetoNulo(cep);
-		validarCampoEmBranco(cep);
+		validarCampoVazio(cep);
 		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
 		validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cep = cep;

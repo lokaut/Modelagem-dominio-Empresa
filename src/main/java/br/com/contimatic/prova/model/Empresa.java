@@ -7,8 +7,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import br.com.contimatic.prova.utils.ValidacaoUtils;
-
 public class Empresa {
 	
 	private String cnpj;
