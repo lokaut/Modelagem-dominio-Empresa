@@ -4,6 +4,7 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contimatic.prova.constantes.Constantes.SALARIO_MINIMO;
 
 import java.math.BigDecimal;
@@ -81,7 +82,7 @@ public final class ValidacaoUtils {
 
 	public static <E> void validarTamanhoMaximoLista(List<E> lista, int tamanho) {
 		if (lista.size() > tamanho) {
-			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+			throw new IllegalStateException(MENSAGEM_NUMERO_EXCEDIDO_LISTA);
 		}
 	}
 }
