@@ -1,5 +1,8 @@
 package br.com.contimatic.prova.model;
 
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarListaVazia;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -25,6 +28,7 @@ public class Empresa {
 	}
 
 	public void setCnpj(String cnpj) {
+		verificarObjetoNulo(cnpj);
 		this.cnpj = cnpj;
 	}
 
@@ -33,6 +37,7 @@ public class Empresa {
 	}
 
 	public void setRazaoSocial(String razaoSocial) {
+		verificarObjetoNulo(razaoSocial);
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -41,6 +46,7 @@ public class Empresa {
 	}
 
 	public void setNomeFantasia(String nomeFantasia) {
+		verificarObjetoNulo(nomeFantasia);
 		this.nomeFantasia = nomeFantasia;
 	}
 
@@ -49,6 +55,7 @@ public class Empresa {
 	}
 
 	public void setDataAbertura(LocalDate dataAbertura) {
+		verificarObjetoNulo(dataAbertura);
 		this.dataAbertura = dataAbertura;
 	}
 
@@ -57,6 +64,8 @@ public class Empresa {
 	}
 
 	public void setSetores(List<Setor> setores) {
+		verificarObjetoNulo(setores);
+		validarListaVazia(setores);
 		this.setores = setores;
 	}
 
@@ -65,6 +74,8 @@ public class Empresa {
 	}
 
 	public void setContato(List<Contato> contato) {
+		verificarObjetoNulo(contato);
+		validarListaVazia(contato);
 		this.contato = contato;
 	}
 
@@ -73,6 +84,8 @@ public class Empresa {
 	}
 
 	public void setEndereco(List<Endereco> endereco) {
+		verificarObjetoNulo(endereco);
+		validarListaVazia(endereco);
 		this.endereco = endereco;
 	}
 

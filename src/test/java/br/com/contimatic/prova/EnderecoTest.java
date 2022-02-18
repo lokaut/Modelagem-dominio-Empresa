@@ -1,23 +1,23 @@
 package br.com.contimatic.prova;
 
-import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static br.com.contimatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -89,7 +89,7 @@ public class EnderecoTest {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> this.endereco.setLogradouro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage().contains(
-				"Quantidade de carácter inválido, o campo deve estar entre "+TAMANHO_MINIMO_LOGRADOURO+" a "+TAMANHO_MAXIMO_LOGRADOURO+" caracteres, atualmente o campo possui "
+				"Quantidade de carácter inválido, o campo deve estar entre "+TAMANHO_MINIMO_LOGRADOURO_ENDERECO+" a "+TAMANHO_MAXIMO_LOGRADOURO_ENDERECO+" caracteres, atualmente o campo possui "
 						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
@@ -124,8 +124,8 @@ public class EnderecoTest {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> this.endereco.setBairro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_BAIRRO + " a "
-						+ TAMANHO_MAXIMO_BAIRRO + " caracteres, atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_BAIRRO_ENDERECO + " a "
+						+ TAMANHO_MAXIMO_BAIRRO_ENDERECO + " caracteres, atualmente o campo possui "
 						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
@@ -203,7 +203,7 @@ public class EnderecoTest {
 	void nao_deve_aceitar_cep_fora_limite_caracteres(String cep) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cep));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácteres inválido! O campo deve possuir apenas " + TAMANHO_FIXO_CEP
+				.contains("Quantidade de carácteres inválido! O campo deve possuir apenas " + TAMANHO_FIXO_CEP_ENDERECO
 						+ " caracteres, atualmente o campo possui " + cep.length() + " caractere(s)"));
 	}
 
@@ -236,8 +236,8 @@ public class EnderecoTest {
 	void nao_deve_aceitar_fora_limite_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setComplemento(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_COMPLEMENTO
-						+ " a " + TAMANHO_MAXIMO_COMPLEMENTO + " caracteres, atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_COMPLEMENTO_ENDERECO
+						+ " a " + TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO + " caracteres, atualmente o campo possui "
 						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 	

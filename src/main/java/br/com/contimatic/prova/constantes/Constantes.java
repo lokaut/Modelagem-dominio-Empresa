@@ -14,10 +14,7 @@ public final class Constantes {
 	public static final long IDADE_MINIMA_EMPRESA = 16;
 	public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);
 	public static final int REGRA_DATA_ADMISSAO = 2;
-	public static final String DATA_HOJE = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
-	
-	/*Classe Cidade */
-	public static final String CODIGO_IBGE_SAO_PAULO = "3550308";
+	public static final String DATA_ATUAL = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	
 	/* CPF E CNPJ */
 	public static final int POSICAO_ZERO_ASCII = 48;
@@ -49,10 +46,12 @@ public final class Constantes {
 	public static final String MENSAGEM_CPF_INVALIDO_LETRAS = "CPF deve possuir apenas números";
 	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. Um salário mínimo é de: " + SALARIO_MINIMO;
 	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de 16 anos";
-	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_HOJE;
+	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_ATUAL;
+	public static final String MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL = "Data do desligamento não pode ser antes do dia " + DATA_ATUAL;
 	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
 	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
+	public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
 	
 	/* REGEX */
 	public static final String REGEX_CARACTERES_ALFABETICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";

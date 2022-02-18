@@ -4,19 +4,19 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARA
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.campoOpcional;
-import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoEmBranco;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
@@ -65,8 +65,8 @@ public class Endereco {
 
 	public void setLogradouro(String logradouro) {
 		verificarObjetoNulo(logradouro);
-		validarCampoEmBranco(logradouro);
-		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO, TAMANHO_MAXIMO_LOGRADOURO);
+		validarCampoVazio(logradouro);
+		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
 		validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.logradouro = logradouro;
 	}
@@ -77,7 +77,7 @@ public class Endereco {
 
 	public void setNumero(String numero) {
 		verificarObjetoNulo(numero);
-		validarCampoEmBranco(numero);
+		validarCampoVazio(numero);
 		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
 		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.numero = numero;
@@ -88,7 +88,7 @@ public class Endereco {
 	}
 
 	public void setComplemento(String complemento) {
-		campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO, TAMANHO_MAXIMO_COMPLEMENTO);
+		campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO_ENDERECO, TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO);
 		this.complemento = complemento;
 	}
 
@@ -98,8 +98,8 @@ public class Endereco {
 
 	public void setBairro(String bairro) {
 		verificarObjetoNulo(bairro);
-		validarCampoEmBranco(bairro);
-		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO, TAMANHO_MAXIMO_BAIRRO);
+		validarCampoVazio(bairro);
+		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
 		validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.bairro = bairro;
 	}
@@ -110,8 +110,8 @@ public class Endereco {
 
 	public void setCep(String cep) {
 		verificarObjetoNulo(cep);
-		validarCampoEmBranco(cep);
-		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP);
+		validarCampoVazio(cep);
+		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
 		validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cep = cep;
 	}
