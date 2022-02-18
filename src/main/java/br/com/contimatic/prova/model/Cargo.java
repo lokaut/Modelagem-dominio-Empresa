@@ -34,11 +34,12 @@ public class Cargo {
 		this.setCbo(cbo);
 	}
 
-	public Cargo(String nome, String cbo, BigDecimal salario, String descricao) {
+	public Cargo(String nome, String cbo, BigDecimal salario, String descricao, List<Funcionario> funcionarios) {
 		this.setNome(nome);
 		this.setCbo(cbo);
 		this.setSalario(salario);
 		this.setDescricao(descricao);
+		this.setFuncionarios(funcionarios);
 	}
 
 	public String getNome() {
@@ -67,6 +68,7 @@ public class Cargo {
 	}
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
+		verificarObjetoNulo(funcionarios);
 		validarListaVazia(funcionarios);
 		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
 		this.funcionarios = funcionarios;
