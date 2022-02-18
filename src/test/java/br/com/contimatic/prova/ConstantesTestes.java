@@ -34,7 +34,15 @@ public final class ConstantesTestes {
 	
 	/*	CIDADE	*/
 	protected static final String CODIGO_IBGE_SAO_PAULO = "3550308";
-	protected static final String CODIGO_IBGE_PINDAMINHAGABA = "3538006";
+	protected static final String CODIGO_IBGE_PINDAMONHANGABA = "3538006";
+	protected static final String MUNICIPIO_SAO_PAULO  = "São Paulo";
+	protected static final String UNIDADE_FEDERATIVA_SP = "SP";
+	
+	/*	TELEFONE	*/
+	protected static final String DDD_CEARA = "85";
+	protected static final String DDD_SAO_PAULO = "11";
+	protected static final String NUMERO_TELEFONE = "56668057";
+	protected static final String NUMERO_CELULAR = "956634577";
 	
 	//contruir funcionario completo
 	protected static final Funcionario FUNCIONARIO_01 = new Funcionario("65502295028");

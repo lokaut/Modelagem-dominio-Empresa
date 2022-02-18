@@ -1,5 +1,9 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.DDD_CEARA;
+import static br.com.contimatic.prova.ConstantesTestes.DDD_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.NUMERO_TELEFONE;
+import static br.com.contimatic.prova.ConstantesTestes.NUMERO_CELULAR;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
@@ -19,23 +23,27 @@ import br.com.contimatic.prova.model.Telefone;
 
 public class TelefoneTest {
 
-	private Telefone telefone, telefoneDddSaoPaulo, celular, celular2, celularDddSaoPaulo;
-
+	private Telefone telefone;
+	
+	private Telefone telefoneDddSaoPaulo;
+	
+	private Telefone celular;
+	
+	private Telefone celular2;
+	
+	private Telefone celularDddSaoPaulo;
+	
 	private IllegalStateException illegalState;
+	
 	private IllegalArgumentException illegalArgument;
-
-	private String ddd = "85";
-	private String dddSaoPaulo = "11";
-	private String numero = "56668057";
-	private String numeroCelular = "956634577";
 
 	@BeforeEach
 	public void instancia() {
-		telefone = new Telefone(ddd, numero);
-		telefoneDddSaoPaulo = new Telefone (dddSaoPaulo, numero);
-		celular = new Telefone(ddd, numeroCelular);
-		celular2 = new Telefone(ddd, numeroCelular);
-		celularDddSaoPaulo = new Telefone(dddSaoPaulo, numeroCelular);
+		telefone = new Telefone(DDD_CEARA, NUMERO_TELEFONE);
+		telefoneDddSaoPaulo = new Telefone (DDD_SAO_PAULO, NUMERO_TELEFONE);
+		celular = new Telefone(DDD_CEARA, NUMERO_CELULAR);
+		celular2 = new Telefone(DDD_CEARA, NUMERO_CELULAR);
+		celularDddSaoPaulo = new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR);
 	}
 
 	@AfterAll
@@ -45,8 +53,8 @@ public class TelefoneTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "09", "0934", "3", "0", "00" })
-	void nao_deve_aceitar_ddd_inexistente(String ddd) {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(ddd));
+	void nao_deve_aceitar_ddd_inexistente(String dddInexistente) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(dddInexistente));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DDD_INCORRETO));
 	}
 
@@ -78,12 +86,12 @@ public class TelefoneTest {
 
 	@Test
 	void deve_validar_ddd() {
-		assertEquals(ddd, this.telefone.getDdd());
+		assertEquals(DDD_CEARA, this.telefone.getDdd());
 	}
 	
 	@Test
 	void deve_validar_telefone() {
-		assertEquals(numero, this.telefone.getNumeroTelefone());
+		assertEquals(NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
 	}
 	
 	@Test
@@ -106,7 +114,7 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Telefone [ddd = "+ddd+", numeroTelefone = "+numero+"]", telefone.toString());
-		assertEquals("Telefone [ddd = "+ddd+", numeroTelefone = "+numeroCelular+"]", celular.toString());
+		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_TELEFONE+"]", telefone.toString());
+		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_CELULAR+"]", celular.toString());
 	}
 }
