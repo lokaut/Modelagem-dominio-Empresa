@@ -2,14 +2,18 @@ package br.com.contimatic.prova;
 
 import static br.com.contimatic.prova.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contimatic.prova.ConstantesTestes.CODIGO_ERRADO_IBGE;
-import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_PINDAMINHAGABA;
-import static br.com.contimatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contimatic.prova.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_PINDAMONHANGABA;
 import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.MUNICIPIO_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.UNIDADE_FEDERATIVA_SP;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,28 +25,33 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contimatic.prova.model.Cidade;
 
 public class CidadeTest {
-	Cidade cidade, cidadeConstrutor, cidadeConstrutor2;
+	
+	Cidade cidade;
+	
+	Cidade cidadeConstrutor;
+	
+	Cidade cidadeConstrutor2;
 
 	IllegalStateException illegalState;
+	
 	IllegalArgumentException illegalArgument;
-
-	private String municipio = "São Paulo";
-	private String unidadeFederativa = "SP";
 
 	@BeforeEach
 	public void instancia() {
-		cidade = new Cidade(CODIGO_IBGE_PINDAMINHAGABA);
-		cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, municipio, unidadeFederativa);
-		cidadeConstrutor2 = new Cidade(CODIGO_IBGE_SAO_PAULO, municipio, unidadeFederativa);
+		cidade = new Cidade(CODIGO_IBGE_PINDAMONHANGABA);
+		cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
+		cidadeConstrutor2 = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
 	}
 
 	@AfterAll
 	public static void finalizacao() {
-		System.out.println("Fim dos testes na classe Cidade");
+		System.out.println("Fim dos testes Cidade");
 	}
 
 	@Test
@@ -61,7 +70,7 @@ public class CidadeTest {
 	void nao_deve_aceitar_diferente_sete_caracteres_codigoIbge() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(CODIGO_ERRADO_IBGE));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ 7 + " caracteres" + ", atualmente o campo possui " + CODIGO_ERRADO_IBGE.length() + " caractere(s)"));
+				+ TAMANHO_FIXO_CODIGOIBGE + " caracteres" + ", atualmente o campo possui " + CODIGO_ERRADO_IBGE.length() + " caractere(s)"));
 	}
 
 	@Test
@@ -93,9 +102,10 @@ public class CidadeTest {
 		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(MAIS_CEM_CARACTERES));
 	}
 
-	@Test
-	void nao_deve_aceitar_menos_tres_caracteres_municipio() {
-		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio("ab"));
+	@ParameterizedTest
+	@ValueSource(strings = {"a", "ab", "@"})
+	void nao_deve_aceitar_menos_tres_caracteres_municipio(String caracterInvalido) {
+		assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(caracterInvalido));
 	}
 
 	@Test
@@ -126,7 +136,7 @@ public class CidadeTest {
 	void nao_deve_aceitar_diferente_sete_caracteres_unidadeFederativa() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(TRES_CARACTERES_ALFABETICOS));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ 2 + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
+				+ TAMANHO_FIXO_UNIDADE_FEDERATIVA + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
 	}
 
 	@Test
@@ -160,12 +170,12 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_municio() {
-		assertEquals(municipio, cidadeConstrutor.getMunicipio());
+		assertEquals(MUNICIPIO_SAO_PAULO, cidadeConstrutor.getMunicipio());
 	}
 
 	@Test
 	void deve_validar_unidadeFederativa() {
-		assertEquals(unidadeFederativa, cidadeConstrutor.getUnidadeFederativa());
+		assertEquals(UNIDADE_FEDERATIVA_SP, cidadeConstrutor.getUnidadeFederativa());
 	}
 
 	@Test
@@ -183,7 +193,7 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Cidade [ codigoIbge = " + CODIGO_IBGE_SAO_PAULO + " , municipio = " + municipio + ", uf = "
-				+ unidadeFederativa + " ]", cidadeConstrutor.toString());
+		assertEquals("Cidade [ codigoIbge = " + CODIGO_IBGE_SAO_PAULO + " , municipio = " + MUNICIPIO_SAO_PAULO + ", uf = "
+				+ UNIDADE_FEDERATIVA_SP + " ]", cidadeConstrutor.toString());
 	}
 }
