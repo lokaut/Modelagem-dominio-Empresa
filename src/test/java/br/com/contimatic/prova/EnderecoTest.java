@@ -5,7 +5,7 @@ import static br.com.contimatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CA
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
 import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS;
-import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;

@@ -2,9 +2,10 @@ package br.com.contimatic.prova;
 
 import static br.com.contimatic.prova.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contimatic.prova.ConstantesTestes.CODIGO_ERRADO_IBGE;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_PINDAMINHAGABA;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contimatic.prova.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
-import static br.com.contimatic.prova.constantes.Constantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
@@ -29,16 +30,14 @@ public class CidadeTest {
 	IllegalStateException illegalState;
 	IllegalArgumentException illegalArgument;
 
-	private String codigoIbge = CODIGO_IBGE_SAO_PAULO;
-	private String codigoIbgePindamonhagaba = "3538006";
 	private String municipio = "São Paulo";
 	private String unidadeFederativa = "SP";
 
 	@BeforeEach
 	public void instancia() {
-		cidade = new Cidade(codigoIbgePindamonhagaba);
-		cidadeConstrutor = new Cidade(codigoIbge, municipio, unidadeFederativa);
-		cidadeConstrutor2 = new Cidade(codigoIbge, municipio, unidadeFederativa);
+		cidade = new Cidade(CODIGO_IBGE_PINDAMINHAGABA);
+		cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, municipio, unidadeFederativa);
+		cidadeConstrutor2 = new Cidade(CODIGO_IBGE_SAO_PAULO, municipio, unidadeFederativa);
 	}
 
 	@AfterAll
@@ -156,7 +155,7 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_codigoIbge() {
-		assertEquals(codigoIbge, cidadeConstrutor.getCodigoIbge());
+		assertEquals(CODIGO_IBGE_SAO_PAULO, cidadeConstrutor.getCodigoIbge());
 	}
 
 	@Test
@@ -184,7 +183,7 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Cidade [ codigoIbge = " + codigoIbge + " , municipio = " + municipio + ", uf = "
+		assertEquals("Cidade [ codigoIbge = " + CODIGO_IBGE_SAO_PAULO + " , municipio = " + municipio + ", uf = "
 				+ unidadeFederativa + " ]", cidadeConstrutor.toString());
 	}
 }

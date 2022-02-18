@@ -1,5 +1,13 @@
 package br.com.contimatic.prova;
 
+import static java.math.BigDecimal.valueOf;
+
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.List;
+
+import br.com.contimatic.prova.model.Funcionario;
+
 public final class ConstantesTestes {
 	
 	private ConstantesTestes(){}
@@ -16,4 +24,30 @@ public final class ConstantesTestes {
 	protected static final String NUMERO_CPF_INVALIDO = "44085620000";
 	protected static final String ONZE_NUMEROS = "66998583340";
 	protected static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
+	
+	
+	/*	CARGOS	*/
+	protected static final String NOME_CARGOS = "Gerente de projetos de tecnologia da informação";
+	protected static final String CBO_CARGOS = "142520";
+	protected static final String DESCRICAO_CARGOS = "Cargo de gerente";
+	protected static final BigDecimal SALARIO_CARGOS = valueOf(14000.60);
+	
+	/*	CIDADE	*/
+	protected static final String CODIGO_IBGE_SAO_PAULO = "3550308";
+	protected static final String CODIGO_IBGE_PINDAMINHAGABA = "3538006";
+	
+	//contruir funcionario completo
+	protected static final Funcionario FUNCIONARIO_01 = new Funcionario("65502295028");
+	protected static final Funcionario FUNCIONARIO_02 = new Funcionario("82134475064");
+	
+	//Serialização para lista
+	protected static final List<Funcionario> FUNCIONARIOS = new ArrayList<>(){/**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+	{
+		add(FUNCIONARIO_01);
+		add(FUNCIONARIO_02);
+	}};
 }

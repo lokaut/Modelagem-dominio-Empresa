@@ -16,9 +16,6 @@ public final class Constantes {
 	public static final int REGRA_DATA_ADMISSAO = 2;
 	public static final String DATA_ATUAL = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 	
-	/*Classe Cidade */
-	public static final String CODIGO_IBGE_SAO_PAULO = "3550308";
-	
 	/* CPF E CNPJ */
 	public static final int POSICAO_ZERO_ASCII = 48;
 	public static final int MODULO_DIVISAO_ONZE_CPF_CNPJ = 11;
@@ -54,6 +51,7 @@ public final class Constantes {
 	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
 	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
+	public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
 	
 	/* REGEX */
 	public static final String REGEX_CARACTERES_ALFABETICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
@@ -61,5 +59,5 @@ public final class Constantes {
 	public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
 	public static final String REGEX_ALFABETICO_SEM_ACENTO = "^[A-Zaz_]+$";
 	public static final String REGEX_DDD = "^([1-9]{2})$";
-	public static final String REGEX_TELEFONE = "^9?[0-9]{8, 12}$";
+	public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
 }	
