@@ -1,20 +1,23 @@
 package br.com.contimatic.prova.constantes;
 
+import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.now;
+import static java.time.LocalDate.of;
+import static java.time.format.DateTimeFormatter.ofPattern;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 
 public final class Constantes {
+	
 	private Constantes(){}
 	
-	/* REGRA DE NEGOCIO */	
-	public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1210.0);
+	/* REGRAS DA EMPRESAS */	
+	public static final BigDecimal SALARIO_MINIMO = valueOf(1210.0);
 	public static final long IDADE_MINIMA_EMPRESA = 16;
-	public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);
+	public static final LocalDate FUNDACAO_EMPRESA = of(1988, 10, 05);
 	public static final int REGRA_DATA_ADMISSAO = 2;
-	public static final String DATA_ATUAL = now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
+	public static final String DATA_ATUAL = now().format(ofPattern("dd/MM/yyyy"));
 	
 	/* CPF E CNPJ */
 	public static final int POSICAO_ZERO_ASCII = 48;
@@ -27,7 +30,6 @@ public final class Constantes {
 	public static final int TAMANHO_CPF = 11;
 	public static final int TAMANHO_CNPJ = 14;
 	public static final char NUMERO_ZERO_CPF_CNPJ = '0';
-
 	public static final int POSICAO_DOZE_CNPJ = 12;
 	public static final int POSICAO_TREZE_CNPJ = 13;
 
@@ -41,11 +43,11 @@ public final class Constantes {
 	public static final String MENSAGEM_CAMPO_VAZIO = "Campo está vazio ou contém apenas espaço em branco";
 	public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";
 	public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ inválido";
-	public static final String MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS = "CPF inválido, pois não possui 11 caracteres";
+	public static final String MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS = "CPF não possui 11 caracteres";
 	public static final String MENSAGEM_EMAIL_INVALIDO = "Email Inválido";
 	public static final String MENSAGEM_CPF_INVALIDO_LETRAS = "CPF deve possuir apenas números";
-	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. Um salário mínimo é de: " + SALARIO_MINIMO;
-	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de 16 anos";
+	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. O salário mínimo é de: " + SALARIO_MINIMO;
+	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de "+IDADE_MINIMA_EMPRESA+" anos";
 	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_ATUAL;
 	public static final String MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL = "Data do desligamento não pode ser antes do dia " + DATA_ATUAL;
 	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
