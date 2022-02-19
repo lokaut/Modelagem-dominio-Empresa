@@ -1,8 +1,11 @@
 package br.com.contimatic.prova;
 
 import static java.math.BigDecimal.valueOf;
+import static java.time.LocalDate.now;
+import static java.time.LocalDate.of;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -25,7 +28,6 @@ public final class ConstantesTestes {
 	protected static final String ONZE_NUMEROS = "66998583340";
 	protected static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
 	
-	
 	/*	CARGOS	*/
 	protected static final String NOME_CARGOS = "Gerente de projetos de tecnologia da informação";
 	protected static final String CBO_CARGOS = "142520";
@@ -36,13 +38,40 @@ public final class ConstantesTestes {
 	protected static final String CODIGO_IBGE_SAO_PAULO = "3550308";
 	protected static final String CODIGO_IBGE_PINDAMONHANGABA = "3538006";
 	protected static final String MUNICIPIO_SAO_PAULO  = "São Paulo";
+	protected static final String MUNICIPIO_PINDAMONHANGABA  = "Pindamonhangaba";
 	protected static final String UNIDADE_FEDERATIVA_SP = "SP";
+	
+	/*	CONTATO	*/
+	protected static final String EMAIL = "erick123@gmail.com";
+	protected static final String EMAIL_SECUNDARIO = "erickemail2@gmail.com";
 	
 	/*	TELEFONE	*/
 	protected static final String DDD_CEARA = "85";
 	protected static final String DDD_SAO_PAULO = "11";
 	protected static final String NUMERO_TELEFONE = "56668057";
 	protected static final String NUMERO_CELULAR = "956634577";
+	
+	/*	FUNCIONARIO	*/
+	protected static final String CPF_VALIDO = "90795007809";
+	protected static final String SEGUNDO_CPF_VALIDO = "76899070081";
+	protected static final String NOME_COMPLETO = "Lókaut Santos";
+	protected static final LocalDate DATA_NASCIMENTO_VALIDO = of(1994, 12, 05);
+	protected static final LocalDate DATA_FUTURA = now().plusYears(1);
+	protected static final LocalDate DATA_ADMISSAO = of(2021, 11, 04);
+	protected static final LocalDate DATA_DESLIGAMENTO = now();
+	
+	/*	ENDERECO	*/
+	protected static final String LOGRADOURO = "Rua Bastos";
+	protected static final String NUMERO_ENDERECO = "101";
+	protected static final String SEGUNDO_NUMERO_ENDERECO = "103";
+	protected static final String SEGUNDO_CEP = "18321050";
+	protected static final String BAIRRO = "Vila Olímpia";
+	protected static final String CEP = "03757040";
+	protected static final String COMPLEMENTO = "predio A, apartamento 23";
+	
+	/*	SETOR	*/
+	protected static final String NOME_SETOR = "Tecnologia da Informação";
+	
 	
 	//contruir funcionario completo
 	protected static final Funcionario FUNCIONARIO_01 = new Funcionario("65502295028");

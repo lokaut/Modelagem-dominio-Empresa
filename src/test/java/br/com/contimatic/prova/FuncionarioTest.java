@@ -1,8 +1,18 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.CBO_CARGOS;
+import static br.com.contimatic.prova.ConstantesTestes.CPF_VALIDO;
+import static br.com.contimatic.prova.ConstantesTestes.DATA_ADMISSAO;
+import static br.com.contimatic.prova.ConstantesTestes.DATA_NASCIMENTO_VALIDO;
 import static br.com.contimatic.prova.ConstantesTestes.DOIS_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.EMAIL_SECUNDARIO;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.NOME_COMPLETO;
+import static br.com.contimatic.prova.ConstantesTestes.NOME_SETOR;
 import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
+import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_CEP;
+import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_CPF_VALIDO;
+import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_NUMERO_ENDERECO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
@@ -35,37 +45,37 @@ import br.com.contimatic.prova.model.Setor;
 
 class FuncionarioTest {
 
-	Funcionario funcionario, funcionarioCompleto, funcionarioCompleto2;
+	Funcionario funcionario;
+	
+	Funcionario funcionarioCompleto; 
+	
+	Funcionario funcionarioCompleto2;
+	
 	Contato contato;
 
 	IllegalStateException illegalState;
+	
 	IllegalArgumentException illegalArgument;
 
-	LocalDate dataNasciIdadeMinimaInvalida = LocalDate.of(2010, 12, 05);
-	LocalDate dataNascimentoValido = LocalDate.of(1994, 12, 05);
-	LocalDate dataFutura = LocalDate.of(2023, 11, 04);
-	LocalDate dataAdmissao = LocalDate.of(2021, 11, 04);
 	LocalDate dataDesligamento = null;
 
 	Endereco endereco;
+	
 	Setor setor;
+	
 	Cargo cargo;
-
-	String cpfValido = "90795007809";
-	String segundoCpfValido = "76899070081";
-	String nomeCompleto = "Lókaut Santos";
-	String cboValido = "142510";
 
 	@BeforeEach
 	public void instancia() {
-		cargo = new Cargo("142520");
-		endereco = new Endereco("06824050", "381");
-		contato = new Contato("erick224@gmail.com");
-		funcionario = new Funcionario(segundoCpfValido);
-		funcionarioCompleto = new Funcionario(nomeCompleto, cpfValido, contato, endereco,
-				dataAdmissao, dataNascimentoValido,cargo);
-		funcionarioCompleto2 = new Funcionario(nomeCompleto, cpfValido, contato, endereco,
-				dataAdmissao, dataNascimentoValido, cargo);
+		cargo = new Cargo(CBO_CARGOS);
+		setor = new Setor(NOME_SETOR);
+		endereco = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
+		contato = new Contato(EMAIL_SECUNDARIO);
+		funcionario = new Funcionario(SEGUNDO_CPF_VALIDO);
+		funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
+				DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
+		funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
+				DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
 	}
 
 	@AfterAll
@@ -144,7 +154,7 @@ class FuncionarioTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(ints = { 3, 4, 5, 6, 7, 8 })
+	@ValueSource(ints = { 3, 4, 5, 6, 7, 8, 9, 10, 11, 12 })
 	void nao_deve_aceitar_data_admissao_acima_dois_meses(int meses) {
 		 LocalDate mesesAposDataHoje = now().plusMonths(meses);
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataAdmissao(mesesAposDataHoje));
@@ -193,18 +203,18 @@ class FuncionarioTest {
 
 	@Test
 	void deve_validar_data_nascimento_correto() {
-		assertEquals(dataNascimentoValido, funcionarioCompleto.getDataNascimento());
+		assertEquals(DATA_NASCIMENTO_VALIDO, funcionarioCompleto.getDataNascimento());
 	}
 	
 	@Test
 	void deve_validar_data_setor_correto() {
-		funcionario.setSetor(new Setor(cboValido));
+		funcionario.setSetor(new Setor(NOME_SETOR));
 		assertEquals(setor, funcionarioCompleto.getSetor());
 	}
 	
 	@Test
 	void deve_validar_data_admissao_correto() {
-		assertEquals(dataAdmissao, funcionarioCompleto.getDataAdmissao());
+		assertEquals(DATA_ADMISSAO, funcionarioCompleto.getDataAdmissao());
 	}
 	
 	@Test
@@ -214,12 +224,12 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_campo_nome_correto() {
-		assertEquals(nomeCompleto, funcionarioCompleto.getNome());
+		assertEquals(NOME_COMPLETO, funcionarioCompleto.getNome());
 	}
 	
 	@Test
 	void deve_validar_cpf_correto() {
-		assertEquals(segundoCpfValido, funcionario.getCpf());
+		assertEquals(SEGUNDO_CPF_VALIDO, funcionario.getCpf());
 	}
 	
 	@Test
@@ -252,7 +262,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals( "Funcionario [nome=" + nomeCompleto + ", cpf = " + cpfValido + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + dataAdmissao + ", dataNascimento = " + dataNascimentoValido
+		assertEquals( "Funcionario [nome=" + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO
 				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", Cargo = " + cargo +  "]", funcionarioCompleto.toString());
 	}
 }

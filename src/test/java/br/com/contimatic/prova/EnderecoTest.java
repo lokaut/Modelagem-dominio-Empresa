@@ -1,11 +1,20 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.BAIRRO;
 import static br.com.contimatic.prova.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.ConstantesTestes.CEP;
+import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.COMPLEMENTO;
 import static br.com.contimatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.LOGRADOURO;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.MUNICIPIO_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.NUMERO_ENDERECO;
 import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS;
-import static br.com.contimatic.prova.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_CEP;
+import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_NUMERO_ENDERECO;
+import static br.com.contimatic.prova.ConstantesTestes.UNIDADE_FEDERATIVA_SP;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
@@ -40,31 +49,29 @@ import br.com.contimatic.prova.model.Endereco;
 public class EnderecoTest {
 
 	private IllegalStateException illegalState;
+	
 	private IllegalArgumentException illegalArgument;
 
-	private Endereco enderecoCompleto, enderecoCompleto2, endereco, enderecoHash2, enderecoHash3;
+	private Endereco enderecoCompleto;
+	
+	private Endereco enderecoCompleto2;
+	
+	private Endereco endereco;
+	
+	private Endereco enderecoHash2;
+	
+	private Endereco enderecoHash3;
+	
 	private Cidade cidade;
-
-	private String codigoIbge = CODIGO_IBGE_SAO_PAULO;
-	private String municipio = "Pindamonhagaba";
-	private String unidadeFederativa = "SP";
-
-	private String logradouro = "Rua Basto";
-	private String numero = "101";
-	private String segundoNumero = "103";
-	private String segundoCep = "18321050";
-	private String bairro = "Vila Olimpía";
-	private String cep = "16822050";
-	private String complemento = "predio A, apartamento 23";
 
 	@BeforeEach
 	public void instancia() {
-		cidade = new Cidade(codigoIbge, municipio, unidadeFederativa);
-		endereco = new Endereco(segundoCep, segundoNumero);
-		enderecoHash2 = new Endereco(segundoCep, numero);
-		enderecoHash3 = new Endereco(cep, segundoNumero);
-		enderecoCompleto = new Endereco(logradouro, numero, bairro, cep, cidade);
-		enderecoCompleto2 = new Endereco(logradouro, numero, bairro, complemento, cep, cidade);
+		cidade = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
+		endereco = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
+		enderecoHash2 = new Endereco(SEGUNDO_CEP, NUMERO_ENDERECO);
+		enderecoHash3 = new Endereco(CEP, SEGUNDO_NUMERO_ENDERECO);
+		enderecoCompleto = new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, CEP, cidade);
+		enderecoCompleto2 = new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, cidade);
 	}
 
 	@AfterAll
@@ -103,7 +110,7 @@ public class EnderecoTest {
 	@Test
 	void deve_validar_logradouro_correto() {
 		this.endereco.setLogradouro("Rua A");
-		assertEquals(logradouro, this.enderecoCompleto.getLogradouro());
+		assertEquals(LOGRADOURO, this.enderecoCompleto.getLogradouro());
 		assertThat(this.endereco.getLogradouro(), equalToIgnoringCase("rua a"));
 	}
 
@@ -171,7 +178,7 @@ public class EnderecoTest {
 	@Test
 	void deve_validar_numero_correto() {
 		this.endereco.setNumero(ONZE_NUMEROS);
-		assertNotEquals(segundoNumero, endereco.getNumero());
+		assertNotEquals(SEGUNDO_NUMERO_ENDERECO, endereco.getNumero());
 		assertEquals(ONZE_NUMEROS, endereco.getNumero());
 	}
 
@@ -200,24 +207,24 @@ public class EnderecoTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "00", "123", "1234567", "0455105", "045510504551050455105", "0000000" })
-	void nao_deve_aceitar_cep_fora_limite_caracteres(String cep) {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cep));
+	void nao_deve_aceitar_cep_fora_limite_caracteres(String cepLimite) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cepLimite));
 		assertTrue(this.illegalState.getMessage()
 				.contains("Quantidade de carácteres inválido! O campo deve possuir apenas " + TAMANHO_FIXO_CEP_ENDERECO
-						+ " caracteres, atualmente o campo possui " + cep.length() + " caractere(s)"));
+						+ " caracteres, atualmente o campo possui " + cepLimite.length() + " caractere(s)"));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "abcdefgh", "abc2345h", "@b4def@@", "04551@59", "abc#´%g3" })
-	void nao_deve_aceitar_caracter_alfabetico_cep(String cep) {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cep));
+	void nao_deve_aceitar_caracter_alfabetico_cep(String cepAlfabetico) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cepAlfabetico));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void deve_aceitar_cep_correto() {
-		assertEquals(endereco.getCep(), this.segundoCep);
-		assertEquals(enderecoCompleto.getCep(), this.cep);
+		assertEquals(SEGUNDO_CEP, endereco.getCep());
+		assertEquals(CEP, enderecoCompleto.getCep());
 	}
 	
 	@Test
@@ -227,8 +234,8 @@ public class EnderecoTest {
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"   ", "", "       "})
-	void deve_aceitar_complemento_vazio(String complemento) {
-		this.endereco.setComplemento(complemento);
+	void deve_aceitar_complemento_vazio(String complementoVazio) {
+		this.endereco.setComplemento(complementoVazio);
 		assertTrue(endereco.getComplemento().isBlank());
 	}
 	
@@ -261,7 +268,7 @@ public class EnderecoTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Endereco [logradouro = " + logradouro + ", numero = " + numero +", complemento = "+ complemento +", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]", enderecoCompleto2.toString());
-		assertNotEquals("Endereco [logradouro = " + logradouro + ", numero = " + numero +", complemento = "+ complemento +", bairro = " + bairro + ", cidade = " + cidade + ", cep = " + cep + "]", enderecoCompleto.toString());
+		assertEquals("Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO +", complemento = "+ COMPLEMENTO +", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]", enderecoCompleto2.toString());
+		assertNotEquals("Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO +", complemento = "+ COMPLEMENTO +", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]", enderecoCompleto.toString());
 	}
 }

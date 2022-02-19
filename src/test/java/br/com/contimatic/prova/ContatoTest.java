@@ -1,6 +1,10 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.DDD_SAO_PAULO;
+import static br.com.contimatic.prova.ConstantesTestes.EMAIL;
 import static br.com.contimatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contimatic.prova.ConstantesTestes.EMAIL_SECUNDARIO;
+import static br.com.contimatic.prova.ConstantesTestes.NUMERO_CELULAR;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
@@ -25,23 +29,23 @@ import br.com.contimatic.prova.model.Telefone;
 class ContatoTest {
 
 	private IllegalStateException illegalState;
+	
 	private IllegalArgumentException illegalArgument;
 
-	private Contato contato, contatoConstrutor, contatoConstrutor2;
-	private Telefone telefone;
-
-	private String email = "erick123@gmail.com";
-	private String emailSecundario = "erickemail2@gmail.com";
-	private String telefoneCelular = "956634577";
-	private String ddd = "11";
+	private Contato contato;
 	
+	private Contato contatoConstrutor;
+	
+	private Contato contatoConstrutor2;
+	
+	private Telefone telefone;
 
 	@BeforeEach
 	public void instancia() {
-		telefone = new Telefone(ddd, telefoneCelular);
-		contato = new Contato(emailSecundario);
-		contatoConstrutor = new Contato(email, telefone);
-		contatoConstrutor2 = new Contato(email, telefone);
+		telefone = new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR);
+		contato = new Contato(EMAIL_SECUNDARIO);
+		contatoConstrutor = new Contato(EMAIL, telefone);
+		contatoConstrutor2 = new Contato(EMAIL, telefone);
 	}
 
 	@AfterAll
@@ -82,7 +86,7 @@ class ContatoTest {
 	@Test
 	@Order(5)
 	void deve_aceitar_email_correto() {
-		assertEquals(emailSecundario, contato.getEmail());
+		assertEquals(EMAIL_SECUNDARIO, contato.getEmail());
 	}
 
 	@Test
@@ -122,6 +126,6 @@ class ContatoTest {
 	@Test
 	@Order(11)
 	void deve_validar_toString() {
-		assertEquals("Contato [email="+email+", telefone="+telefone+"]", contatoConstrutor.toString());
+		assertEquals("Contato [email="+EMAIL+", telefone="+telefone+"]", contatoConstrutor.toString());
 	}
 }
