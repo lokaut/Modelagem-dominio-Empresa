@@ -40,7 +40,7 @@ public class Funcionario {
 		this.setCpf(cpf);
 	} 
 
-	public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo) {
+	public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo, Setor setor) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setContato(contato);
@@ -48,6 +48,7 @@ public class Funcionario {
 		this.setDataAdmissao(dataAdmissao);
 		this.setDataNascimento(dataNascimento);
 		this.setCargo(cargo);
+		this.setSetor(setor);
 	}
 
 	public String getNome() {
