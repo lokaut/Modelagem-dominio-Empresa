@@ -1,5 +1,7 @@
 package br.com.contimatic.prova.model;
 
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_CBO_CARGO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
@@ -9,6 +11,7 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarListaVazia;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
@@ -82,6 +85,7 @@ public class Cargo {
 		verificarObjetoNulo(cbo);
 		validarCampoVazio(cbo);
 		limiteCaracteresMinimoMaximo(cbo, TAMANHO_MINIMO_CBO_CARGO, TAMANHO_MAXIMO_CBO_CARGO);
+		validarCaracteresPermitidos(cbo, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL );
 		this.cbo = cbo;
 	}
 
