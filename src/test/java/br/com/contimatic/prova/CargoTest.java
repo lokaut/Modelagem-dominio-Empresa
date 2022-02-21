@@ -137,4 +137,10 @@ public class CargoTest {
 	void deve_validar_nome_correto() {
 		assertEquals(NOME_CARGOS, cargoCompleto.getNome());
 	}
+	
+	@Order(11)
+	@Test
+	void deve_validar_funcionario_correto() {
+		assertEquals(FUNCIONARIOS, cargoCompleto.getFuncionarios());
+	}
 }
