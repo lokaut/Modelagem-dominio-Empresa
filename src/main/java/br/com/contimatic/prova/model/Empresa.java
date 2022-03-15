@@ -19,9 +19,26 @@ public class Empresa {
 	
 	private List<Setor> setores; 
 	
-	private List<Contato> contato;
+	private List<Contato> contatos;
 	
-	private List<Endereco> endereco;
+	private List<Endereco> enderecos;
+	
+	public Empresa(String cnpj) {
+		this.setCnpj(cnpj);
+	}
+	
+	public Empresa(String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataAbertura, List<Setor> setores,
+			List<Contato> contatos, List<Endereco> enderecos) {
+		this.setCnpj(cnpj);
+		this.setRazaoSocial(razaoSocial);
+		this.setNomeFantasia(nomeFantasia);
+		this.setDataAbertura(dataAbertura);
+		this.setSetores(setores);
+		this.setContatos(contatos);
+		this.setEnderecos(enderecos);
+	}
+
+
 
 	public String getCnpj() {
 		return cnpj;
@@ -69,24 +86,24 @@ public class Empresa {
 		this.setores = setores;
 	}
 
-	public List<Contato> getContato() {
-		return contato;
+	public List<Contato> getContatos() {
+		return contatos;
 	}
 
-	public void setContato(List<Contato> contato) {
-		verificarObjetoNulo(contato);
-		validarListaVazia(contato);
-		this.contato = contato;
+	public void setContatos(List<Contato> contatos) {
+		verificarObjetoNulo(contatos);
+		validarListaVazia(contatos);
+		this.contatos = contatos;
 	}
 
-	public List<Endereco> getEndereco() {
-		return endereco;
+	public List<Endereco> getEnderecos() {
+		return enderecos;
 	}
 
-	public void setEndereco(List<Endereco> endereco) {
-		verificarObjetoNulo(endereco);
-		validarListaVazia(endereco);
-		this.endereco = endereco;
+	public void setEnderecos(List<Endereco> enderecos) {
+		verificarObjetoNulo(enderecos);
+		validarListaVazia(enderecos);
+		this.enderecos = enderecos;
 	}
 
 	@Override
@@ -109,8 +126,8 @@ public class Empresa {
 	@Override
 	public String toString() {
 		return "Empresa [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
-				+ ", dataAbertura=" + dataAbertura + ", setores=" + setores + ", contato=" + contato + ", endereco="
-				+ endereco + "]";
+				+ ", dataAbertura=" + dataAbertura + ", setores=" + setores + ", contato=" + contatos + ", endereco="
+				+ enderecos + "]";
 	}
 	
 }

@@ -58,9 +58,10 @@ public class TelefoneTest {
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DDD_INCORRETO));
 	}
 
-	@Test
-	void nao_deve_aceitar_em_branco_ddd() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd("  "));
+	@ParameterizedTest
+	@ValueSource(strings = { " ", "", "      " })
+	void nao_deve_aceitar_em_branco_ddd(String stringVazia) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(stringVazia));
 		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_CAMPO_VAZIO));
 	}
 
@@ -78,12 +79,19 @@ public class TelefoneTest {
 	}
 	
 	@ParameterizedTest
+	@ValueSource(strings = { " ", "", "      " })
+	void nao_deve_aceitar_em_branco_numero_telefone(String stringVazia) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(stringVazia));
+		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_CAMPO_VAZIO));
+	}
+	
+	@ParameterizedTest
 	@ValueSource(strings = { "abdtt066f", "abcdefghi", "0000abbb00", "0" })
 	void nao_deve_aceitar_telefone_caracteres_alfabeticos(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
 	}
-
+	
 	@Test
 	void deve_validar_ddd() {
 		assertEquals(DDD_CEARA, this.telefone.getDdd());
@@ -117,4 +125,5 @@ public class TelefoneTest {
 		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_TELEFONE+"]", telefone.toString());
 		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_CELULAR+"]", celular.toString());
 	}
+	
 }

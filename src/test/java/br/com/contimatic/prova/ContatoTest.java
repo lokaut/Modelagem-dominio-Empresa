@@ -110,7 +110,7 @@ class ContatoTest {
 
 	@Test
 	@Order(9)
-	void deve_validar_hashcode_igual() {
+	void deve_validar_hashcode_iguais() {
 		assertEquals(contatoConstrutor.hashCode(), contatoConstrutor2.hashCode());
 	}
 

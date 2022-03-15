@@ -1,5 +1,6 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.ConstantesTestes.CBO_ANALISTA_TI;
 import static br.com.contimatic.prova.ConstantesTestes.CBO_CARGOS;
 import static br.com.contimatic.prova.ConstantesTestes.DESCRICAO_CARGOS;
 import static br.com.contimatic.prova.ConstantesTestes.DOIS_CARACTERES;
@@ -14,10 +15,13 @@ import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
 import static java.math.BigDecimal.valueOf;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -54,7 +58,7 @@ public class CargoTest {
 	public void instancia() {
 		funcionarioVazio = new ArrayList<>();
 		cargoCompleto = new Cargo(NOME_CARGOS, CBO_CARGOS, SALARIO_CARGOS, DESCRICAO_CARGOS, FUNCIONARIOS);
-		cargo = new Cargo(CBO_CARGOS);
+		cargo = new Cargo(CBO_ANALISTA_TI);
 	}
 	
 	@AfterAll
@@ -68,8 +72,8 @@ public class CargoTest {
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setNome(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME + " a "
-						+ TAMANHO_MAXIMO_NOME + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME_CARGO + " a "
+						+ TAMANHO_MAXIMO_NOME_CARGO + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 	
 	@Test
@@ -143,4 +147,54 @@ public class CargoTest {
 	void deve_validar_funcionario_correto() {
 		assertEquals(FUNCIONARIOS, cargoCompleto.getFuncionarios());
 	}
+	
+	@Order(12)
+	@Test
+	void deve_validar_cbo_correto() {
+		assertAll(
+				() -> assertNotEquals(CBO_CARGOS, cargo.getCbo()),
+				() -> assertEquals(CBO_ANALISTA_TI, cargo.getCbo())
+			);
+	}
+	
+	@Order(13)
+	@Test
+	void deve_validar_descricao_correto() {
+		assertEquals(DESCRICAO_CARGOS, cargoCompleto.getDescricao());
+	}
+	
+	@Test
+	@Order(14)
+	void nao_deve_aceitar_hashcode_diferente() {
+		assertNotEquals(cargoCompleto.hashCode(), cargo.hashCode());
+	}
+
+	@Test
+	@Order(15)
+	void deve_validar_hashcode_iguais() {
+		assertEquals(cargoCompleto.hashCode(), cargoCompleto.hashCode());
+	}
+	
+	@Test
+	@Order(16)
+	void deve_validar_equals() {
+		assertAll(
+				() -> assertEquals(cargoCompleto, cargoCompleto),
+				() -> assertEquals(cargoCompleto, cargoCompleto), 
+				() -> assertNotEquals(cargoCompleto, cargo),
+				() -> assertNotNull(cargoCompleto),
+				() -> assertNotEquals(true, cargoCompleto.equals(new Object()))
+			);
+	}
+
+	@Test
+	@Order(11)
+	void deve_validar_toString() {
+		assertAll(
+				() -> assertEquals("Cargo [Nome do cargo  = " + NOME_CARGOS + ", Cbo = " + CBO_CARGOS + ", Salário = " + SALARIO_CARGOS + ", Descrição = " + DESCRICAO_CARGOS + ", Funcionarios = " + FUNCIONARIOS + "]", cargoCompleto.toString()),
+				() -> assertEquals("Cargo [Nome do cargo  = " + null + ", Cbo = " + CBO_ANALISTA_TI + ", Salário = " + null + ", Descrição = " + null + ", Funcionarios = " + null+ "]", cargo.toString()),
+				() -> assertNotEquals(cargo.toString(), cargoCompleto.toString())
+		);
+	}
+	
 }

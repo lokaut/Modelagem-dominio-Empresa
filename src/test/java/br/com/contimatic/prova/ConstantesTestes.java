@@ -31,6 +31,7 @@ public final class ConstantesTestes {
 	/*	CARGOS	*/
 	protected static final String NOME_CARGOS = "Gerente de projetos de tecnologia da informação";
 	protected static final String CBO_CARGOS = "142520";
+	protected static final String CBO_ANALISTA_TI = "2124";
 	protected static final String DESCRICAO_CARGOS = "Cargo de gerente";
 	protected static final BigDecimal SALARIO_CARGOS = valueOf(14000.60);
 	
@@ -45,11 +46,8 @@ public final class ConstantesTestes {
 	protected static final String EMAIL = "erick123@gmail.com";
 	protected static final String EMAIL_SECUNDARIO = "erickemail2@gmail.com";
 	
-	/*	TELEFONE	*/
-	protected static final String DDD_CEARA = "85";
-	protected static final String DDD_SAO_PAULO = "11";
-	protected static final String NUMERO_TELEFONE = "56668057";
-	protected static final String NUMERO_CELULAR = "956634577";
+	/*	EMPRESA */
+	protected static final String CNPJ_VALIDO = "82923680000180";
 	
 	/*	FUNCIONARIO	*/
 	protected static final String CPF_VALIDO = "90795007809";
@@ -71,14 +69,20 @@ public final class ConstantesTestes {
 	
 	/*	SETOR	*/
 	protected static final String NOME_SETOR = "Tecnologia da Informação";
+	protected static final String DESCRICAO_SETOR = "Setor resposável pela parte tecnológica da empresa";
 	
-	
-	//contruir funcionario completo
 	protected static final Funcionario FUNCIONARIO_01 = new Funcionario("65502295028");
 	protected static final Funcionario FUNCIONARIO_02 = new Funcionario("82134475064");
 	
+	/*	TELEFONE	*/
+	protected static final String DDD_CEARA = "85";
+	protected static final String DDD_SAO_PAULO = "11";
+	protected static final String NUMERO_TELEFONE = "56668057";
+	protected static final String NUMERO_CELULAR = "956634577";
+	
 	//Serialização para lista
-	protected static final List<Funcionario> FUNCIONARIOS = new ArrayList<>(){/**
+	protected static final List<Funcionario> FUNCIONARIOS = new ArrayList<>(){
+		/**
 		 * 
 		 */
 		private static final long serialVersionUID = 1L;

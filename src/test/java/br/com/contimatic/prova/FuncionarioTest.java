@@ -106,8 +106,8 @@ class FuncionarioTest {
 
 	@ParameterizedTest
 	@ValueSource(strings = { "123456", "@@123", "Am@anda sous@", "J$ssica Cardoso", "&rick" })
-	void nao_deve_aceitar_caracter_numerico_especial_nome(String nome) {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nome));
+	void nao_deve_aceitar_caracter_numerico_especial_nome(String nomeErrado) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nomeErrado));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
@@ -122,8 +122,8 @@ class FuncionarioTest {
 	@ParameterizedTest
 	@ValueSource(strings = { "00000000000", "11111111111", "22222222222", "33333333333", "44444444444", "55555555555",
 			"66666666666", "77777777777", "88888888888", "99999999999" })
-	void nao_deve_aceitar_cpf_somente_numeros_iguais() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf("00000000000"));
+	void nao_deve_aceitar_cpf_somente_numeros_iguais(String cpfInvalido) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(cpfInvalido));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CPF_INVALIDO));
 	}
 

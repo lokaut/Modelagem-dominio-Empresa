@@ -5,10 +5,10 @@ import static br.com.contimatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_CBO_CARGO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_CBO_CARGO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
@@ -52,7 +52,7 @@ public class Cargo {
 	public void setNome(String nome) {
 		verificarObjetoNulo(nome);
 		validarCampoVazio(nome);
-		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME, TAMANHO_MAXIMO_NOME);
+		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_CARGO, TAMANHO_MAXIMO_NOME_CARGO);
 		this.nome = nome;
 	}
 	
@@ -113,13 +113,13 @@ public class Cargo {
 		if (!(obj instanceof Cargo)) {
 			return false;
 		}
-		Cargo other = (Cargo) obj;
-		return Objects.equals(cbo, other.cbo);
+		Cargo outro = (Cargo) obj;
+		return Objects.equals(cbo, outro.cbo);
 	}
 
 	@Override
 	public String toString() {
-		return "Cargo [nome = " + nome + ", cbo = " + cbo + ", salário = " + salario + ", descrição = " + descricao + "]";
+		return "Cargo [Nome do cargo  = " + nome + ", Cbo = " + cbo + ", Salário = " + salario + ", Descrição = " + descricao + ", Funcionarios = " + funcionarios + "]";
 	}
 	
 }
