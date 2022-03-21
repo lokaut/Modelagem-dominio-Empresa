@@ -17,13 +17,18 @@ public class GeradorCpfCnpj {
 
 	public static String gerarCpf() {
 		List<Integer> noveNumerosGerados = gerarNumerosIniciaisCpfCnpj(QUANTIDADE_NUMEROS_INICIAIS_CPF);
-		/* Os nove primeiros algarismos são ordenadamente multiplicados pela sequência inversamente  */
-		Integer primeiroDigitoVerificador = noveNumerosGerados.get(8) * 2 + noveNumerosGerados.get(7) * 3 + noveNumerosGerados.get(6) * 4 + noveNumerosGerados.get(5) * 5
-				+ noveNumerosGerados.get(4) * 6 + noveNumerosGerados.get(3) * 7 + noveNumerosGerados.get(2)* 8 + noveNumerosGerados.get(1) * 9 + noveNumerosGerados.get(0) * 10;
+		/*
+		 * Os noves primeiros algarismos são ordenadamente multiplicados pela sequência inversamente
+		 */
+		Integer primeiroDigitoVerificador = noveNumerosGerados.get(8) * 2 + noveNumerosGerados.get(7) * 3
+				+ noveNumerosGerados.get(6) * 4 + noveNumerosGerados.get(5) * 5 + noveNumerosGerados.get(4) * 6
+				+ noveNumerosGerados.get(3) * 7 + noveNumerosGerados.get(2) * 8 + noveNumerosGerados.get(1) * 9
+				+ noveNumerosGerados.get(0) * 10;
 		primeiroDigitoVerificador = validarDigitosVerificacao(primeiroDigitoVerificador);
-		Integer segundoDigitoVerificador = primeiroDigitoVerificador * 2 + noveNumerosGerados.get(8) * 3 + noveNumerosGerados.get(7) * 4
-				+ noveNumerosGerados.get(6) * 5 + noveNumerosGerados.get(5) * 6 + noveNumerosGerados.get(4) * 7 + noveNumerosGerados.get(3) * 8 + noveNumerosGerados.get(2) * 9
-				+ noveNumerosGerados.get(1)  * 10 + noveNumerosGerados.get(0) * 11;
+		Integer segundoDigitoVerificador = primeiroDigitoVerificador * 2 + noveNumerosGerados.get(8) * 3
+				+ noveNumerosGerados.get(7) * 4 + noveNumerosGerados.get(6) * 5 + noveNumerosGerados.get(5) * 6
+				+ noveNumerosGerados.get(4) * 7 + noveNumerosGerados.get(3) * 8 + noveNumerosGerados.get(2) * 9
+				+ noveNumerosGerados.get(1) * 10 + noveNumerosGerados.get(0) * 11;
 
 		segundoDigitoVerificador = validarDigitosVerificacao(segundoDigitoVerificador);
 		return cpfCnpjBuild(noveNumerosGerados, primeiroDigitoVerificador, segundoDigitoVerificador);
@@ -31,12 +36,12 @@ public class GeradorCpfCnpj {
 
 	public static String gerarCnpj() {
 		List<Integer> numerosIniciaisGerados = gerarNumerosIniciaisCpfCnpj(QUANTIDADE_NUMEROS_INICIAIS_CNPJ);
-		/* Os oito primeiros algarismos são ordenadamente multiplicados pela sequência inversamente  */
 		Integer nonoDigito = 0;
 		Integer decimoDigito = 0;
 		Integer decimoPrimeiroDigito = 0;
 		Integer decimoSegundoDigito = 1;
 
+		/* Os oito primeiros algarismos são ordenadamente multiplicados pela sequência inversamente  */
 		Integer primeiroDigitoVerificador = decimoSegundoDigito * 2 + decimoPrimeiroDigito * 3 + decimoDigito * 4
 				+ nonoDigito * 5 + numerosIniciaisGerados.get(7) * 6 + numerosIniciaisGerados.get(6) * 7
 				+ numerosIniciaisGerados.get(5) * 8 + numerosIniciaisGerados.get(4) * 9
