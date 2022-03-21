@@ -51,7 +51,7 @@ public final class ConstantesTestes {
 	
 	/*	FUNCIONARIO	*/
 	protected static final String CPF_VALIDO = "90795007809";
-	protected static final String SEGUNDO_CPF_VALIDO = "76899070081";
+	protected static final String CPF_VALIDO_ALEATORIO = "76899070081";
 	protected static final String NOME_COMPLETO = "Lókaut Santos";
 	protected static final LocalDate DATA_NASCIMENTO_VALIDO = of(1994, 12, 05);
 	protected static final LocalDate DATA_FUTURA = now().plusYears(1);
