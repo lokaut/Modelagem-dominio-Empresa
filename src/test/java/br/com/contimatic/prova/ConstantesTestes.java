@@ -1,5 +1,6 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.utils.GeradorCpfCnpj.gerarCpf;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.now;
 import static java.time.LocalDate.of;
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.contimatic.prova.model.Funcionario;
+import br.com.contimatic.prova.utils.GeradorCpfCnpj;
 
 public final class ConstantesTestes {
 	
@@ -46,11 +48,11 @@ public final class ConstantesTestes {
 	protected static final String EMAIL = "erick123@gmail.com";
 	protected static final String EMAIL_SECUNDARIO = "erickemail2@gmail.com";
 	
-	/*	EMPRESA */
-	protected static final String CNPJ_VALIDO = "82923680000180";
+	/*	EMPRESA	*/
+	protected static final String CNPJ_VALIDO = GeradorCpfCnpj.gerarCnpj();
 	
 	/*	FUNCIONARIO	*/
-	protected static final String CPF_VALIDO = "90795007809";
+	protected static final String CPF_VALIDO = gerarCpf();
 	protected static final String CPF_VALIDO_ALEATORIO = "76899070081";
 	protected static final String NOME_COMPLETO = "Lókaut Santos";
 	protected static final LocalDate DATA_NASCIMENTO_VALIDO = of(1994, 12, 05);
@@ -80,7 +82,7 @@ public final class ConstantesTestes {
 	protected static final String NUMERO_TELEFONE = "56668057";
 	protected static final String NUMERO_CELULAR = "956634577";
 	
-	//Serialização para lista
+	//Serialização para gerar lista funcionário
 	protected static final List<Funcionario> FUNCIONARIOS = new ArrayList<>(){
 		/**
 		 * 
