@@ -2,7 +2,7 @@ package br.com.contimatic.prova.utils;
 
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CNPJ_INVALIDO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
-import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.PESO_DOZE_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.PESO_ONZE_CPF;
@@ -61,11 +61,11 @@ public final class ValidacaoCnpj {
 
 	private static char verificarOsDoisDigitoVerificador(int soma) {
 		char digito;
-		int resto = soma % MODULO_DIVISAO_ONZE_CPF_CNPJ;
+		int resto = soma % MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
 		if (resto == 0 || resto == 1)
 			digito = NUMERO_ZERO_CPF_CNPJ;
 		else
-			digito = (char) ((MODULO_DIVISAO_ONZE_CPF_CNPJ - resto) + POSICAO_ZERO_ASCII);
+			digito = (char) ((MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ - resto) + POSICAO_ZERO_ASCII);
 
 		return digito;
 	}

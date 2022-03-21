@@ -2,13 +2,12 @@ package br.com.contimatic.prova.utils;
 
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
-import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_ONZE_CPF_CNPJ;
+import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.PESO_DEZ_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.POSICAO_DEZ_CPF;
 import static br.com.contimatic.prova.constantes.Constantes.POSICAO_NOVE_CPF;
 import static br.com.contimatic.prova.constantes.Constantes.POSICAO_ZERO_ASCII;
-import static br.com.contimatic.prova.constantes.Constantes.TAMANHO_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.TAMANHO_CPF;
 
 public final class ValidacaoCpf {
@@ -21,10 +20,6 @@ public final class ValidacaoCpf {
 		verificarDigitos(cpf);
 	}
 	
-	public static void validarCNPJ(String cnpj) {
-		validarTamanho(cnpj, TAMANHO_CNPJ);
-	}
-
 	private static void validarTamanho(String cpf, int tamanhoCNPJCPF) {
 		if(cpf.length() != tamanhoCNPJCPF) {
 			 throw new IllegalStateException(MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS);
@@ -33,7 +28,7 @@ public final class ValidacaoCpf {
 
 	private static void verificarDigitos(String cpf) {
 		char digVerificador10 = primeiroSegundoDigVerificador(cpf, PESO_DEZ_CPF_CNPJ);
-		char digVerificador11 = primeiroSegundoDigVerificador(cpf, MODULO_DIVISAO_ONZE_CPF_CNPJ);
+		char digVerificador11 = primeiroSegundoDigVerificador(cpf, MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ);
 		
 		 if (!((digVerificador10 == cpf.charAt(POSICAO_NOVE_CPF)) && (digVerificador11 == cpf.charAt(POSICAO_DEZ_CPF)))) {
 			 throw new IllegalStateException(MENSAGEM_CPF_INVALIDO);
@@ -63,8 +58,8 @@ public final class ValidacaoCpf {
 
 	private static char verificarOsDoisDigitoVerificador(int somaTotal) {
 		char digitoVerificador;
-		int resto = MODULO_DIVISAO_ONZE_CPF_CNPJ - (somaTotal % MODULO_DIVISAO_ONZE_CPF_CNPJ);
-		if (resto == PESO_DEZ_CPF_CNPJ || resto == MODULO_DIVISAO_ONZE_CPF_CNPJ)
+		int resto = MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ - (somaTotal % MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ);
+		if (resto == PESO_DEZ_CPF_CNPJ || resto == MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ)
 			digitoVerificador = NUMERO_ZERO_CPF_CNPJ;
 		else
 			digitoVerificador = (char) (resto + POSICAO_ZERO_ASCII);

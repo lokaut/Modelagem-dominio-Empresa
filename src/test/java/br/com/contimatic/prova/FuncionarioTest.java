@@ -11,7 +11,7 @@ import static br.com.contimatic.prova.ConstantesTestes.NOME_COMPLETO;
 import static br.com.contimatic.prova.ConstantesTestes.NOME_SETOR;
 import static br.com.contimatic.prova.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
 import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_CEP;
-import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_CPF_VALIDO;
+import static br.com.contimatic.prova.ConstantesTestes.CPF_VALIDO_ALEATORIO;
 import static br.com.contimatic.prova.ConstantesTestes.SEGUNDO_NUMERO_ENDERECO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
@@ -71,7 +71,7 @@ class FuncionarioTest {
 		setor = new Setor(NOME_SETOR);
 		endereco = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
 		contato = new Contato(EMAIL_SECUNDARIO);
-		funcionario = new Funcionario(SEGUNDO_CPF_VALIDO);
+		funcionario = new Funcionario(CPF_VALIDO_ALEATORIO);
 		funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
 				DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
 		funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
@@ -229,7 +229,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_cpf_correto() {
-		assertEquals(SEGUNDO_CPF_VALIDO, funcionario.getCpf());
+		assertEquals(CPF_VALIDO_ALEATORIO, funcionario.getCpf());
 	}
 	
 	@Test
