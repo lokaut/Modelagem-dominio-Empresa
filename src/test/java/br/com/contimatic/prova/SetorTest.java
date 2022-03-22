@@ -8,6 +8,7 @@ import static br.com.contimatic.prova.ConstantesTestes.FUNCIONARIO_01;
 import static br.com.contimatic.prova.ConstantesTestes.FUNCIONARIO_02;
 import static br.com.contimatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
 import static br.com.contimatic.prova.ConstantesTestes.NOME_SETOR;
+import static br.com.contimatic.prova.ConstantesTestes.NOME_SETOR_RH;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
@@ -18,7 +19,9 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_SETOR;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTimeout;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -56,7 +59,7 @@ public class SetorTest {
 	public void instancia() {
 		funcionarioVazio = new ArrayList<>();
 		cnpjEmpresa = new Empresa(CNPJ_VALIDO);
-		setor = new Setor(NOME_SETOR);
+		setor = new Setor(NOME_SETOR_RH);
 		setorCompleto = new Setor(NOME_SETOR, FUNCIONARIOS, DESCRICAO_SETOR, cnpjEmpresa);
 
 	}
@@ -155,7 +158,7 @@ public class SetorTest {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = { "Descrição errad@", "D$scrição erriddismo" })
+	@ValueSource(strings = { "Descrição errad@", "D$scrição erradissimo" })
 	void nao_deve_aceitar_caracter_numerico_descricao_setor(String descricaoErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setDescricao(descricaoErrado));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
@@ -166,4 +169,40 @@ public class SetorTest {
 		assertEquals(DESCRICAO_SETOR, setorCompleto.getDescricao());
 	}
 	
+	@Test
+	void nao_deve_aceitar_empresa_nulo() {
+		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> setor.setEmpresa(null));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+	}
+	
+	@Test
+	void deve_validar_empresa_correta() {
+		assertEquals(cnpjEmpresa, setorCompleto.getEmpresa());
+	}
+	
+	@Test
+	void nao_deve_validar_hashcode_diferente() {
+		assertNotEquals(setor.hashCode(), setorCompleto.hashCode());
+	}
+	
+	@Test
+	void deve_validar_hashcode_igual() {
+		assertEquals(setor.hashCode(), setor.hashCode());
+	}
+	
+	@Test
+	void deve_validar_equals_hashcode() {
+		assertAll(
+				() -> assertEquals(setorCompleto, setorCompleto), 
+				() -> assertNotEquals(null, setorCompleto),
+				() -> assertNotEquals(setor, setorCompleto),
+				() -> assertNotEquals(true, setorCompleto.equals(new Object()))
+				);
+	}
+	
+	@Test
+	void deve_validar_toString() {
+		assertEquals(  "Setor [nome=" + NOME_SETOR + ", funcionario=" + FUNCIONARIOS + ", descricao=" + DESCRICAO_SETOR + ", empresa="
+				+ cnpjEmpresa + "]", setorCompleto.toString());
+	}
 }

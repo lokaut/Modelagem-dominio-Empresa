@@ -253,7 +253,7 @@ class FuncionarioTest {
 	}
 	
 	@Test
-	void deve_validar_equals_hashcode() {
+	void deve_validar_equals() {
 		assertEquals(funcionarioCompleto,funcionarioCompleto2);
 		assertEquals(funcionarioCompleto, funcionarioCompleto);
 		assertNotEquals(null, funcionarioCompleto);

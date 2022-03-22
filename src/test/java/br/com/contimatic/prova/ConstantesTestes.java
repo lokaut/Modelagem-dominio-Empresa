@@ -1,5 +1,6 @@
 package br.com.contimatic.prova;
 
+import static br.com.contimatic.prova.utils.GeradorCpfCnpj.gerarCnpj;
 import static br.com.contimatic.prova.utils.GeradorCpfCnpj.gerarCpf;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.now;
@@ -11,7 +12,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.contimatic.prova.model.Funcionario;
-import br.com.contimatic.prova.utils.GeradorCpfCnpj;
 
 public final class ConstantesTestes {
 	
@@ -49,11 +49,14 @@ public final class ConstantesTestes {
 	protected static final String EMAIL_SECUNDARIO = "erickemail2@gmail.com";
 	
 	/*	EMPRESA	*/
-	protected static final String CNPJ_VALIDO = GeradorCpfCnpj.gerarCnpj();
+	protected static final String CNPJ_VALIDO = "88592632000132";
+	protected static final String CNPJ_VALIDO_ALEATORIO = gerarCnpj();
+	protected static final String RAZAO_SOCIAL = " Empresa Aleatória Comércio Ltda";
+	protected static final String NOME_FANTASIA = "Empresa Aleatória";
 	
 	/*	FUNCIONARIO	*/
-	protected static final String CPF_VALIDO = gerarCpf();
-	protected static final String CPF_VALIDO_ALEATORIO = "76899070081";
+	protected static final String CPF_VALIDO = "76899070081";
+	protected static final String CPF_VALIDO_ALEATORIO = gerarCpf();
 	protected static final String NOME_COMPLETO = "Lókaut Santos";
 	protected static final LocalDate DATA_NASCIMENTO_VALIDO = of(1994, 12, 05);
 	protected static final LocalDate DATA_FUTURA = now().plusYears(1);
@@ -71,10 +74,11 @@ public final class ConstantesTestes {
 	
 	/*	SETOR	*/
 	protected static final String NOME_SETOR = "Tecnologia da Informação";
+	protected static final String NOME_SETOR_RH = "Recursos Humanos";
 	protected static final String DESCRICAO_SETOR = "Setor resposável pela parte tecnológica da empresa";
 	
-	protected static final Funcionario FUNCIONARIO_01 = new Funcionario("65502295028");
-	protected static final Funcionario FUNCIONARIO_02 = new Funcionario("82134475064");
+	protected static final Funcionario FUNCIONARIO_01 = new Funcionario(gerarCpf());
+	protected static final Funcionario FUNCIONARIO_02 = new Funcionario(gerarCpf());
 	
 	/*	TELEFONE	*/
 	protected static final String DDD_CEARA = "85";
@@ -93,4 +97,7 @@ public final class ConstantesTestes {
 		add(FUNCIONARIO_01);
 		add(FUNCIONARIO_02);
 	}};
+	
+	
+	
 }
