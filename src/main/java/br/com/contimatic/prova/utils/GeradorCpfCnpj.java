@@ -64,21 +64,13 @@ public class GeradorCpfCnpj {
 	}
 
 	private static List<Integer> gerarNumerosIniciaisCpfCnpj(int quantidadeNumeros) {
-		List<Integer> numerosAleatorios = new ArrayList<>(quantidadeNumeros);
-		Integer numeroAleatorio;
-		if (quantidadeNumeros == 9) {
-			for (int i = 0; i < 9; i++) {
-				numeroAleatorio = randomiza();
-				numerosAleatorios.add(numeroAleatorio);
-			}
-			return numerosAleatorios;
-		} else {
-			for (int i = 0; i < 8; i++) {
-				numeroAleatorio = randomiza();
-				numerosAleatorios.add(numeroAleatorio);
-			}
-			return numerosAleatorios;
+		List<Integer> numerosAleatorios = new ArrayList<>();
+		int numeroAleatorio;
+		for (int i = 0; i < quantidadeNumeros; i++) {
+			numeroAleatorio = randomiza();
+			numerosAleatorios.add(numeroAleatorio);
 		}
+		return numerosAleatorios;
 	}
 
 	private static Integer randomiza() {
