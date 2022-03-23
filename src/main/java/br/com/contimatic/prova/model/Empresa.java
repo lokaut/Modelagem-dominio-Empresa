@@ -1,11 +1,30 @@
 package br.com.contimatic.prova.model;
 
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
+import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA;
+import static br.com.contimatic.prova.utils.ValidacaoCnpj.validarCNPJ;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.validarDataMaiorDataAtual;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarListaVazia;
+import static br.com.contimatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
+
+import br.com.contimatic.prova.constantes.ConstantesRegrasNegocio;
+import br.com.contimatic.prova.utils.ValidacaoDatas;
 
 public class Empresa {
 	
@@ -38,14 +57,13 @@ public class Empresa {
 		this.setEnderecos(enderecos);
 	}
 
-
-
 	public String getCnpj() {
 		return cnpj;
 	}
 
 	public void setCnpj(String cnpj) {
 		verificarObjetoNulo(cnpj);
+		validarCNPJ(cnpj);
 		this.cnpj = cnpj;
 	}
 
@@ -55,6 +73,9 @@ public class Empresa {
 
 	public void setRazaoSocial(String razaoSocial) {
 		verificarObjetoNulo(razaoSocial);
+		validarCampoVazio(razaoSocial);
+		limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
+		validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -64,6 +85,9 @@ public class Empresa {
 
 	public void setNomeFantasia(String nomeFantasia) {
 		verificarObjetoNulo(nomeFantasia);
+		validarCampoVazio(nomeFantasia);
+		limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
+		validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nomeFantasia = nomeFantasia;
 	}
 
@@ -73,6 +97,7 @@ public class Empresa {
 
 	public void setDataAbertura(LocalDate dataAbertura) {
 		verificarObjetoNulo(dataAbertura);
+		validarDataMaiorDataAtual(dataAbertura);
 		this.dataAbertura = dataAbertura;
 	}
 
@@ -83,6 +108,7 @@ public class Empresa {
 	public void setSetores(List<Setor> setores) {
 		verificarObjetoNulo(setores);
 		validarListaVazia(setores);
+		validarTamanhoMaximoLista(setores, TAMANHO_MAXIMO_LISTA_SETORES);
 		this.setores = setores;
 	}
 
@@ -93,6 +119,7 @@ public class Empresa {
 	public void setContatos(List<Contato> contatos) {
 		verificarObjetoNulo(contatos);
 		validarListaVazia(contatos);
+		validarTamanhoMaximoLista(contatos, TAMANHO_MAXIMO_LISTA_CONTATOS);
 		this.contatos = contatos;
 	}
 
@@ -103,6 +130,7 @@ public class Empresa {
 	public void setEnderecos(List<Endereco> enderecos) {
 		verificarObjetoNulo(enderecos);
 		validarListaVazia(enderecos);
+		validarTamanhoMaximoLista(enderecos, TAMANHO_MAXIMO_LISTA_ENDERECOS);
 		this.enderecos = enderecos;
 	}
 

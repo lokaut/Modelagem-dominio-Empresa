@@ -41,4 +41,16 @@ public final class ConstantesRegrasNegocio {
 	public static final Integer TAMANHO_MAXIMO_NOME_CARGO = 60;
 	public static final Integer TAMANHO_MINIMO_CBO_CARGO = 1;
 	public static final Integer TAMANHO_MAXIMO_CBO_CARGO = 8;
+	
+	/* EMPRESA */
+	public static final Integer TAMANHO_FIXO_CNPJ = 14;
+	public static final Integer TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA = 3;
+	public static final Integer TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA = 100;
+	public static final Integer TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA = 3;
+	public static final Integer TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA = 100;
+	public static final Integer TAMANHO_MAXIMO_LISTA_SETORES = 100;
+	public static final Integer TAMANHO_MAXIMO_LISTA_CONTATOS = 100;
+	public static final Integer TAMANHO_MAXIMO_LISTA_ENDERECOS = 100;
+	
+
 }

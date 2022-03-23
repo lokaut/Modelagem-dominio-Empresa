@@ -11,7 +11,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.contimatic.prova.model.Contato;
+import br.com.contimatic.prova.model.Endereco;
 import br.com.contimatic.prova.model.Funcionario;
+import br.com.contimatic.prova.model.Setor;
 
 public final class ConstantesTestes {
 	
@@ -47,12 +50,15 @@ public final class ConstantesTestes {
 	/*	CONTATO	*/
 	protected static final String EMAIL = "erick123@gmail.com";
 	protected static final String EMAIL_SECUNDARIO = "erickemail2@gmail.com";
+	protected static final Contato CONTATO_01 = new Contato(EMAIL);
+	protected static final Contato CONTATO_02 = new Contato(EMAIL_SECUNDARIO);
 	
 	/*	EMPRESA	*/
 	protected static final String CNPJ_VALIDO = "88592632000132";
 	protected static final String CNPJ_VALIDO_ALEATORIO = gerarCnpj();
 	protected static final String RAZAO_SOCIAL = " Empresa Aleatória Comércio Ltda";
 	protected static final String NOME_FANTASIA = "Empresa Aleatória";
+	
 	
 	/*	FUNCIONARIO	*/
 	protected static final String CPF_VALIDO = "76899070081";
@@ -62,6 +68,8 @@ public final class ConstantesTestes {
 	protected static final LocalDate DATA_FUTURA = now().plusYears(1);
 	protected static final LocalDate DATA_ADMISSAO = of(2021, 11, 04);
 	protected static final LocalDate DATA_DESLIGAMENTO = now();
+	protected static final Funcionario FUNCIONARIO_01 = new Funcionario(gerarCpf());
+	protected static final Funcionario FUNCIONARIO_02 = new Funcionario(gerarCpf());
 	
 	/*	ENDERECO	*/
 	protected static final String LOGRADOURO = "Rua Bastos";
@@ -71,14 +79,16 @@ public final class ConstantesTestes {
 	protected static final String BAIRRO = "Vila Olímpia";
 	protected static final String CEP = "03757040";
 	protected static final String COMPLEMENTO = "predio A, apartamento 23";
+	protected static final Endereco ENDERECO_01 = new Endereco(CEP, NUMERO_ENDERECO);
+	protected static final Endereco ENDERECO_02 = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
+	
 	
 	/*	SETOR	*/
 	protected static final String NOME_SETOR = "Tecnologia da Informação";
 	protected static final String NOME_SETOR_RH = "Recursos Humanos";
 	protected static final String DESCRICAO_SETOR = "Setor resposável pela parte tecnológica da empresa";
-	
-	protected static final Funcionario FUNCIONARIO_01 = new Funcionario(gerarCpf());
-	protected static final Funcionario FUNCIONARIO_02 = new Funcionario(gerarCpf());
+	protected static final Setor SETOR_01 = new Setor(NOME_SETOR);
+	protected static final Setor SETOR_02 = new Setor(NOME_SETOR_RH);
 	
 	/*	TELEFONE	*/
 	protected static final String DDD_CEARA = "85";
@@ -86,18 +96,37 @@ public final class ConstantesTestes {
 	protected static final String NUMERO_TELEFONE = "56668057";
 	protected static final String NUMERO_CELULAR = "956634577";
 	
-	//Serialização para gerar lista funcionário
+	/*	Serialização para gerar listas */
 	protected static final List<Funcionario> FUNCIONARIOS = new ArrayList<>(){
-		/**
-		 * 
-		 */
 		private static final long serialVersionUID = 1L;
-
 	{
 		add(FUNCIONARIO_01);
 		add(FUNCIONARIO_02);
 	}};
 	
+	protected static final  List<Endereco> ENDERECOS = new ArrayList<>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(ENDERECO_01);
+			add(ENDERECO_02);
+		}
+	};
+	
+	protected static final List<Setor> SETORES = new ArrayList<>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(SETOR_01);
+			add(SETOR_02);
+		}
+	};
+	
+	protected static final List<Contato> CONTATOS = new ArrayList<>() {
+		private static final long serialVersionUID = 1L;
+		{
+			add(CONTATO_01);
+			add(CONTATO_02);
+		}
+	};
 	
 	
 }

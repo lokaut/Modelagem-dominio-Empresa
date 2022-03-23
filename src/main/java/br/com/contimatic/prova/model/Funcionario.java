@@ -6,8 +6,8 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contimatic.prova.utils.ValidacaoCpf.validarCPF;
 import static br.com.contimatic.prova.utils.ValidacaoDatas.dataNascMaiorIdade;
-import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDataAdmissao;
-import static br.com.contimatic.prova.utils.ValidacaoDatas.validacaoDesligamento;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.validarDataAdmissao;
+import static br.com.contimatic.prova.utils.ValidacaoDatas.validarDesligamento;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contimatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
@@ -79,7 +79,7 @@ public class Funcionario {
 		
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		verificarObjetoNulo(dataAdmissao);
-		validacaoDataAdmissao(dataAdmissao);
+		validarDataAdmissao(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
 	}
 
@@ -116,7 +116,7 @@ public class Funcionario {
 	}
 
 	public void setDataDesligamento(LocalDate dataDesligamento) {
-		validacaoDesligamento(dataDesligamento);
+		validarDesligamento(dataDesligamento);
 		this.dataDesligamento = dataDesligamento;
 	}
 
