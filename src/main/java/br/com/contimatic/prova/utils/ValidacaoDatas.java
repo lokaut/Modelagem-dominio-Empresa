@@ -2,6 +2,7 @@ package br.com.contimatic.prova.utils;
 
 import static br.com.contimatic.prova.constantes.Constantes.IDADE_MINIMA_EMPRESA;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DATA_FUTURA;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
 import static br.com.contimatic.prova.constantes.Constantes.REGRA_DATA_ADMISSAO;
@@ -21,16 +22,23 @@ public final class ValidacaoDatas {
 		}
 	}
 
-	public static void validacaoDataAdmissao(LocalDate dataAdmissao) {
+	public static void validarDataAdmissao(LocalDate dataAdmissao) {
 		LocalDate doisMesesPosDataAtual = now().plusMonths(REGRA_DATA_ADMISSAO);
 		if (dataAdmissao.isAfter(doisMesesPosDataAtual)) {
 			throw new IllegalStateException(MENSAGEM_ADMISSAO_FUTURA);
 		}
 	}
 	
-	public static void validacaoDesligamento(LocalDate dataDesligamento) {
-		if (dataDesligamento != null && dataDesligamento.isBefore(now())) {
+	public static void validarDesligamento(LocalDate dataDesligamento) {
+		if (dataDesligamento.isBefore(now())) {
 			throw new IllegalStateException(MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL);
+		}
+	}
+	
+	public static void validarDataMaiorDataAtual(LocalDate dataFutura) {
+		LocalDate  dataAtual = now();
+		if (dataAtual.isAfter(dataFutura)) {
+			throw new IllegalStateException(MENSAGEM_DATA_FUTURA);
 		}
 	}
 

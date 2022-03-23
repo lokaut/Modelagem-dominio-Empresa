@@ -52,6 +52,7 @@ public final class Constantes {
 	public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de "+IDADE_MINIMA_EMPRESA+" anos";
 	public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO +" meses da data de hoje: " + DATA_ATUAL;
 	public static final String MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL = "Data do desligamento não pode ser antes do dia " + DATA_ATUAL;
+	public static final String MENSAGEM_DATA_FUTURA = "Data fornecida é inválida";
 	public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
 	public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
 	public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
