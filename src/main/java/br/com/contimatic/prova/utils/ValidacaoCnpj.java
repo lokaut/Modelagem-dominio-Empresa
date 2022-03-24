@@ -1,7 +1,7 @@
 package br.com.contimatic.prova.utils;
 
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CNPJ_INVALIDO;
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
 import static br.com.contimatic.prova.constantes.Constantes.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.NUMERO_ZERO_CPF_CNPJ;
 import static br.com.contimatic.prova.constantes.Constantes.PESO_DOZE_CNPJ;
@@ -31,7 +31,7 @@ public final class ValidacaoCnpj {
 
 	private static void validarTamanho(String cnpj) {
 		if(cnpj.length() != TAMANHO_CNPJ) {
-			 throw new IllegalStateException(MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS);
+			 throw new IllegalStateException(MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS);
 		}
 	}
 	

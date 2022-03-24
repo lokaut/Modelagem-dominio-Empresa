@@ -36,8 +36,8 @@ public final class ValidacaoDatas {
 	}
 	
 	public static void validarDataMaiorDataAtual(LocalDate dataFutura) {
-		LocalDate  dataAtual = now();
-		if (dataAtual.isAfter(dataFutura)) {
+		LocalDate dataAtual = now();
+		if (dataFutura.isAfter(dataAtual)) {
 			throw new IllegalStateException(MENSAGEM_DATA_FUTURA);
 		}
 	}

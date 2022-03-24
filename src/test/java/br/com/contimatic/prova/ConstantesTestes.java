@@ -32,6 +32,7 @@ public final class ConstantesTestes {
 	protected static final String NUMERO_CPF_INVALIDO = "44085620000";
 	protected static final String ONZE_NUMEROS = "66998583340";
 	protected static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
+	protected static final String CATORZE_NUMEROS_LETRAS = "ABC134rfgs5d7j";
 	
 	/*	CARGOS	*/
 	protected static final String NOME_CARGOS = "Gerente de projetos de tecnologia da informação";

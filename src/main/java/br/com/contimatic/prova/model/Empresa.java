@@ -1,10 +1,9 @@
 package br.com.contimatic.prova.model;
 
-import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
+import static br.com.contimatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static br.com.contimatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
-import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
 import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
@@ -23,9 +22,6 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
-import br.com.contimatic.prova.constantes.ConstantesRegrasNegocio;
-import br.com.contimatic.prova.utils.ValidacaoDatas;
-
 public class Empresa {
 	
 	private String cnpj;
@@ -34,7 +30,7 @@ public class Empresa {
 
 	private String nomeFantasia;
 
-	private LocalDate dataAbertura;
+	private LocalDate dataFundacao;
 	
 	private List<Setor> setores; 
 	
@@ -46,12 +42,12 @@ public class Empresa {
 		this.setCnpj(cnpj);
 	}
 	
-	public Empresa(String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataAbertura, List<Setor> setores,
+	public Empresa(String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataFundacao, List<Setor> setores,
 			List<Contato> contatos, List<Endereco> enderecos) {
 		this.setCnpj(cnpj);
 		this.setRazaoSocial(razaoSocial);
 		this.setNomeFantasia(nomeFantasia);
-		this.setDataAbertura(dataAbertura);
+		this.setDataFundacao(dataFundacao);
 		this.setSetores(setores);
 		this.setContatos(contatos);
 		this.setEnderecos(enderecos);
@@ -75,7 +71,7 @@ public class Empresa {
 		verificarObjetoNulo(razaoSocial);
 		validarCampoVazio(razaoSocial);
 		limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
-		validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
+		validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -87,18 +83,18 @@ public class Empresa {
 		verificarObjetoNulo(nomeFantasia);
 		validarCampoVazio(nomeFantasia);
 		limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
-		validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
+		validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.nomeFantasia = nomeFantasia;
 	}
 
-	public LocalDate getDataAbertura() {
-		return dataAbertura;
+	public LocalDate getDataFundacao() {
+		return dataFundacao;
 	}
 
-	public void setDataAbertura(LocalDate dataAbertura) {
-		verificarObjetoNulo(dataAbertura);
-		validarDataMaiorDataAtual(dataAbertura);
-		this.dataAbertura = dataAbertura;
+	public void setDataFundacao(LocalDate dataFundacao) {
+		verificarObjetoNulo(dataFundacao);
+		validarDataMaiorDataAtual(dataFundacao);
+		this.dataFundacao = dataFundacao;
 	}
 
 	public List<Setor> getSetores() {
@@ -154,7 +150,7 @@ public class Empresa {
 	@Override
 	public String toString() {
 		return "Empresa [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
-				+ ", dataAbertura=" + dataAbertura + ", setores=" + setores + ", contato=" + contatos + ", endereco="
+				+ ", dataAbertura=" + dataFundacao + ", setores=" + setores + ", contato=" + contatos + ", endereco="
 				+ enderecos + "]";
 	}
 	

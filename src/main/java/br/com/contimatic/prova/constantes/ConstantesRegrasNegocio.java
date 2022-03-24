@@ -13,6 +13,7 @@ public final class ConstantesRegrasNegocio {
 	/*CONTATO */
 	public static final Integer TAMANHO_MINIMO_EMAIL = 4;
 	public static final Integer TAMANHO_MAXIMO_EMAIL = 254;
+	public static final Integer TAMANHO_MAXIMO_LISTA_CONTATOS = 100;
 	
 	/* ENDERECO */
 	public static final Integer TAMANHO_MINIMO_LOGRADOURO_ENDERECO = 1;
@@ -24,6 +25,7 @@ public final class ConstantesRegrasNegocio {
 	public static final Integer TAMANHO_MAXIMO_BAIRRO_ENDERECO = 60;
 	public static final Integer TAMANHO_MINIMO_COMPLEMENTO_ENDERECO = 0;
 	public static final Integer TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO = 254;
+	public static final Integer TAMANHO_MAXIMO_LISTA_ENDERECOS = 100;
 	
 	/* FUNCIONARIO */
 	public static final Integer TAMANHO_MINIMO_NOME_FUNCIONARIO = 3;
@@ -35,6 +37,7 @@ public final class ConstantesRegrasNegocio {
 	public static final Integer TAMANHO_MAXIMO_LISTA_FUNCIONARIO = 100;
 	public static final Integer TAMANHO_MINIMO_DESCRICAO = 3;
 	public static final Integer TAMANHO_MAXIMO_DESCRICAO = 254;
+	public static final Integer TAMANHO_MAXIMO_LISTA_SETORES = 100;
 	
 	/* CARGO */
 	public static final Integer TAMANHO_MINIMO_NOME_CARGO = 3;
@@ -48,9 +51,6 @@ public final class ConstantesRegrasNegocio {
 	public static final Integer TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA = 100;
 	public static final Integer TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA = 3;
 	public static final Integer TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA = 100;
-	public static final Integer TAMANHO_MAXIMO_LISTA_SETORES = 100;
-	public static final Integer TAMANHO_MAXIMO_LISTA_CONTATOS = 100;
-	public static final Integer TAMANHO_MAXIMO_LISTA_ENDERECOS = 100;
 	
 
 }

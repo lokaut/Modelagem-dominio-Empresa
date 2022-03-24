@@ -46,6 +46,7 @@ public final class Constantes {
 	public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";
 	public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ inválido";
 	public static final String MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS = "CPF não possui 11 caracteres";
+	public static final String MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS = "CNPJ não possui 14 caracteres";
 	public static final String MENSAGEM_EMAIL_INVALIDO = "Email Inválido";
 	public static final String MENSAGEM_CPF_INVALIDO_LETRAS = "CPF deve possuir apenas números";
 	public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. O salário mínimo é de: " + SALARIO_MINIMO;

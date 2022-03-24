@@ -180,7 +180,6 @@ public class CargoTest {
 	void deve_validar_equals() {
 		assertAll(
 				() -> assertEquals(cargoCompleto, cargoCompleto),
-				() -> assertEquals(cargoCompleto, cargoCompleto), 
 				() -> assertNotEquals(cargoCompleto, cargo),
 				() -> assertNotNull(cargoCompleto),
 				() -> assertNotEquals(true, cargoCompleto.equals(new Object()))

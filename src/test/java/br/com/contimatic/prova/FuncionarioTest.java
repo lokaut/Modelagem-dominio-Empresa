@@ -26,6 +26,7 @@ import static br.com.contimatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -149,7 +150,7 @@ class FuncionarioTest {
 	@ValueSource(ints = { 15, 14, 13, 12, 11, 10, 9, 8, 7, 5, 4, 3, 2, 1, -5 })
 	void nao_deve_aceitar_funcionario_menor_dezesseis_anos(int idade) {
 		LocalDate dataNascimento = now().minusYears(idade);
-		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNascimento));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNascimento));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_IDADE_MINIMA_EMPRESA));
 	}
 
@@ -197,8 +198,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_aceitar_dataDesligamento_nulo() {
-		funcionario.setDataDesligamento(null);
-		assertEquals(null, funcionario.getDataDesligamento());
+		assertNull(funcionario.getDataDesligamento());
 	}
 
 	@Test
