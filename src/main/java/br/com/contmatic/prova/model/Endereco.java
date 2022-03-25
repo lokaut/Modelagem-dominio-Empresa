@@ -18,7 +18,7 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
@@ -65,7 +65,7 @@ public class Endereco {
 	}
 
 	public void setLogradouro(String logradouro) {
-		verificarObjetoNulo(logradouro);
+		verificarNulo(logradouro);
 		validarCampoVazio(logradouro);
 		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
 		validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
@@ -77,7 +77,7 @@ public class Endereco {
 	}
 
 	public void setNumero(String numero) {
-		verificarObjetoNulo(numero);
+		verificarNulo(numero);
 		validarCampoVazio(numero);
 		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
 		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
@@ -98,7 +98,7 @@ public class Endereco {
 	}
 
 	public void setBairro(String bairro) {
-		verificarObjetoNulo(bairro);
+		verificarNulo(bairro);
 		validarCampoVazio(bairro);
 		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
 		validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
@@ -110,7 +110,7 @@ public class Endereco {
 	}
 
 	public void setCep(String cep) {
-		verificarObjetoNulo(cep);
+		verificarNulo(cep);
 		validarCampoVazio(cep);
 		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
 		validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
@@ -122,7 +122,7 @@ public class Endereco {
 	}
 
 	public void setCidade(Cidade cidade) {
-		verificarObjetoNulo(cidade);
+		verificarNulo(cidade);
 		this.cidade = cidade;
 	}
 

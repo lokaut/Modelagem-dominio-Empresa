@@ -16,7 +16,7 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarListaVazia;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -58,7 +58,7 @@ public class Empresa {
 	}
 
 	public void setCnpj(String cnpj) {
-		verificarObjetoNulo(cnpj);
+		verificarNulo(cnpj);
 		validarCNPJ(cnpj);
 		this.cnpj = cnpj;
 	}
@@ -68,7 +68,7 @@ public class Empresa {
 	}
 
 	public void setRazaoSocial(String razaoSocial) {
-		verificarObjetoNulo(razaoSocial);
+		verificarNulo(razaoSocial);
 		validarCampoVazio(razaoSocial);
 		limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
 		validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
@@ -80,7 +80,7 @@ public class Empresa {
 	}
 
 	public void setNomeFantasia(String nomeFantasia) {
-		verificarObjetoNulo(nomeFantasia);
+		verificarNulo(nomeFantasia);
 		validarCampoVazio(nomeFantasia);
 		limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
 		validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
@@ -92,7 +92,7 @@ public class Empresa {
 	}
 
 	public void setDataFundacao(LocalDate dataFundacao) {
-		verificarObjetoNulo(dataFundacao);
+		verificarNulo(dataFundacao);
 		validarDataMaiorDataAtual(dataFundacao);
 		this.dataFundacao = dataFundacao;
 	}
@@ -102,7 +102,7 @@ public class Empresa {
 	}
 
 	public void setSetores(List<Setor> setores) {
-		verificarObjetoNulo(setores);
+		verificarNulo(setores);
 		validarListaVazia(setores);
 		validarTamanhoMaximoLista(setores, TAMANHO_MAXIMO_LISTA_SETORES);
 		this.setores = setores;
@@ -113,7 +113,7 @@ public class Empresa {
 	}
 
 	public void setContatos(List<Contato> contatos) {
-		verificarObjetoNulo(contatos);
+		verificarNulo(contatos);
 		validarListaVazia(contatos);
 		validarTamanhoMaximoLista(contatos, TAMANHO_MAXIMO_LISTA_CONTATOS);
 		this.contatos = contatos;
@@ -124,7 +124,7 @@ public class Empresa {
 	}
 
 	public void setEnderecos(List<Endereco> enderecos) {
-		verificarObjetoNulo(enderecos);
+		verificarNulo(enderecos);
 		validarListaVazia(enderecos);
 		validarTamanhoMaximoLista(enderecos, TAMANHO_MAXIMO_LISTA_ENDERECOS);
 		this.enderecos = enderecos;

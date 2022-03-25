@@ -13,7 +13,7 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
@@ -36,12 +36,12 @@ public class Cidade {
 	}
 
 	public String getCodigoIbge() {
-		verificarObjetoNulo(codigoIbge);
+		verificarNulo(codigoIbge);
 		return codigoIbge;
 	}
 
 	public void setCodigoIbge(String codigoIbge) {
-		verificarObjetoNulo(codigoIbge);
+		verificarNulo(codigoIbge);
 		validarCampoVazio(codigoIbge);
 		limiteCaracteresFixo(codigoIbge, TAMANHO_FIXO_CODIGOIBGE);
 		validarCaracteresPermitidos(codigoIbge, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
@@ -49,12 +49,12 @@ public class Cidade {
 	}
 
 	public String getMunicipio() {
-		verificarObjetoNulo(municipio);
+		verificarNulo(municipio);
 		return municipio;
 	}
 
 	public void setMunicipio(String municipio) {
-		verificarObjetoNulo(municipio);
+		verificarNulo(municipio);
 		validarCampoVazio(municipio);
 		limiteCaracteresMinimoMaximo(municipio, TAMANHO_MINIMO_MUNICIPIO, TAMANHO_MAXIMO_MUNICIPIO);
 		validarCaracteresPermitidos(municipio, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
@@ -62,12 +62,12 @@ public class Cidade {
 	}
 
 	public String getUnidadeFederativa() {
-		verificarObjetoNulo(unidadeFederativa);
+		verificarNulo(unidadeFederativa);
 		return unidadeFederativa;
 	}
 
 	public void setUnidadeFederativa(String unidadeFederativa) {
-		verificarObjetoNulo(unidadeFederativa);
+		verificarNulo(unidadeFederativa);
 		validarCampoVazio(unidadeFederativa);
 		limiteCaracteresFixo(unidadeFederativa, TAMANHO_FIXO_UNIDADE_FEDERATIVA);
 		validarCaracteresPermitidos(unidadeFederativa, REGEX_ALFABETICO_SEM_ACENTO, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);

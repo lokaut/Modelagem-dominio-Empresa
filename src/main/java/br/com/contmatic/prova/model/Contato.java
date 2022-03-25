@@ -5,7 +5,7 @@ import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEmail;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
@@ -29,7 +29,7 @@ public class Contato {
 	}
 
 	public void setTelefone(Telefone telefone) {
-		verificarObjetoNulo(telefone);
+		verificarNulo(telefone);
 		this.telefone = telefone;
 	}
 
@@ -38,7 +38,7 @@ public class Contato {
 	}
 
 	public void setEmail(String email) {
-		verificarObjetoNulo(email);
+		verificarNulo(email);
 		validarCampoVazio(email);
 		limiteCaracteresMinimoMaximo(email, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
 		validarEmail(email);

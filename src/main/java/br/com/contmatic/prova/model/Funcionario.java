@@ -11,7 +11,7 @@ import static br.com.contmatic.prova.utils.ValidacaoDatas.validarDesligamento;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.time.LocalDate;
 import java.util.Objects;
@@ -56,7 +56,7 @@ public class Funcionario {
 	}
 
 	public void setNome(String nome) {
-		verificarObjetoNulo(nome);
+		verificarNulo(nome);
 		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_FUNCIONARIO, TAMANHO_MAXIMO_NOME_FUNCIONARIO);
 		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
@@ -68,7 +68,7 @@ public class Funcionario {
 	}
 
 	public void setCpf(String cpf) {
-		verificarObjetoNulo(cpf);
+		verificarNulo(cpf);
 		validarCPF(cpf);
 		this.cpf = cpf;
 	}
@@ -78,7 +78,7 @@ public class Funcionario {
 	}
 		
 	public void setDataAdmissao(LocalDate dataAdmissao) {
-		verificarObjetoNulo(dataAdmissao);
+		verificarNulo(dataAdmissao);
 		validarDataAdmissao(dataAdmissao);
 		this.dataAdmissao = dataAdmissao;
 	}
@@ -88,12 +88,12 @@ public class Funcionario {
 	}
 
 	public void setEndereco(Endereco endereco) {
-		verificarObjetoNulo(endereco);
+		verificarNulo(endereco);
 		this.endereco = endereco;
 	}
 	
 	public void setContato(Contato contato) {
-		verificarObjetoNulo(contato);
+		verificarNulo(contato);
 		this.contato = contato;
 	}
 
@@ -106,7 +106,7 @@ public class Funcionario {
 	}
 
 	public void setDataNascimento(LocalDate dataNascimento) {
-		verificarObjetoNulo(dataNascimento);
+		verificarNulo(dataNascimento);
 		dataNascMaiorIdade(dataNascimento);
 		this.dataNascimento = dataNascimento;
 	}
@@ -125,7 +125,7 @@ public class Funcionario {
 	}
 
 	public void setSetor(Setor setor) {
-		verificarObjetoNulo(setor);
+		verificarNulo(setor);
 		this.setor = setor;
 	}
 
@@ -134,7 +134,7 @@ public class Funcionario {
 	}
 
 	public void setCargo(Cargo cargo) {
-		verificarObjetoNulo(cargo);
+		verificarNulo(cargo);
 		this.cargo = cargo;
 	}
 

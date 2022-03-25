@@ -16,7 +16,7 @@ public final class ValidacaoUtils {
 
 	private ValidacaoUtils() {}
 
-	public static void verificarObjetoNulo(Object objeto) {
+	public static void verificarNulo(Object objeto) {
 		if (objeto == null) {
 			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 		}

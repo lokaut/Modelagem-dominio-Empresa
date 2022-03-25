@@ -15,7 +15,7 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermi
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarListaVazia;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarSalarioMinimo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarObjetoNulo;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -50,7 +50,7 @@ public class Cargo {
 	}
 
 	public void setNome(String nome) {
-		verificarObjetoNulo(nome);
+		verificarNulo(nome);
 		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_CARGO, TAMANHO_MAXIMO_NOME_CARGO);
 		this.nome = nome;
@@ -61,7 +61,7 @@ public class Cargo {
 	}
 
 	public void setSalario(BigDecimal salario) {
-		verificarObjetoNulo(salario);
+		verificarNulo(salario);
 		validarSalarioMinimo(salario);
 		this.salario = salario;
 	}
@@ -71,7 +71,7 @@ public class Cargo {
 	}
 
 	public void setFuncionarios(List<Funcionario> funcionarios) {
-		verificarObjetoNulo(funcionarios);
+		verificarNulo(funcionarios);
 		validarListaVazia(funcionarios);
 		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
 		this.funcionarios = funcionarios;
@@ -82,7 +82,7 @@ public class Cargo {
 	}
 
 	public void setCbo(String cbo) {
-		verificarObjetoNulo(cbo);
+		verificarNulo(cbo);
 		validarCampoVazio(cbo);
 		limiteCaracteresMinimoMaximo(cbo, TAMANHO_MINIMO_CBO_CARGO, TAMANHO_MAXIMO_CBO_CARGO);
 		validarCaracteresPermitidos(cbo, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL );
@@ -94,7 +94,7 @@ public class Cargo {
 	}
 
 	public void setDescricao(String descricao) {
-		verificarObjetoNulo(descricao);
+		verificarNulo(descricao);
 		validarCampoVazio(descricao);
 		limiteCaracteresMinimoMaximo(descricao, TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
 		this.descricao = descricao;
