@@ -1,15 +1,15 @@
-package br.com.contmatic.prova;
+package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.ConstantesTestes.DDD_SAO_PAULO;
-import static br.com.contmatic.prova.ConstantesTestes.EMAIL;
-import static br.com.contmatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.ConstantesTestes.EMAIL_SECUNDARIO;
-import static br.com.contmatic.prova.ConstantesTestes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_SECUNDARIO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

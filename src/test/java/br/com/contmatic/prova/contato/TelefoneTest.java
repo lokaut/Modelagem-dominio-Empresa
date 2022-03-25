@@ -1,12 +1,12 @@
-package br.com.contmatic.prova;
+package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.ConstantesTestes.DDD_CEARA;
-import static br.com.contmatic.prova.ConstantesTestes.DDD_SAO_PAULO;
-import static br.com.contmatic.prova.ConstantesTestes.NUMERO_CELULAR;
-import static br.com.contmatic.prova.ConstantesTestes.NUMERO_TELEFONE;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_CEARA;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_TELEFONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

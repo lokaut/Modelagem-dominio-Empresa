@@ -1,14 +1,5 @@
-package br.com.contmatic.prova;
+package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.ConstantesTestes.CNPJ_VALIDO;
-import static br.com.contmatic.prova.ConstantesTestes.DESCRICAO_SETOR;
-import static br.com.contmatic.prova.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIOS;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIO_01;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIO_02;
-import static br.com.contmatic.prova.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.ConstantesTestes.NOME_SETOR;
-import static br.com.contmatic.prova.ConstantesTestes.NOME_SETOR_RH;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
@@ -19,6 +10,15 @@ import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_SETOR;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DESCRICAO_SETOR;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIO_01;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIO_02;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_SETOR;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_SETOR_RH;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;

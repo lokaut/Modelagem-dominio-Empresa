@@ -1,15 +1,5 @@
-package br.com.contmatic.prova;
+package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.ConstantesTestes.CBO_ANALISTA_TI;
-import static br.com.contmatic.prova.ConstantesTestes.CBO_CARGOS;
-import static br.com.contmatic.prova.ConstantesTestes.DESCRICAO_CARGOS;
-import static br.com.contmatic.prova.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIOS;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIO_01;
-import static br.com.contmatic.prova.ConstantesTestes.FUNCIONARIO_02;
-import static br.com.contmatic.prova.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.ConstantesTestes.NOME_CARGOS;
-import static br.com.contmatic.prova.ConstantesTestes.SALARIO_CARGOS;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
@@ -17,6 +7,16 @@ import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCED
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_ANALISTA_TI;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_CARGOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DESCRICAO_CARGOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIO_01;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.FUNCIONARIO_02;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_CARGOS;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.SALARIO_CARGOS;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
