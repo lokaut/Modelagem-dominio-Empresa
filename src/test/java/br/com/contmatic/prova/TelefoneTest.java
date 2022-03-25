@@ -19,7 +19,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Constantes;
-import br.com.contmatic.prova.model.Telefone;
+import br.com.contmatic.prova.model.contato.Telefone;
 
 public class TelefoneTest {
 

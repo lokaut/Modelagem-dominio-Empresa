@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.model;
+package br.com.contmatic.prova.model.endereco;
 
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;

@@ -11,10 +11,10 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.contmatic.prova.model.Contato;
-import br.com.contmatic.prova.model.Endereco;
-import br.com.contmatic.prova.model.Funcionario;
-import br.com.contmatic.prova.model.Setor;
+import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.empresa.Funcionario;
+import br.com.contmatic.prova.model.empresa.Setor;
+import br.com.contmatic.prova.model.endereco.Endereco;
 
 public final class ConstantesTestes {
 	

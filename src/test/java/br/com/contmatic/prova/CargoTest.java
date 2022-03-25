@@ -38,8 +38,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.model.Cargo;
-import br.com.contmatic.prova.model.Funcionario;
+import br.com.contmatic.prova.model.empresa.Cargo;
+import br.com.contmatic.prova.model.empresa.Funcionario;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class CargoTest {

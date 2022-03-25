@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.model;
+package br.com.contmatic.prova.model.empresa;
 
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;

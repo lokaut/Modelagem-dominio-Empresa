@@ -22,8 +22,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
-import br.com.contmatic.prova.model.Contato;
-import br.com.contmatic.prova.model.Telefone;
+import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.contato.Telefone;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class ContatoTest {

@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.model;
+package br.com.contmatic.prova.model.empresa;
 
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
@@ -15,6 +15,9 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.time.LocalDate;
 import java.util.Objects;
+
+import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.endereco.Endereco;
 
 public class Funcionario {
 	

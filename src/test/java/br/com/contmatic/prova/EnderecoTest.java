@@ -43,8 +43,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.model.Cidade;
-import br.com.contmatic.prova.model.Endereco;
+import br.com.contmatic.prova.model.endereco.Cidade;
+import br.com.contmatic.prova.model.endereco.Endereco;
 
 public class EnderecoTest {
 

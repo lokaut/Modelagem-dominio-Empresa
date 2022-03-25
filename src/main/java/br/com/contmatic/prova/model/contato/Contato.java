@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.model;
+package br.com.contmatic.prova.model.contato;
 
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;

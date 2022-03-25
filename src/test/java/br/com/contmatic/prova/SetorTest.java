@@ -37,9 +37,9 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.model.Empresa;
-import br.com.contmatic.prova.model.Funcionario;
-import br.com.contmatic.prova.model.Setor;
+import br.com.contmatic.prova.model.empresa.Empresa;
+import br.com.contmatic.prova.model.empresa.Funcionario;
+import br.com.contmatic.prova.model.empresa.Setor;
 
 public class SetorTest {
 

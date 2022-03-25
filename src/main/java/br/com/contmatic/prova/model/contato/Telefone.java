@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.model;
+package br.com.contmatic.prova.model.contato;
 
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
 import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
