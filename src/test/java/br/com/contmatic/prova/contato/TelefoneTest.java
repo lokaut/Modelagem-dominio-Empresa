@@ -7,10 +7,7 @@ import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_CEARA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_TELEFONE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;

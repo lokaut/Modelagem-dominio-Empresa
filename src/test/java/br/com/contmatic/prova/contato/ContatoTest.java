@@ -26,7 +26,7 @@ import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-class ContatoTest {
+public class ContatoTest {
 
 	private IllegalStateException illegalState;
 	
