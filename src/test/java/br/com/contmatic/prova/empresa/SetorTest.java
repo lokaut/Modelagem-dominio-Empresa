@@ -1,10 +1,6 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_SETOR;
+
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DESCRICAO_SETOR;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
@@ -25,6 +21,8 @@ import java.time.Duration;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -90,8 +88,8 @@ public class SetorTest {
 	void nao_deve_aceitar_caracter_numerico_especial_nome(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setNome(nomeErrado));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME_SETOR
-						+ " a " + TAMANHO_MAXIMO_NOME_SETOR + " caracteres" + ", atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + SetorConstantes.TAMANHO_MINIMO_NOME_SETOR
+						+ " a " + SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR + " caracteres" + ", atualmente o campo possui "
 						+ nomeErrado.length()));
 	}
 
@@ -109,7 +107,7 @@ public class SetorTest {
 
 	@Test
 	void nao_deve_aceitar_lista_funcionarios_acima_limite() {
-		while (funcionarioVazio.size() <= TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
+		while (funcionarioVazio.size() <= FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
 			funcionarioVazio.add(FUNCIONARIO_01);
 			funcionarioVazio.add(FUNCIONARIO_02);
 		}
@@ -148,8 +146,8 @@ public class SetorTest {
 	void nao_deve_aceitar_caracter_numerico_especial_descricao(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setDescricao(nomeErrado));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_DESCRICAO
-						+ " a " + TAMANHO_MAXIMO_DESCRICAO + " caracteres" + ", atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + SetorConstantes.TAMANHO_MINIMO_DESCRICAO
+						+ " a " + SetorConstantes.TAMANHO_MAXIMO_DESCRICAO + " caracteres" + ", atualmente o campo possui "
 						+ nomeErrado.length()));
 	}
 	

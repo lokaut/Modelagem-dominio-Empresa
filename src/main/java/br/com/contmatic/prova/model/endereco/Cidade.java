@@ -1,9 +1,5 @@
 package br.com.contmatic.prova.model.endereco;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_MUNICIPIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_MUNICIPIO;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
@@ -14,6 +10,7 @@ import java.util.Objects;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
+import br.com.contmatic.prova.constantes.model.CidadeConstantes;
 
 public class Cidade {
 
@@ -41,7 +38,7 @@ public class Cidade {
 	public void setCodigoIbge(String codigoIbge) {
 		verificarNulo(codigoIbge);
 		validarCampoVazio(codigoIbge);
-		limiteCaracteresFixo(codigoIbge, TAMANHO_FIXO_CODIGOIBGE);
+		limiteCaracteresFixo(codigoIbge, CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE);
 		validarCaracteresPermitidos(codigoIbge, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.codigoIbge = codigoIbge;
 	}
@@ -54,7 +51,7 @@ public class Cidade {
 	public void setMunicipio(String municipio) {
 		verificarNulo(municipio);
 		validarCampoVazio(municipio);
-		limiteCaracteresMinimoMaximo(municipio, TAMANHO_MINIMO_MUNICIPIO, TAMANHO_MAXIMO_MUNICIPIO);
+		limiteCaracteresMinimoMaximo(municipio, CidadeConstantes.TAMANHO_MINIMO_MUNICIPIO, CidadeConstantes.TAMANHO_MAXIMO_MUNICIPIO);
 		validarCaracteresPermitidos(municipio, Regex.REGEX_CARACTERES_ALFABETICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.municipio = municipio;
 	}
@@ -67,7 +64,7 @@ public class Cidade {
 	public void setUnidadeFederativa(String unidadeFederativa) {
 		verificarNulo(unidadeFederativa);
 		validarCampoVazio(unidadeFederativa);
-		limiteCaracteresFixo(unidadeFederativa, TAMANHO_FIXO_UNIDADE_FEDERATIVA);
+		limiteCaracteresFixo(unidadeFederativa, CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA);
 		validarCaracteresPermitidos(unidadeFederativa, Regex.REGEX_ALFABETICO_SEM_ACENTO, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.unidadeFederativa = unidadeFederativa;
 	}

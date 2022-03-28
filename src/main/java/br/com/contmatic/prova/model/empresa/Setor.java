@@ -1,10 +1,6 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_SETOR;
+
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
@@ -17,6 +13,8 @@ import java.util.Objects;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
+import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
 
 public class Setor {
 
@@ -46,7 +44,7 @@ public class Setor {
 	public void setNome(String nome) {
 		verificarNulo(nome);
 		validarCampoVazio(nome);
-		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_SETOR, TAMANHO_MAXIMO_NOME_SETOR);
+		limiteCaracteresMinimoMaximo(nome, SetorConstantes.TAMANHO_MINIMO_NOME_SETOR, SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR);
 		validarCaracteresPermitidos(nome, Regex.REGEX_CARACTERES_ALFABETICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
@@ -58,7 +56,7 @@ public class Setor {
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		verificarNulo(funcionarios);
 		validarListaVazia(funcionarios);
-		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
+		validarTamanhoMaximoLista(funcionarios, FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
 		this.funcionarios = funcionarios;
 	}
 
@@ -69,7 +67,7 @@ public class Setor {
 	public void setDescricao(String descricao) {
 		verificarNulo(descricao);
 		validarCampoVazio(descricao);
-		limiteCaracteresMinimoMaximo(descricao, TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
+		limiteCaracteresMinimoMaximo(descricao, SetorConstantes.TAMANHO_MINIMO_DESCRICAO, SetorConstantes.TAMANHO_MAXIMO_DESCRICAO);
 		validarCaracteresPermitidos(descricao, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.descricao = descricao;
 	}

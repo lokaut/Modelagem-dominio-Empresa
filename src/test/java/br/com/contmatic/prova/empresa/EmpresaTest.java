@@ -1,12 +1,5 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CATORZE_NUMEROS_LETRAS;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO_ALEATORIO;
@@ -43,6 +36,10 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.RegraEmpresa;
+import br.com.contmatic.prova.constantes.model.ContatoConstantes;
+import br.com.contmatic.prova.constantes.model.EmpresaConstantes;
+import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Setor;
@@ -144,8 +141,8 @@ public class EmpresaTest {
 	void nao_deve_aceitar_fora_limite_caracteres_razaoSocial(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA + " a "
-						+ TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EmpresaConstantes.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA + " a "
+						+ EmpresaConstantes.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 	
 	@ParameterizedTest
@@ -178,8 +175,8 @@ public class EmpresaTest {
 	void nao_deve_aceitar_fora_limite_caracteres_NomeFantasia(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA + " a "
-						+ TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EmpresaConstantes.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA + " a "
+						+ EmpresaConstantes.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 	
 	@ParameterizedTest
@@ -227,7 +224,7 @@ public class EmpresaTest {
 	
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_setores() {
-		while (setoresVazio.size() <= TAMANHO_MAXIMO_LISTA_SETORES) {
+		while (setoresVazio.size() <= SetorConstantes.TAMANHO_MAXIMO_LISTA_SETORES) {
 			setoresVazio.add(SETOR_01);
 			setoresVazio.add(SETOR_02);
 		}
@@ -252,7 +249,7 @@ public class EmpresaTest {
 	
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_contatos() {
-		while (contatosVazio.size() <= TAMANHO_MAXIMO_LISTA_CONTATOS) {
+		while (contatosVazio.size() <= ContatoConstantes.TAMANHO_MAXIMO_LISTA_CONTATOS) {
 			contatosVazio.add(CONTATO_01);
 			contatosVazio.add(CONTATO_02);
 			
@@ -284,7 +281,7 @@ public class EmpresaTest {
 	
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_enderecos() {
-		while (enderecosVazio.size() <= TAMANHO_MAXIMO_LISTA_ENDERECOS) {
+		while (enderecosVazio.size() <= EnderecoConstantes.TAMANHO_MAXIMO_LISTA_ENDERECOS) {
 			enderecosVazio.add(ENDERECO_01);
 			enderecosVazio.add(ENDERECO_02);
 		}

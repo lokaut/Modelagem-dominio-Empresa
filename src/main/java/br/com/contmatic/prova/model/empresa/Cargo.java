@@ -1,12 +1,6 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_CBO_CARGO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_CBO_CARGO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_DESCRICAO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
+
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
@@ -21,6 +15,9 @@ import java.util.Objects;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
+import br.com.contmatic.prova.constantes.model.CargoConstantes;
+import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
 
 public class Cargo {
 
@@ -53,7 +50,7 @@ public class Cargo {
 	public void setNome(String nome) {
 		verificarNulo(nome);
 		validarCampoVazio(nome);
-		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_CARGO, TAMANHO_MAXIMO_NOME_CARGO);
+		limiteCaracteresMinimoMaximo(nome, CargoConstantes.TAMANHO_MINIMO_NOME_CARGO, CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO);
 		this.nome = nome;
 	}
 	
@@ -74,7 +71,7 @@ public class Cargo {
 	public void setFuncionarios(List<Funcionario> funcionarios) {
 		verificarNulo(funcionarios);
 		validarListaVazia(funcionarios);
-		validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
+		validarTamanhoMaximoLista(funcionarios, FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
 		this.funcionarios = funcionarios;
 	}
 
@@ -85,7 +82,7 @@ public class Cargo {
 	public void setCbo(String cbo) {
 		verificarNulo(cbo);
 		validarCampoVazio(cbo);
-		limiteCaracteresMinimoMaximo(cbo, TAMANHO_MINIMO_CBO_CARGO, TAMANHO_MAXIMO_CBO_CARGO);
+		limiteCaracteresMinimoMaximo(cbo, CargoConstantes.TAMANHO_MINIMO_CBO_CARGO, CargoConstantes.TAMANHO_MAXIMO_CBO_CARGO);
 		validarCaracteresPermitidos(cbo, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cbo = cbo;
 	}
@@ -97,7 +94,7 @@ public class Cargo {
 	public void setDescricao(String descricao) {
 		verificarNulo(descricao);
 		validarCampoVazio(descricao);
-		limiteCaracteresMinimoMaximo(descricao, TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
+		limiteCaracteresMinimoMaximo(descricao, SetorConstantes.TAMANHO_MINIMO_DESCRICAO, SetorConstantes.TAMANHO_MAXIMO_DESCRICAO);
 		this.descricao = descricao;
 	}
 

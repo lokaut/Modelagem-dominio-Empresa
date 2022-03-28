@@ -1,8 +1,6 @@
 package br.com.contmatic.prova.empresa;
 
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CPF_VALIDO_ALEATORIO;
@@ -25,13 +23,14 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
-import br.com.contmatic.prova.constantes.Mensagem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
@@ -83,8 +82,8 @@ class FuncionarioTest {
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME_FUNCIONARIO + " a "
-						+ TAMANHO_MAXIMO_NOME_FUNCIONARIO + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + FuncionarioConstantes.TAMANHO_MINIMO_NOME_FUNCIONARIO + " a "
+						+ FuncionarioConstantes.TAMANHO_MAXIMO_NOME_FUNCIONARIO + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 
 	@Test

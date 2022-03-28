@@ -1,7 +1,5 @@
 package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
@@ -12,7 +10,6 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import br.com.contmatic.prova.constantes.Mensagem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -20,6 +17,8 @@ import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.TestMethodOrder;
 
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.ContatoConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 
@@ -62,8 +61,8 @@ public class ContatoTest {
 	@Order(2)
 	void nao_deve_aceitar_email_com_mais_254_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
-		assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_EMAIL + " a "
-						+ TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui "
+		assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + ContatoConstantes.TAMANHO_MINIMO_EMAIL + " a "
+						+ ContatoConstantes.TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui "
 						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 

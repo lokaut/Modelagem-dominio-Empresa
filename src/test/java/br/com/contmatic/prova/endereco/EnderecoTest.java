@@ -1,14 +1,5 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NUMERO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_BAIRRO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.BAIRRO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CEP;
@@ -40,6 +31,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
@@ -93,7 +85,7 @@ public class EnderecoTest {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> this.endereco.setLogradouro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage().contains(
-				"Quantidade de carácter inválido, o campo deve estar entre "+TAMANHO_MINIMO_LOGRADOURO_ENDERECO+" a "+TAMANHO_MAXIMO_LOGRADOURO_ENDERECO+" caracteres, atualmente o campo possui "
+				"Quantidade de carácter inválido, o campo deve estar entre "+ EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO +" a "+ EnderecoConstantes.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO +" caracteres, atualmente o campo possui "
 						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
@@ -128,8 +120,8 @@ public class EnderecoTest {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> this.endereco.setBairro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_BAIRRO_ENDERECO + " a "
-						+ TAMANHO_MAXIMO_BAIRRO_ENDERECO + " caracteres, atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_BAIRRO_ENDERECO + " a "
+						+ EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO + " caracteres, atualmente o campo possui "
 						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
@@ -161,8 +153,8 @@ public class EnderecoTest {
 	void nao_deve_aceitar_numero_fora_limite_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setNumero(MAIS_CIQUENTA_NUMEROS));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NUMERO_ENDERECO
-						+ " a " + TAMANHO_MAXIMO_NUMERO_ENDERECO + " caracteres, atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO
+						+ " a " + EnderecoConstantes.TAMANHO_MAXIMO_NUMERO_ENDERECO + " caracteres, atualmente o campo possui "
 						+ MAIS_CIQUENTA_NUMEROS.length()));
 	}
 
@@ -207,7 +199,7 @@ public class EnderecoTest {
 	void nao_deve_aceitar_cep_fora_limite_caracteres(String cepLimite) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cepLimite));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácteres inválido! O campo deve possuir apenas " + TAMANHO_FIXO_CEP_ENDERECO
+				.contains("Quantidade de carácteres inválido! O campo deve possuir apenas " + EnderecoConstantes.TAMANHO_FIXO_CEP_ENDERECO
 						+ " caracteres, atualmente o campo possui " + cepLimite.length() + " caractere(s)"));
 	}
 
@@ -240,8 +232,8 @@ public class EnderecoTest {
 	void nao_deve_aceitar_fora_limite_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setComplemento(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_COMPLEMENTO_ENDERECO
-						+ " a " + TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO + " caracteres, atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO
+						+ " a " + EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO + " caracteres, atualmente o campo possui "
 						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 	

@@ -1,7 +1,5 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_IBGE_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
@@ -25,6 +23,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.CidadeConstantes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {
@@ -69,7 +68,7 @@ public class CidadeTest {
 	void nao_deve_aceitar_caracteres_diferente_sete_codigoIbge(String codigoErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(codigoErrado));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ TAMANHO_FIXO_CODIGOIBGE + " caracteres" + ", atualmente o campo possui " + codigoErrado.length() + " caractere(s)"));
+				+ CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE + " caracteres" + ", atualmente o campo possui " + codigoErrado.length() + " caractere(s)"));
 	}
 
 	@ParameterizedTest
@@ -131,7 +130,7 @@ public class CidadeTest {
 	void nao_deve_aceitar_diferente_sete_caracteres_unidadeFederativa() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(TRES_CARACTERES_ALFABETICOS));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ TAMANHO_FIXO_UNIDADE_FEDERATIVA + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
+				+ CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
 	}
 
 	@Test

@@ -1,12 +1,5 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.utils.ValidacaoCnpj.validarCNPJ;
 import static br.com.contmatic.prova.utils.ValidacaoDatas.validarDataMaiorDataAtual;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
@@ -22,6 +15,10 @@ import java.util.Objects;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
+import br.com.contmatic.prova.constantes.model.ContatoConstantes;
+import br.com.contmatic.prova.constantes.model.EmpresaConstantes;
+import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
@@ -73,7 +70,7 @@ public class Empresa {
 	public void setRazaoSocial(String razaoSocial) {
 		verificarNulo(razaoSocial);
 		validarCampoVazio(razaoSocial);
-		limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
+		limiteCaracteresMinimoMaximo(razaoSocial, EmpresaConstantes.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, EmpresaConstantes.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
 		validarCaracteresPermitidos(razaoSocial, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.razaoSocial = razaoSocial;
 	}
@@ -85,7 +82,7 @@ public class Empresa {
 	public void setNomeFantasia(String nomeFantasia) {
 		verificarNulo(nomeFantasia);
 		validarCampoVazio(nomeFantasia);
-		limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
+		limiteCaracteresMinimoMaximo(nomeFantasia, EmpresaConstantes.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, EmpresaConstantes.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
 		validarCaracteresPermitidos(nomeFantasia, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.nomeFantasia = nomeFantasia;
 	}
@@ -107,7 +104,7 @@ public class Empresa {
 	public void setSetores(List<Setor> setores) {
 		verificarNulo(setores);
 		validarListaVazia(setores);
-		validarTamanhoMaximoLista(setores, TAMANHO_MAXIMO_LISTA_SETORES);
+		validarTamanhoMaximoLista(setores, SetorConstantes.TAMANHO_MAXIMO_LISTA_SETORES);
 		this.setores = setores;
 	}
 
@@ -118,7 +115,7 @@ public class Empresa {
 	public void setContatos(List<Contato> contatos) {
 		verificarNulo(contatos);
 		validarListaVazia(contatos);
-		validarTamanhoMaximoLista(contatos, TAMANHO_MAXIMO_LISTA_CONTATOS);
+		validarTamanhoMaximoLista(contatos, ContatoConstantes.TAMANHO_MAXIMO_LISTA_CONTATOS);
 		this.contatos = contatos;
 	}
 
@@ -129,7 +126,7 @@ public class Empresa {
 	public void setEnderecos(List<Endereco> enderecos) {
 		verificarNulo(enderecos);
 		validarListaVazia(enderecos);
-		validarTamanhoMaximoLista(enderecos, TAMANHO_MAXIMO_LISTA_ENDERECOS);
+		validarTamanhoMaximoLista(enderecos, EnderecoConstantes.TAMANHO_MAXIMO_LISTA_ENDERECOS);
 		this.enderecos = enderecos;
 	}
 

@@ -1,8 +1,6 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
-import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
+
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_ANALISTA_TI;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DESCRICAO_CARGOS;
@@ -26,6 +24,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.CargoConstantes;
+import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -69,8 +69,8 @@ public class CargoTest {
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setNome(nome));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_NOME_CARGO + " a "
-						+ TAMANHO_MAXIMO_NOME_CARGO + " caracteres" + ", atualmente o campo possui " + nome.length()));
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + CargoConstantes.TAMANHO_MINIMO_NOME_CARGO + " a "
+						+ CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO + " caracteres" + ", atualmente o campo possui " + nome.length()));
 	}
 	
 	@Test
@@ -119,7 +119,7 @@ public class CargoTest {
 	@Test
 	@Order(8)
 	void nao_deve_aceitar_lista_acima_limite() {
-		while (funcionarioVazio.size() <= TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
+		while (funcionarioVazio.size() <= FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
 			funcionarioVazio.add(FUNCIONARIO_01);
 			funcionarioVazio.add(FUNCIONARIO_02);
 		}
