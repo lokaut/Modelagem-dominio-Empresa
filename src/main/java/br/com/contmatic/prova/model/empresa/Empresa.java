@@ -1,7 +1,5 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
@@ -22,6 +20,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.Regex;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
@@ -74,7 +74,7 @@ public class Empresa {
 		verificarNulo(razaoSocial);
 		validarCampoVazio(razaoSocial);
 		limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
-		validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+		validarCaracteresPermitidos(razaoSocial, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.razaoSocial = razaoSocial;
 	}
 
@@ -86,7 +86,7 @@ public class Empresa {
 		verificarNulo(nomeFantasia);
 		validarCampoVazio(nomeFantasia);
 		limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
-		validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+		validarCaracteresPermitidos(nomeFantasia, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.nomeFantasia = nomeFantasia;
 	}
 

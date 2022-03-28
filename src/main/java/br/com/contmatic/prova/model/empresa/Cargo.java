@@ -1,7 +1,5 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_CBO_CARGO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
@@ -20,6 +18,9 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.Regex;
 
 public class Cargo {
 
@@ -85,7 +86,7 @@ public class Cargo {
 		verificarNulo(cbo);
 		validarCampoVazio(cbo);
 		limiteCaracteresMinimoMaximo(cbo, TAMANHO_MINIMO_CBO_CARGO, TAMANHO_MAXIMO_CBO_CARGO);
-		validarCaracteresPermitidos(cbo, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL );
+		validarCaracteresPermitidos(cbo, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cbo = cbo;
 	}
 

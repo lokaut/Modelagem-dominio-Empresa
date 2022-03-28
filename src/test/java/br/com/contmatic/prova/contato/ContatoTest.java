@@ -1,8 +1,5 @@
 package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
@@ -15,6 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer;
@@ -57,7 +55,7 @@ public class ContatoTest {
 	@Order(1)
 	void nao_deve_aceitar_email_incorreto() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("erick22@.com"));
-		assertTrue(illegalState.getMessage().contains(MENSAGEM_EMAIL_INVALIDO));
+		assertTrue(illegalState.getMessage().contains(Mensagem.MENSAGEM_EMAIL_INVALIDO));
 	}
 
 	@Test
@@ -73,14 +71,14 @@ public class ContatoTest {
 	@Order(3)
 	void nao_deve_aceitar_email_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setEmail(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	@Order(4)
 	void nao_deve_aceitar_email_em_branco() {
 		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("  "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Test
@@ -93,7 +91,7 @@ public class ContatoTest {
 	@Order(6)
 	void deve_validar_telefone_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setTelefone(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test

@@ -1,13 +1,6 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_ADMISSAO_FUTURA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CPF_INVALIDO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_IDADE_MINIMA_EMPRESA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_CARGOS;
@@ -32,6 +25,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -96,20 +90,20 @@ class FuncionarioTest {
 	@Test
 	void nao_deve_aceitar_nome_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setNome(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_vazio_nome() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(" "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "123456", "@@123", "Am@anda sous@", "J$ssica Cardoso", "&rick" })
 	void nao_deve_aceitar_caracter_numerico_especial_nome(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nomeErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@ParameterizedTest
@@ -117,7 +111,7 @@ class FuncionarioTest {
 			"9", "907950078095", "9079500780990795007809" })
 	void nao_deve_aceitar_numeros_diferente_onze_numeros_cpf(String cpf) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(cpf));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS));
 	}
 
 	@ParameterizedTest
@@ -125,25 +119,25 @@ class FuncionarioTest {
 			"66666666666", "77777777777", "88888888888", "99999999999" })
 	void nao_deve_aceitar_cpf_somente_numeros_iguais(String cpfInvalido) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(cpfInvalido));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CPF_INVALIDO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CPF_INVALIDO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_texto_cpf() {
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(ONZE_NUMEROS_CARACTERES));
-		assertTrue(illegalState.getMessage().contains(MENSAGEM_CPF_INVALIDO));
+		assertTrue(illegalState.getMessage().contains(Mensagem.MENSAGEM_CPF_INVALIDO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nulo_cpf() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setCpf(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_contato_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setContato(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
@@ -151,7 +145,7 @@ class FuncionarioTest {
 	void nao_deve_aceitar_funcionario_menor_dezesseis_anos(int idade) {
 		LocalDate dataNascimento = now().minusYears(idade);
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataNascimento(dataNascimento));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_IDADE_MINIMA_EMPRESA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_IDADE_MINIMA_EMPRESA));
 	}
 
 	@ParameterizedTest
@@ -159,25 +153,25 @@ class FuncionarioTest {
 	void nao_deve_aceitar_data_admissao_acima_dois_meses(int meses) {
 		 LocalDate mesesAposDataHoje = now().plusMonths(meses);
 		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataAdmissao(mesesAposDataHoje));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_ADMISSAO_FUTURA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_ADMISSAO_FUTURA));
 	}
 
 	@Test
 	void nao_deve_aceitar_data_nascimento_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setDataNascimento(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
 	void nao_deve_aceitar_endereco_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setEndereco(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
 	void nao_deve_aceitar_setor_nulo() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setSetor(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@ParameterizedTest
@@ -185,7 +179,7 @@ class FuncionarioTest {
 	void nao_deve_aceitar_dataDesligamento_antes_data_hoje(int dias) {
 		LocalDate dataAnteriorAoDiaAtual = now().minusDays(dias);
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setDataDesligamento(dataAnteriorAoDiaAtual));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL));
 	}
 	
 	@ParameterizedTest

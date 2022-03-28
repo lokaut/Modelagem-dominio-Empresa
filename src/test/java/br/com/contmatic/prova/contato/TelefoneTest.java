@@ -1,13 +1,13 @@
 package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_CEARA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_TELEFONE;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
@@ -15,7 +15,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.Constantes;
+import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.model.contato.Telefone;
 
 public class TelefoneTest {
@@ -52,41 +52,41 @@ public class TelefoneTest {
 	@ValueSource(strings = { "09", "0934", "3", "0", "00" })
 	void nao_deve_aceitar_ddd_inexistente(String dddInexistente) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(dddInexistente));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DDD_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_DDD_INCORRETO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "      " })
 	void nao_deve_aceitar_em_branco_ddd(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_ddd_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.telefone.setDdd(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "09", "9544334", "000000", "0", "000000000", })
 	void nao_deve_aceitar_telefone_inexistente(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_TELEFONE_INCORRETO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "      " })
 	void nao_deve_aceitar_em_branco_numero_telefone(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Constantes.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = { "abdtt066f", "abcdefghi", "0000abbb00", "0" })
 	void nao_deve_aceitar_telefone_caracteres_alfabeticos(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_TELEFONE_INCORRETO));
 	}
 	
 	@Test

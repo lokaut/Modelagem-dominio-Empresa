@@ -1,9 +1,5 @@
 package br.com.contmatic.prova.model.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
@@ -18,6 +14,9 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.List;
 import java.util.Objects;
+
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.Regex;
 
 public class Setor {
 
@@ -48,7 +47,7 @@ public class Setor {
 		verificarNulo(nome);
 		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_SETOR, TAMANHO_MAXIMO_NOME_SETOR);
-		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
+		validarCaracteresPermitidos(nome, Regex.REGEX_CARACTERES_ALFABETICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
 
@@ -71,7 +70,7 @@ public class Setor {
 		verificarNulo(descricao);
 		validarCampoVazio(descricao);
 		limiteCaracteresMinimoMaximo(descricao, TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
-		validarCaracteresPermitidos(descricao, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+		validarCaracteresPermitidos(descricao, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.descricao = descricao;
 	}
 

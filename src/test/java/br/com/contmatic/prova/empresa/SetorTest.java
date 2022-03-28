@@ -1,10 +1,5 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_DESCRICAO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_SETOR;
@@ -37,6 +32,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
@@ -72,21 +68,21 @@ public class SetorTest {
 	@Test
 	void nao_deve_aceitar_nome_nulo_setor() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> setor.setNome(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "      " })
 	void nao_deve_aceitar_campo_vazio_nome(String stringVazio) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> setor.setNome(stringVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "Setor errad0", "s3tor setor" })
 	void nao_deve_aceitar_caracter_numerico_nome_setor(String setoErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setNome(setoErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@ParameterizedTest
@@ -108,7 +104,7 @@ public class SetorTest {
 	void nao_deve_aceitar_lista_vazia() {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> setorCompleto.setFuncionarios(funcionarioVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -120,7 +116,7 @@ public class SetorTest {
 
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> setorCompleto.setFuncionarios(funcionarioVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
 
 	@Test
@@ -137,14 +133,14 @@ public class SetorTest {
 	@Test
 	void nao_deve_aceitar_descricao_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> setor.setDescricao(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "   " })
 	void nao_deve_aceitar_campo_descricao_vazio(String variavelVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> setor.setDescricao(variavelVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
@@ -161,7 +157,7 @@ public class SetorTest {
 	@ValueSource(strings = { "Descrição errad@", "D$scrição erradissimo" })
 	void nao_deve_aceitar_caracter_numerico_descricao_setor(String descricaoErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setDescricao(descricaoErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 	
 	@Test
@@ -172,7 +168,7 @@ public class SetorTest {
 	@Test
 	void nao_deve_aceitar_empresa_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> setor.setEmpresa(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test

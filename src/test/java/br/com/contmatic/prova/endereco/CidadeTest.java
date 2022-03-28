@@ -1,13 +1,8 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_ERRADO_IBGE;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_IBGE_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
@@ -29,6 +24,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {
@@ -58,14 +54,14 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_codigoIbge() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setCodigoIbge(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "", " ", "  " })
 	void nao_deve_aceitar_campo_vazio_nome_codigoIbge(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
@@ -80,20 +76,20 @@ public class CidadeTest {
 	@ValueSource(strings = { "abc1221", "35380O6", "35E8006", "3538@06", "35$8006"})
 	void nao_deve_aceitar_caracter_diferente_numerico_codigoIbge(String codigoErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setCodigoIbge(codigoErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_municipio() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setMunicipio(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "", " ", "  " })
 	void nao_deve_aceitar_campo_vazio_nome_municipio(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -110,25 +106,25 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_caracter_numerico_municipio() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio("abc1221"));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_municipio() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setMunicipio(CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_unidadeFederativa() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.setUnidadeFederativa(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_vazio_unidadeFederativa() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa(" "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -141,25 +137,25 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_caracter_numerico_unidadeFederativa() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa("11"));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_unidadeFederativa() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidade.setUnidadeFederativa("@$"));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_retornar_nulo_unidadeFederativa() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getUnidadeFederativa());
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_retornar_nulo_municipio() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidade.getMunicipio());
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test

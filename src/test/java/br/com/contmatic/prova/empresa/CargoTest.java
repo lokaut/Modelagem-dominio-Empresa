@@ -1,9 +1,5 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MINIMO_NOME_CARGO;
@@ -29,6 +25,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.MethodOrderer.OrderAnnotation;
@@ -80,21 +77,21 @@ public class CargoTest {
 	@Order(2)
 	void nao_deve_aceitar_nome_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> cargo.setNome(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
 	@Order(3)
 	void nao_deve_aceitar_campo_vazio_nome() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setNome(" "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Order(4)
 	@Test
 	void nao_deve_aceitar_campo_nulo_salario() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> cargoCompleto.setSalario(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
@@ -103,7 +100,7 @@ public class CargoTest {
 	void nao_deve_aceitar_salario_menor_salario_minimo(double valores) {
 		BigDecimal salAbaixoSalMinimo = valueOf(valores);
 		this.illegalState = assertThrows(IllegalStateException.class,() -> cargoCompleto.setSalario(salAbaixoSalMinimo));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO));
 	}
 	
 	@Test
@@ -116,7 +113,7 @@ public class CargoTest {
 	@Order(7)
 	void nao_deve_aceitar_lista_vazia() {
 		this.illegalState = assertThrows(IllegalStateException.class,() -> cargoCompleto.setFuncionarios(funcionarioVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));		
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Test
@@ -127,7 +124,7 @@ public class CargoTest {
 			funcionarioVazio.add(FUNCIONARIO_02);
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setFuncionarios(funcionarioVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
 	
 	@Test

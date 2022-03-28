@@ -1,14 +1,12 @@
 package br.com.contmatic.prova.model.contato;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DDD_INCORRETO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_TELEFONE_INCORRETO;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_DDD;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_TELEFONE;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
-
 import java.util.Objects;
+
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.Regex;
+
+import static br.com.contmatic.prova.utils.ValidacaoUtils.*;
+
 
 public class Telefone {
 	
@@ -28,7 +26,7 @@ public class Telefone {
 	public void setDdd(String ddd) {
 		verificarNulo(ddd);
 		validarCampoVazio(ddd);
-		validarCaracteresPermitidos(ddd, REGEX_DDD, MENSAGEM_DDD_INCORRETO);
+		validarCaracteresPermitidos(ddd, Regex.REGEX_DDD, Mensagem.MENSAGEM_DDD_INCORRETO);
 		this.ddd = ddd;
 	}
 
@@ -39,7 +37,7 @@ public class Telefone {
 	public void setNumeroTelefone(String numeroTelefone) {
 		verificarNulo(numeroTelefone);
 		validarCampoVazio(numeroTelefone);
-		validarCaracteresPermitidos(numeroTelefone, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
+		validarCaracteresPermitidos(numeroTelefone, Regex.REGEX_TELEFONE, Mensagem.MENSAGEM_TELEFONE_INCORRETO);
 		this.numeroTelefone = numeroTelefone;
 	}
 

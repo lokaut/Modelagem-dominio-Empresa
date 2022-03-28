@@ -1,9 +1,5 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
@@ -43,6 +39,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
@@ -82,13 +79,13 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_logradouro_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.endereco.setLogradouro(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_logradouro_vazio() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setLogradouro("  "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -104,7 +101,7 @@ public class EnderecoTest {
 	void nao_deve_aceitar_logradouro_caracter_especial() {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> this.endereco.setLogradouro(CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 
 	@Test
@@ -117,13 +114,13 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_bairro_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.endereco.setBairro(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_bairro_vazio() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setBairro("  "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -139,7 +136,7 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_bairro_caracter_especial() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setBairro(CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 
 	@Test
@@ -151,13 +148,13 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_numero_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.endereco.setNumero(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_numero_vazio() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setNumero("  "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
@@ -172,7 +169,7 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_caracter_alfabetico_em_numero_endereco() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setNumero("onze"));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
@@ -185,7 +182,7 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_cidade_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.endereco.setCidade(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
@@ -196,13 +193,13 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_cep_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.endereco.setCep(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void nao_deve_aceitar_cep_vazio() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep("  "));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
@@ -218,7 +215,7 @@ public class EnderecoTest {
 	@ValueSource(strings = { "abcdefgh", "abc2345h", "@b4def@@", "04551@59", "abc#´%g3" })
 	void nao_deve_aceitar_caracter_alfabetico_cep(String cepAlfabetico) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setCep(cepAlfabetico));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test

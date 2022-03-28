@@ -1,9 +1,5 @@
  package br.com.contmatic.prova.model.endereco;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_ALFANUMERICOS;
-import static br.com.contmatic.prova.constantes.Constantes.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_FIXO_CEP_ENDERECO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
@@ -21,6 +17,9 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermi
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
+
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.Regex;
 
 public class Endereco {
 	
@@ -68,7 +67,7 @@ public class Endereco {
 		verificarNulo(logradouro);
 		validarCampoVazio(logradouro);
 		limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
-		validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+		validarCaracteresPermitidos(logradouro, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.logradouro = logradouro;
 	}
 
@@ -80,7 +79,7 @@ public class Endereco {
 		verificarNulo(numero);
 		validarCampoVazio(numero);
 		limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
-		validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+		validarCaracteresPermitidos(numero, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.numero = numero;
 	}
 
@@ -101,7 +100,7 @@ public class Endereco {
 		verificarNulo(bairro);
 		validarCampoVazio(bairro);
 		limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
-		validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+		validarCaracteresPermitidos(bairro, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
 		this.bairro = bairro;
 	}
 
@@ -113,7 +112,7 @@ public class Endereco {
 		verificarNulo(cep);
 		validarCampoVazio(cep);
 		limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
-		validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+		validarCaracteresPermitidos(cep, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
 		this.cep = cep;
 	}
 	

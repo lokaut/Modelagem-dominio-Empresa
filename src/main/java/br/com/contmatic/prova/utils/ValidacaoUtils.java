@@ -1,11 +1,8 @@
 package br.com.contmatic.prova.utils;
 
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_EMAIL_INVALIDO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
-import static br.com.contmatic.prova.constantes.Constantes.SALARIO_MINIMO;
+import br.com.contmatic.prova.constantes.Mensagem;
+
+import static br.com.contmatic.prova.constantes.RegraEmpresa.SALARIO_MINIMO;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -18,7 +15,7 @@ public final class ValidacaoUtils {
 
 	public static void verificarNulo(Object objeto) {
 		if (objeto == null) {
-			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
+			throw new IllegalArgumentException(Mensagem.MENSAGEM_CAMPO_NULO);
 		}
 	}
 
@@ -59,7 +56,7 @@ public final class ValidacaoUtils {
 
 	public static void validarCampoVazio(String nome) {
 		if (nome.trim().isBlank()) {
-			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+			throw new IllegalStateException(Mensagem.MENSAGEM_CAMPO_VAZIO);
 		}
 	}
 
@@ -68,14 +65,14 @@ public final class ValidacaoUtils {
 		Pattern pattern = Pattern.compile(regex, Pattern.CASE_INSENSITIVE);
 		Matcher matcher = pattern.matcher(email);
 		if (!matcher.matches()) {
-			throw new IllegalStateException(MENSAGEM_EMAIL_INVALIDO);
+			throw new IllegalStateException(Mensagem.MENSAGEM_EMAIL_INVALIDO);
 		}
 	}
 
 	public static void validarSalarioMinimo(BigDecimal salario) {
 		BigDecimal diferencaSalario = salario.subtract(SALARIO_MINIMO);
 		if (diferencaSalario.signum() == -1) {
-			throw new IllegalStateException(MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
+			throw new IllegalStateException(Mensagem.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO);
 		}
 	}
 
@@ -87,13 +84,13 @@ public final class ValidacaoUtils {
 
 	public static <E> void validarListaVazia(List<E> lista) {
 		if (lista.isEmpty()) {
-			throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+			throw new IllegalStateException(Mensagem.MENSAGEM_CAMPO_VAZIO);
 		}
 	}
 
 	public static <E> void validarTamanhoMaximoLista(List<E> lista, int tamanho) {
 		if (lista.size() > tamanho) {
-			throw new IllegalStateException(MENSAGEM_NUMERO_EXCEDIDO_LISTA);
+			throw new IllegalStateException(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA);
 		}
 	}
 }

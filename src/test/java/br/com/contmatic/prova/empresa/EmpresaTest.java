@@ -1,13 +1,5 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.Constantes.FUNDACAO_EMPRESA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_NULO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CAMPO_VAZIO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_CNPJ_INVALIDO;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_DATA_FUTURA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
-import static br.com.contmatic.prova.constantes.Constantes.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_CONTATOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_ENDERECOS;
 import static br.com.contmatic.prova.constantes.ConstantesRegrasNegocio.TAMANHO_MAXIMO_LISTA_SETORES;
@@ -49,6 +41,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.RegraEmpresa;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Setor;
@@ -77,7 +71,7 @@ public class EmpresaTest {
 		contatosVazio = new ArrayList<>();
 		enderecosVazio = new ArrayList<>();
 		empresa = new Empresa(CNPJ_VALIDO_ALEATORIO);
-		empresaCompleta = new Empresa(CNPJ_VALIDO, RAZAO_SOCIAL, NOME_FANTASIA, FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
+		empresaCompleta = new Empresa(CNPJ_VALIDO, RAZAO_SOCIAL, NOME_FANTASIA, RegraEmpresa.FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
 	}
 
 	@AfterAll
@@ -88,14 +82,14 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_cnpj_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setCnpj(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"", " ", "  "})
 	void nao_deve_aceitar_campo_vazio_nome(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS));
 	}
 	
 	@ParameterizedTest
@@ -103,7 +97,7 @@ public class EmpresaTest {
 			"9", "907950078095", "9079500780990795007809" })
 	void nao_deve_aceitar_numeros_diferente_catorze_numeros_cnpj(String cnpj) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(cnpj));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS));
 	}
 	
 	@ParameterizedTest
@@ -111,20 +105,20 @@ public class EmpresaTest {
 			"66666666666666", "77777777777777", "88888888888888", "99999999999999" })
 	void nao_deve_aceitar_cnpj_somente_numeros_iguais(String cnpjInvalido) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(cnpjInvalido));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CNPJ_INVALIDO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_INVALIDO));
 	}
 	
 	@Test
 	void nao_deve_aceitar_caracter_texto_cnpj() {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(CATORZE_NUMEROS_LETRAS));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CNPJ_INVALIDO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_INVALIDO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "56973542000102", "08068013000101", "12344459000108" })
 	void nao_deve_aceitar_cnpj_invalido(String cnpjInvalido) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(cnpjInvalido));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CNPJ_INVALIDO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_INVALIDO));
 	}
 	
 	@Test
@@ -135,14 +129,14 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_razaoSocial_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setRazaoSocial(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"", " ", "  "})
 	void nao_deve_aceitar_campo_vazio_cnpj(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@ParameterizedTest
@@ -158,7 +152,7 @@ public class EmpresaTest {
 	@ValueSource(strings = { "@@123", "Am@anda sous@", "J$ssica Cardoso", "&rick" })
 	void nao_deve_aceitar_caracter_numerico_especial_razaoSocial(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nomeErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 	
 	@Test
@@ -169,14 +163,14 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_nomeFantasia_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setNomeFantasia(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = {"", " ", "  "})
 	void nao_deve_aceitar_campo_vazio_NomeFantasia(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setNomeFantasia(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@ParameterizedTest
@@ -192,7 +186,7 @@ public class EmpresaTest {
 	@ValueSource(strings = { "@@123", "Am@anda sous@", "J$ssica Cardoso", "&rick" })
 	void nao_deve_aceitar_caracter_numerico_especial_NomeFantasia(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nomeErrado));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 	
 	@Test
@@ -203,7 +197,7 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_dataFundacao_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setDataFundacao(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@ParameterizedTest
@@ -211,24 +205,24 @@ public class EmpresaTest {
 	void nao_deve_aceitar_data_futura_dataFundacao(long dias) {
 		LocalDate dataFutura = now().plusDays(dias);
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setDataFundacao(dataFutura));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DATA_FUTURA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_DATA_FUTURA));
 	}
 	
 	@Test
 	void deve_validar_correto_dataFundacao() {
-		assertEquals(FUNDACAO_EMPRESA, empresaCompleta.getDataFundacao());
+		assertEquals(RegraEmpresa.FUNDACAO_EMPRESA, empresaCompleta.getDataFundacao());
 	}
 	
 	@Test
 	void nao_deve_aceitar_lista_vazia_setores() {
 		this.illegalState = assertThrows(IllegalStateException.class,() -> empresa.setSetores(setoresVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));		
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Test
 	void nao_deve_aceitar_lista_nula_setores() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setSetores(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
@@ -238,7 +232,7 @@ public class EmpresaTest {
 			setoresVazio.add(SETOR_02);
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setSetores(setoresVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
 	
 	@Test
@@ -253,7 +247,7 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_lista_vazia_contatos() {
 		this.illegalState = assertThrows(IllegalStateException.class,() -> empresa.setContatos(contatosVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));		
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Test
@@ -264,13 +258,13 @@ public class EmpresaTest {
 			
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setContatos(contatosVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
 	
 	@Test
 	void nao_deve_aceitar_lista_nulo_contatos() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setContatos(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
@@ -285,7 +279,7 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_lista_vazia_enderecos() {
 		this.illegalState = assertThrows(IllegalStateException.class,() -> empresa.setEnderecos(enderecosVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));		
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@Test
@@ -295,13 +289,13 @@ public class EmpresaTest {
 			enderecosVazio.add(ENDERECO_02);
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(enderecosVazio));
-		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
+		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
 	
 	@Test
 	void nao_deve_aceitar_lista_nulo_enderecos() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> empresa.setEnderecos(null));
-		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
 	}
 	
 	@Test
@@ -336,7 +330,7 @@ public class EmpresaTest {
 	void deve_validar_toString() {
 		assertAll(
 				() -> assertEquals("Empresa [cnpj=" + CNPJ_VALIDO + ", razaoSocial=" + RAZAO_SOCIAL + ", nomeFantasia=" + NOME_FANTASIA
-						+ ", dataAbertura=" + FUNDACAO_EMPRESA + ", setores=" + SETORES + ", contato=" + CONTATOS + ", endereco="
+						+ ", dataAbertura=" + RegraEmpresa.FUNDACAO_EMPRESA + ", setores=" + SETORES + ", contato=" + CONTATOS + ", endereco="
 						+ ENDERECOS + "]", empresaCompleta.toString()),
 				() -> assertNotEquals(empresa.toString(), empresaCompleta.toString())
 		);
