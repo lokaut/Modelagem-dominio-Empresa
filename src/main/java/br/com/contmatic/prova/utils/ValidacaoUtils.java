@@ -2,7 +2,7 @@ package br.com.contmatic.prova.utils;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 
-import static br.com.contmatic.prova.constantes.RegraEmpresa.SALARIO_MINIMO;
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
 
 import java.math.BigDecimal;
 import java.util.List;

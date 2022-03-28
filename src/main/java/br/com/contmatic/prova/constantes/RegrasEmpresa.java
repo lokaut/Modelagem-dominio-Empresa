@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class RegraEmpresa {
+public class RegrasEmpresa {
     public static final BigDecimal SALARIO_MINIMO = BigDecimal.valueOf(1210.0);
     public static final long IDADE_MINIMA_EMPRESA = 16;
     public static final LocalDate FUNDACAO_EMPRESA = LocalDate.of(1988, 10, 05);

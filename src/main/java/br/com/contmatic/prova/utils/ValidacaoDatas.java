@@ -1,9 +1,9 @@
 package br.com.contmatic.prova.utils;
 
 import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.RegraEmpresa;
+import br.com.contmatic.prova.constantes.RegrasEmpresa;
 
-import static br.com.contmatic.prova.constantes.RegraEmpresa.IDADE_MINIMA_EMPRESA;
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.IDADE_MINIMA_EMPRESA;
 import static java.time.LocalDate.now;
 import static java.time.temporal.ChronoUnit.YEARS;
 
@@ -21,7 +21,7 @@ public final class ValidacaoDatas {
 	}
 
 	public static void validarDataAdmissao(LocalDate dataAdmissao) {
-		LocalDate doisMesesPosDataAtual = now().plusMonths(RegraEmpresa.REGRA_DATA_ADMISSAO);
+		LocalDate doisMesesPosDataAtual = now().plusMonths(RegrasEmpresa.REGRA_DATA_ADMISSAO);
 		if (dataAdmissao.isAfter(doisMesesPosDataAtual)) {
 			throw new IllegalStateException(Mensagem.MENSAGEM_ADMISSAO_FUTURA);
 		}

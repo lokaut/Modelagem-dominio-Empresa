@@ -35,7 +35,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.RegraEmpresa;
+import br.com.contmatic.prova.constantes.RegrasEmpresa;
 import br.com.contmatic.prova.constantes.model.ContatoConstantes;
 import br.com.contmatic.prova.constantes.model.EmpresaConstantes;
 import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
@@ -68,7 +68,7 @@ public class EmpresaTest {
 		contatosVazio = new ArrayList<>();
 		enderecosVazio = new ArrayList<>();
 		empresa = new Empresa(CNPJ_VALIDO_ALEATORIO);
-		empresaCompleta = new Empresa(CNPJ_VALIDO, RAZAO_SOCIAL, NOME_FANTASIA, RegraEmpresa.FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
+		empresaCompleta = new Empresa(CNPJ_VALIDO, RAZAO_SOCIAL, NOME_FANTASIA, RegrasEmpresa.FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
 	}
 
 	@AfterAll
@@ -207,7 +207,7 @@ public class EmpresaTest {
 	
 	@Test
 	void deve_validar_correto_dataFundacao() {
-		assertEquals(RegraEmpresa.FUNDACAO_EMPRESA, empresaCompleta.getDataFundacao());
+		assertEquals(RegrasEmpresa.FUNDACAO_EMPRESA, empresaCompleta.getDataFundacao());
 	}
 	
 	@Test
@@ -327,7 +327,7 @@ public class EmpresaTest {
 	void deve_validar_toString() {
 		assertAll(
 				() -> assertEquals("Empresa [cnpj=" + CNPJ_VALIDO + ", razaoSocial=" + RAZAO_SOCIAL + ", nomeFantasia=" + NOME_FANTASIA
-						+ ", dataAbertura=" + RegraEmpresa.FUNDACAO_EMPRESA + ", setores=" + SETORES + ", contato=" + CONTATOS + ", endereco="
+						+ ", dataAbertura=" + RegrasEmpresa.FUNDACAO_EMPRESA + ", setores=" + SETORES + ", contato=" + CONTATOS + ", endereco="
 						+ ENDERECOS + "]", empresaCompleta.toString()),
 				() -> assertNotEquals(empresa.toString(), empresaCompleta.toString())
 		);
