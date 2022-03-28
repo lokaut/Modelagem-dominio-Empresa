@@ -103,8 +103,17 @@ public class Setor {
 
 	@Override
 	public String toString() {
-		return "Setor [nome=" + nome + ", funcionario=" + funcionarios + ", descricao=" + descricao + ", empresa="
-				+ empresa + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Setor [nome = ");
+		builder.append(nome);
+		builder.append(", funcionarios = ");
+		builder.append(funcionarios);
+		builder.append(", descricao = ");
+		builder.append(descricao);
+		builder.append(", empresa = ");
+		builder.append(empresa);
+		builder.append("]");
+		return builder.toString();
 	}
 	
 }

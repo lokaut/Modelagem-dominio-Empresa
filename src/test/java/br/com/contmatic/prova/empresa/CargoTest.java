@@ -190,8 +190,8 @@ public class CargoTest {
 	@Order(11)
 	void deve_validar_toString() {
 		assertAll(
-				() -> assertEquals("Cargo [Nome do cargo  = " + NOME_CARGOS + ", Cbo = " + CBO_CARGOS + ", Salário = " + SALARIO_CARGOS + ", Descrição = " + DESCRICAO_CARGOS + ", Funcionarios = " + FUNCIONARIOS + "]", cargoCompleto.toString()),
-				() -> assertEquals("Cargo [Nome do cargo  = " + null + ", Cbo = " + CBO_ANALISTA_TI + ", Salário = " + null + ", Descrição = " + null + ", Funcionarios = " + null+ "]", cargo.toString()),
+				() -> assertEquals("Cargo [nome = " + NOME_CARGOS + ", cbo = " + CBO_CARGOS + ", salario = " + SALARIO_CARGOS + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + DESCRICAO_CARGOS + "]", cargoCompleto.toString()),
+				() -> assertEquals("Cargo [nome = " + null + ", cbo = " + CBO_ANALISTA_TI + ", salario = " + null + ", funcionarios = " + null + ", descricao = " + null+ "]", cargo.toString()),
 				() -> assertNotEquals(cargo.toString(), cargoCompleto.toString())
 		);
 	}

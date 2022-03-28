@@ -93,7 +93,14 @@ public class Cidade {
 
 	@Override
 	public String toString() {
-		return "Cidade [ codigoIbge = " + codigoIbge + " , municipio = " + municipio + ", uf = " + unidadeFederativa + " ]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cidade [codigoIbge = ");
+		builder.append(codigoIbge);
+		builder.append(", municipio = ");
+		builder.append(municipio);
+		builder.append(", unidadeFederativa = ");
+		builder.append(unidadeFederativa);
+		builder.append("]");
+		return builder.toString();
 	}
-
 }

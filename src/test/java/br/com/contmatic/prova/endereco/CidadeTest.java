@@ -192,7 +192,7 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Cidade [ codigoIbge = " + CODIGO_IBGE_SAO_PAULO + " , municipio = " + MUNICIPIO_SAO_PAULO + ", uf = "
-				+ UNIDADE_FEDERATIVA_SP + " ]", cidadeConstrutor.toString());
+		assertEquals("Cidade [codigoIbge = " + CODIGO_IBGE_SAO_PAULO + ", municipio = " + MUNICIPIO_SAO_PAULO + ", unidadeFederativa = "
+				+ UNIDADE_FEDERATIVA_SP + "]", cidadeConstrutor.toString());
 	}
 }

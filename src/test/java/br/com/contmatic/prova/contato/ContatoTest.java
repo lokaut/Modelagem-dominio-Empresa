@@ -126,6 +126,6 @@ public class ContatoTest {
 	@Test
 	@Order(11)
 	void deve_validar_toString() {
-		assertEquals("Contato [email="+EMAIL+", telefone="+telefone+"]", contatoConstrutor.toString());
+		assertEquals("Contato [email = "+EMAIL+", telefone = "+telefone+"]", contatoConstrutor.toString());
 	}
 }

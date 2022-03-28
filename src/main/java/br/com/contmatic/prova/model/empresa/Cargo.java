@@ -119,7 +119,18 @@ public class Cargo {
 
 	@Override
 	public String toString() {
-		return "Cargo [Nome do cargo  = " + nome + ", Cbo = " + cbo + ", Salário = " + salario + ", Descrição = " + descricao + ", Funcionarios = " + funcionarios + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Cargo [nome = ");
+		builder.append(nome);
+		builder.append(", cbo = ");
+		builder.append(cbo);
+		builder.append(", salario = ");
+		builder.append(salario);
+		builder.append(", funcionarios = ");
+		builder.append(funcionarios);
+		builder.append(", descricao = ");
+		builder.append(descricao);
+		builder.append("]");
+		return builder.toString();
 	}
-	
 }

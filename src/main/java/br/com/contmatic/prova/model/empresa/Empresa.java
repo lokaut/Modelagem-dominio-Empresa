@@ -152,9 +152,23 @@ public class Empresa {
 
 	@Override
 	public String toString() {
-		return "Empresa [cnpj=" + cnpj + ", razaoSocial=" + razaoSocial + ", nomeFantasia=" + nomeFantasia
-				+ ", dataAbertura=" + dataFundacao + ", setores=" + setores + ", contato=" + contatos + ", endereco="
-				+ enderecos + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Empresa [cnpj = ");
+		builder.append(cnpj);
+		builder.append(", razaoSocial = ");
+		builder.append(razaoSocial);
+		builder.append(", nomeFantasia = ");
+		builder.append(nomeFantasia);
+		builder.append(", dataFundacao = ");
+		builder.append(dataFundacao);
+		builder.append(", setores = ");
+		builder.append(setores);
+		builder.append(", contatos = ");
+		builder.append(contatos);
+		builder.append(", enderecos = ");
+		builder.append(enderecos);
+		builder.append("]");
+		return builder.toString();
 	}
-	
+
 }

@@ -34,15 +34,26 @@ public final class ValidacaoUtils {
 
 	public static void limiteCaracteresFixo(String nome, int tamanho) {
 		if (nome.length() != tamanho) {
-			throw new IllegalStateException("Quantidade de carácteres inválido! O campo deve possuir apenas " + tamanho
-					+ " caracteres" + ", atualmente o campo possui " + nome.length() + " caractere(s)");
+			StringBuilder builderIllegalState = new StringBuilder();
+			builderIllegalState.append("Quantidade de carácteres inválido! O campo deve possuir apenas ");
+			builderIllegalState.append(tamanho);
+			builderIllegalState.append(" caracteres, atualmente o campo possui ");
+			builderIllegalState.append(nome.length());
+			builderIllegalState.append(" caractere(s)");
+			throw new IllegalStateException(builderIllegalState.toString());
 		}
 	}
 
 	public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
 		if (nome.length() < minimo || nome.length() > maximo) {
-			throw new IllegalStateException("Quantidade de carácter inválido, o campo deve estar entre " + minimo
-					+ " a " + maximo + " caracteres" + ", atualmente o campo possui " + nome.length());
+			StringBuilder builderIllegalState = new StringBuilder();
+					builderIllegalState.append("Quantidade de carácter inválido, o campo deve estar entre "); 
+					builderIllegalState.append(minimo);
+					builderIllegalState.append(" a ");
+					builderIllegalState.append(maximo);
+					builderIllegalState.append(" caracteres, atualmente o campo possui "); 
+					builderIllegalState.append(nome.length()); 
+					throw new IllegalStateException(builderIllegalState.toString());
 		}
 	}
 

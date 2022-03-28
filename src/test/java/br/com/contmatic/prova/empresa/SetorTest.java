@@ -202,7 +202,7 @@ public class SetorTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals(  "Setor [nome=" + NOME_SETOR + ", funcionario=" + FUNCIONARIOS + ", descricao=" + DESCRICAO_SETOR + ", empresa="
+		assertEquals(  "Setor [nome = " + NOME_SETOR + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + DESCRICAO_SETOR + ", empresa = "
 				+ cnpjEmpresa + "]", setorCompleto.toString());
 	}
 }

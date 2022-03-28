@@ -62,6 +62,13 @@ public class Contato {
 
 	@Override
 	public String toString() {
-		return "Contato [email=" + email + ", telefone=" + telefone + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Contato [email = ");
+		builder.append(email);
+		builder.append(", telefone = ");
+		builder.append(telefone);
+		builder.append("]");
+		return builder.toString();
 	}
+	
 }

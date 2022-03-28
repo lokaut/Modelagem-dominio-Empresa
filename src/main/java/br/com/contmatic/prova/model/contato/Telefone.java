@@ -62,6 +62,13 @@ public class Telefone {
 
 	@Override
 	public String toString() {
-		return "Telefone [ddd = " + ddd + ", numeroTelefone = " + numeroTelefone + "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Telefone [ddd = ");
+		builder.append(ddd);
+		builder.append(", numeroTelefone = ");
+		builder.append(numeroTelefone);
+		builder.append("]");
+		return builder.toString();
 	}
+
 }

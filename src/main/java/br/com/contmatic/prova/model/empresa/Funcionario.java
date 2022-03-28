@@ -20,30 +20,31 @@ import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
 public class Funcionario {
-	
+
 	private String nome;
-	
+
 	private String cpf;
 
 	private Contato contato;
-	
+
 	private Endereco endereco;
 
 	private LocalDate dataAdmissao;
 
 	private LocalDate dataNascimento;
-	
+
 	private LocalDate dataDesligamento;
-	
+
 	private Setor setor;
-	
+
 	private Cargo cargo;
-	
+
 	public Funcionario(String cpf) {
 		this.setCpf(cpf);
-	} 
+	}
 
-	public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo, Setor setor) {
+	public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao,
+			LocalDate dataNascimento, Cargo cargo, Setor setor) {
 		this.setNome(nome);
 		this.setCpf(cpf);
 		this.setContato(contato);
@@ -62,7 +63,8 @@ public class Funcionario {
 		verificarNulo(nome);
 		validarCampoVazio(nome);
 		limiteCaracteresMinimoMaximo(nome, TAMANHO_MINIMO_NOME_FUNCIONARIO, TAMANHO_MAXIMO_NOME_FUNCIONARIO);
-		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
+		validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS,
+				MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
 		this.nome = nome;
 	}
 
@@ -79,7 +81,7 @@ public class Funcionario {
 	public LocalDate getDataAdmissao() {
 		return dataAdmissao;
 	}
-		
+
 	public void setDataAdmissao(LocalDate dataAdmissao) {
 		verificarNulo(dataAdmissao);
 		validarDataAdmissao(dataAdmissao);
@@ -94,7 +96,7 @@ public class Funcionario {
 		verificarNulo(endereco);
 		this.endereco = endereco;
 	}
-	
+
 	public void setContato(Contato contato) {
 		verificarNulo(contato);
 		this.contato = contato;
@@ -160,8 +162,26 @@ public class Funcionario {
 
 	@Override
 	public String toString() {
-		return "Funcionario [nome=" + nome + ", cpf = " + cpf + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + dataAdmissao + ", dataNascimento = " + dataNascimento
-				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", Cargo = " + cargo +  "]";
+		StringBuilder builder = new StringBuilder();
+		builder.append("Funcionario [nome = ");
+		builder.append(nome);
+		builder.append(", cpf = ");
+		builder.append(cpf);
+		builder.append(", contato = ");
+		builder.append(contato);
+		builder.append(", endereco = ");
+		builder.append(endereco);
+		builder.append(", dataAdmissao = ");
+		builder.append(dataAdmissao);
+		builder.append(", dataNascimento = ");
+		builder.append(dataNascimento);
+		builder.append(", dataDesligamento = ");
+		builder.append(dataDesligamento);
+		builder.append(", setor = ");
+		builder.append(setor);
+		builder.append(", cargo = ");
+		builder.append(cargo);
+		builder.append("]");
+		return builder.toString();
 	}
-	
 }

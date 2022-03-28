@@ -262,7 +262,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals( "Funcionario [nome=" + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", contato=" + contato + ", endereco = " + endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO
-				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", Cargo = " + cargo +  "]", funcionarioCompleto.toString());
+		assertEquals( "Funcionario [nome = " + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", contato = " + contato + ", endereco = " + endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO
+				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", cargo = " + cargo +  "]", funcionarioCompleto.toString());
 	}
 }
