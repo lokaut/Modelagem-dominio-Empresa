@@ -1,19 +1,6 @@
 package br.com.contmatic.prova.empresa;
 
 
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CBO_CARGOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CPF_VALIDO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CPF_VALIDO_ALEATORIO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DATA_ADMISSAO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DATA_NASCIMENTO_VALIDO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_SECUNDARIO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_COMPLETO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_SETOR;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SEGUNDO_CEP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SEGUNDO_NUMERO_ENDERECO;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -23,6 +10,8 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
+import br.com.contmatic.prova.constantes.ConstantesTestes;
+import br.com.contmatic.prova.constantes.objetos.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -61,15 +50,15 @@ class FuncionarioTest {
 
 	@BeforeEach
 	public void instancia() {
-		cargo = new Cargo(CBO_CARGOS);
-		setor = new Setor(NOME_SETOR);
-		endereco = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
-		contato = new Contato(EMAIL_SECUNDARIO);
-		funcionario = new Funcionario(CPF_VALIDO_ALEATORIO);
-		funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
-				DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
-		funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco,
-				DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
+		endereco = EnderecoObjetosConstantes.ENDERECO_02;
+		cargo = new Cargo(CargosObjetosConstantes.CBO_CARGOS);
+		setor = new Setor(SetorObjetosConstantes.NOME_SETOR);
+		contato = new Contato(ContatoObjetosConstantes.EMAIL_SECUNDARIO);
+		funcionario = new Funcionario(FuncionarioObjetosConstantes.CPF_VALIDO_ALEATORIO);
+		funcionarioCompleto = new Funcionario(FuncionarioObjetosConstantes.NOME_COMPLETO, FuncionarioObjetosConstantes.CPF_VALIDO, contato, endereco,
+				FuncionarioObjetosConstantes.DATA_ADMISSAO, FuncionarioObjetosConstantes.DATA_NASCIMENTO_VALIDO, cargo, setor);
+		funcionarioCompleto2 = new Funcionario(FuncionarioObjetosConstantes.NOME_COMPLETO, FuncionarioObjetosConstantes.CPF_VALIDO, contato, endereco,
+				FuncionarioObjetosConstantes.DATA_ADMISSAO, FuncionarioObjetosConstantes.DATA_NASCIMENTO_VALIDO, cargo, setor);
 	}
 
 	@AfterAll
@@ -78,7 +67,7 @@ class FuncionarioTest {
 	}
 
 	@ParameterizedTest
-	@ValueSource(strings = { DOIS_CARACTERES, MAIS_CEM_CARACTERES })
+	@ValueSource(strings = {ConstantesTestes.DOIS_CARACTERES, ConstantesTestes.MAIS_CEM_CARACTERES})
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setNome(nome));
 		assertTrue(this.illegalState.getMessage()
@@ -123,7 +112,7 @@ class FuncionarioTest {
 
 	@Test
 	void nao_deve_aceitar_caracter_texto_cpf() {
-		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(ONZE_NUMEROS_CARACTERES));
+		illegalState = assertThrows(IllegalStateException.class, () -> funcionario.setCpf(ConstantesTestes.ONZE_NUMEROS_CARACTERES));
 		assertTrue(illegalState.getMessage().contains(Mensagem.MENSAGEM_CPF_INVALIDO));
 	}
 
@@ -196,18 +185,18 @@ class FuncionarioTest {
 
 	@Test
 	void deve_validar_data_nascimento_correto() {
-		assertEquals(DATA_NASCIMENTO_VALIDO, funcionarioCompleto.getDataNascimento());
+		assertEquals(FuncionarioObjetosConstantes.DATA_NASCIMENTO_VALIDO, funcionarioCompleto.getDataNascimento());
 	}
 	
 	@Test
 	void deve_validar_data_setor_correto() {
-		funcionario.setSetor(new Setor(NOME_SETOR));
+		funcionario.setSetor(new Setor(SetorObjetosConstantes.NOME_SETOR));
 		assertEquals(setor, funcionarioCompleto.getSetor());
 	}
 	
 	@Test
 	void deve_validar_data_admissao_correto() {
-		assertEquals(DATA_ADMISSAO, funcionarioCompleto.getDataAdmissao());
+		assertEquals(FuncionarioObjetosConstantes.DATA_ADMISSAO, funcionarioCompleto.getDataAdmissao());
 	}
 	
 	@Test
@@ -217,12 +206,12 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_campo_nome_correto() {
-		assertEquals(NOME_COMPLETO, funcionarioCompleto.getNome());
+		assertEquals(FuncionarioObjetosConstantes.NOME_COMPLETO, funcionarioCompleto.getNome());
 	}
 	
 	@Test
 	void deve_validar_cpf_correto() {
-		assertEquals(CPF_VALIDO_ALEATORIO, funcionario.getCpf());
+		assertEquals(FuncionarioObjetosConstantes.CPF_VALIDO_ALEATORIO, funcionario.getCpf());
 	}
 	
 	@Test
@@ -255,7 +244,7 @@ class FuncionarioTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals( "Funcionario [nome = " + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", contato = " + contato + ", endereco = " + endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO
+		assertEquals( "Funcionario [nome = " + FuncionarioObjetosConstantes.NOME_COMPLETO + ", cpf = " + FuncionarioObjetosConstantes.CPF_VALIDO + ", contato = " + contato + ", endereco = " + endereco + ", dataAdmissao = " + FuncionarioObjetosConstantes.DATA_ADMISSAO + ", dataNascimento = " + FuncionarioObjetosConstantes.DATA_NASCIMENTO_VALIDO
 				+ ", dataDesligamento = " + dataDesligamento + ", setor = " + setor + ", cargo = " + cargo +  "]", funcionarioCompleto.toString());
 	}
 }

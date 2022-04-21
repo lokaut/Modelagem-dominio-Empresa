@@ -19,11 +19,10 @@ public class Contato {
 		this.setEmail(email);
 		this.setTelefone(telefone);
 	}
-	
-	public Contato(String email) {
+	public Contato(String email){
 		this.setEmail(email);
 	}
-
+	
 	public Telefone getTelefone() {
 		return telefone;
 	}

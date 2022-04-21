@@ -1,0 +1,8 @@
+package br.com.contmatic.prova.constantes.objetos;
+
+public class TelefoneObjetosConstantes {
+    public static final String DDD_CEARA = "85";
+    public static final String DDD_SAO_PAULO = "11";
+    public static final String NUMERO_TELEFONE = "56668057";
+    public static final String NUMERO_CELULAR = "956634577";
+}

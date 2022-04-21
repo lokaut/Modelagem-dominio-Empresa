@@ -1,6 +1,7 @@
 package br.com.contmatic.prova.constantes;
 
 public class Mensagem {
+	private Mensagem() {}
     public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
     public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
     public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter alfabético";
@@ -24,6 +25,4 @@ public class Mensagem {
     public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
     public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
 
-    public Mensagem() {
-    }
 }

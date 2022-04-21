@@ -1,26 +1,15 @@
 package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_SECUNDARIO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.MethodOrderer;
-import org.junit.jupiter.api.Order;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestMethodOrder;
-
+import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.model.ContatoConstantes;
+import br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
+import org.junit.jupiter.api.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ContatoTest {
@@ -39,10 +28,10 @@ public class ContatoTest {
 
 	@BeforeEach
 	public void instancia() {
-		telefone = new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR);
-		contato = new Contato(EMAIL_SECUNDARIO);
-		contatoConstrutor = new Contato(EMAIL, telefone);
-		contatoConstrutor2 = new Contato(EMAIL, telefone);
+		telefone = new Telefone(TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_CELULAR);
+		contato = new Contato(ContatoObjetosConstantes.EMAIL_SECUNDARIO);
+		contatoConstrutor = new Contato(ContatoObjetosConstantes.EMAIL, telefone);
+		contatoConstrutor2 = new Contato(ContatoObjetosConstantes.EMAIL, telefone);
 	}
 
 	@AfterAll
@@ -60,10 +49,10 @@ public class ContatoTest {
 	@Test
 	@Order(2)
 	void nao_deve_aceitar_email_com_mais_254_caracteres() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + ContatoConstantes.TAMANHO_MINIMO_EMAIL + " a "
 						+ ContatoConstantes.TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui "
-						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
+						+ ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
 	@Test
@@ -83,7 +72,7 @@ public class ContatoTest {
 	@Test
 	@Order(5)
 	void deve_aceitar_email_correto() {
-		assertEquals(EMAIL_SECUNDARIO, contato.getEmail());
+		assertEquals(ContatoObjetosConstantes.EMAIL_SECUNDARIO, contato.getEmail());
 	}
 
 	@Test
@@ -123,6 +112,6 @@ public class ContatoTest {
 	@Test
 	@Order(11)
 	void deve_validar_toString() {
-		assertEquals("Contato [email = "+EMAIL+", telefone = "+telefone+"]", contatoConstrutor.toString());
+		assertEquals("Contato [email = "+ ContatoObjetosConstantes.EMAIL +", telefone = "+telefone+"]", contatoConstrutor.toString());
 	}
 }

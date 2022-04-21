@@ -20,10 +20,6 @@ public class Cidade {
 
 	private String unidadeFederativa;
 
-	public Cidade(String codigoIbge) {
-		this.setCodigoIbge(codigoIbge);
-	}
-
 	public Cidade(String codigoIbge, String municipio, String unidadeFederativa) {
 		this.setCodigoIbge(codigoIbge);
 		this.setMunicipio(municipio);

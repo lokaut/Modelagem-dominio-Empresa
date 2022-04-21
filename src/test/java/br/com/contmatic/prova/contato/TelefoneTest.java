@@ -1,22 +1,15 @@
 package br.com.contmatic.prova.contato;
 
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_CEARA;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DDD_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_CELULAR;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_TELEFONE;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes;
+import br.com.contmatic.prova.model.contato.Telefone;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.model.contato.Telefone;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class TelefoneTest {
 
@@ -36,11 +29,11 @@ public class TelefoneTest {
 
 	@BeforeEach
 	public void instancia() {
-		telefone = new Telefone(DDD_CEARA, NUMERO_TELEFONE);
-		telefoneDddSaoPaulo = new Telefone (DDD_SAO_PAULO, NUMERO_TELEFONE);
-		celular = new Telefone(DDD_CEARA, NUMERO_CELULAR);
-		celular2 = new Telefone(DDD_CEARA, NUMERO_CELULAR);
-		celularDddSaoPaulo = new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR);
+		telefone = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_TELEFONE);
+		telefoneDddSaoPaulo = new Telefone (TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_TELEFONE);
+		celular = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_CELULAR);
+		celular2 = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_CELULAR);
+		celularDddSaoPaulo = new Telefone(TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_CELULAR);
 	}
 
 	@AfterAll
@@ -91,12 +84,12 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_validar_ddd() {
-		assertEquals(DDD_CEARA, this.telefone.getDdd());
+		assertEquals(TelefoneObjetosConstantes.DDD_CEARA, this.telefone.getDdd());
 	}
 	
 	@Test
 	void deve_validar_telefone() {
-		assertEquals(NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
+		assertEquals(TelefoneObjetosConstantes.NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
 	}
 	
 	@Test
@@ -119,8 +112,8 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_TELEFONE+"]", telefone.toString());
-		assertEquals("Telefone [ddd = "+DDD_CEARA+", numeroTelefone = "+NUMERO_CELULAR+"]", celular.toString());
+		assertEquals("Telefone [ddd = "+ TelefoneObjetosConstantes.DDD_CEARA +", numeroTelefone = "+ TelefoneObjetosConstantes.NUMERO_TELEFONE +"]", telefone.toString());
+		assertEquals("Telefone [ddd = "+ TelefoneObjetosConstantes.DDD_CEARA +", numeroTelefone = "+ TelefoneObjetosConstantes.NUMERO_CELULAR +"]", celular.toString());
 	}
 	
 }

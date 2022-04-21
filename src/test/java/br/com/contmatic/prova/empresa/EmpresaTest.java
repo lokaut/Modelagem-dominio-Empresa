@@ -1,49 +1,33 @@
 package br.com.contmatic.prova.empresa;
 
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CATORZE_NUMEROS_LETRAS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CNPJ_VALIDO_ALEATORIO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CONTATOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CONTATO_01;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CONTATO_02;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ENDERECOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ENDERECO_01;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ENDERECO_02;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NOME_FANTASIA;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.RAZAO_SOCIAL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SETORES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SETOR_01;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SETOR_02;
-import static java.time.LocalDate.now;
-import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
-import java.time.LocalDate;
-import java.util.ArrayList;
-import java.util.List;
-
-import org.junit.jupiter.api.AfterAll;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.ValueSource;
-
+import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.RegrasEmpresa;
 import br.com.contmatic.prova.constantes.model.ContatoConstantes;
 import br.com.contmatic.prova.constantes.model.EmpresaConstantes;
 import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
 import br.com.contmatic.prova.constantes.model.SetorConstantes;
+import br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.EmpresaObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Setor;
 import br.com.contmatic.prova.model.endereco.Endereco;
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
+
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+
+import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.*;
+import static java.time.LocalDate.now;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class EmpresaTest {
 	
@@ -67,8 +51,8 @@ public class EmpresaTest {
 		setoresVazio = new ArrayList<>();
 		contatosVazio = new ArrayList<>();
 		enderecosVazio = new ArrayList<>();
-		empresa = new Empresa(CNPJ_VALIDO_ALEATORIO);
-		empresaCompleta = new Empresa(CNPJ_VALIDO, RAZAO_SOCIAL, NOME_FANTASIA, RegrasEmpresa.FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
+		empresa = new Empresa(EmpresaObjetosConstantes.CNPJ_VALIDO_ALEATORIO);
+		empresaCompleta = new Empresa(EmpresaObjetosConstantes.CNPJ_VALIDO, EmpresaObjetosConstantes.RAZAO_SOCIAL, EmpresaObjetosConstantes.NOME_FANTASIA, RegrasEmpresa.FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
 	}
 
 	@AfterAll
@@ -107,7 +91,7 @@ public class EmpresaTest {
 	
 	@Test
 	void nao_deve_aceitar_caracter_texto_cnpj() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(CATORZE_NUMEROS_LETRAS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setCnpj(ConstantesTestes.CATORZE_NUMEROS_LETRAS));
 		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CNPJ_INVALIDO));
 	}
 
@@ -120,7 +104,7 @@ public class EmpresaTest {
 	
 	@Test
 	void deve_validar_cnpj_correto() {
-		assertEquals(CNPJ_VALIDO_ALEATORIO, empresa.getCnpj());
+		assertEquals(EmpresaObjetosConstantes.CNPJ_VALIDO_ALEATORIO, empresa.getCnpj());
 	}
 	
 	@Test
@@ -137,7 +121,7 @@ public class EmpresaTest {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = { DOIS_CARACTERES, MAIS_CEM_CARACTERES })
+	@ValueSource(strings = {ConstantesTestes.DOIS_CARACTERES, ConstantesTestes.MAIS_CEM_CARACTERES})
 	void nao_deve_aceitar_fora_limite_caracteres_razaoSocial(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nome));
 		assertTrue(this.illegalState.getMessage()
@@ -154,7 +138,7 @@ public class EmpresaTest {
 	
 	@Test
 	void deve_validar_razaoSocial_correto() {
-		assertEquals(RAZAO_SOCIAL, empresaCompleta.getRazaoSocial());
+		assertEquals(EmpresaObjetosConstantes.RAZAO_SOCIAL, empresaCompleta.getRazaoSocial());
 	}
 	
 	@Test
@@ -171,7 +155,7 @@ public class EmpresaTest {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = { DOIS_CARACTERES, MAIS_CEM_CARACTERES })
+	@ValueSource(strings = {ConstantesTestes.DOIS_CARACTERES, ConstantesTestes.MAIS_CEM_CARACTERES})
 	void nao_deve_aceitar_fora_limite_caracteres_NomeFantasia(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setRazaoSocial(nome));
 		assertTrue(this.illegalState.getMessage()
@@ -188,7 +172,7 @@ public class EmpresaTest {
 	
 	@Test
 	void deve_validar_correto_nomeFantasia() {
-		assertEquals(NOME_FANTASIA, empresaCompleta.getNomeFantasia());
+		assertEquals(EmpresaObjetosConstantes.NOME_FANTASIA, empresaCompleta.getNomeFantasia());
 	}
 	
 	@Test
@@ -225,8 +209,8 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_setores() {
 		while (setoresVazio.size() <= SetorConstantes.TAMANHO_MAXIMO_LISTA_SETORES) {
-			setoresVazio.add(SETOR_01);
-			setoresVazio.add(SETOR_02);
+			setoresVazio.add(SetorObjetosConstantes.SETOR_01);
+			setoresVazio.add(SetorObjetosConstantes.SETOR_02);
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setSetores(setoresVazio));
 		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
@@ -235,8 +219,8 @@ public class EmpresaTest {
 	@Test
 	void deve_validar_lista_setores() {
 		assertAll(
-				() -> assertEquals(SETOR_01, SETORES.get(0)),
-				() -> assertEquals(SETOR_02, SETORES.get(1)),
+				() -> assertEquals(SetorObjetosConstantes.SETOR_01, SETORES.get(0)),
+				() -> assertEquals(SetorObjetosConstantes.SETOR_02, SETORES.get(1)),
 				() -> assertEquals(SETORES, empresaCompleta.getSetores())
 				);
 	}
@@ -250,8 +234,8 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_contatos() {
 		while (contatosVazio.size() <= ContatoConstantes.TAMANHO_MAXIMO_LISTA_CONTATOS) {
-			contatosVazio.add(CONTATO_01);
-			contatosVazio.add(CONTATO_02);
+			contatosVazio.add(ContatoObjetosConstantes.CONTATO_01);
+			contatosVazio.add(ContatoObjetosConstantes.CONTATO_02);
 			
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setContatos(contatosVazio));
@@ -267,8 +251,8 @@ public class EmpresaTest {
 	@Test
 	void deve_validar_lista_contatos() {
 		assertAll(
-				() -> assertEquals(CONTATO_01, CONTATOS.get(0)),
-				() -> assertEquals(CONTATO_02, CONTATOS.get(1)),
+				() -> assertEquals(ContatoObjetosConstantes.CONTATO_01, CONTATOS.get(0)),
+				() -> assertEquals(ContatoObjetosConstantes.CONTATO_02, CONTATOS.get(1)),
 				() -> assertEquals(CONTATOS, empresaCompleta.getContatos())
 				);
 	}
@@ -282,8 +266,8 @@ public class EmpresaTest {
 	@Test
 	void nao_deve_aceitar_lista_acima_limite_enderecos() {
 		while (enderecosVazio.size() <= EnderecoConstantes.TAMANHO_MAXIMO_LISTA_ENDERECOS) {
-			enderecosVazio.add(ENDERECO_01);
-			enderecosVazio.add(ENDERECO_02);
+			enderecosVazio.add(EnderecoObjetosConstantes.ENDERECO_01);
+			enderecosVazio.add(EnderecoObjetosConstantes.ENDERECO_02);
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(enderecosVazio));
 		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA));
@@ -298,8 +282,8 @@ public class EmpresaTest {
 	@Test
 	void deve_validar_lista_enderecos() {
 		assertAll(
-				() -> assertEquals(ENDERECO_01, ENDERECOS.get(0)),
-				() -> assertEquals(ENDERECO_02, ENDERECOS.get(1)),
+				() -> assertEquals(EnderecoObjetosConstantes.ENDERECO_01, ENDERECOS.get(0)),
+				() -> assertEquals(EnderecoObjetosConstantes.ENDERECO_02, ENDERECOS.get(1)),
 				() -> assertEquals(ENDERECOS, empresaCompleta.getEnderecos())
 				);
 	}
@@ -326,7 +310,7 @@ public class EmpresaTest {
 
 	void deve_validar_toString() {
 		assertAll(
-				() -> assertEquals("Empresa [cnpj=" + CNPJ_VALIDO + ", razaoSocial=" + RAZAO_SOCIAL + ", nomeFantasia=" + NOME_FANTASIA
+				() -> assertEquals("Empresa [cnpj=" + EmpresaObjetosConstantes.CNPJ_VALIDO + ", razaoSocial=" + EmpresaObjetosConstantes.RAZAO_SOCIAL + ", nomeFantasia=" + EmpresaObjetosConstantes.NOME_FANTASIA
 						+ ", dataAbertura=" + RegrasEmpresa.FUNDACAO_EMPRESA + ", setores=" + SETORES + ", contato=" + CONTATOS + ", endereco="
 						+ ENDERECOS + "]", empresaCompleta.toString()),
 				() -> assertNotEquals(empresa.toString(), empresaCompleta.toString())

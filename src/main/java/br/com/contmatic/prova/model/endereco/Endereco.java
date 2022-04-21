@@ -28,12 +28,6 @@ import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
 
 	private Cidade cidade; 
 	
-	
-	public Endereco(String cep, String numero) {
-		this.setCep(cep);
-		this.setNumero(numero);
-	}
-	
 	public Endereco(String logradouro, String numero, String bairro, String cep, Cidade cidade) {
 		this.setLogradouro(logradouro);
 		this.setNumero(numero);

@@ -1,20 +1,5 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.ConstantesTestes.BAIRRO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CEP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CODIGO_IBGE_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.COMPLEMENTO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.LOGRADOURO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MUNICIPIO_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.NUMERO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SEGUNDO_CEP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.SEGUNDO_NUMERO_ENDERECO;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.UNIDADE_FEDERATIVA_SP;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
@@ -24,6 +9,9 @@ import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+import br.com.contmatic.prova.constantes.ConstantesTestes;
+import br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -54,13 +42,13 @@ public class EnderecoTest {
 	private Cidade cidade;
 
 	@BeforeEach
-	public void instancia() {
-		cidade = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
-		endereco = new Endereco(SEGUNDO_CEP, SEGUNDO_NUMERO_ENDERECO);
-		enderecoHash2 = new Endereco(SEGUNDO_CEP, NUMERO_ENDERECO);
-		enderecoHash3 = new Endereco(CEP, SEGUNDO_NUMERO_ENDERECO);
-		enderecoCompleto = new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, CEP, cidade);
-		enderecoCompleto2 = new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, cidade);
+	public void instanciar() {
+		cidade = new Cidade(CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO, CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO, CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP);
+		endereco = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, null, EnderecoObjetosConstantes.CEP, cidade);
+		enderecoHash2 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO_02, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.SEGUNDO_CEP, CidadeObjetosConstantes.CIDADE);
+		enderecoHash3 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.SEGUNDO_NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO_02, EnderecoObjetosConstantes.CEP, CidadeObjetosConstantes.CIDADE_02);
+		enderecoCompleto = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.CEP, CidadeObjetosConstantes.CIDADE);
+		enderecoCompleto2 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.COMPLEMENTO, EnderecoObjetosConstantes.CEP, cidade);
 	}
 
 	@AfterAll
@@ -83,23 +71,23 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_logradouro_fora_limite_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class,
-				() -> this.endereco.setLogradouro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
+				() -> this.endereco.setLogradouro(ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage().contains(
 				"Quantidade de carácter inválido, o campo deve estar entre "+ EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO +" a "+ EnderecoConstantes.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO +" caracteres, atualmente o campo possui "
-						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
+						+ ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
 	@Test
 	void nao_deve_aceitar_logradouro_caracter_especial() {
 		this.illegalState = assertThrows(IllegalStateException.class,
-				() -> this.endereco.setLogradouro(CARACTER_ESPECIAL));
+				() -> this.endereco.setLogradouro(ConstantesTestes.CARACTER_ESPECIAL));
 		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 
 	@Test
 	void deve_validar_logradouro_correto() {
 		this.endereco.setLogradouro("Rua A");
-		assertEquals(LOGRADOURO, this.enderecoCompleto.getLogradouro());
+		assertEquals(EnderecoObjetosConstantes.LOGRADOURO, this.enderecoCompleto.getLogradouro());
 		assertThat(this.endereco.getLogradouro(), equalToIgnoringCase("rua a"));
 	}
 
@@ -118,16 +106,16 @@ public class EnderecoTest {
 	@Test
 	void nao_deve_aceitar_bairro_fora_limite_caracteres() {
 		this.illegalState = assertThrows(IllegalStateException.class,
-				() -> this.endereco.setBairro(MAIS_SESSENTA_CARACTERES_ALFABETICOS));
+				() -> this.endereco.setBairro(ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
 				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_BAIRRO_ENDERECO + " a "
 						+ EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO + " caracteres, atualmente o campo possui "
-						+ MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
+						+ ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS.length()));
 	}
 
 	@Test
 	void nao_deve_aceitar_bairro_caracter_especial() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setBairro(CARACTER_ESPECIAL));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setBairro(ConstantesTestes.CARACTER_ESPECIAL));
 		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL));
 	}
 
@@ -151,11 +139,11 @@ public class EnderecoTest {
 
 	@Test
 	void nao_deve_aceitar_numero_fora_limite_caracteres() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setNumero(MAIS_CIQUENTA_NUMEROS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setNumero(ConstantesTestes.MAIS_CIQUENTA_NUMEROS));
 		assertTrue(this.illegalState.getMessage()
 				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO
 						+ " a " + EnderecoConstantes.TAMANHO_MAXIMO_NUMERO_ENDERECO + " caracteres, atualmente o campo possui "
-						+ MAIS_CIQUENTA_NUMEROS.length()));
+						+ ConstantesTestes.MAIS_CIQUENTA_NUMEROS.length()));
 	}
 
 	@Test
@@ -166,9 +154,9 @@ public class EnderecoTest {
 
 	@Test
 	void deve_validar_numero_correto() {
-		this.endereco.setNumero(ONZE_NUMEROS);
-		assertNotEquals(SEGUNDO_NUMERO_ENDERECO, endereco.getNumero());
-		assertEquals(ONZE_NUMEROS, endereco.getNumero());
+		this.endereco.setNumero(ConstantesTestes.ONZE_NUMEROS);
+		assertNotEquals(EnderecoObjetosConstantes.SEGUNDO_NUMERO_ENDERECO, endereco.getNumero());
+		assertEquals(ConstantesTestes.ONZE_NUMEROS, endereco.getNumero());
 	}
 
 	@Test
@@ -212,8 +200,7 @@ public class EnderecoTest {
 
 	@Test
 	void deve_aceitar_cep_correto() {
-		assertEquals(SEGUNDO_CEP, endereco.getCep());
-		assertEquals(CEP, enderecoCompleto.getCep());
+		assertEquals(EnderecoObjetosConstantes.CEP, enderecoCompleto.getCep());
 	}
 	
 	@Test
@@ -230,11 +217,11 @@ public class EnderecoTest {
 	
 	@Test
 	void nao_deve_aceitar_fora_limite_caracteres() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setComplemento(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.endereco.setComplemento(ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
 		assertTrue(this.illegalState.getMessage()
 				.contains("Quantidade de carácter inválido, o campo deve estar entre " + EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO
 						+ " a " + EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO + " caracteres, atualmente o campo possui "
-						+ EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
+						+ ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
 	}
 	
 	@Test
@@ -257,7 +244,7 @@ public class EnderecoTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO +", complemento = "+ COMPLEMENTO +", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]", enderecoCompleto2.toString());
-		assertNotEquals("Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO +", complemento = "+ COMPLEMENTO +", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]", enderecoCompleto.toString());
+		assertEquals("Endereco [logradouro = " + EnderecoObjetosConstantes.LOGRADOURO + ", numero = " + EnderecoObjetosConstantes.NUMERO_ENDERECO +", complemento = "+ EnderecoObjetosConstantes.COMPLEMENTO +", bairro = " + EnderecoObjetosConstantes.BAIRRO + ", cidade = " + cidade + ", cep = " + EnderecoObjetosConstantes.CEP + "]", enderecoCompleto2.toString());
+		assertNotEquals("Endereco [logradouro = " + EnderecoObjetosConstantes.LOGRADOURO + ", numero = " + EnderecoObjetosConstantes.NUMERO_ENDERECO +", complemento = "+ EnderecoObjetosConstantes.COMPLEMENTO +", bairro = " + EnderecoObjetosConstantes.BAIRRO + ", cidade = " + cidade + ", cep = " + EnderecoObjetosConstantes.CEP + "]", enderecoCompleto.toString());
 	}
 }

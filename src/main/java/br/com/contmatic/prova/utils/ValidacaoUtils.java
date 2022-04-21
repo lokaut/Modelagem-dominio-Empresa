@@ -2,6 +2,7 @@ package br.com.contmatic.prova.utils;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
 
 import java.math.BigDecimal;
@@ -15,7 +16,7 @@ public final class ValidacaoUtils {
 
 	public static void verificarNulo(Object objeto) {
 		if (objeto == null) {
-			throw new IllegalArgumentException(Mensagem.MENSAGEM_CAMPO_NULO);
+			throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
 		}
 	}
 
