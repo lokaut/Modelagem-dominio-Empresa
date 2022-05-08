@@ -1,6 +1,8 @@
 package br.com.contmatic.prova.constantes.model;
 
 public class EnderecoConstantes {
+    private EnderecoConstantes() {}
+    
     public static final Integer TAMANHO_MINIMO_LOGRADOURO_ENDERECO = 1;
     public static final Integer TAMANHO_MAXIMO_LOGRADOURO_ENDERECO = 60;
     public static final Integer TAMANHO_FIXO_CEP_ENDERECO = 8;

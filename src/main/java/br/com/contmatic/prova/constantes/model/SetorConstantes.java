@@ -1,6 +1,8 @@
 package br.com.contmatic.prova.constantes.model;
 
 public class SetorConstantes {
+    private SetorConstantes (){}
+    
     public static final Integer TAMANHO_MINIMO_NOME_SETOR = 2;
     public static final Integer TAMANHO_MAXIMO_NOME_SETOR = 60;
     public static final Integer TAMANHO_MINIMO_DESCRICAO = 3;
