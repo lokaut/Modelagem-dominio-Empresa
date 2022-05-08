@@ -1,117 +1,134 @@
 package br.com.contmatic.prova.contato;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.model.ContatoConstantes;
-import br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes;
-import br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_EMAIL;
+import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MINIMO_EMAIL;
+import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.CONTATO_02;
+import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL;
+import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL_SECUNDARIO;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_01;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_02;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import org.junit.jupiter.api.AfterAll;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.MethodOrderer;
+import org.junit.jupiter.api.Order;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.TestMethodOrder;
+
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
-import org.junit.jupiter.api.*;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 public class ContatoTest {
 
-	private IllegalStateException illegalState;
-	
-	private IllegalArgumentException illegalArgument;
+    private IllegalStateException illegalState;
 
-	private Contato contato;
-	
-	private Contato contatoConstrutor;
-	
-	private Contato contatoConstrutor2;
-	
-	private Telefone telefone;
+    private IllegalArgumentException illegalArgument;
 
-	@BeforeEach
-	public void instancia() {
-		telefone = new Telefone(TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_CELULAR);
-		contato = new Contato(ContatoObjetosConstantes.EMAIL_SECUNDARIO);
-		contatoConstrutor = new Contato(ContatoObjetosConstantes.EMAIL, telefone);
-		contatoConstrutor2 = new Contato(ContatoObjetosConstantes.EMAIL, telefone);
-	}
+    private Contato contato;
 
-	@AfterAll
-	public static void finalizacao() {
-		System.out.println("Fim dos testes Contato");
-	}
+    private Contato contatoConstrutor;
 
-	@Test
-	@Order(1)
-	void nao_deve_aceitar_email_incorreto() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("erick22@.com"));
-		assertTrue(illegalState.getMessage().contains(Mensagem.MENSAGEM_EMAIL_INVALIDO));
-	}
+    private Contato contatoConstrutor2;
 
-	@Test
-	@Order(2)
-	void nao_deve_aceitar_email_com_mais_254_caracteres() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
-		assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + ContatoConstantes.TAMANHO_MINIMO_EMAIL + " a "
-						+ ContatoConstantes.TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui "
-						+ ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
-	}
+    private Telefone telefone;
 
-	@Test
-	@Order(3)
-	void nao_deve_aceitar_email_nulo() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setEmail(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
-	}
+    private Telefone telefoneCelular;
 
-	@Test
-	@Order(4)
-	void nao_deve_aceitar_email_em_branco() {
-		illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("  "));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
-	}
-	
-	@Test
-	@Order(5)
-	void deve_aceitar_email_correto() {
-		assertEquals(ContatoObjetosConstantes.EMAIL_SECUNDARIO, contato.getEmail());
-	}
+    @BeforeEach
+    public void instancia() {
+        telefoneCelular = TELEFONE_01;
+        telefone = TELEFONE_02;
+        contato = CONTATO_02;
+        contatoConstrutor = new Contato(EMAIL, telefoneCelular);
+        contatoConstrutor2 = new Contato(EMAIL, telefone);
+    }
 
-	@Test
-	@Order(6)
-	void deve_validar_telefone_nulo() {
-		illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setTelefone(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
-	}
+    @AfterAll
+    public static void finalizacao() {
+        System.out.println("Fim dos testes Contato");
+    }
 
-	@Test
-	@Order(7)
-	void deve_validar_telefone_correto() {
-		assertEquals(telefone, contatoConstrutor.getTelefone());
-	}
+    @Test
+    @Order(1)
+    void nao_deve_aceitar_email_incorreto() {
+        this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("erick22@.com"));
+        assertTrue(illegalState.getMessage().contains(MENSAGEM_EMAIL_INVALIDO));
+    }
 
-	@Test
-	@Order(8)
-	void nao_deve_aceitar_hashcode_diferente() {
-		assertNotEquals(contato.hashCode(), contatoConstrutor.hashCode());
-	}
+    @Test
+    @Order(2)
+    void nao_deve_aceitar_email_com_mais_254_caracteres() {
+        this.illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail(EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS));
+        assertTrue(illegalState.getMessage().contains("Quantidade de carácter inválido, o campo deve estar entre " + TAMANHO_MINIMO_EMAIL + " a " +
+            TAMANHO_MAXIMO_EMAIL + " caracteres, atualmente o campo possui " + EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS.length()));
+    }
 
-	@Test
-	@Order(9)
-	void deve_validar_hashcode_iguais() {
-		assertEquals(contatoConstrutor.hashCode(), contatoConstrutor2.hashCode());
-	}
+    @Test
+    @Order(3)
+    void nao_deve_aceitar_email_nulo() {
+        illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setEmail(null));
+        assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+    }
 
-	@Test
-	@Order(10)
-	void deve_validar_equals() {
-		assertEquals(contatoConstrutor, contatoConstrutor2);
-		assertEquals(contatoConstrutor, contatoConstrutor);
-		assertNotEquals(null, contatoConstrutor);
-		assertNotEquals(true, contatoConstrutor.equals(new Object()));
-	}
-	
-	@Test
-	@Order(11)
-	void deve_validar_toString() {
-		assertEquals("Contato [email = "+ ContatoObjetosConstantes.EMAIL +", telefone = "+telefone+"]", contatoConstrutor.toString());
-	}
+    @Test
+    @Order(4)
+    void nao_deve_aceitar_email_em_branco() {
+        illegalState = assertThrows(IllegalStateException.class, () -> contato.setEmail("  "));
+        assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+    }
+
+    @Test
+    @Order(5)
+    void deve_aceitar_email_correto() {
+        assertEquals(EMAIL_SECUNDARIO, contato.getEmail());
+    }
+
+    @Test
+    @Order(6)
+    void deve_validar_telefone_nulo() {
+        illegalArgument = assertThrows(IllegalArgumentException.class, () -> contato.setTelefone(null));
+        assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+    }
+
+    @Test
+    @Order(7)
+    void deve_validar_telefone_correto() {
+        assertEquals(telefoneCelular, contatoConstrutor.getTelefone());
+    }
+
+    @Test
+    @Order(8)
+    void nao_deve_aceitar_hashcode_diferente() {
+        assertNotEquals(contato.hashCode(), contatoConstrutor.hashCode());
+    }
+
+    @Test
+    @Order(9)
+    void deve_validar_hashcode_iguais() {
+        assertEquals(contatoConstrutor.hashCode(), contatoConstrutor2.hashCode());
+    }
+
+    @Test
+    @Order(10)
+    void deve_validar_equals() {
+        assertEquals(contatoConstrutor, contatoConstrutor2);
+        assertEquals(contatoConstrutor, contatoConstrutor);
+        assertNotEquals(null, contatoConstrutor);
+        assertNotEquals(true, contatoConstrutor.equals(new Object()));
+    }
+
+    @Test
+    @Order(11)
+    void deve_validar_toString() {
+        assertEquals("Contato [email = " + EMAIL + ", telefone = " + telefoneCelular + "]", contatoConstrutor.toString());
+    }
 }

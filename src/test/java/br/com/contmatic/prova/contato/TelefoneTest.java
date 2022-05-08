@@ -1,15 +1,25 @@
 package br.com.contmatic.prova.contato;
 
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes;
-import br.com.contmatic.prova.model.contato.Telefone;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_DDD_INCORRETO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_TELEFONE_INCORRETO;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_CEARA;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_CELULAR;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_TELEFONE;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import static org.junit.jupiter.api.Assertions.*;
+import br.com.contmatic.prova.model.contato.Telefone;
 
 public class TelefoneTest {
 
@@ -29,11 +39,11 @@ public class TelefoneTest {
 
 	@BeforeEach
 	public void instancia() {
-		telefone = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_TELEFONE);
-		telefoneDddSaoPaulo = new Telefone (TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_TELEFONE);
-		celular = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_CELULAR);
-		celular2 = new Telefone(TelefoneObjetosConstantes.DDD_CEARA, TelefoneObjetosConstantes.NUMERO_CELULAR);
-		celularDddSaoPaulo = new Telefone(TelefoneObjetosConstantes.DDD_SAO_PAULO, TelefoneObjetosConstantes.NUMERO_CELULAR);
+		telefone = new Telefone(DDD_CEARA, NUMERO_TELEFONE);
+		telefoneDddSaoPaulo = new Telefone (DDD_SAO_PAULO, NUMERO_TELEFONE);
+		celular = new Telefone(DDD_CEARA, NUMERO_CELULAR);
+		celular2 = new Telefone(DDD_CEARA, NUMERO_CELULAR);
+		celularDddSaoPaulo = new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR);
 	}
 
 	@AfterAll
@@ -45,51 +55,51 @@ public class TelefoneTest {
 	@ValueSource(strings = { "09", "0934", "3", "0", "00" })
 	void nao_deve_aceitar_ddd_inexistente(String dddInexistente) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(dddInexistente));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_DDD_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DDD_INCORRETO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "      " })
 	void nao_deve_aceitar_em_branco_ddd(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdd(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_ddd_nulo() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.telefone.setDdd(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "09", "9544334", "000000", "0", "000000000", })
 	void nao_deve_aceitar_telefone_inexistente(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_TELEFONE_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = { " ", "", "      " })
 	void nao_deve_aceitar_em_branco_numero_telefone(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 	
 	@ParameterizedTest
 	@ValueSource(strings = { "abdtt066f", "abcdefghi", "0000abbb00", "0" })
 	void nao_deve_aceitar_telefone_caracteres_alfabeticos(String telefone) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_TELEFONE_INCORRETO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
 	}
 	
 	@Test
 	void deve_validar_ddd() {
-		assertEquals(TelefoneObjetosConstantes.DDD_CEARA, this.telefone.getDdd());
+		assertEquals(DDD_CEARA, this.telefone.getDdd());
 	}
 	
 	@Test
 	void deve_validar_telefone() {
-		assertEquals(TelefoneObjetosConstantes.NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
+		assertEquals(NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
 	}
 	
 	@Test
@@ -112,8 +122,8 @@ public class TelefoneTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Telefone [ddd = "+ TelefoneObjetosConstantes.DDD_CEARA +", numeroTelefone = "+ TelefoneObjetosConstantes.NUMERO_TELEFONE +"]", telefone.toString());
-		assertEquals("Telefone [ddd = "+ TelefoneObjetosConstantes.DDD_CEARA +", numeroTelefone = "+ TelefoneObjetosConstantes.NUMERO_CELULAR +"]", celular.toString());
+		assertEquals("Telefone [ddd = "+ DDD_CEARA +", numeroTelefone = "+ NUMERO_TELEFONE +"]", telefone.toString());
+		assertEquals("Telefone [ddd = "+ DDD_CEARA +", numeroTelefone = "+ NUMERO_CELULAR +"]", celular.toString());
 	}
 	
 }

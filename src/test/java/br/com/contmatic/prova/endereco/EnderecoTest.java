@@ -45,9 +45,9 @@ public class EnderecoTest {
 	public void instanciar() {
 		cidade = new Cidade(CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO, CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO, CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP);
 		endereco = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, null, EnderecoObjetosConstantes.CEP, cidade);
-		enderecoHash2 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO_02, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.SEGUNDO_CEP, CidadeObjetosConstantes.CIDADE);
+		enderecoHash2 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO_02, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.SEGUNDO_CEP, CidadeObjetosConstantes.CIDADE_01);
 		enderecoHash3 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.SEGUNDO_NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO_02, EnderecoObjetosConstantes.CEP, CidadeObjetosConstantes.CIDADE_02);
-		enderecoCompleto = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.CEP, CidadeObjetosConstantes.CIDADE);
+		enderecoCompleto = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.CEP, CidadeObjetosConstantes.CIDADE_01);
 		enderecoCompleto2 = new Endereco(EnderecoObjetosConstantes.LOGRADOURO, EnderecoObjetosConstantes.NUMERO_ENDERECO, EnderecoObjetosConstantes.BAIRRO, EnderecoObjetosConstantes.COMPLEMENTO, EnderecoObjetosConstantes.CEP, cidade);
 	}
 

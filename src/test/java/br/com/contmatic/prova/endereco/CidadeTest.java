@@ -1,20 +1,35 @@
 package br.com.contmatic.prova.endereco;
 
+import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
+import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CIDADE_01;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CIDADE_02;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
-import br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.model.CidadeConstantes;
+import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {
@@ -30,10 +45,10 @@ public class CidadeTest {
 	private Cidade cidadeConstrutor3;
 
 	@BeforeEach
-	public void instancia() {
-		cidadeConstrutor = new Cidade(CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO, CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO, CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP);
-		cidadeConstrutor2 = new Cidade(CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO, CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO, CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP);
-		cidadeConstrutor3 = new Cidade(CidadeObjetosConstantes.CODIGO_IBGE_PINDAMONHANGABA, CidadeObjetosConstantes.MUNICIPIO_PINDAMONHANGABA, CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP);
+	public void montarObjetos() {
+		cidadeConstrutor = CIDADE_01;
+		cidadeConstrutor2 = CIDADE_01;
+		cidadeConstrutor3 = CIDADE_02;
 	}
 
 	@AfterAll
@@ -44,14 +59,15 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_codigoIbge() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidadeConstrutor.setCodigoIbge(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
+		System.out.println(cidadeConstrutor.getCodigoIbge());
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "", " ", "  " })
 	void nao_deve_aceitar_campo_vazio_nome_codigoIbge(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setCodigoIbge(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@ParameterizedTest
@@ -59,32 +75,32 @@ public class CidadeTest {
 	void nao_deve_aceitar_caracteres_diferente_sete_codigoIbge(String codigoErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setCodigoIbge(codigoErrado));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE + " caracteres" + ", atualmente o campo possui " + codigoErrado.length() + " caractere(s)"));
+				+ TAMANHO_FIXO_CODIGOIBGE + " caracteres" + ", atualmente o campo possui " + codigoErrado.length() + " caractere(s)"));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "abc1221", "35380O6", "35E8006", "3538@06", "35$8006"})
 	void nao_deve_aceitar_caracter_diferente_numerico_codigoIbge(String codigoErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setCodigoIbge(codigoErrado));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_municipio() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidadeConstrutor.setMunicipio(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@ParameterizedTest
 	@ValueSource(strings = { "", " ", "  " })
 	void nao_deve_aceitar_campo_vazio_nome_municipio(String stringVazia) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(stringVazia));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_mais_cem_caracteres_municipio() {
-		assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(ConstantesTestes.MAIS_CEM_CARACTERES));
+		assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(MAIS_CEM_CARACTERES));
 	}
 
 	@ParameterizedTest
@@ -97,65 +113,67 @@ public class CidadeTest {
 	@ValueSource(strings = {"cidade2", "São Pau1o"})
 	void nao_deve_aceitar_caracter_numerico_municipio(String municioErrado) {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(municioErrado));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_especial_municipio() {
-		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(ConstantesTestes.CARACTER_ESPECIAL));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setMunicipio(CARACTER_ESPECIAL));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_unidadeFederativa() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
-	@Test
-	void nao_deve_aceitar_campo_vazio_unidadeFederativa() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(" "));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+	@ParameterizedTest
+    @ValueSource(strings = { "", " ", "  " })
+	void nao_deve_aceitar_campo_vazio_unidadeFederativa(String stringVazia) {
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(stringVazia));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_diferente_sete_caracteres_unidadeFederativa() {
-		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(ConstantesTestes.TRES_CARACTERES_ALFABETICOS));
+		this.illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(TRES_CARACTERES_ALFABETICOS));
 		assertTrue(illegalState.getMessage().contains("Quantidade de carácteres inválido! O campo deve possuir apenas "
-				+ CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA + " caracteres" + ", atualmente o campo possui " + ConstantesTestes.TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
+				+ TAMANHO_FIXO_UNIDADE_FEDERATIVA + " caracteres" + ", atualmente o campo possui " + TRES_CARACTERES_ALFABETICOS.length() + " caractere(s)"));
 	}
 
 	@Test
 	void nao_deve_aceitar_caracter_numerico_unidadeFederativa() {
 		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa("11"));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
-	@Test
-	void nao_deve_aceitar_caracter_especial_unidadeFederativa() {
-		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa("@$"));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
+	   @ParameterizedTest
+	    @ValueSource(strings = {"2&", "a!", "@3"})
+	void nao_deve_aceitar_caracter_especial_unidadeFederativa(String caracterInvalido) {
+		illegalState = assertThrows(IllegalStateException.class, () -> this.cidadeConstrutor.setUnidadeFederativa(caracterInvalido));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO));
 	}
 
 	@Test
 	void nao_deve_aceitar_nulo_municipio() {
 		illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidadeConstrutor.setMunicipio(null));
-		assertTrue(this.illegalArgument.getMessage().contains(Mensagem.MENSAGEM_CAMPO_NULO));
+		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 
 	@Test
 	void deve_validar_codigoIbge() {
-		assertEquals(CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO, this.cidadeConstrutor.getCodigoIbge());
+		assertEquals(CODIGO_IBGE_SAO_PAULO, this.cidadeConstrutor.getCodigoIbge());
 	}
 
 	@Test
 	void deve_validar_municio() {
-		assertEquals(CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO, this.cidadeConstrutor.getMunicipio());
+		assertEquals(MUNICIPIO_SAO_PAULO, this.cidadeConstrutor.getMunicipio());
 	}
 
 	@Test
 	void deve_validar_unidadeFederativa() {
-		assertEquals(CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP, this.cidadeConstrutor.getUnidadeFederativa());
+		assertEquals(UNIDADE_FEDERATIVA_SP, this.cidadeConstrutor.getUnidadeFederativa());
 	}
 
 	@Test
@@ -178,7 +196,7 @@ public class CidadeTest {
 
 	@Test
 	void deve_validar_toString() {
-		assertEquals("Cidade [codigoIbge = " + CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO + ", municipio = " + CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO + ", unidadeFederativa = "
-				+ CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP + "]", cidadeConstrutor.toString());
+		assertEquals("Cidade [codigoIbge = " + CODIGO_IBGE_SAO_PAULO + ", municipio = " + MUNICIPIO_SAO_PAULO + ", unidadeFederativa = "
+				+ UNIDADE_FEDERATIVA_SP + "]", cidadeConstrutor.toString());
 	}
 }

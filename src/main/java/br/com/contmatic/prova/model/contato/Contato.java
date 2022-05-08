@@ -1,13 +1,13 @@
 package br.com.contmatic.prova.model.contato;
 
+import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_EMAIL;
+import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MINIMO_EMAIL;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEmail;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
-
-import br.com.contmatic.prova.constantes.model.ContatoConstantes;
 
 public class Contato {
 
@@ -18,9 +18,6 @@ public class Contato {
 	public Contato(String email, Telefone telefone) {
 		this.setEmail(email);
 		this.setTelefone(telefone);
-	}
-	public Contato(String email){
-		this.setEmail(email);
 	}
 	
 	public Telefone getTelefone() {
@@ -39,7 +36,7 @@ public class Contato {
 	public void setEmail(String email) {
 		verificarNulo(email);
 		validarCampoVazio(email);
-		limiteCaracteresMinimoMaximo(email, ContatoConstantes.TAMANHO_MINIMO_EMAIL, ContatoConstantes.TAMANHO_MAXIMO_EMAIL);
+		limiteCaracteresMinimoMaximo(email, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
 		validarEmail(email);
 		this.email = email;
 	}
