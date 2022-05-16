@@ -1,5 +1,6 @@
 package br.com.contmatic.prova.utils;
 
+import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.QUANTIDADE_NUMEROS_INICIAIS_CPF;
 import static java.lang.Math.floor;
 
 import java.util.ArrayList;
@@ -14,7 +15,7 @@ public class GeradorCpfCnpj {
 	private static Random random = new Random();
 
 	public static String gerarCpf() {
-		List<Integer> noveNumerosGerados = gerarNumerosIniciaisCpfCnpj(RegrasCpfCnpj.QUANTIDADE_NUMEROS_INICIAIS_CPF);
+		List<Integer> noveNumerosGerados = gerarNumerosIniciaisCpfCnpj(QUANTIDADE_NUMEROS_INICIAIS_CPF);
 		/*
 		 * Os noves primeiros algarismos são ordenadamente multiplicados pela sequência inversamente
 		 */
@@ -88,7 +89,7 @@ public class GeradorCpfCnpj {
 		return digitoVerificador;
 	}
 	
-	private static String cpfCnpjBuild(List<Integer> numerosIniciais, Integer primeiroDigitoVerificador,	Integer segundoDigitoVerificador) {
+	private static String cpfCnpjBuild(List<Integer> numerosIniciais, Integer primeiroDigitoVerificador, Integer segundoDigitoVerificador) {
 		numerosIniciais.add(primeiroDigitoVerificador);
 		numerosIniciais.add(segundoDigitoVerificador);
 		return removerPontuacaoCpfCnpj(numerosIniciais.toString());

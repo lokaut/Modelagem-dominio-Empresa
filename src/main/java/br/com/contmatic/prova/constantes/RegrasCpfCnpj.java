@@ -1,7 +1,8 @@
 package br.com.contmatic.prova.constantes;
 
-public class RegrasCpfCnpj {/* CPF E CNPJ */
+public class RegrasCpfCnpj {
    private RegrasCpfCnpj() {}
+   
     public static final int POSICAO_ZERO_ASCII = 48;
     public static final int MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ = 11;
     public static final int PESO_DEZ_CPF_CNPJ = 10;

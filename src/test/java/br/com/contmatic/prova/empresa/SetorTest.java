@@ -1,16 +1,22 @@
 package br.com.contmatic.prova.empresa;
 
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
-import br.com.contmatic.prova.constantes.model.SetorConstantes;
-import br.com.contmatic.prova.constantes.objetos.EmpresaObjetosConstantes;
-import br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes;
-import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
-import br.com.contmatic.prova.model.empresa.Empresa;
-import br.com.contmatic.prova.model.empresa.Funcionario;
-import br.com.contmatic.prova.model.empresa.Setor;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
+import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.NOME_SETOR;
+import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
+import static br.com.contmatic.prova.utils.GeradorCpfCnpj.gerarCpf;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.junit.jupiter.api.Assertions.assertTimeout;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -18,12 +24,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-
-import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.*;
-import static org.junit.jupiter.api.Assertions.*;
+import br.com.contmatic.prova.constantes.ConstantesTestes;
+import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.model.SetorConstantes;
+import br.com.contmatic.prova.constantes.objetos.EmpresaObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
+import br.com.contmatic.prova.model.empresa.Empresa;
+import br.com.contmatic.prova.model.empresa.Funcionario;
+import br.com.contmatic.prova.model.empresa.Setor;
 
 public class SetorTest {
 
@@ -85,21 +93,21 @@ public class SetorTest {
 
 	@Test
 	void deve_validar_nome_setor_correto() {
-		assertEquals(SetorObjetosConstantes.NOME_SETOR, setorCompleto.getNome());
+		assertEquals(NOME_SETOR, setorCompleto.getNome());
 	}
 
 	@Test
 	void nao_deve_aceitar_lista_vazia() {
 		this.illegalState = assertThrows(IllegalStateException.class,
 				() -> setorCompleto.setFuncionarios(funcionarioVazio));
-		assertTrue(this.illegalState.getMessage().contains(Mensagem.MENSAGEM_CAMPO_VAZIO));
+		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
 	}
 
 	@Test
 	void nao_deve_aceitar_lista_funcionarios_acima_limite() {
-		while (funcionarioVazio.size() <= FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
-			funcionarioVazio.add(FuncionarioObjetosConstantes.FUNCIONARIO_01);
-			funcionarioVazio.add(FuncionarioObjetosConstantes.FUNCIONARIO_02);
+		while (funcionarioVazio.size() <= TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
+			funcionarioVazio.add(new Funcionario(gerarCpf()));
+			funcionarioVazio.add(new Funcionario(gerarCpf()));
 		}
 
 		this.illegalState = assertThrows(IllegalStateException.class,

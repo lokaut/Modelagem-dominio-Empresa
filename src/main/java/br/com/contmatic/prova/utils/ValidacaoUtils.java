@@ -33,7 +33,7 @@ public final class ValidacaoUtils {
                 limiteCaracteresFixo(nome, minimo);
             }
         }
-    }
+    } 
 
     public static void limiteCaracteresFixo(String nome, int tamanho) {
         if (nome.length() != tamanho) {
