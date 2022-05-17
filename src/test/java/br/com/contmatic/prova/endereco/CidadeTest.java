@@ -59,7 +59,6 @@ public class CidadeTest {
 	@Test
 	void nao_deve_aceitar_campo_nome_nulo_codigoIbge() {
 		this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.cidadeConstrutor.setCodigoIbge(null));
-		System.out.println(cidadeConstrutor.getCodigoIbge());
 		assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
 	}
 

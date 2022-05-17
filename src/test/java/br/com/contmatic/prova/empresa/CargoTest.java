@@ -127,7 +127,6 @@ public class CargoTest {
 			funcionarioVazio.add(new Funcionario(GeradorCpfCnpj.gerarCpf()));
 			funcionarioVazio.add(new Funcionario(GeradorCpfCnpj.gerarCpf()));
 		}
-		System.out.println(funcionarioVazio);
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setFuncionarios(funcionarioVazio));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
 	}
