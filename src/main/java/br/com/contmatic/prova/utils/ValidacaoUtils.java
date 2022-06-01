@@ -97,4 +97,10 @@ public final class ValidacaoUtils {
             throw new IllegalStateException(MENSAGEM_NUMERO_EXCEDIDO_LISTA);
         }
     }
+    
+    public static boolean validarCaracteresRepetidos(String texto) {
+        char primeiroCaracter = texto.charAt(1);
+        String textoRepetido = Character.toString(primeiroCaracter).repeat(texto.length());
+        return textoRepetido.equals(texto);
+    }
 }

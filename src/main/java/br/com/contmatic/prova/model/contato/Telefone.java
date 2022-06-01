@@ -12,10 +12,20 @@ import java.util.Objects;
 
 
 public class Telefone {
+    
+    private String ddi;
 	
 	private String ddd;
 	
-	private String numeroTelefone;
+	public String getDdi() {
+        return ddi;
+    }
+
+    public void setDdi(String ddi) {
+        this.ddi = ddi;
+    }
+
+    private String numeroTelefone;
 	
 	public Telefone(String ddd, String numeroTelefone) {
 		this.setDdd(ddd);
@@ -64,6 +74,8 @@ public class Telefone {
 	@Override
 	public String toString() {
 		StringBuilder builder = new StringBuilder();
+		builder.append("Telefone [ddi = ");
+		builder.append(ddi);
 		builder.append("Telefone [ddd = ");
 		builder.append(ddd);
 		builder.append(", numeroTelefone = ");

@@ -1,13 +1,14 @@
 package br.com.contmatic.prova.utils;
 
+import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
+import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.PESO_DEZ_CPF_CNPJ;
+import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.QUANTIDADE_NUMEROS_INICIAIS_CNPJ;
 import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.QUANTIDADE_NUMEROS_INICIAIS_CPF;
 import static java.lang.Math.floor;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
-import br.com.contmatic.prova.constantes.RegrasCpfCnpj;
 
 public class GeradorCpfCnpj {
 	private GeradorCpfCnpj() {}
@@ -34,7 +35,7 @@ public class GeradorCpfCnpj {
 	}
 
 	public static String gerarCnpj() {
-		List<Integer> numerosIniciaisGerados = gerarNumerosIniciaisCpfCnpj(RegrasCpfCnpj.QUANTIDADE_NUMEROS_INICIAIS_CNPJ);
+		List<Integer> numerosIniciaisGerados = gerarNumerosIniciaisCpfCnpj(QUANTIDADE_NUMEROS_INICIAIS_CNPJ);
 		Integer nonoDigito = 0;
 		Integer decimoDigito = 0;
 		Integer decimoPrimeiroDigito = 0;
@@ -81,9 +82,9 @@ public class GeradorCpfCnpj {
 	}
 	
 	private static int validarDigitosVerificacao(Integer digitoVerificador) {
-		digitoVerificador = RegrasCpfCnpj.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ - (modificador(digitoVerificador, RegrasCpfCnpj.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ));
+		digitoVerificador = MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ - (modificador(digitoVerificador, MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ));
 
-		if (digitoVerificador >= RegrasCpfCnpj.PESO_DEZ_CPF_CNPJ) {
+		if (digitoVerificador >= PESO_DEZ_CPF_CNPJ) {
 			digitoVerificador = 0;
 		}
 		return digitoVerificador;
