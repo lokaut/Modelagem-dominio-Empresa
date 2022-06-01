@@ -1,5 +1,10 @@
 package br.com.contmatic.prova.constantes;
 
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.DATA_ATUAL;
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.IDADE_MINIMA_EMPRESA;
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.REGRA_DATA_ADMISSAO;
+import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
+
 public class Mensagem {
 	private Mensagem() {}
     public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
@@ -15,10 +20,10 @@ public class Mensagem {
     public static final String MENSAGEM_CNPJ_DIFERENTE_CATORZE_NUMEROS = "CNPJ não possui 14 caracteres";
     public static final String MENSAGEM_EMAIL_INVALIDO = "Email Inválido";
     public static final String MENSAGEM_CPF_INVALIDO_LETRAS = "CPF deve possuir apenas números";
-    public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. O salário mínimo é de: " + RegrasEmpresa.SALARIO_MINIMO;
-    public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de " + RegrasEmpresa.IDADE_MINIMA_EMPRESA + " anos";
-    public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + RegrasEmpresa.REGRA_DATA_ADMISSAO + " meses da data de hoje: " + RegrasEmpresa.DATA_ATUAL;
-    public static final String MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL = "Data do desligamento não pode ser antes do dia " + RegrasEmpresa.DATA_ATUAL;
+    public static final String MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO = "O salário não pode ser menor do que um salario mínimo. O salário mínimo é de: " + SALARIO_MINIMO;
+    public static final String MENSAGEM_IDADE_MINIMA_EMPRESA = "Idade para admissão tem que ser maior de " + IDADE_MINIMA_EMPRESA + " anos";
+    public static final String MENSAGEM_ADMISSAO_FUTURA = "Data admissão é acima de " + REGRA_DATA_ADMISSAO + " meses da data de hoje: " + DATA_ATUAL;
+    public static final String MENSAGEM_DESLIGAMENTO_ANTES_DATA_ATUAL = "Data do desligamento não pode ser antes do dia " + DATA_ATUAL;
     public static final String MENSAGEM_DATA_FUTURA = "Data fornecida é inválida";
     public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
     public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
