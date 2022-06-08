@@ -9,5 +9,6 @@ public class Regex {
     public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
     public static final String REGEX_ALFABETICO_SEM_ACENTO = "^[A-Zaz_]+$";
     public static final String REGEX_DDD = "^([1-9]{2})$";
+    public static final String REGEX_DDI = "^([0-9]{1,3})$";
     public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
 }

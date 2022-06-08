@@ -9,9 +9,9 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTE
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CIDADE_01;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CIDADE_02;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP;
 import static org.hamcrest.CoreMatchers.is;
@@ -46,9 +46,9 @@ public class CidadeTest {
 
 	@BeforeEach
 	public void montarObjetos() {
-		cidadeConstrutor = CIDADE_01;
-		cidadeConstrutor2 = CIDADE_01;
-		cidadeConstrutor3 = CIDADE_02;
+		cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
+		cidadeConstrutor2 = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
+		cidadeConstrutor3 = new Cidade(CODIGO_IBGE_PINDAMONHANGABA, MUNICIPIO_PINDAMONHANGABA, UNIDADE_FEDERATIVA_SP);
 	}
 
 	@AfterAll

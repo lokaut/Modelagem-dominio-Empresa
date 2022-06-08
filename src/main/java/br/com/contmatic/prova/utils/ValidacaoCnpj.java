@@ -18,7 +18,7 @@ public final class ValidacaoCnpj {
 
 	public static void validarCNPJ(String cnpj) {
 		validarTamanho(cnpj);
-		validarSequencia(cnpj);
+		validarCaracteresRepetidos(cnpj, MENSAGEM_CNPJ_INVALIDO);
 		verificarDigitos(cnpj);
 	}
 	
@@ -36,12 +36,6 @@ public final class ValidacaoCnpj {
 		}
 	}
 	
-	private static void validarSequencia(String cnpj) {
-		if (validarCaracteresRepetidos(cnpj)) {
-			throw new IllegalStateException(MENSAGEM_CNPJ_INVALIDO);
-		}
-	}
-
 	private static char primeiroSegundoDigVerificador(String cnpj, int pesoVerificador) {
 		int num;
 		int soma = 0;

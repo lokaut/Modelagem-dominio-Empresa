@@ -17,7 +17,7 @@ public final class ValidacaoCpf {
 
 	public static void validarCPF(String cpf) {
 		validarTamanho(cpf, TAMANHO_CPF);
-		validarSequencia(cpf);
+		validarCaracteresRepetidos(cpf, MENSAGEM_CPF_INVALIDO);
 		verificarDigitos(cpf);
 	}
 	
@@ -36,11 +36,6 @@ public final class ValidacaoCpf {
 		 }
 	}
 
-	private static void validarSequencia(String cpf) {
-		if (validarCaracteresRepetidos(cpf)) {
-			throw new IllegalStateException(MENSAGEM_CPF_INVALIDO);
-		}
-	}
 
 	private static char primeiroSegundoDigVerificador(String cpf, int pesoVerificador) {
 		int num;

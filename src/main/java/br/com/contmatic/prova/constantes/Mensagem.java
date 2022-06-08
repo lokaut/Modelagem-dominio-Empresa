@@ -29,5 +29,6 @@ public class Mensagem {
     public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
     public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
     public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
+    public static final String MENSAGEM_DDI_INCORRETO = "Este DDI não é válido";
 
 }

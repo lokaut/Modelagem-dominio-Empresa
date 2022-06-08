@@ -37,12 +37,12 @@ import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstante
 import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.SEGUNDO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.DESCRICAO_SETOR;
 import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.NOME_SETOR;
+import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.NOME_SETOR_RH;
 import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_CEARA;
 import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDI_BRASIL;
 import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_TELEFONE;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_01;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_02;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.CONTATOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.ENDERECOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.SETORES;
@@ -67,7 +67,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Empresa;
@@ -98,7 +97,6 @@ public class EmpresaTest {
         contatosVazio = new ArrayList<>();
         enderecosVazio = new ArrayList<>();
         empresa = new Empresa(CNPJ_VALIDO_ALEATORIO);
-        //String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataFundacao, List<Setor> setores, List<Contato> contatos, List<Endereco> enderecos
         empresaCompleta = new Empresa(CNPJ_VALIDO);
     }
 
@@ -256,9 +254,11 @@ public class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_lista_acima_limite_setores() {
+        Setor setorObjeto = new Setor(NOME_SETOR);
+        Setor setorObjeto2 = new Setor(NOME_SETOR_RH);
         while (setoresVazio.size() <= TAMANHO_MAXIMO_LISTA_SETORES) {
-            setoresVazio.add(SetorObjetosConstantes.SETOR_01);
-            setoresVazio.add(SetorObjetosConstantes.SETOR_02);
+            setoresVazio.add(setorObjeto);
+            setoresVazio.add(setorObjeto2);
         }
         this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setSetores(setoresVazio));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
@@ -282,8 +282,8 @@ public class EmpresaTest {
     @Test
     void nao_deve_aceitar_lista_acima_limite_contatos() {
         while (contatosVazio.size() <= TAMANHO_MAXIMO_LISTA_CONTATOS) {
-            contatosVazio.add(new Contato(EMAIL, TELEFONE_01));
-            contatosVazio.add(new Contato(EMAIL_SECUNDARIO, TELEFONE_02));
+            contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)));
+            contatosVazio.add(new Contato(EMAIL_SECUNDARIO, new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE)));
 
         }
         this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setContatos(contatosVazio));
@@ -298,8 +298,8 @@ public class EmpresaTest {
 
     @Test
     void deve_validar_lista_contatos() {
-        contatosVazio.add(new Contato(EMAIL, new Telefone(DDD_SAO_PAULO, NUMERO_CELULAR)));
-        contatosVazio.add(new Contato(EMAIL, new Telefone(DDD_CEARA, NUMERO_TELEFONE)));
+        contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)));
+        contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE)));
 
         empresaCompleta.setContatos(contatosVazio);
         assertEquals(contatosVazio, empresaCompleta.getContatos());

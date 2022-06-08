@@ -33,7 +33,7 @@ public final class ValidacaoUtils {
                 limiteCaracteresFixo(nome, minimo);
             }
         }
-    } 
+    }
 
     public static void limiteCaracteresFixo(String nome, int tamanho) {
         if (nome.length() != tamanho) {
@@ -97,10 +97,12 @@ public final class ValidacaoUtils {
             throw new IllegalStateException(MENSAGEM_NUMERO_EXCEDIDO_LISTA);
         }
     }
-    
-    public static boolean validarCaracteresRepetidos(String texto) {
+
+    public static void validarCaracteresRepetidos(String texto, String mensagem) {
         char primeiroCaracter = texto.charAt(1);
         String textoRepetido = Character.toString(primeiroCaracter).repeat(texto.length());
-        return textoRepetido.equals(texto);
+        if (textoRepetido.equals(texto)) {
+            throw new IllegalStateException(mensagem);
+        }
     }
 }

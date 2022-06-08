@@ -6,11 +6,13 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MINIMO_EMAIL;
-import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.CONTATO_02;
 import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL;
 import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL_SECUNDARIO;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_01;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.TELEFONE_02;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_CEARA;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDI_BRASIL;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_CELULAR;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_TELEFONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -45,9 +47,9 @@ public class ContatoTest {
 
     @BeforeEach
     public void instancia() {
-        telefoneCelular = TELEFONE_01;
-        telefone = TELEFONE_02;
-        contato = CONTATO_02;
+        telefoneCelular = new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE);;
+        telefone = new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR);
+        contato =  new Contato(EMAIL_SECUNDARIO, telefoneCelular);
         contatoConstrutor = new Contato(EMAIL, telefoneCelular);
         contatoConstrutor2 = new Contato(EMAIL, telefone);
     }

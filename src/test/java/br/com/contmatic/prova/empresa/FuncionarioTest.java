@@ -1,14 +1,23 @@
 package br.com.contmatic.prova.empresa;
 
 import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.CBO_CARGOS;
-import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.CONTATO_02;
-import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.ENDERECO_02;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP;
+import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL_SECUNDARIO;
+import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.BAIRRO_02;
+import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.LOGRADOURO_02;
+import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.SEGUNDO_CEP;
+import static br.com.contmatic.prova.constantes.objetos.EnderecoObjetosConstantes.SEGUNDO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.CPF_VALIDO_ALEATORIO;
 import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.DATA_ADMISSAO;
 import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.DATA_NASCIMENTO_VALIDO;
 import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.NOME_COMPLETO;
 import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.NOME_SETOR;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_CEARA;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDI_BRASIL;
+import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_TELEFONE;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -18,20 +27,23 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import java.time.LocalDate;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
-import br.com.contmatic.prova.constantes.objetos.*;
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
+import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes;
+import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
 import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
+import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
 class FuncionarioTest {
@@ -55,13 +67,19 @@ class FuncionarioTest {
     Setor setor;
 
     Cargo cargo;
+    
+    Cidade cidade;
+    
+    Telefone telefone;
 
     @BeforeEach
     public void instancia() {
-        endereco = ENDERECO_02;
+        telefone = new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE);
+        cidade = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
+        endereco = new Endereco(LOGRADOURO_02, SEGUNDO_NUMERO_ENDERECO, BAIRRO_02, null, SEGUNDO_CEP, cidade);
         cargo = new Cargo(CBO_CARGOS);
         setor = new Setor(NOME_SETOR);
-        contato = CONTATO_02;
+        contato =  new Contato(EMAIL_SECUNDARIO, telefone);
         funcionario = new Funcionario(CPF_VALIDO_ALEATORIO);
         funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
         funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
