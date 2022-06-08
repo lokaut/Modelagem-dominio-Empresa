@@ -2,8 +2,8 @@ package br.com.contmatic.prova.empresa;
 
 
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
+import static br.com.contmatic.prova.constantes.SetorConstantes.NOME_SETOR;
 import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
-import static br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes.NOME_SETOR;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
 import static br.com.contmatic.prova.utils.GeradorCpfCnpj.gerarCpf;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -25,10 +25,9 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.ConstantesTestes;
+import br.com.contmatic.prova.constantes.EmpresaConstantes;
 import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.model.SetorConstantes;
-import br.com.contmatic.prova.constantes.objetos.EmpresaObjetosConstantes;
-import br.com.contmatic.prova.constantes.objetos.SetorObjetosConstantes;
+import br.com.contmatic.prova.constantes.SetorConstantes;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
@@ -50,9 +49,9 @@ public class SetorTest {
 	@BeforeEach
 	public void instancia() {
 		funcionarioVazio = new ArrayList<>();
-		cnpjEmpresa = new Empresa(EmpresaObjetosConstantes.CNPJ_VALIDO);
-		setor = new Setor(SetorObjetosConstantes.NOME_SETOR_RH);
-		setorCompleto = new Setor(SetorObjetosConstantes.NOME_SETOR, FUNCIONARIOS, SetorObjetosConstantes.DESCRICAO_SETOR, cnpjEmpresa);
+		cnpjEmpresa = new Empresa(EmpresaConstantes.CNPJ_VALIDO);
+		setor = new Setor(SetorConstantes.NOME_SETOR_RH);
+		setorCompleto = new Setor(SetorConstantes.NOME_SETOR, FUNCIONARIOS, SetorConstantes.DESCRICAO_SETOR, cnpjEmpresa);
 
 	}
 
@@ -86,8 +85,8 @@ public class SetorTest {
 	void nao_deve_aceitar_caracter_numerico_especial_nome(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setNome(nomeErrado));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + SetorConstantes.TAMANHO_MINIMO_NOME_SETOR
-						+ " a " + SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR + " caracteres" + ", atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MINIMO_NOME_SETOR
+						+ " a " + br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR + " caracteres" + ", atualmente o campo possui "
 						+ nomeErrado.length()));
 	}
 
@@ -144,8 +143,8 @@ public class SetorTest {
 	void nao_deve_aceitar_caracter_numerico_especial_descricao(String nomeErrado) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> this.setor.setDescricao(nomeErrado));
 		assertTrue(this.illegalState.getMessage()
-				.contains("Quantidade de carácter inválido, o campo deve estar entre " + SetorConstantes.TAMANHO_MINIMO_DESCRICAO
-						+ " a " + SetorConstantes.TAMANHO_MAXIMO_DESCRICAO + " caracteres" + ", atualmente o campo possui "
+				.contains("Quantidade de carácter inválido, o campo deve estar entre " + br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MINIMO_DESCRICAO
+						+ " a " + br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_DESCRICAO + " caracteres" + ", atualmente o campo possui "
 						+ nomeErrado.length()));
 	}
 	
@@ -158,7 +157,7 @@ public class SetorTest {
 	
 	@Test
 	void deve_validar_descricao_setor_correto() {
-		assertEquals(SetorObjetosConstantes.DESCRICAO_SETOR, setorCompleto.getDescricao());
+		assertEquals(SetorConstantes.DESCRICAO_SETOR, setorCompleto.getDescricao());
 	}
 	
 	@Test
@@ -194,7 +193,7 @@ public class SetorTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals(  "Setor [nome = " + SetorObjetosConstantes.NOME_SETOR + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + SetorObjetosConstantes.DESCRICAO_SETOR + ", empresa = "
+		assertEquals(  "Setor [nome = " + SetorConstantes.NOME_SETOR + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + SetorConstantes.DESCRICAO_SETOR + ", empresa = "
 				+ cnpjEmpresa + "]", setorCompleto.toString());
 	}
 }

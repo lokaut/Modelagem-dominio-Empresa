@@ -1,9 +1,9 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
 import br.com.contmatic.prova.utils.GeradorCpfCnpj;
 
-public class EmpresaObjetosConstantes {
-   private EmpresaObjetosConstantes() {}
+public class EmpresaConstantes {
+   private EmpresaConstantes() {}
    
     public static final String CNPJ_VALIDO = "88592632000132";
     public static final String CNPJ_VALIDO_ALEATORIO = GeradorCpfCnpj.gerarCnpj();

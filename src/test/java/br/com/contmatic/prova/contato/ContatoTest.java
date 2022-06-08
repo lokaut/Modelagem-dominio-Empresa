@@ -1,18 +1,18 @@
 package br.com.contmatic.prova.contato;
 
 import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL;
+import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL_SECUNDARIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_CEARA;
+import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDI_BRASIL;
+import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_CELULAR;
+import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MINIMO_EMAIL;
-import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL;
-import static br.com.contmatic.prova.constantes.objetos.ContatoObjetosConstantes.EMAIL_SECUNDARIO;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_CEARA;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDD_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.DDI_BRASIL;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_CELULAR;
-import static br.com.contmatic.prova.constantes.objetos.TelefoneObjetosConstantes.NUMERO_TELEFONE;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

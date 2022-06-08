@@ -1,6 +1,6 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
-public class EnderecoObjetosConstantes {
+public class EnderecoConstantes {
     public static final String LOGRADOURO = "Rua Bastos";
     public static final String LOGRADOURO_02 = "Rua Iguape";
     public static final String NUMERO_ENDERECO = "101";

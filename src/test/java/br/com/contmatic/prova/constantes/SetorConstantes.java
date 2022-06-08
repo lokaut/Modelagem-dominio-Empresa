@@ -1,6 +1,6 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
-public class SetorObjetosConstantes {
+public class SetorConstantes {
     
     public static final String NOME_SETOR = "Tecnologia da Informação";
     public static final String NOME_SETOR_RH = "Recursos Humanos";

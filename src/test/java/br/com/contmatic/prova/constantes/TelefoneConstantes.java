@@ -1,6 +1,6 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
-public class TelefoneObjetosConstantes {
+public class TelefoneConstantes {
     public static final String DDD_CEARA = "85";
     public static final String DDI_BRASIL = "55";
     public static final String DDD_SAO_PAULO = "11";

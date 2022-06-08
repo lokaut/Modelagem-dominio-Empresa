@@ -1,7 +1,7 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
-public class CidadeObjetosConstantes {
-    private CidadeObjetosConstantes() {}
+public class CidadeConstantes {
+    private CidadeConstantes() {}
     
     public static final String CODIGO_IBGE_SAO_PAULO = "3550308";
     public static final String CODIGO_IBGE_PINDAMONHANGABA = "3538006";

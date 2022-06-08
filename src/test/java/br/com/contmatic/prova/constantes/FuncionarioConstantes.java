@@ -1,10 +1,10 @@
-package br.com.contmatic.prova.constantes.objetos;
+package br.com.contmatic.prova.constantes;
 
 import java.time.LocalDate;
 
 import br.com.contmatic.prova.utils.GeradorCpfCnpj;
 
-public class FuncionarioObjetosConstantes {
+public class FuncionarioConstantes {
     public static final String CPF_VALIDO = "76899070081";
     public static final String CPF_VALIDO_ALEATORIO = GeradorCpfCnpj.gerarCpf();
     public static final String NOME_COMPLETO = "Lókaut Santos";

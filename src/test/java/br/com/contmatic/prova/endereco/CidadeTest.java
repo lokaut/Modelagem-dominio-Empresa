@@ -1,5 +1,10 @@
 package br.com.contmatic.prova.endereco;
 
+import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_PINDAMONHANGABA;
+import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
+import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
+import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
@@ -9,11 +14,6 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTE
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_PINDAMONHANGABA;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.CODIGO_IBGE_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_PINDAMONHANGABA;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.MUNICIPIO_SAO_PAULO;
-import static br.com.contmatic.prova.constantes.objetos.CidadeObjetosConstantes.UNIDADE_FEDERATIVA_SP;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;

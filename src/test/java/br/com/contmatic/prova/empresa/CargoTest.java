@@ -1,19 +1,19 @@
 package br.com.contmatic.prova.empresa;
 
 
+import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_ANALISTA_TI;
+import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
+import static br.com.contmatic.prova.constantes.CargosConstantes.DESCRICAO_CARGOS;
+import static br.com.contmatic.prova.constantes.CargosConstantes.NOME_CARGOS;
+import static br.com.contmatic.prova.constantes.CargosConstantes.SALARIO_CARGOS;
 import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.FuncionarioConstantes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MINIMO_NOME_CARGO;
-import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.CBO_ANALISTA_TI;
-import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.CBO_CARGOS;
-import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.DESCRICAO_CARGOS;
-import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.NOME_CARGOS;
-import static br.com.contmatic.prova.constantes.objetos.CargosObjetosConstantes.SALARIO_CARGOS;
-import static br.com.contmatic.prova.constantes.objetos.FuncionarioObjetosConstantes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertAll;
