@@ -5,11 +5,6 @@ import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.ONZE_NUMEROS;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO_02;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.CEP;
@@ -32,6 +27,11 @@ import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CIQUENTA_NUMEROS;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.ONZE_NUMEROS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
@@ -47,8 +47,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.util.ConstantesTestes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 import br.com.contmatic.prova.model.endereco.Endereco;
 

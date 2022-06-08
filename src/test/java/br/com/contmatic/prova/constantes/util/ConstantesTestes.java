@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.constantes;
+package br.com.contmatic.prova.constantes.util;
 
 public class ConstantesTestes {
     public static final String MAIS_SESSENTA_CARACTERES_ALFABETICOS = "Rua BastoRua BastoRua BastoRua BastoRua BastoRua BastoRua Basto";

@@ -6,7 +6,6 @@ import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.DESCRICAO_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.NOME_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.SALARIO_CARGOS;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.FuncionarioConstantes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
@@ -15,6 +14,7 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDID
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MINIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,8 +36,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.constantes.util.ConstantesTestes;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.utils.GeradorCpfCnpj;

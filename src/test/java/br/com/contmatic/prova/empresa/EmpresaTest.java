@@ -5,8 +5,6 @@ import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL;
 import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL_SECUNDARIO;
 import static br.com.contmatic.prova.constantes.EmpresaConstantes.CNPJ_VALIDO;
@@ -46,6 +44,8 @@ import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MA
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.CONTATOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.ENDERECOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.SETORES;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.DOIS_CARACTERES;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.utils.GeradorCpfCnpj.gerarCpf;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -65,8 +65,8 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.Mensagem;
+import br.com.contmatic.prova.constantes.util.ConstantesTestes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Empresa;

@@ -24,10 +24,10 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
 import br.com.contmatic.prova.constantes.EmpresaConstantes;
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.SetorConstantes;
+import br.com.contmatic.prova.constantes.util.ConstantesTestes;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;

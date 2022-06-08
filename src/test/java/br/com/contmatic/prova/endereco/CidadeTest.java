@@ -5,15 +5,15 @@ import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.constantes.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.util.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.ConstantesTestes;
+import br.com.contmatic.prova.constantes.util.ConstantesTestes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {
