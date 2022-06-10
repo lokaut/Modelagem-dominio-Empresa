@@ -3,6 +3,7 @@ package br.com.contmatic.prova.contato;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_DDD_INCORRETO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_DDI_INCORRETO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_TELEFONE_INCORRETO;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_CEARA;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_SAO_PAULO;
@@ -71,7 +72,26 @@ public class TelefoneTest {
         this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.telefone.setDdd(null));
         assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
     }
-
+    
+    @ParameterizedTest
+    @ValueSource(strings = { "0933", "-3", "8888888"})
+    void nao_deve_aceitar_ddi_inexistente(String ddiInexistente) {
+        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdi(ddiInexistente));
+        assertTrue(this.illegalState.getMessage().contains(MENSAGEM_DDI_INCORRETO));
+    }
+    @ParameterizedTest
+    @ValueSource(strings = { " ", "", "      " })
+    void nao_deve_aceitar_em_branco_ddi(String stringVazia) {
+        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setDdi(stringVazia));
+        assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
+    }
+    
+    @Test
+    void nao_deve_aceitar_ddi_nulo() {
+        this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> this.telefone.setDdi(null));
+        assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
+    }
+    
     @ParameterizedTest
     @ValueSource(strings = { "09", "9544334", "000000", "0", "000000000", })
     void nao_deve_aceitar_telefone_inexistente(String telefone) {
@@ -92,6 +112,12 @@ public class TelefoneTest {
         this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
     }
+    
+    @Test
+    void deve_validar_ddi() {
+        assertEquals(DDI_BRASIL, this.telefone.getDdi());
+    }
+
 
     @Test
     void deve_validar_ddd() {
