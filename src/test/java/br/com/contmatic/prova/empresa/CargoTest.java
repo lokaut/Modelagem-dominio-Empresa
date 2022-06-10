@@ -14,7 +14,7 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDID
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MINIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static java.math.BigDecimal.valueOf;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -37,10 +37,10 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
-import br.com.contmatic.prova.constantes.util.ConstantesTestes;
+import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
-import br.com.contmatic.prova.utils.GeradorCpfCnpj;
+import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class CargoTest {

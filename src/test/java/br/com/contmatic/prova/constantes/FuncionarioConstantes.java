@@ -2,7 +2,7 @@ package br.com.contmatic.prova.constantes;
 
 import java.time.LocalDate;
 
-import br.com.contmatic.prova.utils.GeradorCpfCnpj;
+import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 
 public class FuncionarioConstantes {
     public static final String CPF_VALIDO = "76899070081";

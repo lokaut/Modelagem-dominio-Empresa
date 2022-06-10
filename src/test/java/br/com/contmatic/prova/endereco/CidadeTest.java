@@ -11,9 +11,9 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTE
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.CARACTER_ESPECIAL;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -29,7 +29,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.util.ConstantesTestes;
+import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {

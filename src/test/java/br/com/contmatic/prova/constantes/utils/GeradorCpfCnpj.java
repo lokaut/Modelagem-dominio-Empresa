@@ -1,4 +1,4 @@
-package br.com.contmatic.prova.utils;
+package br.com.contmatic.prova.constantes.utils;
 
 import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.MODULO_DIVISAO_VERIFICACAO_ONZE_CPF_CNPJ;
 import static br.com.contmatic.prova.constantes.RegrasCpfCnpj.PESO_DEZ_CPF_CNPJ;
