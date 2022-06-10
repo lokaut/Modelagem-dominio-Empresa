@@ -1,5 +1,18 @@
 package br.com.contmatic.prova.model.endereco;
 
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.Regex.REGEX_ALFANUMERICOS;
+import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_FIXO_CEP_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_NUMERO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_BAIRRO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.campoOpcional;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
@@ -9,9 +22,6 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.Regex;
-import br.com.contmatic.prova.constantes.model.EnderecoConstantes;
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 
 public class Endereco extends Auditoria {
@@ -53,8 +63,8 @@ public class Endereco extends Auditoria {
     public void setLogradouro(String logradouro) {
         verificarNulo(logradouro);
         validarCampoVazio(logradouro);
-        limiteCaracteresMinimoMaximo(logradouro, EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO, EnderecoConstantes.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
-        validarCaracteresPermitidos(logradouro, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
+        validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
         this.logradouro = logradouro;
     }
 
@@ -65,8 +75,8 @@ public class Endereco extends Auditoria {
     public void setNumero(String numero) {
         verificarNulo(numero);
         validarCampoVazio(numero);
-        limiteCaracteresMinimoMaximo(numero, EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO, EnderecoConstantes.TAMANHO_MAXIMO_NUMERO_ENDERECO);
-        validarCaracteresPermitidos(numero, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+        limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
+        validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
         this.numero = numero;
     }
 
@@ -75,7 +85,7 @@ public class Endereco extends Auditoria {
     }
 
     public void setComplemento(String complemento) {
-        campoOpcional(complemento, EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO, EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO);
+        campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO_ENDERECO, TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO);
         this.complemento = complemento;
     }
 
@@ -86,8 +96,8 @@ public class Endereco extends Auditoria {
     public void setBairro(String bairro) {
         verificarNulo(bairro);
         validarCampoVazio(bairro);
-        limiteCaracteresMinimoMaximo(bairro, EnderecoConstantes.TAMANHO_MINIMO_BAIRRO_ENDERECO, EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO);
-        validarCaracteresPermitidos(bairro, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
+        validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
         this.bairro = bairro;
     }
 
@@ -98,8 +108,8 @@ public class Endereco extends Auditoria {
     public void setCep(String cep) {
         verificarNulo(cep);
         validarCampoVazio(cep);
-        limiteCaracteresFixo(cep, EnderecoConstantes.TAMANHO_FIXO_CEP_ENDERECO);
-        validarCaracteresPermitidos(cep, Regex.REGEX_ALFANUMERICOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+        limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
+        validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
         this.cep = cep;
     }
 
