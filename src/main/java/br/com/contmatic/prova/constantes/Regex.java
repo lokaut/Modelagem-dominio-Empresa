@@ -11,4 +11,5 @@ public class Regex {
     public static final String REGEX_DDD = "^([1-9]{2})$";
     public static final String REGEX_DDI = "^([0-9]{1,3})$";
     public static final String REGEX_TELEFONE = "^9?[0-9]{8}$";
+    public static final String REGEX_IP = "^(([0-9]|[1-9][0-9]|1[0-9][0-9]|2[0-4][0-9]|25[0-5])(\\.(?!$)|$)){4}$";
 }

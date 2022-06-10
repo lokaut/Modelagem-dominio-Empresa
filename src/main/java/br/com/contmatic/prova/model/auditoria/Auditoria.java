@@ -1,14 +1,22 @@
 package br.com.contmatic.prova.model.auditoria;
 
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_IP_INVALIDO;
+import static br.com.contmatic.prova.constantes.Regex.REGEX_IP;
+import static br.com.contmatic.prova.utils.ValidacaoDatas.validarDateTimeMaiorDateTimeAtual;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarSeExiste;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
+
 import java.time.LocalDateTime;
 
 import br.com.contmatic.prova.model.contato.Contato;
 
-public class Auditoria {
+public abstract class Auditoria {
 
     private Contato contatoCriacao;
 
-    private Contato contatoAltaeracao;
+    private Contato contatoAlteracao;
 
     private LocalDateTime dataCriacao;
 
@@ -23,15 +31,18 @@ public class Auditoria {
     }
 
     public void setContatoCriacao(Contato contatoCriacao) {
+        verificarNulo(contatoCriacao);
+        validarSeExiste(contatoCriacao, this.contatoCriacao);
         this.contatoCriacao = contatoCriacao;
     }
 
-    public Contato getContatoAltaeracao() {
-        return contatoAltaeracao;
+    public Contato getContatoAlteracao() {
+        return contatoAlteracao;
     }
 
-    public void setContatoAltaeracao(Contato contatoAltaeracao) {
-        this.contatoAltaeracao = contatoAltaeracao;
+    public void setContatoAlteracao(Contato contatoAlteracao) {
+        verificarNulo(contatoAlteracao);
+        this.contatoAlteracao = contatoAlteracao;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -39,6 +50,9 @@ public class Auditoria {
     }
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
+        verificarNulo(dataCriacao);
+        validarDateTimeMaiorDateTimeAtual(dataCriacao);
+        validarSeExiste(dataCriacao, this.dataCriacao);
         this.dataCriacao = dataCriacao;
     }
 
@@ -47,6 +61,8 @@ public class Auditoria {
     }
 
     public void setDataAlteracao(LocalDateTime dataAlteracao) {
+        verificarNulo(dataCriacao);
+        validarDateTimeMaiorDateTimeAtual(dataCriacao);
         this.dataAlteracao = dataAlteracao;
     }
 
@@ -55,6 +71,10 @@ public class Auditoria {
     }
 
     public void setIpCriacao(String ipCriacao) {
+        verificarNulo(ipCriacao);
+        validarCampoVazio(ipCriacao);
+        validarCaracteresPermitidos(ipCriacao, REGEX_IP, MENSAGEM_IP_INVALIDO);
+        validarSeExiste(ipCriacao, this.contatoCriacao);
         this.ipCriacao = ipCriacao;
     }
 
@@ -63,6 +83,9 @@ public class Auditoria {
     }
 
     public void setIpAlteracao(String ipAlteracao) {
+        verificarNulo(ipAlteracao);
+        validarCampoVazio(ipAlteracao);
+        validarCaracteresPermitidos(ipAlteracao, REGEX_IP, MENSAGEM_IP_INVALIDO);
         this.ipAlteracao = ipAlteracao;
     }
 
@@ -72,7 +95,7 @@ public class Auditoria {
         builder.append("Auditoria [contatoCriacao = ");
         builder.append(contatoCriacao);
         builder.append(", contatoAltaeracao = ");
-        builder.append(contatoAltaeracao);
+        builder.append(contatoAlteracao);
         builder.append(", dataCriacao = ");
         builder.append(dataCriacao);
         builder.append(", dataAlteracao = ");
@@ -81,7 +104,7 @@ public class Auditoria {
         builder.append(ipCriacao);
         builder.append(", ipAlteracao = ");
         builder.append(ipAlteracao);
-        builder.append("]");
+        builder.append("] ");
         return builder.toString();
     }
 

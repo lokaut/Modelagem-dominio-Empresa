@@ -30,5 +30,6 @@ public class Mensagem {
     public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
     public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
     public static final String MENSAGEM_DDI_INCORRETO = "Este DDI não é válido";
+    public static final String MENSAGEM_IP_INVALIDO = "Ip é inválido";
 
 }

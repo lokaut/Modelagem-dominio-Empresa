@@ -105,4 +105,10 @@ public final class ValidacaoUtils {
             throw new IllegalStateException(mensagem);
         }
     }
+
+    public static <T> void validarSeExiste(T novo, T existente) {
+        if(novo.equals(existente)) {
+            throw new IllegalStateException( "objeto para essa classe " + novo.getClass() + " já foi criado");
+        }
+    }
 }

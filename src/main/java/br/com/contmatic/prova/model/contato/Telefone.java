@@ -12,7 +12,9 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
-public class Telefone {
+import br.com.contmatic.prova.model.auditoria.Auditoria;
+
+public class Telefone extends Auditoria {
 
     private String ddi;
 

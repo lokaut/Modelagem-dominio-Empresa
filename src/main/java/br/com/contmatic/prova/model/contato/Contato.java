@@ -9,62 +9,65 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
 
-public class Contato {
+import br.com.contmatic.prova.model.auditoria.Auditoria;
 
-	private String email;
+public class Contato extends Auditoria {
 
-	private Telefone telefone;
+    private String email;
 
-	public Contato(String email, Telefone telefone) {
-		this.setEmail(email);
-		this.setTelefone(telefone);
-	}
-	
-	public Telefone getTelefone() {
-		return telefone;
-	}
+    private Telefone telefone;
 
-	public void setTelefone(Telefone telefone) {
-		verificarNulo(telefone);
-		this.telefone = telefone;
-	}
+    public Contato(String email, Telefone telefone) {
+        this.setEmail(email);
+        this.setTelefone(telefone);
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public Telefone getTelefone() {
+        return telefone;
+    }
 
-	public void setEmail(String email) {
-		verificarNulo(email);
-		validarCampoVazio(email);
-		limiteCaracteresMinimoMaximo(email, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
-		validarEmail(email);
-		this.email = email;
-	}
+    public void setTelefone(Telefone telefone) {
+        verificarNulo(telefone);
+        this.telefone = telefone;
+    }
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(email);
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (!(obj instanceof Contato))
-			return false;
-		Contato other = (Contato) obj;
-		return Objects.equals(email, other.email);
-	}
+    public void setEmail(String email) {
+        verificarNulo(email);
+        validarCampoVazio(email);
+        limiteCaracteresMinimoMaximo(email, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
+        validarEmail(email);
+        this.email = email;
+    }
 
-	@Override
-	public String toString() {
-		StringBuilder builder = new StringBuilder();
-		builder.append("Contato [email = ");
-		builder.append(email);
-		builder.append(", telefone = ");
-		builder.append(telefone);
-		builder.append("]");
-		return builder.toString();
-	}
-	
+    @Override
+    public int hashCode() {
+        return Objects.hash(email);
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj)
+            return true;
+        if (!(obj instanceof Contato))
+            return false;
+        Contato other = (Contato) obj;
+        return Objects.equals(email, other.email);
+    }
+
+    @Override
+    public String toString() {
+        StringBuilder builder = new StringBuilder();
+        builder.append("Contato [email = ");
+        builder.append(email);
+        builder.append(", telefone = ");
+        builder.append(telefone);
+        builder.append("]");
+        builder.append(super.toString());
+        return builder.toString();
+    }
+
 }
