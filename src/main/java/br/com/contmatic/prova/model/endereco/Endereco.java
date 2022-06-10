@@ -8,16 +8,15 @@ import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_LOGRADOURO_ENDERECO;
-import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_BAIRRO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_COMPLEMENTO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_LOGRADOURO_ENDERECO;
-import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MINIMO_NUMERO_ENDERECO;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.campoOpcional;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarNumeroResidencial;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
@@ -28,8 +27,7 @@ public class Endereco extends Auditoria {
 
     private String logradouro;
 
-    // mudar para Integer
-    private String numero;
+    private Integer numero;
 
     private String complemento;
 
@@ -39,7 +37,7 @@ public class Endereco extends Auditoria {
 
     private Cidade cidade;
 
-    public Endereco(String logradouro, String numero, String bairro, String cep, Cidade cidade) {
+    public Endereco(String logradouro, Integer numero, String bairro, String cep, Cidade cidade) {
         this.setLogradouro(logradouro);
         this.setNumero(numero);
         this.setBairro(bairro);
@@ -47,7 +45,7 @@ public class Endereco extends Auditoria {
         this.setCidade(cidade);
     }
 
-    public Endereco(String logradouro, String numero, String bairro, String complemento, String cep, Cidade cidade) {
+    public Endereco(String logradouro, Integer numero, String bairro, String complemento, String cep, Cidade cidade) {
         this.setLogradouro(logradouro);
         this.setNumero(numero);
         this.setBairro(bairro);
@@ -68,15 +66,14 @@ public class Endereco extends Auditoria {
         this.logradouro = logradouro;
     }
 
-    public String getNumero() {
+    public Integer getNumero() {
         return numero;
     }
 
-    public void setNumero(String numero) {
+    // Se for uma residencia sem número, então o numero será zero
+    public void setNumero(Integer numero) {
         verificarNulo(numero);
-        validarCampoVazio(numero);
-        limiteCaracteresMinimoMaximo(numero, TAMANHO_MINIMO_NUMERO_ENDERECO, TAMANHO_MAXIMO_NUMERO_ENDERECO);
-        validarCaracteresPermitidos(numero, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+        validarNumeroResidencial(numero);
         this.numero = numero;
     }
 
