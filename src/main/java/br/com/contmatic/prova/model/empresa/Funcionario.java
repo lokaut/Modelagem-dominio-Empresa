@@ -15,10 +15,11 @@ import java.util.Objects;
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
+import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
-public class Funcionario {
+public class Funcionario extends Auditoria {
 
     private String nome;
 
@@ -179,6 +180,7 @@ public class Funcionario {
         builder.append(", cargo = ");
         builder.append(cargo);
         builder.append("]");
+        builder.append(super.toString());
         return builder.toString();
     }
 }

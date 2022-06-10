@@ -92,7 +92,7 @@ public abstract class Auditoria {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append("Auditoria [contatoCriacao = ");
+        builder.append(" Auditoria [contatoCriacao = ");
         builder.append(contatoCriacao);
         builder.append(", contatoAltaeracao = ");
         builder.append(contatoAlteracao);

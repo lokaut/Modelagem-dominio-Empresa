@@ -88,6 +88,7 @@ public class Telefone extends Auditoria {
         builder.append(", numeroTelefone = ");
         builder.append(numeroTelefone);
         builder.append("]");
+        builder.append(super.toString());
         return builder.toString();
     }
 

@@ -22,10 +22,11 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
 
+import br.com.contmatic.prova.model.auditoria.Auditoria;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
-public class Empresa {
+public class Empresa extends Auditoria {
 
     private String cnpj;
 
@@ -167,6 +168,7 @@ public class Empresa {
         builder.append(", enderecos = ");
         builder.append(enderecos);
         builder.append("]");
+        builder.append(super.toString());
         return builder.toString();
     }
 
