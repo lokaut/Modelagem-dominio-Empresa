@@ -8,6 +8,8 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDID
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_EMAIL;
 import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
+import static java.util.Objects.isNull;
+import static java.util.Objects.nonNull;
 import static java.util.regex.Pattern.CASE_INSENSITIVE;
 
 import java.math.BigDecimal;
@@ -21,13 +23,13 @@ public final class ValidacaoUtils {
     }
 
     public static <T> void verificarNulo(T objeto) {
-        if (objeto == null) {
+        if (isNull(objeto)) {
             throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
         }
     }
 
     public static void campoOpcional(String nome, int minimo, int maximo) {
-        if (nome != null) {
+        if (nonNull(nome)) {
             if (minimo != maximo) {
                 limiteCaracteresMinimoMaximo(nome, minimo, maximo);
             } else {
