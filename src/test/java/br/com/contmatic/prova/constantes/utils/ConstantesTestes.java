@@ -1,6 +1,9 @@
 package br.com.contmatic.prova.constantes.utils;
 
+import java.time.LocalDateTime;
+
 public class ConstantesTestes {
+    private ConstantesTestes() {}
     public static final String MAIS_SESSENTA_CARACTERES_ALFABETICOS = "Rua BastoRua BastoRua BastoRua BastoRua BastoRua BastoRua Basto";
     public static final String SETE_NUMEROS = "123345678";
     public static final String MAIS_CIQUENTA_NUMEROS = "123345678223594735739123345678223597357395935627500";
@@ -12,5 +15,8 @@ public class ConstantesTestes {
     public static final String DOIS_CARACTERES = "ac";
     public static final String ONZE_NUMEROS_STRING = "66998583340";
     public static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
-    public static final String CATORZE_NUMEROS_LETRAS = "ABC134rfgs5d7j"; 
+    public static final String CATORZE_NUMEROS_LETRAS = "ABC134rfgs5d7j";
+    public static final LocalDateTime LOCAL_TIME_VALIDO = LocalDateTime.now();
+    public static final LocalDateTime LOCAL_TIME_ANTERIOR_HOJE = LocalDateTime.now().minusDays(1);
+    
 }
