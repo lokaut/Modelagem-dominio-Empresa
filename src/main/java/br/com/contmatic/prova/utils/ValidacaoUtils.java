@@ -110,7 +110,7 @@ public final class ValidacaoUtils {
     }
 
     public static <T> void validarSeExiste(T novo, T existente) {
-        if(novo.equals(existente)) {
+        if(nonNull(existente)) {
             throw new IllegalStateException( "objeto para essa classe " + novo.getClass() + " já foi criado");
         }
     }
