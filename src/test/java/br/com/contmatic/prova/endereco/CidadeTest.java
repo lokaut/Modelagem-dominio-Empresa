@@ -1,6 +1,5 @@
 package br.com.contmatic.prova.endereco;
 
-import static br.com.contmatic.prova.constantes.AuditoriaConstantes.IP_VALIDO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
@@ -10,9 +9,6 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
-import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_CEARA;
-import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDI_BRASIL;
-import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_CODIGOIBGE;
 import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_FIXO_UNIDADE_FEDERATIVA;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.CARACTER_ESPECIAL;
@@ -27,8 +23,6 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-import java.time.LocalDateTime;
-
 import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -36,9 +30,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
-import br.com.contmatic.prova.constantes.utils.GeradorCaracteres;
-import br.com.contmatic.prova.model.contato.Contato;
-import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.endereco.Cidade;
 
 public class CidadeTest {
@@ -55,19 +46,6 @@ public class CidadeTest {
     public void montarObjetos() {
         cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
         cidadeConstrutor2 = new Cidade(CODIGO_IBGE_PINDAMONHANGABA, MUNICIPIO_PINDAMONHANGABA, UNIDADE_FEDERATIVA_SP);
-        gerarAuditoria(cidadeConstrutor);
-        gerarAuditoria(cidadeConstrutor2);
-    }
-
-    private void gerarAuditoria(Cidade cidade) {
-        Contato contato = new Contato(GeradorCaracteres.gerarEmail(4), new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
-        cidadeConstrutor.setContatoCriacao(contato);
-        cidadeConstrutor.setContatoAlteracao(contato);
-        cidadeConstrutor.setDataCriacao(LocalDateTime.now());
-        cidadeConstrutor.setDataAlteracao(LocalDateTime.now());
-        cidadeConstrutor.setIpCriacao(IP_VALIDO);
-        cidadeConstrutor.setIpAlteracao(IP_VALIDO);
-
     }
 
     @AfterAll

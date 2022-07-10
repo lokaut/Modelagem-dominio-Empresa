@@ -5,8 +5,6 @@ import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_PINDAMONHANGABA;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL;
-import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL_SECUNDARIO;
 import static br.com.contmatic.prova.constantes.EmpresaConstantes.CNPJ_VALIDO;
 import static br.com.contmatic.prova.constantes.EmpresaConstantes.CNPJ_VALIDO_ALEATORIO;
 import static br.com.contmatic.prova.constantes.EmpresaConstantes.NOME_FANTASIA;
@@ -41,9 +39,9 @@ import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_LISTA_ENDERECOS;
 import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_LISTA_SETORES;
-import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.CONTATOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.ENDERECOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.SETORES;
+import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.TELEFONES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.DOIS_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
@@ -67,7 +65,6 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
-import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
@@ -79,9 +76,9 @@ public class EmpresaTest {
 
     private List<Setor> setoresVazio;
 
-    private List<Contato> contatosVazio;
+    private List<Telefone> contatosVazio;
 
-    private List<Endereco> enderecosVazio;
+    private List<Endereco> telefonesVazio;
 
     private Empresa empresaCompleta;
 
@@ -95,7 +92,7 @@ public class EmpresaTest {
     public void instanciar() {
         setoresVazio = new ArrayList<>();
         contatosVazio = new ArrayList<>();
-        enderecosVazio = new ArrayList<>();
+        telefonesVazio = new ArrayList<>();
         empresa = new Empresa(CNPJ_VALIDO_ALEATORIO);
         empresaCompleta = new Empresa(CNPJ_VALIDO);
     }
@@ -282,8 +279,8 @@ public class EmpresaTest {
     @Test
     void nao_deve_aceitar_lista_acima_limite_contatos() {
         while (contatosVazio.size() <= TAMANHO_MAXIMO_LISTA_CONTATOS) {
-            contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)));
-            contatosVazio.add(new Contato(EMAIL_SECUNDARIO, new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE)));
+            contatosVazio.add(new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR));
+            contatosVazio.add( new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
 
         }
         this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setContatos(contatosVazio));
@@ -298,27 +295,26 @@ public class EmpresaTest {
 
     @Test
     void deve_validar_lista_contatos() {
-        contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)));
-        contatosVazio.add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE)));
+        contatosVazio.add(new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR));
+        contatosVazio.add(new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
 
         empresaCompleta.setContatos(contatosVazio);
-        assertEquals(contatosVazio, empresaCompleta.getContatos());
+        assertEquals(contatosVazio, empresaCompleta.getTelefones());
     }
 
     @Test
     void nao_deve_aceitar_lista_vazia_enderecos() {
-        this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(enderecosVazio));
+        this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(telefonesVazio));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
     }
 
     @Test
     void nao_deve_aceitar_lista_acima_limite_enderecos() {
-        while (enderecosVazio.size() <= TAMANHO_MAXIMO_LISTA_ENDERECOS) {
-            enderecosVazio.add(new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)));
-            enderecosVazio
-                    .add(new Endereco(LOGRADOURO_02, SEGUNDO_NUMERO_ENDERECO, BAIRRO_02, null, SEGUNDO_CEP, new Cidade(CODIGO_IBGE_PINDAMONHANGABA, MUNICIPIO_PINDAMONHANGABA, UNIDADE_FEDERATIVA_SP)));
+        while (telefonesVazio.size() <= TAMANHO_MAXIMO_LISTA_ENDERECOS) {
+            telefonesVazio.add(new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)));
+            telefonesVazio.add(new Endereco(LOGRADOURO_02, SEGUNDO_NUMERO_ENDERECO, BAIRRO_02, null, SEGUNDO_CEP, new Cidade(CODIGO_IBGE_PINDAMONHANGABA, MUNICIPIO_PINDAMONHANGABA, UNIDADE_FEDERATIVA_SP)));
         }
-        this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(enderecosVazio));
+        this.illegalState = assertThrows(IllegalStateException.class, () -> empresa.setEnderecos(telefonesVazio));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
     }
 
@@ -330,21 +326,21 @@ public class EmpresaTest {
 
     @Test
     void deve_validar_lista_enderecos() {
-        enderecosVazio.add(new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)));
+        telefonesVazio.add(new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)));
 
-        empresaCompleta.setEnderecos(enderecosVazio);
-        assertEquals(enderecosVazio, empresaCompleta.getEnderecos());
+        empresaCompleta.setEnderecos(telefonesVazio);
+        assertEquals(telefonesVazio, empresaCompleta.getEnderecos());
     }
     
     @Test
     void deve_validar_constrututor_completo() {
-        empresaCompleta = new Empresa(CNPJ_VALIDO_ALEATORIO, RAZAO_SOCIAL, NOME_FANTASIA, FUNDACAO_EMPRESA, SETORES, CONTATOS, ENDERECOS);
+        empresaCompleta = new Empresa(CNPJ_VALIDO_ALEATORIO, RAZAO_SOCIAL, NOME_FANTASIA, FUNDACAO_EMPRESA, SETORES, TELEFONES, ENDERECOS);
         assertEquals(CNPJ_VALIDO_ALEATORIO, empresaCompleta.getCnpj());
         assertEquals(RAZAO_SOCIAL, empresaCompleta.getRazaoSocial());
         assertEquals(NOME_FANTASIA, empresaCompleta. getNomeFantasia());
         assertEquals(FUNDACAO_EMPRESA, empresaCompleta.getDataFundacao());
         assertEquals(SETORES, empresaCompleta.getSetores());
-        assertEquals(CONTATOS, empresaCompleta.getContatos());
+        assertEquals(TELEFONES, empresaCompleta.getTelefones());
         assertEquals(ENDERECOS, empresaCompleta.getEnderecos());
     }
 
@@ -366,7 +362,7 @@ public class EmpresaTest {
 
     void deve_validar_toString() {
         assertAll(() -> assertEquals("Empresa [cnpj=" + CNPJ_VALIDO + ", razaoSocial=" + RAZAO_SOCIAL + ", nomeFantasia=" + NOME_FANTASIA + ", dataAbertura=" + FUNDACAO_EMPRESA + ", setores=" +
-            SETORES + ", contato=" + CONTATOS + ", endereco=" + ENDERECOS + "]", empresaCompleta.toString()), () -> assertNotEquals(empresa.toString(), empresaCompleta.toString()));
+            SETORES + ", telefones = " + TELEFONES + ", endereco=" + ENDERECOS + "]", empresaCompleta.toString()), () -> assertNotEquals(empresa.toString(), empresaCompleta.toString()));
     }
 
 }

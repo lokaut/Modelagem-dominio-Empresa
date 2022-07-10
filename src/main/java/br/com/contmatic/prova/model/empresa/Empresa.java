@@ -23,7 +23,7 @@ import java.util.List;
 import java.util.Objects;
 
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
 public class Empresa extends Auditoria {
@@ -38,7 +38,7 @@ public class Empresa extends Auditoria {
 
     private List<Setor> setores;
 
-    private List<Contato> contatos;
+    private List<Telefone> telefones;
 
     private List<Endereco> enderecos;
 
@@ -46,13 +46,13 @@ public class Empresa extends Auditoria {
         this.setCnpj(cnpj);
     }
 
-    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataFundacao, List<Setor> setores, List<Contato> contatos, List<Endereco> enderecos) {
+    public Empresa(String cnpj, String razaoSocial, String nomeFantasia, LocalDate dataFundacao, List<Setor> setores, List<Telefone> telefones, List<Endereco> enderecos) {
         this.setCnpj(cnpj);
         this.setRazaoSocial(razaoSocial);
         this.setNomeFantasia(nomeFantasia);
         this.setDataFundacao(dataFundacao);
         this.setSetores(setores);
-        this.setContatos(contatos);
+        this.setContatos(telefones);
         this.setEnderecos(enderecos);
     }
 
@@ -111,15 +111,15 @@ public class Empresa extends Auditoria {
         this.setores = setores;
     }
 
-    public List<Contato> getContatos() {
-        return contatos;
+    public List<Telefone> getTelefones() {
+        return telefones;
     }
 
-    public void setContatos(List<Contato> contatos) {
-        verificarNulo(contatos);
-        validarListaVazia(contatos);
-        validarTamanhoMaximoLista(contatos, TAMANHO_MAXIMO_LISTA_CONTATOS);
-        this.contatos = contatos;
+    public void setContatos(List<Telefone> telefones) {
+        verificarNulo(telefones);
+        validarListaVazia(telefones);
+        validarTamanhoMaximoLista(telefones, TAMANHO_MAXIMO_LISTA_CONTATOS);
+        this.telefones = telefones;
     }
 
     public List<Endereco> getEnderecos() {
@@ -163,12 +163,12 @@ public class Empresa extends Auditoria {
         builder.append(dataFundacao);
         builder.append(", setores = ");
         builder.append(setores);
-        builder.append(", contatos = ");
-        builder.append(contatos);
+        builder.append(", Telefones = ");
+        builder.append(telefones);
         builder.append(", enderecos = ");
         builder.append(enderecos);
-        builder.append("]");
         builder.append(super.toString());
+        builder.append("]");
         return builder.toString();
     }
 

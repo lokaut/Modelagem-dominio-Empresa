@@ -4,8 +4,6 @@ import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL;
-import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL_SECUNDARIO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO_02;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.CEP;
@@ -31,7 +29,6 @@ import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
@@ -48,9 +45,9 @@ public class SerializacaoListas {
     public static final List<Funcionario> FUNCIONARIOS = new ArrayList<>() {
         public static final long serialVersionUID = 1L;
         {
-            add(new Funcionario(NOME_COMPLETO, CPF_VALIDO, new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)),
+            add(new Funcionario(NOME_COMPLETO, CPF_VALIDO, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR),
                 new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)), DATA_ADMISSAO,
-                DATA_NASCIMENTO_VALIDO, new Cargo(CBO_CARGOS), new Setor(NOME_SETOR_RH)));
+                DATA_NASCIMENTO_VALIDO, new Cargo(CBO_CARGOS), new Setor(NOME_SETOR_RH))); 
 
             add(new Funcionario(gerarCpf()));
         }
@@ -72,11 +69,11 @@ public class SerializacaoListas {
         }
     };
 
-    public static final List<Contato> CONTATOS = new ArrayList<>() {
+    public static final List<Telefone> TELEFONES = new ArrayList<>() {
         private static final long serialVersionUID = 1L;
         {
-            add(new Contato(EMAIL, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR)));
-            add(new Contato(EMAIL_SECUNDARIO, new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE)));
+            add(new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR));
+            add(new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
         }
     };
 }

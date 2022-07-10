@@ -16,7 +16,7 @@ import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.Regex;
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
 import br.com.contmatic.prova.model.auditoria.Auditoria;
-import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.endereco.Endereco;
 
 public class Funcionario extends Auditoria {
@@ -25,7 +25,7 @@ public class Funcionario extends Auditoria {
 
     private String cpf;
 
-    private Contato contato;
+    private Telefone telefone;
 
     private Endereco endereco;
 
@@ -43,10 +43,10 @@ public class Funcionario extends Auditoria {
         this.setCpf(cpf);
     }
 
-    public Funcionario(String nome, String cpf, Contato contato, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo, Setor setor) {
+    public Funcionario(String nome, String cpf, Telefone telefone, Endereco endereco, LocalDate dataAdmissao, LocalDate dataNascimento, Cargo cargo, Setor setor) {
         this.setNome(nome);
         this.setCpf(cpf);
-        this.setContato(contato);
+        this.setTelefone(telefone);
         this.setEndereco(endereco);
         this.setDataAdmissao(dataAdmissao);
         this.setDataNascimento(dataNascimento);
@@ -95,13 +95,13 @@ public class Funcionario extends Auditoria {
         this.endereco = endereco;
     }
 
-    public void setContato(Contato contato) {
-        verificarNulo(contato);
-        this.contato = contato;
+    public void setTelefone(Telefone telefone) {
+        verificarNulo(telefone);
+        this.telefone = telefone;
     }
 
-    public Contato getContato() {
-        return contato;
+    public Telefone getTelefone() {
+        return telefone;
     }
 
     public LocalDate getDataNascimento() {
@@ -165,8 +165,8 @@ public class Funcionario extends Auditoria {
         builder.append(nome);
         builder.append(", cpf = ");
         builder.append(cpf);
-        builder.append(", contato = ");
-        builder.append(contato);
+        builder.append(", telefone = ");
+        builder.append(telefone);
         builder.append(", endereco = ");
         builder.append(endereco);
         builder.append(", dataAdmissao = ");

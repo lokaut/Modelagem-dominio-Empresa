@@ -10,13 +10,13 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.time.LocalDateTime;
 
-import br.com.contmatic.prova.model.contato.Contato;
+import br.com.contmatic.prova.model.contato.Email;
 
 public abstract class Auditoria {
 
-    private Contato contatoCriacao;
+    private Email createdBy;
 
-    private Contato contatoAlteracao;
+    private Email lastModifiedBy;
 
     private LocalDateTime dataCriacao;
 
@@ -26,23 +26,23 @@ public abstract class Auditoria {
 
     private String ipAlteracao;
 
-    public Contato getContatoCriacao() {
-        return contatoCriacao;
+    public Email getcreatedBy() {
+        return createdBy;
     }
 
-    public void setContatoCriacao(Contato contatoCriacao) {
-        verificarNulo(contatoCriacao);
-        validarSeExiste(contatoCriacao, this.contatoCriacao);
-        this.contatoCriacao = contatoCriacao;
+    public void setContatoCriacao(Email createdBy) {
+        verificarNulo(createdBy);
+        validarSeExiste(createdBy, this.createdBy);
+        this.createdBy = createdBy;
     }
 
-    public Contato getContatoAlteracao() {
-        return contatoAlteracao;
+    public Email getContatoAlteracao() {
+        return lastModifiedBy;
     }
 
-    public void setContatoAlteracao(Contato contatoAlteracao) {
-        verificarNulo(contatoAlteracao);
-        this.contatoAlteracao = contatoAlteracao;
+    public void setContatoAlteracao(Email lastModifiedBy) {
+        verificarNulo(lastModifiedBy);
+        this.lastModifiedBy = lastModifiedBy;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -92,10 +92,10 @@ public abstract class Auditoria {
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(" Auditoria [contatoCriacao = ");
-        builder.append(contatoCriacao);
-        builder.append(", contatoAltaeracao = ");
-        builder.append(contatoAlteracao);
+        builder.append(" Auditoria [createdBy = ");
+        builder.append(createdBy);
+        builder.append(", lastModifiedBy = ");
+        builder.append(lastModifiedBy);
         builder.append(", dataCriacao = ");
         builder.append(dataCriacao);
         builder.append(", dataAlteracao = ");

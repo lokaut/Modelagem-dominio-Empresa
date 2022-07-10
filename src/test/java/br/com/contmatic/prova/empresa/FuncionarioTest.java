@@ -4,7 +4,6 @@ import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
-import static br.com.contmatic.prova.constantes.ContatoConstantes.EMAIL_SECUNDARIO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO_02;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.LOGRADOURO_02;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.SEGUNDO_CEP;
@@ -45,7 +44,6 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
@@ -60,8 +58,6 @@ class FuncionarioTest {
     Funcionario funcionarioCompleto;
 
     Funcionario funcionarioCompleto2;
-
-    Contato contato;
 
     IllegalStateException illegalState;
 
@@ -86,10 +82,10 @@ class FuncionarioTest {
         endereco = new Endereco(LOGRADOURO_02, SEGUNDO_NUMERO_ENDERECO, BAIRRO_02, null, SEGUNDO_CEP, cidade);
         cargo = new Cargo(CBO_CARGOS);
         setor = new Setor(NOME_SETOR);
-        contato =  new Contato(EMAIL_SECUNDARIO, telefone);
+        //contato =  new Contato(EMAIL_SECUNDARIO, telefone);
         funcionario = new Funcionario(CPF_VALIDO_ALEATORIO);
-        funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
-        funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, contato, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
+        funcionarioCompleto = new Funcionario(NOME_COMPLETO, CPF_VALIDO, telefone, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
+        funcionarioCompleto2 = new Funcionario(NOME_COMPLETO, CPF_VALIDO, telefone, endereco, DATA_ADMISSAO, DATA_NASCIMENTO_VALIDO, cargo, setor);
     }
 
     @AfterAll
@@ -151,8 +147,8 @@ class FuncionarioTest {
     }
 
     @Test
-    void nao_deve_aceitar_campo_contato_nulo() {
-        this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setContato(null));
+    void nao_deve_aceitar_campo_telefone_nulo() {
+        this.illegalArgument = assertThrows(IllegalArgumentException.class, () -> funcionario.setTelefone(null));
         assertTrue(this.illegalArgument.getMessage().contains(MENSAGEM_CAMPO_NULO));
     }
 
@@ -228,8 +224,8 @@ class FuncionarioTest {
     }
 
     @Test
-    void deve_validar_contato_correto() {
-        assertEquals(contato, funcionarioCompleto.getContato());
+    void deve_validar_telefone_correto() {
+        assertEquals(telefone, funcionarioCompleto.getTelefone());
     }
 
     @Test
@@ -272,7 +268,7 @@ class FuncionarioTest {
 
     @Test
     void deve_validar_toString() {
-        assertEquals("Funcionario [nome = " + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", contato = " + contato + ", endereco = " +
+        assertEquals("Funcionario [nome = " + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", telefone = " + telefone + ", endereco = " +
             endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO + ", dataDesligamento = " +
             dataDesligamento + ", setor = " + setor + ", cargo = " + cargo + "]", funcionarioCompleto.toString());
     }
