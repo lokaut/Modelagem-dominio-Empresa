@@ -1,6 +1,6 @@
 package br.com.contmatic.prova.constantes;
 
-import br.com.contmatic.prova.utils.GeradorCpfCnpj;
+import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 
 public class EmpresaConstantes {
    private EmpresaConstantes() {}

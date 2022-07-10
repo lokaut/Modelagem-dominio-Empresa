@@ -12,7 +12,7 @@ import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_CELULA
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MINIMO_EMAIL;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;

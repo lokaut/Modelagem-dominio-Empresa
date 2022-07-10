@@ -74,7 +74,7 @@ public abstract class Auditoria {
         verificarNulo(ipCriacao);
         validarCampoVazio(ipCriacao);
         validarCaracteresPermitidos(ipCriacao, REGEX_IP, MENSAGEM_IP_INVALIDO);
-        validarSeExiste(ipCriacao, this.contatoCriacao);
+        validarSeExiste(ipCriacao, this.ipCriacao);
         this.ipCriacao = ipCriacao;
     }
 

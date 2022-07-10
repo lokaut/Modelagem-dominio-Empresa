@@ -44,9 +44,9 @@ import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MA
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.CONTATOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.ENDERECOS;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.SETORES;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.DOIS_CARACTERES;
-import static br.com.contmatic.prova.constantes.util.ConstantesTestes.MAIS_CEM_CARACTERES;
-import static br.com.contmatic.prova.utils.GeradorCpfCnpj.gerarCpf;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.DOIS_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -66,7 +66,7 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.util.ConstantesTestes;
+import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
 import br.com.contmatic.prova.model.contato.Contato;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Empresa;
