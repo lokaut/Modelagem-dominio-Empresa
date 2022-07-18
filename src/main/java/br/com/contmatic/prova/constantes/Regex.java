@@ -3,7 +3,7 @@ package br.com.contmatic.prova.constantes;
 public class Regex {
     private Regex() {}
     
-    public static final String REGEX_EMAIL = "^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$";
+    public static final String REGEX_EMAIL = "^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$";
     public static final String REGEX_CARACTERES_ALFABETICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ ]+$";
     public static final String REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS = "^[A-Za-záàâãéèêíïóôõöúçñÁÀÂÃÉÈÍÏÓÔÕÖÚÇÑ0-9 ]+$";
     public static final String REGEX_ALFANUMERICOS = "^[\\d]+$";
