@@ -2,7 +2,7 @@ package br.com.contmatic.prova.model.empresa;
 
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_LISTA_CONTATOS;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.TAMANHO_MAXIMO_LISTA_TELEFONES;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
@@ -118,7 +118,7 @@ public class Empresa extends Auditoria {
     public void setContatos(List<Telefone> telefones) {
         verificarNulo(telefones);
         validarListaVazia(telefones);
-        validarTamanhoMaximoLista(telefones, TAMANHO_MAXIMO_LISTA_CONTATOS);
+        validarTamanhoMaximoLista(telefones, TAMANHO_MAXIMO_LISTA_TELEFONES);
         this.telefones = telefones;
     }
 

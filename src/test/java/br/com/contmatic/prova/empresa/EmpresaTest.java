@@ -32,7 +32,7 @@ import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_SAO_PAULO
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDI_BRASIL;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
-import static br.com.contmatic.prova.constantes.model.ContatoConstantes.TAMANHO_MAXIMO_LISTA_CONTATOS;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.TAMANHO_MAXIMO_LISTA_TELEFONES;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
@@ -278,7 +278,7 @@ public class EmpresaTest {
 
     @Test
     void nao_deve_aceitar_lista_acima_limite_contatos() {
-        while (contatosVazio.size() <= TAMANHO_MAXIMO_LISTA_CONTATOS) {
+        while (contatosVazio.size() <= TAMANHO_MAXIMO_LISTA_TELEFONES) {
             contatosVazio.add(new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR));
             contatosVazio.add( new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
 
