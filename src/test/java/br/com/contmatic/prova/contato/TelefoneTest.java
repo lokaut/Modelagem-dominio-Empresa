@@ -10,6 +10,9 @@ import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_SAO_PAULO
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDI_BRASIL;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
@@ -96,21 +99,21 @@ public class TelefoneTest {
     @ParameterizedTest
     @ValueSource(strings = { "09", "9544334", "000000", "0", "000000000", })
     void nao_deve_aceitar_telefone_inexistente(String telefone) {
-        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
+        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumero(telefone));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
     }
 
     @ParameterizedTest
     @ValueSource(strings = { " ", "", "      " })
     void nao_deve_aceitar_em_branco_numero_telefone(String stringVazia) {
-        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(stringVazia));
+        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumero(stringVazia));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_CAMPO_VAZIO));
     }
 
     @ParameterizedTest
     @ValueSource(strings = { "abdtt066f", "abcdefghi", "0000abbb00", "0" })
     void nao_deve_aceitar_telefone_caracteres_alfabeticos(String telefone) {
-        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumeroTelefone(telefone));
+        this.illegalState = assertThrows(IllegalStateException.class, () -> this.celular.setNumero(telefone));
         assertTrue(this.illegalState.getMessage().contains(MENSAGEM_TELEFONE_INCORRETO));
     }
 
@@ -126,7 +129,7 @@ public class TelefoneTest {
 
     @Test
     void deve_validar_telefone() {
-        assertEquals(NUMERO_TELEFONE, this.telefone.getNumeroTelefone());
+        assertEquals(NUMERO_TELEFONE, this.telefone.getNumero());
     }
 
     @Test
@@ -149,8 +152,10 @@ public class TelefoneTest {
 
     @Test
     void deve_validar_toString() {
-        assertEquals("Telefone [ddi = " + DDI_BRASIL + ", ddd = " + DDD_CEARA + ", numeroTelefone = " + NUMERO_TELEFONE + "]", telefone.toString());
-        assertEquals("Telefone [ddi = " + DDI_BRASIL + ", ddd = " + DDD_CEARA + ", numeroTelefone = " + NUMERO_CELULAR + "]", celular.toString());
+        assertAll(
+            () -> assertThat(telefone.toString(), containsString(telefone.getDdd())),
+            () -> assertThat(celular.toString(), containsString(celular.getNumero()))
+                );
     }
 
 }

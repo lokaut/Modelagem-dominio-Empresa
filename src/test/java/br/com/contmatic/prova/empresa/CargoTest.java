@@ -16,6 +16,8 @@ import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MI
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static java.math.BigDecimal.valueOf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -38,9 +40,9 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
 import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
+import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 import br.com.contmatic.prova.model.empresa.Cargo;
 import br.com.contmatic.prova.model.empresa.Funcionario;
-import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 
 @TestMethodOrder(OrderAnnotation.class)
 public class CargoTest {
@@ -191,8 +193,8 @@ public class CargoTest {
 	@Order(11)
 	void deve_validar_toString() {
 		assertAll(
-				() -> assertEquals("Cargo [nome = " + NOME_CARGOS + ", cbo = " + CBO_CARGOS + ", salario = " + SALARIO_CARGOS + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + DESCRICAO_CARGOS + "]", cargoCompleto.toString()),
-				() -> assertEquals("Cargo [nome = " + null + ", cbo = " + CBO_ANALISTA_TI + ", salario = " + null + ", funcionarios = " + null + ", descricao = " + null+ "]", cargo.toString()),
+		        () -> assertThat(cargoCompleto.toString(), containsString(cargoCompleto.getNome())),
+		        () -> assertThat(cargo.toString(), containsString(cargo.getCbo())),
 				() -> assertNotEquals(cargo.toString(), cargoCompleto.toString())
 		);
 	}

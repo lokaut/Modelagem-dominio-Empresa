@@ -14,9 +14,11 @@ import static br.com.contmatic.prova.constantes.model.CidadeConstantes.TAMANHO_F
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.TRES_CARACTERES_ALFABETICOS;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -42,10 +44,13 @@ public class CidadeTest {
 
     private Cidade cidadeConstrutor2;
 
+    private Cidade cidadeConstrutor3;
+
     @BeforeEach
     public void montarObjetos() {
         cidadeConstrutor = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
         cidadeConstrutor2 = new Cidade(CODIGO_IBGE_PINDAMONHANGABA, MUNICIPIO_PINDAMONHANGABA, UNIDADE_FEDERATIVA_SP);
+        cidadeConstrutor3 = new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP);
     }
 
     @AfterAll
@@ -177,8 +182,6 @@ public class CidadeTest {
         assertThat(cidadeConstrutor2.hashCode(), is(not(this.cidadeConstrutor.hashCode())));
     }
 
-    /* Auditoria */
-
     @Test
     void deve_validar_hashcode_iguais() {
         assertThat(cidadeConstrutor.hashCode(), is(this.cidadeConstrutor.hashCode()));
@@ -187,13 +190,17 @@ public class CidadeTest {
     @Test
     void deve_validar_equals() {
         assertEquals(this.cidadeConstrutor, this.cidadeConstrutor);
-        assertEquals(this.cidadeConstrutor, this.cidadeConstrutor);
+        assertEquals(this.cidadeConstrutor, this.cidadeConstrutor3);
         assertNotNull(this.cidadeConstrutor);
         assertNotEquals(cidadeConstrutor, new Object());
     }
 
     @Test
     void deve_validar_toString() {
-        assertEquals("Cidade [codigoIbge = " + CODIGO_IBGE_SAO_PAULO + ", municipio = " + MUNICIPIO_SAO_PAULO + ", unidadeFederativa = " + UNIDADE_FEDERATIVA_SP + "]", cidadeConstrutor.toString());
+        assertAll(
+            () -> assertThat(cidadeConstrutor.toString(), containsString(cidadeConstrutor.getCodigoIbge())),
+            () -> assertThat(cidadeConstrutor.toString(), containsString(cidadeConstrutor.getMunicipio()))
+                );
+        
     }
 }

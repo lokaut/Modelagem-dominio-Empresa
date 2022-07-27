@@ -30,6 +30,9 @@ import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.DOIS_CARA
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.ONZE_NUMEROS_CARACTERES;
 import static java.time.LocalDate.now;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -268,8 +271,9 @@ class FuncionarioTest {
 
     @Test
     void deve_validar_toString() {
-        assertEquals("Funcionario [nome = " + NOME_COMPLETO + ", cpf = " + CPF_VALIDO + ", telefone = " + telefone + ", endereco = " +
-            endereco + ", dataAdmissao = " + DATA_ADMISSAO + ", dataNascimento = " + DATA_NASCIMENTO_VALIDO + ", dataDesligamento = " +
-            dataDesligamento + ", setor = " + setor + ", cargo = " + cargo + "]", funcionarioCompleto.toString());
+        assertAll(
+            () -> assertThat(funcionarioCompleto.toString(), containsString(funcionarioCompleto.getNome())),
+            () -> assertThat(funcionarioCompleto.toString(), containsString(funcionarioCompleto.getCpf()))
+                );
     }
 }

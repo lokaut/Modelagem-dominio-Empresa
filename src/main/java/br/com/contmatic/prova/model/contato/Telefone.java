@@ -20,12 +20,12 @@ public class Telefone extends Auditoria {
 
     private String ddd;
 
-    private String numeroTelefone;
+    private String numero;
 
-    public Telefone(String ddi, String ddd, String numeroTelefone) {
+    public Telefone(String ddi, String ddd, String numero) {
         this.setDdi(ddi);
         this.setDdd(ddd);
-        this.setNumeroTelefone(numeroTelefone);
+        this.setNumero(numero);
     }
 
     public String getDdi() {
@@ -50,20 +50,20 @@ public class Telefone extends Auditoria {
         this.ddd = ddd;
     }
 
-    public String getNumeroTelefone() {
-        return numeroTelefone;
+    public String getNumero() {
+        return numero;
     }
 
-    public void setNumeroTelefone(String numeroTelefone) {
-        verificarNulo(numeroTelefone);
-        validarCampoVazio(numeroTelefone);
-        validarCaracteresPermitidos(numeroTelefone, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
-        this.numeroTelefone = numeroTelefone;
+    public void setNumero(String numero) {
+        verificarNulo(numero);
+        validarCampoVazio(numero);
+        validarCaracteresPermitidos(numero, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
+        this.numero = numero;
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(ddd, numeroTelefone);
+        return Objects.hash(ddd, numero);
     }
 
     @Override
@@ -75,7 +75,7 @@ public class Telefone extends Auditoria {
             return false;
         }
         Telefone outro = (Telefone) obj;
-        return Objects.equals(ddd, outro.ddd) && Objects.equals(numeroTelefone, outro.numeroTelefone);
+        return Objects.equals(ddd, outro.ddd) && Objects.equals(numero, outro.numero);
     }
 
     @Override
@@ -86,7 +86,7 @@ public class Telefone extends Auditoria {
         builder.append(", ddd = ");
         builder.append(ddd);
         builder.append(", numeroTelefone = ");
-        builder.append(numeroTelefone);
+        builder.append(numero);
         builder.append("]");
         builder.append(super.toString());
         return builder.toString();

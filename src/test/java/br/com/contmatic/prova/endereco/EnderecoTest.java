@@ -31,9 +31,11 @@ import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.CARACTER_
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.EMAIL_DUZENTOS_OITENTA_CARACTERES_ALFABETICOS;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_SESSENTA_CARACTERES_ALFABETICOS;
 import static br.com.contmatic.prova.constantes.utils.GeradorCaracteres.gerarNumeros;
+import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.text.IsEqualIgnoringCase.equalToIgnoringCase;
+import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
@@ -253,11 +255,9 @@ public class EnderecoTest {
 
     @Test
     void deve_validar_toString() {
-        assertEquals(
-            "Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO + ", complemento = " + COMPLEMENTO + ", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]",
-            enderecoCompleto2.toString());
-        assertNotEquals(
-            "Endereco [logradouro = " + LOGRADOURO + ", numero = " + NUMERO_ENDERECO + ", complemento = " + COMPLEMENTO + ", bairro = " + BAIRRO + ", cidade = " + cidade + ", cep = " + CEP + "]",
-            enderecoCompleto.toString());
+        assertAll(
+            () -> assertThat(enderecoCompleto.toString(), containsString(enderecoCompleto.getBairro())),
+            () -> assertThat(enderecoCompleto.toString(), containsString(enderecoCompleto.getCep()))
+        );
     }
 }

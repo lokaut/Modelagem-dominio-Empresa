@@ -6,6 +6,8 @@ import static br.com.contmatic.prova.constantes.SetorConstantes.NOME_SETOR;
 import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
 import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
+import static org.hamcrest.CoreMatchers.containsString;
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
@@ -193,7 +195,10 @@ public class SetorTest {
 	
 	@Test
 	void deve_validar_toString() {
-		assertEquals(  "Setor [nome = " + SetorConstantes.NOME_SETOR + ", funcionarios = " + FUNCIONARIOS + ", descricao = " + SetorConstantes.DESCRICAO_SETOR + ", empresa = "
-				+ cnpjEmpresa + "]", setorCompleto.toString());
+        assertAll(
+            () -> assertThat(setorCompleto.toString(), containsString(setorCompleto.getNome())),
+            () -> assertThat(setorCompleto.toString(), containsString(setorCompleto.getDescricao()))
+                );
 	}
+	
 }
