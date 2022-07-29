@@ -1,7 +1,5 @@
 package br.com.contmatic.prova.constantes.utils;
 
-import java.time.LocalDateTime;
-
 public class ConstantesTestes {
     private ConstantesTestes() {}
 
@@ -17,9 +15,5 @@ public class ConstantesTestes {
     public static final String ONZE_NUMEROS_STRING = "66998583340";
     public static final String ONZE_NUMEROS_CARACTERES = "44a764b7f34";
     public static final String CATORZE_NUMEROS_LETRAS = "ABC134rfgs5d7j";
-    public static final LocalDateTime LOCAL_TIME_VALIDO = LocalDateTime.now();
-    public static final LocalDateTime LOCAL_TIME_ANTERIOR_HOJE = LocalDateTime.now().minusDays(1);
-    public static final String IP_NAO_FORMATADO = "11574217151";
-    public static final String IP_FORMATADO = "115.74.217.151";
 
 }
