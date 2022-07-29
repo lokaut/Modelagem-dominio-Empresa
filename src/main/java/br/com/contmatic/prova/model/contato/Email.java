@@ -1,12 +1,10 @@
 package br.com.contmatic.prova.model.contato;
 
-import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO;
-import static br.com.contmatic.prova.constantes.Regex.REGEX_EMAIL;
 import static br.com.contmatic.prova.constantes.model.EmailConstantes.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.model.EmailConstantes.TAMANHO_MINIMO_EMAIL;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
-import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEmail;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
 import java.util.Objects;
@@ -32,7 +30,7 @@ public class Email {
         verificarNulo(endereco);
         validarCampoVazio(endereco);
         limiteCaracteresMinimoMaximo(endereco, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
-        validarCaracteresPermitidos(endereco, REGEX_EMAIL, MENSAGEM_EMAIL_INVALIDO);
+        validarEmail(endereco);
         this.endereco = endereco;
     }
 
