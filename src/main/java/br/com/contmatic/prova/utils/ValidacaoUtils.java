@@ -6,6 +6,7 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_OBJETO_CRIADO;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_EMAIL;
 import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
 import static java.util.Objects.isNull;
@@ -29,13 +30,13 @@ public final class ValidacaoUtils {
     }
 
     public static void campoOpcional(String nome, int minimo, int maximo) {
-        if (nonNull(nome)) {
-            if (minimo != maximo) {
-                limiteCaracteresMinimoMaximo(nome, minimo, maximo);
-            } else {
-                limiteCaracteresFixo(nome, minimo);
-            }
+        if (nonNull(nome) && minimoMaximo(minimo, maximo)) {
+            limiteCaracteresMinimoMaximo(nome, minimo, maximo);
         }
+    }
+
+    private static boolean minimoMaximo(int minimo, int maximo) {
+        return minimo != maximo;
     }
 
     public static void limiteCaracteresFixo(String nome, int tamanho) {
@@ -110,15 +111,15 @@ public final class ValidacaoUtils {
     }
 
     public static <T> void validarSeExiste(T novo, T existente) {
-        if(nonNull(existente)) {
-            throw new IllegalStateException( "objeto para essa classe " + novo.getClass() + " já foi criado");
+        if (nonNull(existente)) {
+            throw new IllegalStateException(MENSAGEM_OBJETO_CRIADO);
         }
     }
-    
+
     public static void validarNumeroResidencial(Integer numero) {
-        if(numero < 0) {
+        if (numero < 0) {
             throw new IllegalStateException(MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO);
         }
-        
+
     }
 }
