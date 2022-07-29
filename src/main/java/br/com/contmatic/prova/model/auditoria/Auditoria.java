@@ -30,17 +30,17 @@ public abstract class Auditoria {
         return createdBy;
     }
 
-    public void setContatoCriacao(Email createdBy) {
+    public void setCreateBy(Email createdBy) {
         verificarNulo(createdBy);
         validarSeExiste(createdBy, this.createdBy);
         this.createdBy = createdBy;
     }
 
-    public Email getContatoAlteracao() {
+    public Email getLastModifiedBy() {
         return lastModifiedBy;
     }
 
-    public void setContatoAlteracao(Email lastModifiedBy) {
+    public void setLastModifiedBy(Email lastModifiedBy) {
         verificarNulo(lastModifiedBy);
         this.lastModifiedBy = lastModifiedBy;
     }
@@ -61,8 +61,8 @@ public abstract class Auditoria {
     }
 
     public void setDataAlteracao(LocalDateTime dataAlteracao) {
-        verificarNulo(dataCriacao);
-        validarDateTimeMaiorDateTimeAtual(dataCriacao);
+        verificarNulo(dataAlteracao);
+        validarDateTimeMaiorDateTimeAtual(dataAlteracao);
         this.dataAlteracao = dataAlteracao;
     }
 

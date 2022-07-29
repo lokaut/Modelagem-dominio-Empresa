@@ -32,5 +32,6 @@ public class Mensagem {
     public static final String MENSAGEM_DDI_INCORRETO = "Este DDI não é válido";
     public static final String MENSAGEM_IP_INVALIDO = "Ip é inválido";
     public static final String MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO = "Número da residência não pode ser menor que zero";
+    public static final String MENSAGEM_OBJETO_CRIADO = "objeto para essa classe já foi criado";
 
 }
