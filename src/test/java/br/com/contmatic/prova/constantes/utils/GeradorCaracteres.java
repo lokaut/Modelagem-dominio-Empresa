@@ -6,9 +6,7 @@ public final class GeradorCaracteres {
 
     public static Integer gerarNumeros(Integer numeroLimite, Boolean positivo) {
         Random gerador = new Random();
-
         return positivo ? gerador.nextInt(numeroLimite) : gerador.nextInt(numeroLimite) * -1;
-
     }
 
     public static String gerarEmail(int quantidadeLetras) {
@@ -18,7 +16,7 @@ public final class GeradorCaracteres {
             char randomizedCharacter = (char) (random.nextInt(26) + 'a'); 
             string.append(randomizedCharacter);
         }
-        string.append("@gmail.com").toString();
+        string.append("@gmail.com");
         return string.toString();
     }
 
