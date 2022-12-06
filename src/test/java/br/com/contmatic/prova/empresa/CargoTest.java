@@ -6,6 +6,7 @@ import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.DESCRICAO_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.NOME_CARGOS;
 import static br.com.contmatic.prova.constantes.CargosConstantes.SALARIO_CARGOS;
+import static br.com.contmatic.prova.constantes.EmpresaConstantes.CNPJ_VALIDO;
 import static br.com.contmatic.prova.constantes.FuncionarioConstantes.CPF_VALIDO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
@@ -13,8 +14,12 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_MENOR_SALARIO_
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MAXIMO_NOME_CARGO;
 import static br.com.contmatic.prova.constantes.model.CargoConstantes.TAMANHO_MINIMO_NOME_CARGO;
+import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.FUNCIONARIOS;
+import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.DOIS_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCnpj;
+import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
 import static java.math.BigDecimal.valueOf;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -38,10 +43,8 @@ import org.junit.jupiter.api.TestMethodOrder;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 
-import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
-import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
-import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 import br.com.contmatic.prova.model.empresa.Cargo;
+import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 
 @TestMethodOrder(OrderAnnotation.class)
@@ -70,7 +73,7 @@ public class CargoTest {
 	}
 	
 	@ParameterizedTest
-	@ValueSource(strings = {ConstantesTestes.DOIS_CARACTERES, MAIS_CEM_CARACTERES})
+	@ValueSource(strings = {DOIS_CARACTERES, MAIS_CEM_CARACTERES})
 	@Order(1)
 	void nao_deve_aceitar_fora_limite_caracteres_nome(String nome) {
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setNome(nome));
@@ -125,9 +128,9 @@ public class CargoTest {
 	@Test
 	@Order(8)
 	void nao_deve_aceitar_lista_acima_limite() {
-		while (funcionarioVazio.size() <= FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
-			funcionarioVazio.add(new Funcionario(GeradorCpfCnpj.gerarCpf()));
-			funcionarioVazio.add(new Funcionario(GeradorCpfCnpj.gerarCpf()));
+		while (funcionarioVazio.size() <= TAMANHO_MAXIMO_LISTA_FUNCIONARIO) {
+			funcionarioVazio.add(new Funcionario(gerarCpf(), new Empresa(gerarCnpj())));
+			funcionarioVazio.add(new Funcionario(gerarCpf(), new Empresa(gerarCnpj())));
 		}
 		this.illegalState = assertThrows(IllegalStateException.class, () -> cargo.setFuncionarios(funcionarioVazio));
 		assertTrue(this.illegalState.getMessage().contains(MENSAGEM_NUMERO_EXCEDIDO_LISTA));
@@ -136,7 +139,7 @@ public class CargoTest {
 	@Test
 	@Order(9)
 	void deve_validar_lista_funcionario() {
-		assertEquals(new Funcionario(CPF_VALIDO), FUNCIONARIOS.get(0));
+		assertEquals(new Funcionario(CPF_VALIDO, new Empresa(CNPJ_VALIDO)), FUNCIONARIOS.get(0));
 	}
 
 	@Order(10)

@@ -52,7 +52,6 @@ public class AuditoriaTest {
         cidadeAuditoria.setCreateBy(email);
         cidadeAuditoria.setIpCriacao(IP_FORMATADO);
     }
-
     @AfterAll
     public static void finalizacao() {
         System.out.println("Fim dos testes Auditoria");

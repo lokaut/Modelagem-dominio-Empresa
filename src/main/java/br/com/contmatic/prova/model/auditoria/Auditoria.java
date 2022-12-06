@@ -2,6 +2,12 @@ package br.com.contmatic.prova.model.auditoria;
 
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_IP_INVALIDO;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_IP;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.CRIADOPOR_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.DATA_ALTERACAO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.DATA_CRIACAO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.IP_ALTERACAO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.IP_CRIACAO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.AuditoriaConstantes.MODIFICADOPOR_ATRIBUTO;
 import static br.com.contmatic.prova.utils.ValidacaoDatas.validarDateTimeMaiorDateTimeAtual;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
@@ -14,9 +20,9 @@ import br.com.contmatic.prova.model.contato.Email;
 
 public abstract class Auditoria {
 
-    private Email createdBy;
+    private Email criadoPor;
 
-    private Email lastModifiedBy;
+    private Email modificadoPor;
 
     private LocalDateTime dataCriacao;
 
@@ -27,22 +33,22 @@ public abstract class Auditoria {
     private String ipAlteracao;
 
     public Email getcreatedBy() {
-        return createdBy;
+        return criadoPor;
     }
 
-    public void setCreateBy(Email createdBy) {
-        verificarNulo(createdBy);
-        validarSeExiste(createdBy, this.createdBy);
-        this.createdBy = createdBy;
+    public void setCreateBy(Email criadoPor) {
+        verificarNulo(criadoPor, CRIADOPOR_ATRIBUTO);
+        validarSeExiste(this.criadoPor);
+        this.criadoPor = criadoPor;
     }
 
     public Email getLastModifiedBy() {
-        return lastModifiedBy;
+        return modificadoPor;
     }
 
-    public void setLastModifiedBy(Email lastModifiedBy) {
-        verificarNulo(lastModifiedBy);
-        this.lastModifiedBy = lastModifiedBy;
+    public void setLastModifiedBy(Email modificadoPor) {
+        verificarNulo(modificadoPor, MODIFICADOPOR_ATRIBUTO);
+        this.modificadoPor = modificadoPor;
     }
 
     public LocalDateTime getDataCriacao() {
@@ -50,9 +56,9 @@ public abstract class Auditoria {
     }
 
     public void setDataCriacao(LocalDateTime dataCriacao) {
-        verificarNulo(dataCriacao);
+        verificarNulo(dataCriacao, DATA_CRIACAO_ATRIBUTO);
         validarDateTimeMaiorDateTimeAtual(dataCriacao);
-        validarSeExiste(dataCriacao, this.dataCriacao);
+        validarSeExiste(this.dataCriacao);
         this.dataCriacao = dataCriacao;
     }
 
@@ -61,7 +67,7 @@ public abstract class Auditoria {
     }
 
     public void setDataAlteracao(LocalDateTime dataAlteracao) {
-        verificarNulo(dataAlteracao);
+        verificarNulo(dataAlteracao, DATA_ALTERACAO_ATRIBUTO);
         validarDateTimeMaiorDateTimeAtual(dataAlteracao);
         this.dataAlteracao = dataAlteracao;
     }
@@ -71,10 +77,10 @@ public abstract class Auditoria {
     }
 
     public void setIpCriacao(String ipCriacao) {
-        verificarNulo(ipCriacao);
-        validarCampoVazio(ipCriacao);
-        validarCaracteresPermitidos(ipCriacao, REGEX_IP, MENSAGEM_IP_INVALIDO);
-        validarSeExiste(ipCriacao, this.ipCriacao);
+        verificarNulo(ipCriacao, IP_CRIACAO_ATRIBUTO);
+        validarCampoVazio(ipCriacao, IP_CRIACAO_ATRIBUTO);
+        validarCaracteresPermitidos(ipCriacao, REGEX_IP, MENSAGEM_IP_INVALIDO, IP_CRIACAO_ATRIBUTO);
+        validarSeExiste(this.ipCriacao);
         this.ipCriacao = ipCriacao;
     }
 
@@ -83,19 +89,19 @@ public abstract class Auditoria {
     }
 
     public void setIpAlteracao(String ipAlteracao) {
-        verificarNulo(ipAlteracao);
-        validarCampoVazio(ipAlteracao);
-        validarCaracteresPermitidos(ipAlteracao, REGEX_IP, MENSAGEM_IP_INVALIDO);
+        verificarNulo(ipAlteracao, IP_ALTERACAO_ATRIBUTO);
+        validarCampoVazio(ipAlteracao, IP_ALTERACAO_ATRIBUTO);
+        validarCaracteresPermitidos(ipAlteracao, REGEX_IP, MENSAGEM_IP_INVALIDO, IP_ALTERACAO_ATRIBUTO);
         this.ipAlteracao = ipAlteracao;
     }
 
     @Override
     public String toString() {
         StringBuilder builder = new StringBuilder();
-        builder.append(" Auditoria [createdBy = ");
-        builder.append(createdBy);
-        builder.append(", lastModifiedBy = ");
-        builder.append(lastModifiedBy);
+        builder.append("Auditoria [criadoPor = ");
+        builder.append(criadoPor);
+        builder.append(", modificadoPor = ");
+        builder.append(modificadoPor);
         builder.append(", dataCriacao = ");
         builder.append(dataCriacao);
         builder.append(", dataAlteracao = ");
@@ -104,7 +110,7 @@ public abstract class Auditoria {
         builder.append(ipCriacao);
         builder.append(", ipAlteracao = ");
         builder.append(ipAlteracao);
-        builder.append("] ");
+        builder.append("]");
         return builder.toString();
     }
 

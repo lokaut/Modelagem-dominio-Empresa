@@ -44,6 +44,7 @@ import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoLista
 import static br.com.contmatic.prova.constantes.objetos.listas.SerializacaoListas.TELEFONES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.DOIS_CARACTERES;
 import static br.com.contmatic.prova.constantes.utils.ConstantesTestes.MAIS_CEM_CARACTERES;
+import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCnpj;
 import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
 import static java.time.LocalDate.now;
 import static org.junit.jupiter.api.Assertions.assertAll;
@@ -65,6 +66,7 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import br.com.contmatic.prova.constantes.Mensagem;
 import br.com.contmatic.prova.constantes.utils.ConstantesTestes;
+import br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj;
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
@@ -264,7 +266,7 @@ public class EmpresaTest {
     @Test
     void deve_validar_lista_setores() {
         List<Funcionario> funcionarios = new ArrayList<>();
-        funcionarios.add(new Funcionario(gerarCpf()));
+        funcionarios.add(new Funcionario(gerarCpf(), new Empresa(gerarCnpj())));
         setoresVazio.add(new Setor(NOME_SETOR, funcionarios, DESCRICAO_SETOR, new Empresa(CNPJ_VALIDO_ALEATORIO)));
         empresaCompleta.setSetores(setoresVazio);
         assertEquals(setoresVazio, empresaCompleta.getSetores());

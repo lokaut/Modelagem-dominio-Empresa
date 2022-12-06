@@ -6,6 +6,9 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_TELEFONE_INCOR
 import static br.com.contmatic.prova.constantes.Regex.REGEX_DDD;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_DDI;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_TELEFONE;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.DDD_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.DDI_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.NUMERO_ATRIBUTO;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
@@ -33,9 +36,9 @@ public class Telefone extends Auditoria {
     }
 
     public void setDdi(String ddi) {
-        verificarNulo(ddi);
-        validarCampoVazio(ddi);
-        validarCaracteresPermitidos(ddi, REGEX_DDI, MENSAGEM_DDI_INCORRETO);
+        verificarNulo(ddi, DDI_ATRIBUTO);
+        validarCampoVazio(ddi, DDI_ATRIBUTO);
+        validarCaracteresPermitidos(ddi, REGEX_DDI, MENSAGEM_DDI_INCORRETO, DDI_ATRIBUTO);
         this.ddi = ddi;
     }
 
@@ -44,9 +47,9 @@ public class Telefone extends Auditoria {
     }
 
     public void setDdd(String ddd) {
-        verificarNulo(ddd);
-        validarCampoVazio(ddd);
-        validarCaracteresPermitidos(ddd, REGEX_DDD, MENSAGEM_DDD_INCORRETO);
+        verificarNulo(ddd, DDD_ATRIBUTO);
+        validarCampoVazio(ddd, DDD_ATRIBUTO);
+        validarCaracteresPermitidos(ddd, REGEX_DDD, MENSAGEM_DDD_INCORRETO, DDD_ATRIBUTO);
         this.ddd = ddd;
     }
 
@@ -55,9 +58,9 @@ public class Telefone extends Auditoria {
     }
 
     public void setNumero(String numero) {
-        verificarNulo(numero);
-        validarCampoVazio(numero);
-        validarCaracteresPermitidos(numero, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
+        verificarNulo(numero, NUMERO_ATRIBUTO);
+        validarCampoVazio(numero, NUMERO_ATRIBUTO);
+        validarCaracteresPermitidos(numero, NUMERO_ATRIBUTO, REGEX_TELEFONE, MENSAGEM_TELEFONE_INCORRETO);
         this.numero = numero;
     }
 

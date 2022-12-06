@@ -2,18 +2,25 @@ package br.com.contmatic.prova.model.empresa;
 
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
-import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.TAMANHO_MAXIMO_LISTA_TELEFONES;
+import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.CNPJ_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.NOME_FANTASIA_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.RAZAO_SOCIAL_ATRIBUTO;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA;
 import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.ENDERECOS_ATRIBUTO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_LISTA_ENDERECOS;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.SETORES_ATRIBUTO;
 import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_LISTA_SETORES;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.TAMANHO_MAXIMO_LISTA_TELEFONES;
+import static br.com.contmatic.prova.constantes.model.TelefoneConstantes.TELEFONES_ATRIBUTO;
 import static br.com.contmatic.prova.utils.ValidacaoCnpj.validarCNPJ;
 import static br.com.contmatic.prova.utils.ValidacaoDatas.validarDataMaiorDataAtual;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEspacoDesnecessario;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarListaVazia;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
@@ -42,6 +49,8 @@ public class Empresa extends Auditoria {
 
     private List<Endereco> enderecos;
 
+    private Boolean ativo = true;
+
     public Empresa(String cnpj) {
         this.setCnpj(cnpj);
     }
@@ -61,8 +70,9 @@ public class Empresa extends Auditoria {
     }
 
     public void setCnpj(String cnpj) {
-        verificarNulo(cnpj);
+        verificarNulo(cnpj, CNPJ_ATRIBUTO);
         validarCNPJ(cnpj);
+
         this.cnpj = cnpj;
     }
 
@@ -71,10 +81,11 @@ public class Empresa extends Auditoria {
     }
 
     public void setRazaoSocial(String razaoSocial) {
-        verificarNulo(razaoSocial);
-        validarCampoVazio(razaoSocial);
-        limiteCaracteresMinimoMaximo(razaoSocial, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
-        validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        verificarNulo(razaoSocial, RAZAO_SOCIAL_ATRIBUTO);
+        validarCampoVazio(razaoSocial, RAZAO_SOCIAL_ATRIBUTO);
+        validarEspacoDesnecessario(razaoSocial);
+        limiteCaracteresMinimoMaximo(razaoSocial, RAZAO_SOCIAL_ATRIBUTO, TAMANHO_MINIMO_RAZAOSOCIAL_EMPRESA, TAMANHO_MAXIMO_RAZAOSOCIAL_EMPRESA);
+        validarCaracteresPermitidos(razaoSocial, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL, RAZAO_SOCIAL_ATRIBUTO);
         this.razaoSocial = razaoSocial;
     }
 
@@ -83,10 +94,11 @@ public class Empresa extends Auditoria {
     }
 
     public void setNomeFantasia(String nomeFantasia) {
-        verificarNulo(nomeFantasia);
-        validarCampoVazio(nomeFantasia);
-        limiteCaracteresMinimoMaximo(nomeFantasia, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
-        validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        verificarNulo(nomeFantasia, NOME_FANTASIA_ATRIBUTO);
+        validarCampoVazio(nomeFantasia, NOME_FANTASIA_ATRIBUTO);
+        validarEspacoDesnecessario(nomeFantasia);
+        limiteCaracteresMinimoMaximo(nomeFantasia, NOME_FANTASIA_ATRIBUTO, TAMANHO_MINIMO_NOMEFANTASIA_EMPRESA, TAMANHO_MAXIMO_NOMEFANTASIA_EMPRESA);
+        validarCaracteresPermitidos(nomeFantasia, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL, NOME_FANTASIA_ATRIBUTO);
         this.nomeFantasia = nomeFantasia;
     }
 
@@ -95,7 +107,7 @@ public class Empresa extends Auditoria {
     }
 
     public void setDataFundacao(LocalDate dataFundacao) {
-        verificarNulo(dataFundacao);
+        verificarNulo(dataFundacao, TELEFONES_ATRIBUTO);
         validarDataMaiorDataAtual(dataFundacao);
         this.dataFundacao = dataFundacao;
     }
@@ -105,9 +117,9 @@ public class Empresa extends Auditoria {
     }
 
     public void setSetores(List<Setor> setores) {
-        verificarNulo(setores);
-        validarListaVazia(setores);
-        validarTamanhoMaximoLista(setores, TAMANHO_MAXIMO_LISTA_SETORES);
+        verificarNulo(setores, SETORES_ATRIBUTO);
+        validarListaVazia(setores, SETORES_ATRIBUTO);
+        validarTamanhoMaximoLista(setores, TAMANHO_MAXIMO_LISTA_SETORES, SETORES_ATRIBUTO);
         this.setores = setores;
     }
 
@@ -115,10 +127,14 @@ public class Empresa extends Auditoria {
         return telefones;
     }
 
+    public void setTelefones(List<Telefone> telefones) {
+        this.telefones = telefones;
+    }
+
     public void setContatos(List<Telefone> telefones) {
-        verificarNulo(telefones);
-        validarListaVazia(telefones);
-        validarTamanhoMaximoLista(telefones, TAMANHO_MAXIMO_LISTA_TELEFONES);
+        verificarNulo(telefones, TELEFONES_ATRIBUTO);
+        validarListaVazia(telefones, TELEFONES_ATRIBUTO);
+        validarTamanhoMaximoLista(telefones, TAMANHO_MAXIMO_LISTA_TELEFONES, TELEFONES_ATRIBUTO);
         this.telefones = telefones;
     }
 
@@ -127,10 +143,18 @@ public class Empresa extends Auditoria {
     }
 
     public void setEnderecos(List<Endereco> enderecos) {
-        verificarNulo(enderecos);
-        validarListaVazia(enderecos);
-        validarTamanhoMaximoLista(enderecos, TAMANHO_MAXIMO_LISTA_ENDERECOS);
+        verificarNulo(enderecos, ENDERECOS_ATRIBUTO);
+        validarListaVazia(enderecos, ENDERECOS_ATRIBUTO);
+        validarTamanhoMaximoLista(enderecos, TAMANHO_MAXIMO_LISTA_ENDERECOS, ENDERECOS_ATRIBUTO);
         this.enderecos = enderecos;
+    }
+
+    public Boolean getAtivo() {
+        return ativo;
+    }
+
+    public void setAtivo(Boolean ativo) {
+        this.ativo = ativo;
     }
 
     @Override
@@ -163,10 +187,12 @@ public class Empresa extends Auditoria {
         builder.append(dataFundacao);
         builder.append(", setores = ");
         builder.append(setores);
-        builder.append(", Telefones = ");
+        builder.append(", telefones = ");
         builder.append(telefones);
         builder.append(", enderecos = ");
         builder.append(enderecos);
+        builder.append(", ativo = ");
+        builder.append(ativo);
         builder.append(super.toString());
         builder.append("]");
         return builder.toString();

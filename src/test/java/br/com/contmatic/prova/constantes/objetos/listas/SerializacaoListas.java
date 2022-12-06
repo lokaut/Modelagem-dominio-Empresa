@@ -4,6 +4,7 @@ import static br.com.contmatic.prova.constantes.CargosConstantes.CBO_CARGOS;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.CODIGO_IBGE_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.MUNICIPIO_SAO_PAULO;
 import static br.com.contmatic.prova.constantes.CidadeConstantes.UNIDADE_FEDERATIVA_SP;
+import static br.com.contmatic.prova.constantes.EmpresaConstantes.CNPJ_VALIDO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.BAIRRO_02;
 import static br.com.contmatic.prova.constantes.EnderecoConstantes.CEP;
@@ -24,6 +25,7 @@ import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDD_SAO_PAULO
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.DDI_BRASIL;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_CELULAR;
 import static br.com.contmatic.prova.constantes.TelefoneConstantes.NUMERO_TELEFONE;
+import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCnpj;
 import static br.com.contmatic.prova.constantes.utils.GeradorCpfCnpj.gerarCpf;
 
 import java.util.ArrayList;
@@ -31,6 +33,7 @@ import java.util.List;
 
 import br.com.contmatic.prova.model.contato.Telefone;
 import br.com.contmatic.prova.model.empresa.Cargo;
+import br.com.contmatic.prova.model.empresa.Empresa;
 import br.com.contmatic.prova.model.empresa.Funcionario;
 import br.com.contmatic.prova.model.empresa.Setor;
 import br.com.contmatic.prova.model.endereco.Cidade;
@@ -41,15 +44,23 @@ public class SerializacaoListas {
     private SerializacaoListas() {
     }
 
+    private static String cnpj = gerarCnpj();
+    private static String cpf = gerarCpf();
     /* Serialização para gerar listas */
     public static final List<Funcionario> FUNCIONARIOS = new ArrayList<>() {
         public static final long serialVersionUID = 1L;
         {
-            add(new Funcionario(NOME_COMPLETO, CPF_VALIDO, new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR),
-                new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)), DATA_ADMISSAO,
-                DATA_NASCIMENTO_VALIDO, new Cargo(CBO_CARGOS), new Setor(NOME_SETOR_RH))); 
-
-            add(new Funcionario(gerarCpf()));
+//            add(new Funcionario(CPF_VALIDO,
+//                new Empresa(CNPJ_VALIDO),
+//                NOME_COMPLETO,
+//                new Telefone(DDI_BRASIL, DDD_SAO_PAULO, NUMERO_CELULAR),
+//                new Endereco(LOGRADOURO, NUMERO_ENDERECO, BAIRRO, COMPLEMENTO, CEP, new Cidade(CODIGO_IBGE_SAO_PAULO, MUNICIPIO_SAO_PAULO, UNIDADE_FEDERATIVA_SP)),
+//                DATA_ADMISSAO,
+//                DATA_NASCIMENTO_VALIDO, 
+//                new Cargo(CBO_CARGOS),
+//                new Setor(NOME_SETOR_RH)));
+// tentar passar cnpj nao gerado
+            add(new Funcionario(cpf, new Empresa(cnpj)));
         }
     };
 
@@ -76,4 +87,5 @@ public class SerializacaoListas {
             add(new Telefone(DDI_BRASIL, DDD_CEARA, NUMERO_TELEFONE));
         }
     };
+    
 }

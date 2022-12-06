@@ -1,5 +1,7 @@
 package br.com.contmatic.prova.model.contato;
 
+import static br.com.contmatic.prova.constantes.model.EmailConstantes.EMAILTYPE_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EmailConstantes.ENDERECO_ATRIBUTO;
 import static br.com.contmatic.prova.constantes.model.EmailConstantes.TAMANHO_MAXIMO_EMAIL;
 import static br.com.contmatic.prova.constantes.model.EmailConstantes.TAMANHO_MINIMO_EMAIL;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
@@ -7,6 +9,8 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEmail;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Email {
@@ -14,9 +18,10 @@ public class Email {
     private String endereco;
 
     private Emailtype emailType;
-    
-    public Email() {}
-    
+
+    public Email() {
+    }
+
     public Email(String endereco, Emailtype emailtype) {
         this.setEndereco(endereco);
         this.setEmailtype(emailtype);
@@ -27,9 +32,9 @@ public class Email {
     }
 
     public void setEndereco(String endereco) {
-        verificarNulo(endereco);
-        validarCampoVazio(endereco);
-        limiteCaracteresMinimoMaximo(endereco, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
+        verificarNulo(endereco, ENDERECO_ATRIBUTO);
+        validarCampoVazio(endereco, ENDERECO_ATRIBUTO);
+        limiteCaracteresMinimoMaximo(endereco, ENDERECO_ATRIBUTO, TAMANHO_MINIMO_EMAIL, TAMANHO_MAXIMO_EMAIL);
         validarEmail(endereco);
         this.endereco = endereco;
     }
@@ -39,7 +44,7 @@ public class Email {
     }
 
     public void setEmailtype(Emailtype emailtype) {
-        verificarNulo(endereco);
+        verificarNulo(endereco, EMAILTYPE_ATRIBUTO);
         this.emailType = emailtype;
     }
 

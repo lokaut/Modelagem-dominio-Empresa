@@ -3,6 +3,7 @@ package br.com.contmatic.prova.utils;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_NULO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_CAMPO_VAZIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_EMAIL_INVALIDO;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_ESPACO_DESNECESSARIO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_MENOR_SALARIO_SALARIO_MINIMO;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_EXCEDIDO_LISTA;
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO;
@@ -23,15 +24,15 @@ public final class ValidacaoUtils {
     private ValidacaoUtils() {
     }
 
-    public static <T> void verificarNulo(T objeto) {
+    public static <T> void verificarNulo(T objeto, String nomeAtributo) {
         if (isNull(objeto)) {
-            throw new IllegalArgumentException(MENSAGEM_CAMPO_NULO);
+            throw new IllegalArgumentException(nomeAtributo + MENSAGEM_CAMPO_NULO);
         }
     }
 
-    public static void campoOpcional(String nome, int minimo, int maximo) {
+    public static void campoOpcional(String nome, int minimo, int maximo, String atributo) {
         if (nonNull(nome) && minimoMaximo(minimo, maximo)) {
-            limiteCaracteresMinimoMaximo(nome, minimo, maximo);
+            limiteCaracteresMinimoMaximo(nome, atributo, minimo, maximo);
         }
     }
 
@@ -51,10 +52,12 @@ public final class ValidacaoUtils {
         }
     }
 
-    public static void limiteCaracteresMinimoMaximo(String nome, int minimo, int maximo) {
+    public static void limiteCaracteresMinimoMaximo(String nome, String atributo, int minimo, int maximo) {
         if (nome.length() < minimo || nome.length() > maximo) {
             StringBuilder builderIllegalState = new StringBuilder();
-            builderIllegalState.append("Quantidade de carácter inválido, o campo deve estar entre ");
+            builderIllegalState.append("Quantidade de carácter inválido, o campo ");
+            builderIllegalState.append(atributo);
+            builderIllegalState.append(" deve possuir ");
             builderIllegalState.append(minimo);
             builderIllegalState.append(" a ");
             builderIllegalState.append(maximo);
@@ -64,9 +67,9 @@ public final class ValidacaoUtils {
         }
     }
 
-    public static void validarCampoVazio(String nome) {
+    public static void validarCampoVazio(String nome, String nomeAtributo) {
         if (nome.isBlank()) {
-            throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+            throw new IllegalStateException(nomeAtributo + MENSAGEM_CAMPO_VAZIO);
         }
     }
 
@@ -84,21 +87,21 @@ public final class ValidacaoUtils {
         }
     }
 
-    public static void validarCaracteresPermitidos(String campo, String regex, String mensagemErro) {
+    public static void validarCaracteresPermitidos(String campo, String regex, String mensagemErro, String atributo) {
         if (!campo.matches(regex)) {
-            throw new IllegalStateException(mensagemErro);
+            throw new IllegalStateException(atributo + mensagemErro);
         }
     }
 
-    public static <E> void validarListaVazia(List<E> lista) {
+    public static <E> void validarListaVazia(List<E> lista, String atributos) {
         if (lista.isEmpty()) {
-            throw new IllegalStateException(MENSAGEM_CAMPO_VAZIO);
+            throw new IllegalStateException(atributos + MENSAGEM_CAMPO_VAZIO);
         }
     }
 
-    public static <E> void validarTamanhoMaximoLista(List<E> lista, int tamanho) {
+    public static <E> void validarTamanhoMaximoLista(List<E> lista, int tamanho, String atributos) {
         if (lista.size() > tamanho) {
-            throw new IllegalStateException(MENSAGEM_NUMERO_EXCEDIDO_LISTA);
+            throw new IllegalStateException(atributos + MENSAGEM_NUMERO_EXCEDIDO_LISTA);
         }
     }
 
@@ -110,7 +113,7 @@ public final class ValidacaoUtils {
         }
     }
 
-    public static <T> void validarSeExiste(T novo, T existente) {
+    public static <T> void validarSeExiste(T existente) {
         if (nonNull(existente)) {
             throw new IllegalStateException(MENSAGEM_OBJETO_CRIADO);
         }
@@ -120,6 +123,13 @@ public final class ValidacaoUtils {
         if (numero < 0) {
             throw new IllegalStateException(MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO);
         }
-
     }
+
+    public static void validarEspacoDesnecessario(String nome) {
+        int tamanhoAtributoFormatado = nome.strip().length();
+        if (nome.length() != tamanhoAtributoFormatado) {
+            throw new IllegalStateException(nome + MENSAGEM_ESPACO_DESNECESSARIO);
+        }
+    }
+
 }

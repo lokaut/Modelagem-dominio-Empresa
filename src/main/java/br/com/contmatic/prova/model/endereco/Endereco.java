@@ -4,6 +4,12 @@ import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTE
 import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_ALFANUMERICOS;
 import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
+import static br.com.contmatic.prova.constantes.model.CidadeConstantes.CIDADE_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.BAIRRO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.CEP_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.COMPLEMENTO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.LOGRADOURO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.NUMERO_ATRIBUTO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_FIXO_CEP_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_BAIRRO_ENDERECO;
 import static br.com.contmatic.prova.constantes.model.EnderecoConstantes.TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO;
@@ -16,6 +22,7 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresFixo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEspacoDesnecessario;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarNumeroResidencial;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 
@@ -59,10 +66,11 @@ public class Endereco extends Auditoria {
     }
 
     public void setLogradouro(String logradouro) {
-        verificarNulo(logradouro);
-        validarCampoVazio(logradouro);
-        limiteCaracteresMinimoMaximo(logradouro, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
-        validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        verificarNulo(logradouro, LOGRADOURO_ATRIBUTO);
+        validarCampoVazio(logradouro, LOGRADOURO_ATRIBUTO);
+        validarEspacoDesnecessario(logradouro);
+        limiteCaracteresMinimoMaximo(logradouro, LOGRADOURO_ATRIBUTO, TAMANHO_MINIMO_LOGRADOURO_ENDERECO, TAMANHO_MAXIMO_LOGRADOURO_ENDERECO);
+        validarCaracteresPermitidos(logradouro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL, LOGRADOURO_ATRIBUTO);
         this.logradouro = logradouro;
     }
 
@@ -70,9 +78,9 @@ public class Endereco extends Auditoria {
         return numero;
     }
 
-    // Se for uma residencia sem número, então o numero será zero
+    /* Se for uma residencia sem número, então o numero será zero */
     public void setNumero(Integer numero) {
-        verificarNulo(numero);
+        verificarNulo(numero, NUMERO_ATRIBUTO);
         validarNumeroResidencial(numero);
         this.numero = numero;
     }
@@ -82,7 +90,7 @@ public class Endereco extends Auditoria {
     }
 
     public void setComplemento(String complemento) {
-        campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO_ENDERECO, TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO);
+        campoOpcional(complemento, TAMANHO_MINIMO_COMPLEMENTO_ENDERECO, TAMANHO_MAXIMO_COMPLEMENTO_ENDERECO, COMPLEMENTO_ATRIBUTO);
         this.complemento = complemento;
     }
 
@@ -91,10 +99,11 @@ public class Endereco extends Auditoria {
     }
 
     public void setBairro(String bairro) {
-        verificarNulo(bairro);
-        validarCampoVazio(bairro);
-        limiteCaracteresMinimoMaximo(bairro, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
-        validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        verificarNulo(bairro, BAIRRO_ATRIBUTO);
+        validarCampoVazio(bairro, BAIRRO_ATRIBUTO);
+        validarEspacoDesnecessario(bairro);
+        limiteCaracteresMinimoMaximo(bairro, BAIRRO_ATRIBUTO, TAMANHO_MINIMO_BAIRRO_ENDERECO, TAMANHO_MAXIMO_BAIRRO_ENDERECO);
+        validarCaracteresPermitidos(bairro, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL, BAIRRO_ATRIBUTO);
         this.bairro = bairro;
     }
 
@@ -103,10 +112,10 @@ public class Endereco extends Auditoria {
     }
 
     public void setCep(String cep) {
-        verificarNulo(cep);
-        validarCampoVazio(cep);
+        verificarNulo(cep, CEP_ATRIBUTO);
+        validarCampoVazio(cep, CEP_ATRIBUTO);
         limiteCaracteresFixo(cep, TAMANHO_FIXO_CEP_ENDERECO);
-        validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL);
+        validarCaracteresPermitidos(cep, REGEX_ALFANUMERICOS, MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL, CEP_ATRIBUTO);
         this.cep = cep;
     }
 
@@ -115,7 +124,7 @@ public class Endereco extends Auditoria {
     }
 
     public void setCidade(Cidade cidade) {
-        verificarNulo(cidade);
+        verificarNulo(cidade, CIDADE_ATRIBUTO);
         this.cidade = cidade;
     }
 

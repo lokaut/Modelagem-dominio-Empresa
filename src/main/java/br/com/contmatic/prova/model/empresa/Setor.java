@@ -1,8 +1,22 @@
 package br.com.contmatic.prova.model.empresa;
 
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL;
+import static br.com.contmatic.prova.constantes.Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO;
+import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_ACENTOS;
+import static br.com.contmatic.prova.constantes.Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS;
+import static br.com.contmatic.prova.constantes.model.EmpresaConstantes.EMPRESA_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.FUNCIONARIOS_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.DESCRICAO_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.NOME_ATRIBUTO;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_DESCRICAO;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MINIMO_DESCRICAO;
+import static br.com.contmatic.prova.constantes.model.SetorConstantes.TAMANHO_MINIMO_NOME_SETOR;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.limiteCaracteresMinimoMaximo;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCampoVazio;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarCaracteresPermitidos;
+import static br.com.contmatic.prova.utils.ValidacaoUtils.validarEspacoDesnecessario;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarListaVazia;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.validarTamanhoMaximoLista;
 import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
@@ -10,10 +24,6 @@ import static br.com.contmatic.prova.utils.ValidacaoUtils.verificarNulo;
 import java.util.List;
 import java.util.Objects;
 
-import br.com.contmatic.prova.constantes.Mensagem;
-import br.com.contmatic.prova.constantes.Regex;
-import br.com.contmatic.prova.constantes.model.FuncionarioConstantes;
-import br.com.contmatic.prova.constantes.model.SetorConstantes;
 import br.com.contmatic.prova.model.auditoria.Auditoria;
 
 public class Setor extends Auditoria {
@@ -26,6 +36,10 @@ public class Setor extends Auditoria {
 
     private Empresa empresa;
 
+    public Setor(String nome) {
+        this.setNome(nome);
+    }
+    
     public Setor(String nome, List<Funcionario> funcionario, String descricao, Empresa empresa) {
         this.setNome(nome);
         this.setFuncionarios(funcionario);
@@ -33,19 +47,16 @@ public class Setor extends Auditoria {
         this.setEmpresa(empresa);
     }
 
-    public Setor(String nome) {
-        this.setNome(nome);
-    }
-
     public String getNome() {
         return nome;
     }
 
     public void setNome(String nome) {
-        verificarNulo(nome);
-        validarCampoVazio(nome);
-        limiteCaracteresMinimoMaximo(nome, SetorConstantes.TAMANHO_MINIMO_NOME_SETOR, SetorConstantes.TAMANHO_MAXIMO_NOME_SETOR);
-        validarCaracteresPermitidos(nome, Regex.REGEX_CARACTERES_ALFABETICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO);
+        verificarNulo(nome, NOME_ATRIBUTO);
+        validarCampoVazio(nome, NOME_ATRIBUTO);
+        validarEspacoDesnecessario(nome);
+        limiteCaracteresMinimoMaximo(nome, NOME_ATRIBUTO, TAMANHO_MINIMO_NOME_SETOR, TAMANHO_MAXIMO_NOME_SETOR);
+        validarCaracteresPermitidos(nome, REGEX_CARACTERES_ALFABETICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO, NOME_ATRIBUTO);
         this.nome = nome;
     }
 
@@ -54,9 +65,9 @@ public class Setor extends Auditoria {
     }
 
     public void setFuncionarios(List<Funcionario> funcionarios) {
-        verificarNulo(funcionarios);
-        validarListaVazia(funcionarios);
-        validarTamanhoMaximoLista(funcionarios, FuncionarioConstantes.TAMANHO_MAXIMO_LISTA_FUNCIONARIO);
+        verificarNulo(funcionarios, FUNCIONARIOS_ATRIBUTO);
+        validarListaVazia(funcionarios, FUNCIONARIOS_ATRIBUTO);
+        validarTamanhoMaximoLista(funcionarios, TAMANHO_MAXIMO_LISTA_FUNCIONARIO, FUNCIONARIOS_ATRIBUTO);
         this.funcionarios = funcionarios;
     }
 
@@ -65,10 +76,11 @@ public class Setor extends Auditoria {
     }
 
     public void setDescricao(String descricao) {
-        verificarNulo(descricao);
-        validarCampoVazio(descricao);
-        limiteCaracteresMinimoMaximo(descricao, SetorConstantes.TAMANHO_MINIMO_DESCRICAO, SetorConstantes.TAMANHO_MAXIMO_DESCRICAO);
-        validarCaracteresPermitidos(descricao, Regex.REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, Mensagem.MENSAGEM_POSSUI_CARACTER_ESPECIAL);
+        verificarNulo(descricao, DESCRICAO_ATRIBUTO);
+        validarCampoVazio(descricao, DESCRICAO_ATRIBUTO);
+        validarEspacoDesnecessario(descricao);
+        limiteCaracteresMinimoMaximo(descricao, DESCRICAO_ATRIBUTO,  TAMANHO_MINIMO_DESCRICAO, TAMANHO_MAXIMO_DESCRICAO);
+        validarCaracteresPermitidos(descricao, REGEX_CARACTERES_ALFABETICOS_NUMERICOS_ACENTOS, MENSAGEM_POSSUI_CARACTER_ESPECIAL, DESCRICAO_ATRIBUTO);
         this.descricao = descricao;
     }
 
@@ -77,7 +89,7 @@ public class Setor extends Auditoria {
     }
 
     public void setEmpresa(Empresa empresa) {
-        verificarNulo(empresa);
+        verificarNulo(empresa, EMPRESA_ATRIBUTO);
         this.empresa = empresa;
     }
 

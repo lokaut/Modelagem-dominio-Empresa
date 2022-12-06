@@ -7,13 +7,13 @@ import static br.com.contmatic.prova.constantes.RegrasEmpresa.SALARIO_MINIMO;
 
 public class Mensagem {
 	private Mensagem() {}
-    public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = "O Campo possui caracter númerico";
-    public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = "O Campo possui caracter númerico ou caracter especial";
-    public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = "O Campo possui caracter alfabético";
-    public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL = "O Campo possui caracter especial";
-    public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL = "O Campo possui caracter alfabético ou caracter especial";
-    public static final String MENSAGEM_CAMPO_NULO = "Este campo não pode ser nulo";
-    public static final String MENSAGEM_CAMPO_VAZIO = "Campo está vazio ou contém apenas espaço em branco";
+    public static final String MENSAGEM_POSSUI_CARACTER_NUMERICO = " possui caracter númerico";
+    public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL_NUMERICO = " possui caracter númerico ou caracter especial";
+    public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO = " possui caracter alfabético";
+    public static final String MENSAGEM_POSSUI_CARACTER_ESPECIAL = " possui caracter especial";
+    public static final String MENSAGEM_POSSUI_CARACTER_ALFABETICO_ESPECIAL = " possui caracter alfabético ou caracter especial";
+    public static final String MENSAGEM_CAMPO_NULO = " não pode ser nulo";
+    public static final String MENSAGEM_CAMPO_VAZIO = " está vazio ou contém apenas espaço em branco";
     public static final String MENSAGEM_CPF_INVALIDO = "CPF inválido";
     public static final String MENSAGEM_CNPJ_INVALIDO = "CNPJ inválido";
     public static final String MENSAGEM_CPF_DIFERENTE_ONZE_NUMEROS = "CPF não possui 11 caracteres";
@@ -28,10 +28,11 @@ public class Mensagem {
     public static final String MENSAGEM_DDD_INCORRETO = "DDD precisa conter apenas dois números sem o zero";
     public static final String MENSAGEM_TELEFONE_INCORRETO = "Telefone precisa conter 8 números e celular precisa conter 9 números, sendo que o mesmo começando com 9";
     public static final String MENSAGEM_CELULAR_INCORRETO = "Celular precisa de 9 números";
-    public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = "Quantidade da lista excedida";
+    public static final String MENSAGEM_NUMERO_EXCEDIDO_LISTA = " Quantidade da lista excedida";
     public static final String MENSAGEM_DDI_INCORRETO = "Este DDI não é válido";
     public static final String MENSAGEM_IP_INVALIDO = "Ip é inválido";
-    public static final String MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO = "Número da residência não pode ser menor que zero";
+    public static final String MENSAGEM_NUMERO_RESIDENCIAL_INVALIDO = " não é um número da residencial, pois o número residencial não pode ser menor que zero";
     public static final String MENSAGEM_OBJETO_CRIADO = "objeto para essa classe já foi criado";
+    public static final String MENSAGEM_ESPACO_DESNECESSARIO = " possui espaços desnecessário";
 
 }

@@ -17,4 +17,7 @@ public class RegrasCpfCnpj {
     public static final int POSICAO_TREZE_CNPJ = 13;
     public static final int QUANTIDADE_NUMEROS_INICIAIS_CPF = 9;
     public static final int QUANTIDADE_NUMEROS_INICIAIS_CNPJ = 8;
+    public static final int PESO_DOIS_CPF_CNPJ = 2;
+    public static final int RESTO_ZERO = 0;
+    public static final int RESTO_UM = 1;
 }
